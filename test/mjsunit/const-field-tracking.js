@@ -6,7 +6,7 @@
 
 var global = this;
 
-// TODO(ishell): update the test once const->mutable migration does not
+// TODO (ishell): update the test once const->mutable migration does not id:2258 gh:2266
 // create a new map.
 var IS_INPLACE_MAP_MODIFICATION_SUPPORTED = false;
 

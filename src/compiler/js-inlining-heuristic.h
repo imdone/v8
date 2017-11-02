@@ -42,7 +42,7 @@ class JSInliningHeuristic final : public AdvancedReducer {
     // In the case of polymorphic inlining, this tells if each of the
     // functions could be inlined.
     bool can_inline_function[kMaxCallPolymorphism];
-    // TODO(2206): For now polymorphic inlining is treated orthogonally to
+    // TODO (2206): For now polymorphic inlining is treated orthogonally to id:534 gh:535
     // inlining based on SharedFunctionInfo. This should be unified and the
     // above array should be switched to SharedFunctionInfo instead. Currently
     // we use {num_functions == 1 && functions[0].is_null()} as an indicator.

@@ -126,7 +126,7 @@ class PluralRules {
   static const int kPluralRules = JSObject::kHeaderSize;
   // Values are formatted with this NumberFormat and then parsed as a Number
   // to round them based on the options passed into the PluralRules objct.
-  // TODO(littledan): If a future version of ICU supports the rounding
+  // TODO (littledan): If a future version of ICU supports the rounding id:1339 gh:1343
   // built-in to PluralRules, switch to that, see this bug:
   // http://bugs.icu-project.org/trac/ticket/12763
   static const int kNumberFormat = kPluralRules + kPointerSize;

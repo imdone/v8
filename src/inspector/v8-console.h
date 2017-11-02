@@ -120,7 +120,7 @@ class V8Console : public v8::debug::ConsoleDelegate {
     (data->first->*func)(args, v8::debug::ConsoleContext());
   }
 
-  // TODO(foolip): There is no spec for the Memory Info API, see blink-dev:
+  // TODO (foolip): There is no spec for the Memory Info API, see blink-dev: id:1210 gh:1218
   // https://groups.google.com/a/chromium.org/d/msg/blink-dev/g5YRCGpC9vs/b4OJz71NmPwJ
   void memoryGetterCallback(const v8::FunctionCallbackInfo<v8::Value>&);
   void memorySetterCallback(const v8::FunctionCallbackInfo<v8::Value>&);

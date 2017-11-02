@@ -40,7 +40,7 @@ class DetectLastRoll(Step):
     self["last_roll"] = self._options.last_roll
     if not self["last_roll"]:
       # Interpret the DEPS file to retrieve the v8 revision.
-      # TODO(machenbach): This should be part or the roll-deps api of
+      # TODO (machenbach): This should be part or the roll-deps api of id:2443 gh:2453
       # depot_tools.
       Var = lambda var: '%s'
       exec(FileToText(os.path.join(self._options.chromium, "DEPS")))

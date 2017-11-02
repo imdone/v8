@@ -12,7 +12,7 @@
 namespace v8 {
 namespace internal {
 
-// TODO(ahaas): Make these classes with the one in double.h
+// TODO (ahaas): Make these classes with the one in double.h id:283 gh:284
 
 // Safety wrapper for a 32-bit floating-point value to make sure we don't lose
 // the exact bit pattern during deoptimization when passing this value.
@@ -56,7 +56,7 @@ static_assert(IS_TRIVIALLY_COPYABLE(Float32),
 
 // Safety wrapper for a 64-bit floating-point value to make sure we don't lose
 // the exact bit pattern during deoptimization when passing this value.
-// TODO(ahaas): Unify this class with Double in double.h
+// TODO (ahaas): Unify this class with Double in double.h id:304 gh:305
 class Float64 {
  public:
   Float64() = default;

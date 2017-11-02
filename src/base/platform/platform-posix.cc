@@ -134,7 +134,7 @@ void* OS::Allocate(const size_t requested, size_t* allocated,
                       hint);
 }
 
-// TODO(bbudge) Move Cygwin and Fuschia stuff into platform-specific files.
+// TODO (bbudge) Move Cygwin and Fuschia stuff into platform-specific files. id:208 gh:209
 #if !V8_OS_FUCHSIA
 void* OS::Allocate(const size_t requested, size_t* allocated,
                    OS::MemoryPermission access, void* hint) {
@@ -149,7 +149,7 @@ void* OS::Allocate(const size_t requested, size_t* allocated,
 #endif  // !V8_OS_FUCHSIA
 
 void OS::Free(void* address, const size_t size) {
-  // TODO(1240712): munmap has a return value which is ignored here.
+  // TODO (1240712): munmap has a return value which is ignored here. id:220 gh:221
   int result = munmap(address, size);
   USE(result);
   DCHECK_EQ(0, result);
@@ -289,7 +289,7 @@ bool OS::HasLazyCommits() {
 #if V8_OS_AIX || V8_OS_LINUX || V8_OS_MACOSX
   return true;
 #else
-  // TODO(bbudge) Return true for all POSIX platforms.
+  // TODO (bbudge) Return true for all POSIX platforms. id:230 gh:231
   return false;
 #endif
 }

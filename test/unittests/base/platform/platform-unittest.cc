@@ -99,7 +99,7 @@ TEST_F(ThreadLocalStorageTest, DoTest) {
 }
 
 #if V8_OS_POSIX
-// TODO(eholk): Add a windows version of these tests
+// TODO (eholk): Add a windows version of these tests id:2326 gh:2334
 
 namespace {
 

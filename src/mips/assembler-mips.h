@@ -2202,7 +2202,7 @@ class Assembler : public AssemblerBase {
   // dummy heap object handle that we emitted during code assembly with the
   // actual heap object handle.
  protected:
-  // TODO(neis): Make private if its use can be moved out of TurboAssembler.
+  // TODO (neis): Make private if its use can be moved out of TurboAssembler. id:1031 gh:1039
   void RequestHeapObject(HeapObjectRequest request);
 
  private:

@@ -133,7 +133,7 @@ Reduction JSIntrinsicLowering::ReduceDeoptimizeNow(Node* node) {
   Node* const effect = NodeProperties::GetEffectInput(node);
   Node* const control = NodeProperties::GetControlInput(node);
 
-  // TODO(bmeurer): Move MergeControlToEnd() to the AdvancedReducer.
+  // TODO (bmeurer): Move MergeControlToEnd() to the AdvancedReducer. id:535 gh:536
   Node* deoptimize = graph()->NewNode(
       common()->Deoptimize(DeoptimizeKind::kEager, DeoptimizeReason::kNoReason),
       frame_state, effect, control);

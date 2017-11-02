@@ -615,7 +615,7 @@ void IncrementalMarking::FinalizeIncrementally() {
 
   if (FLAG_black_allocation && !heap()->ShouldReduceMemory() &&
       !black_allocation_) {
-    // TODO(hpayer): Move to an earlier point as soon as we make faster marking
+    // TODO (hpayer): Move to an earlier point as soon as we make faster marking id:1098 gh:1106
     // progress.
     StartBlackAllocation();
   }
@@ -769,7 +769,7 @@ void IncrementalMarking::Hurry() {
         heap()->isolate()->PrintWithTimestamp("[IncrementalMarking] Hurry\n");
       }
     }
-    // TODO(gc) hurry can mark objects it encounters black as mutator
+    // TODO (gc) hurry can mark objects it encounters black as mutator id:949 gh:957
     // was stopped.
     ProcessMarkingWorklist(0, FORCE_COMPLETION);
     SetState(COMPLETE);

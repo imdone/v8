@@ -214,7 +214,7 @@ class ElementsAccessor {
                                     FixedArrayBase* backing_store,
                                     uint32_t index) = 0;
 
-  // NOTE: this method violates the handlified function signature convention:
+  // NOTE: this method violates the handlified function signature convention: id:938 gh:946
   // raw pointer parameter |source_holder| in the function that allocates.
   // This is done intentionally to avoid ArrayConcat() builtin performance
   // degradation.

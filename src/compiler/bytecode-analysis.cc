@@ -196,7 +196,7 @@ void UpdateOutLiveness(Bytecode bytecode, BytecodeLivenessState& out_liveness,
   // Update from exception handler (if any).
   if (!interpreter::Bytecodes::IsWithoutExternalSideEffects(bytecode)) {
     int handler_context;
-    // TODO(leszeks): We should look up this range only once per entry.
+    // TODO (leszeks): We should look up this range only once per entry. id:486 gh:487
     HandlerTable* table = HandlerTable::cast(bytecode_array->handler_table());
     int handler_offset =
         table->LookupRange(current_offset, &handler_context, nullptr);
@@ -212,7 +212,7 @@ void UpdateOutLiveness(Bytecode bytecode, BytecodeLivenessState& out_liveness,
         // if the handler is the only thing that made it live.
         out_liveness.MarkAccumulatorDead();
 
-        // TODO(leszeks): Ideally the accumulator wouldn't be considered live at
+        // TODO (leszeks): Ideally the accumulator wouldn't be considered live at id:514 gh:515
         // the start of the handler, but looking up if the current bytecode is
         // the start of a handler is not free, so we should only do it if we
         // decide it's necessary.
@@ -292,7 +292,7 @@ void BytecodeAnalysis::Analyze(BailoutId osr_bailout_id) {
       LoopStackEntry& current_loop = loop_stack_.top();
       LoopInfo* current_loop_info = current_loop.loop_info;
 
-      // TODO(leszeks): Ideally, we'd only set values that were assigned in
+      // TODO (leszeks): Ideally, we'd only set values that were assigned in id:442 gh:444
       // the loop *and* are live when the loop exits. However, this requires
       // tracking the out-liveness of *all* loop exits, which is not
       // information we currently have.

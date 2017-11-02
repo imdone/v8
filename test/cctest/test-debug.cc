@@ -2378,7 +2378,7 @@ TEST(DebugStepKeyedLoadLoop) {
   SetDebugEventListener(env->GetIsolate(), DebugEventStep);
 
   // Create a function for testing stepping of keyed load. The statement 'y=1'
-  // is there to have more than one breakable statement in the loop, TODO(315).
+  // is there to have more than one breakable statement in the loop, TODO (315). id:1832 gh:1841
   v8::Local<v8::Function> foo = CompileFunction(
       &env,
       "function foo(a) {\n"
@@ -2429,7 +2429,7 @@ TEST(DebugStepKeyedStoreLoop) {
   SetDebugEventListener(env->GetIsolate(), DebugEventStep);
 
   // Create a function for testing stepping of keyed store. The statement 'y=1'
-  // is there to have more than one breakable statement in the loop, TODO(315).
+  // is there to have more than one breakable statement in the loop, TODO (315). id:1649 gh:1657
   v8::Local<v8::Function> foo = CompileFunction(
       &env,
       "function foo(a) {\n"
@@ -5730,7 +5730,7 @@ static void DebugEventBreakWithOptimizedStack(
         // function is optimized the value will be undefined, otherwise
         // the value will be '1 - i'.
         //
-        // TODO(3141533): We should be able to get the real value for
+        // TODO (3141533): We should be able to get the real value for id:1853 gh:1861
         // optimized frames.
         result = frame_argument_value->Call(context, exec_state, argc, argv)
                      .ToLocalChecked();
@@ -5747,7 +5747,7 @@ static void DebugEventBreakWithOptimizedStack(
         // is optimized the value will be undefined, otherwise it will
         // be 42.
         //
-        // TODO(3141533): We should be able to get the real value for
+        // TODO (3141533): We should be able to get the real value for id:1903 gh:1912
         // optimized frames.
         result = frame_local_value->Call(context, exec_state, argc, argv)
                      .ToLocalChecked();

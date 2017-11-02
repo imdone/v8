@@ -145,8 +145,8 @@ class Server(daemon.Daemon):
         for p2 in self.peers:
           if not p2.trusted: continue
           status_handler.TryTransitiveTrust(p2, p.pubkey, self)
-    # TODO: Ping for more peers waiting to be discovered.
-    # TODO: Update the checkout (if currently idle).
+    # TODO: Ping for more peers waiting to be discovered. id:2593 gh:2601
+    # TODO: Update the checkout (if currently idle). id:2450 gh:2458
 
   def AddPeer(self, peer):
     with self.peer_list_lock:

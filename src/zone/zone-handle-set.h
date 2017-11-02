@@ -89,7 +89,7 @@ class ZoneHandleSet final {
       return list()->Contains(other.singleton());
     }
     DCHECK_EQ(kListTag, other.data_ & kTagMask);
-    // TODO(bmeurer): Optimize this case.
+    // TODO (bmeurer): Optimize this case. id:1505 gh:1514
     for (int i = 0; i < other.list()->length(); ++i) {
       if (!list()->Contains(other.list()->at(i))) return false;
     }
@@ -106,7 +106,7 @@ class ZoneHandleSet final {
   }
 
   void remove(Handle<T> handle, Zone* zone) {
-    // TODO(bmeurer): Optimize this case.
+    // TODO (bmeurer): Optimize this case. id:1811 gh:1819
     ZoneHandleSet<T> that;
     for (size_t i = 0; i < size(); ++i) {
       Handle<T> value = at(i);

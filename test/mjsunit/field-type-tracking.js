@@ -9,7 +9,7 @@
   var o = { text: "Hello World!" };
   function A() {
     // Assign twice to make the field non-constant.
-    // TODO(ishell): update test once constant field tracking is done.
+    // TODO (ishell): update test once constant field tracking is done. id:2268 gh:2276
     this.a = {text: 'foo'};
     this.a = o;
   }
@@ -111,7 +111,7 @@
 
 (function() {
   function Foo(x) { this.x = x; }
-  // TODO(ishell): update test once constant field tracking is done.
+  // TODO (ishell): update test once constant field tracking is done. id:2224 gh:2232
   var f0 = new Foo({x: 0});
   f0.x = {x: 0};  // make Foo.x non-constant here.
   var f1 = new Foo({x: 1});

@@ -323,7 +323,7 @@ TEST(RunLoadImmIndex) {
 #if V8_TARGET_ARCH_64_BIT
   RunLoadImmIndex<int64_t>(MachineType::Int64(), TestAlignment::kAligned);
 #endif
-  // TODO(titzer): test various indexing modes.
+  // TODO (titzer): test various indexing modes. id:1823 gh:1831
 }
 
 TEST(RunUnalignedLoadImmIndex) {
@@ -338,7 +338,7 @@ TEST(RunUnalignedLoadImmIndex) {
 #if V8_TARGET_ARCH_64_BIT
   RunLoadImmIndex<int64_t>(MachineType::Int64(), TestAlignment::kUnaligned);
 #endif
-  // TODO(titzer): test various indexing modes.
+  // TODO (titzer): test various indexing modes. id:1598 gh:1606
 }
 
 TEST(RunLoadStore) {
@@ -479,7 +479,7 @@ TEST(RunUnalignedLoadStoreZeroExtend32) {
 
 namespace {
 void RunLoadStoreSignExtend64(TestAlignment t) {
-  if (true) return;  // TODO(titzer): sign extension of loads to 64-bit.
+  if (true) return;  // TODO (titzer): sign extension of loads to 64-bit. id:1686 gh:1694
   int64_t buffer[5];
   RawMachineAssemblerTester<int64_t> m;
   Node* load8 = m.LoadFromPointer(LSB(&buffer[0], 1), MachineType::Int8());
@@ -786,7 +786,7 @@ TEST(RunOobCheckedStore) { TestRunOobCheckedStore(false); }
 
 TEST(RunOobCheckedStoreImm) { TestRunOobCheckedStore(true); }
 
-// TODO(titzer): CheckedLoad/CheckedStore don't support 64-bit offsets.
+// TODO (titzer): CheckedLoad/CheckedStore don't support 64-bit offsets. id:1843 gh:1852
 #define ALLOW_64_BIT_OFFSETS 0
 
 #if V8_TARGET_ARCH_64_BIT && ALLOW_64_BIT_OFFSETS

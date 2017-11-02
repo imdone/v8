@@ -62,7 +62,7 @@ const char* Truncation::description() const {
 //                   \    /
 //                   kNone
 //
-// TODO(jarin) We might consider making kBool < kFloat64.
+// TODO (jarin) We might consider making kBool < kFloat64. id:763 gh:764
 
 // static
 Truncation::TruncationKind Truncation::Generalize(TruncationKind rep1,
@@ -303,7 +303,7 @@ Node* RepresentationChanger::GetTaggedSignedRepresentationFor(
     }
   } else if (output_rep == MachineRepresentation::kBit) {
     if (use_info.type_check() == TypeCheckKind::kSignedSmall) {
-      // TODO(turbofan): Consider adding a Bailout operator that just deopts.
+      // TODO (turbofan): Consider adding a Bailout operator that just deopts. id:732 gh:733
       // Also use that for MachineRepresentation::kPointer case above.
       node = InsertChangeBitToTagged(node);
       op = simplified()->CheckedTaggedToTaggedSigned();
@@ -379,7 +379,7 @@ Node* RepresentationChanger::GetTaggedPointerRepresentationFor(
     if (!output_type->Maybe(Type::SignedSmall())) {
       return node;
     }
-    // TODO(turbofan): Consider adding a Bailout operator that just deopts
+    // TODO (turbofan): Consider adding a Bailout operator that just deopts id:803 gh:811
     // for TaggedSigned output representation.
     op = simplified()->CheckedTaggedToTaggedPointer();
   } else {
@@ -537,7 +537,7 @@ Node* RepresentationChanger::GetFloat64RepresentationFor(
     Node* use_node, UseInfo use_info) {
   // Eagerly fold representation changes for constants.
   if ((use_info.type_check() == TypeCheckKind::kNone)) {
-    // TODO(jarin) Handle checked constant conversions.
+    // TODO (jarin) Handle checked constant conversions. id:825 gh:833
     switch (node->opcode()) {
       case IrOpcode::kNumberConstant:
         return jsgraph()->Float64Constant(OpParameter<double>(node));
@@ -580,7 +580,7 @@ Node* RepresentationChanger::GetFloat64RepresentationFor(
     } else if (output_type->Is(Type::Number())) {
       op = simplified()->ChangeTaggedToFloat64();
     } else if (output_type->Is(Type::NumberOrOddball())) {
-      // TODO(jarin) Here we should check that truncation is Number.
+      // TODO (jarin) Here we should check that truncation is Number. id:694 gh:695
       op = simplified()->TruncateTaggedToFloat64();
     } else if (use_info.type_check() == TypeCheckKind::kNumber ||
                (use_info.type_check() == TypeCheckKind::kNumberOrOddball &&

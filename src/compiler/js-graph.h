@@ -107,7 +107,7 @@ class V8_EXPORT_PRIVATE JSGraph : public NON_EXPORTED_BASE(ZoneObject) {
 
   // Creates a Int32Constant/Int64Constant node, depending on the word size of
   // the target machine.
-  // TODO(turbofan): Code using Int32Constant/Int64Constant to store pointer
+  // TODO (turbofan): Code using Int32Constant/Int64Constant to store pointer id:618 gh:619
   // constants is probably not serializable.
   Node* IntPtrConstant(intptr_t value) {
     return machine()->Is32() ? Int32Constant(static_cast<int32_t>(value))

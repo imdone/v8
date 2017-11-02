@@ -185,7 +185,7 @@ const int kNumCalleeSavedDoubles = 2;
 
 // Number of registers for which space is reserved in safepoints. Must be a
 // multiple of 8.
-// TODO(regis): Only 8 registers may actually be sufficient. Revisit.
+// TODO (regis): Only 8 registers may actually be sufficient. Revisit. id:1579 gh:1587
 const int kNumSafepointRegisters = 16;
 
 // Define the list of registers actually saved at safepoints.
@@ -308,7 +308,7 @@ static_assert(IS_TRIVIALLY_COPYABLE(DoubleRegister) &&
 
 typedef DoubleRegister FloatRegister;
 
-// TODO(john.yan) Define SIMD registers.
+// TODO (john.yan) Define SIMD registers. id:1370 gh:1378
 typedef DoubleRegister Simd128Register;
 
 #define DEFINE_REGISTER(R) \

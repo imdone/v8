@@ -274,7 +274,7 @@ TEST_F(FunctionBodyDecoderTest, Int32Const_fallthru2) {
 TEST_F(FunctionBodyDecoderTest, Int32Const) {
   const int kInc = 4498211;
   for (int32_t i = kMinInt; i < kMaxInt - kInc; i = i + kInc) {
-    // TODO(binji): expand test for other sized int32s; 1 through 5 bytes.
+    // TODO (binji): expand test for other sized int32s; 1 through 5 bytes. id:2528 gh:2536
     byte code[] = {WASM_I32V(i)};
     EXPECT_VERIFIES_C(i_i, code);
   }
@@ -2339,11 +2339,11 @@ TEST_F(FunctionBodyDecoderTest, Throw) {
 
   EXPECT_VERIFIES(v_v, WASM_I32V(0), kExprThrow, 1);
 
-  // TODO(kschimpf): Add more tests.
+  // TODO (kschimpf): Add more tests. id:2390 gh:2398
 }
 
 TEST_F(FunctionBodyDecoderTest, ThrowUnreachable) {
-  // TODO(titzer): unreachable code after throw should validate.
+  // TODO (titzer): unreachable code after throw should validate. id:2555 gh:2566
   EXPERIMENTAL_FLAG_SCOPE(eh);
   TestModuleBuilder builder;
   module = builder.module();
@@ -2353,7 +2353,7 @@ TEST_F(FunctionBodyDecoderTest, ThrowUnreachable) {
   AddLocals(kWasmI32, 1);
   EXPECT_VERIFIES(i_i, kExprThrow, 0, WASM_GET_LOCAL(0));
 
-  // TODO(kschimpf): Add more (block-level) tests of unreachable to see
+  // TODO (kschimpf): Add more (block-level) tests of unreachable to see id:2331 gh:2339
   // if they validate.
 }
 
@@ -2368,7 +2368,7 @@ TEST_F(FunctionBodyDecoderTest, TryCatch) {
   builder.AddException(sigs.v_v());
   builder.AddException(sigs.v_v());
 
-  // TODO(kschimpf): Need to fix catch to use declared exception.
+  // TODO (kschimpf): Need to fix catch to use declared exception. id:2508 gh:2516
   EXPECT_VERIFIES(v_v, WASM_TRY_OP, WASM_CATCH(0), kExprEnd);
 
   // Missing catch.
@@ -2378,7 +2378,7 @@ TEST_F(FunctionBodyDecoderTest, TryCatch) {
   EXPECT_FAILURE(v_i, WASM_TRY_OP, WASM_CATCH(0));
 
   // Double catch.
-  // TODO(kschimpf): Fix this to verify.
+  // TODO (kschimpf): Fix this to verify. id:2529 gh:2537
   EXPECT_FAILURE(v_i, WASM_TRY_OP, WASM_CATCH(0), WASM_CATCH(1), kExprEnd);
 }
 

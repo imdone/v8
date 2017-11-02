@@ -28,7 +28,7 @@ Node* AccessorAssembler::TryMonomorphicCase(Node* slot, Node* vector,
   Comment("TryMonomorphicCase");
   DCHECK_EQ(MachineRepresentation::kTagged, var_handler->rep());
 
-  // TODO(ishell): add helper class that hides offset computations for a series
+  // TODO (ishell): add helper class that hides offset computations for a series id:1115 gh:1123
   // of loads.
   CSA_ASSERT(this, IsFeedbackVector(vector), vector);
   int32_t header_size = FeedbackVector::kFeedbackSlotsOffset - kHeapObjectTag;
@@ -269,7 +269,7 @@ void AccessorAssembler::HandleLoadICSmiHandlerCase(
       Node* allow_out_of_bounds =
           IsSetWord<LoadHandler::AllowOutOfBoundsBits>(handler_word);
       GotoIfNot(allow_out_of_bounds, miss);
-      // TODO(bmeurer): This is going to be renamed to NoElementsProtector
+      // TODO (bmeurer): This is going to be renamed to NoElementsProtector id:988 gh:996
       // in a follow-up CL.
       GotoIf(IsArrayProtectorCellInvalid(), miss);
       Return(UndefinedConstant());
@@ -406,7 +406,7 @@ void AccessorAssembler::HandleLoadICSmiHandlerCase(
           p->context, holder, var_unique.value(), p->receiver);
 
       BIND(&if_index);
-      // TODO(mslekova): introduce TryToName that doesn't try to compute
+      // TODO (mslekova): introduce TryToName that doesn't try to compute id:1131 gh:1139
       // the intptr index value
       Goto(&to_name_failed);
 
@@ -1017,7 +1017,7 @@ void AccessorAssembler::HandleStoreToProxy(const StoreICParameters* p,
 
     // The index case is handled earlier by the runtime.
     BIND(&if_index);
-    // TODO(mslekova): introduce TryToName that doesn't try to compute
+    // TODO (mslekova): introduce TryToName that doesn't try to compute id:1202 gh:1210
     // the intptr index value
     Goto(&to_name_failed);
 
@@ -1204,7 +1204,7 @@ void AccessorAssembler::ExtendPropertiesBackingStore(Node* object,
 
   ParameterMode mode = OptimalParameterMode();
 
-  // TODO(gsathya): Clean up the type conversions by creating smarter
+  // TODO (gsathya): Clean up the type conversions by creating smarter id:955 gh:963
   // helpers that do the correct op based on the mode.
   VARIABLE(var_properties, MachineRepresentation::kTaggedPointer);
   VARIABLE(var_encoded_hash, MachineRepresentation::kWord32);
@@ -1276,7 +1276,7 @@ void AccessorAssembler::ExtendPropertiesBackingStore(Node* object,
     CopyPropertyArrayValues(var_properties.value(), new_properties,
                             var_length.value(), SKIP_WRITE_BARRIER, mode);
 
-    // TODO(gsathya): Clean up the type conversions by creating smarter
+    // TODO (gsathya): Clean up the type conversions by creating smarter id:1116 gh:1124
     // helpers that do the correct op based on the mode.
     Node* new_capacity_int32 =
         TruncateWordToWord32(ParameterToWord(new_capacity, mode));
@@ -1463,7 +1463,7 @@ void AccessorAssembler::EmitElementLoad(
     Node* details =
         LoadDetailsByKeyIndex<SeededNumberDictionary>(elements, index);
     Node* kind = DecodeWord32<PropertyDetails::KindField>(details);
-    // TODO(jkummerow): Support accessors without missing?
+    // TODO (jkummerow): Support accessors without missing? id:989 gh:997
     GotoIfNot(Word32Equal(kind, Int32Constant(kData)), miss);
     // Finally, load the value.
     exit_point->Return(
@@ -1760,7 +1760,7 @@ void AccessorAssembler::GenericPropertyLoad(Node* receiver, Node* receiver_map,
 
     BIND(&stub_cache_miss);
     {
-      // TODO(jkummerow): Check if the property exists on the prototype
+      // TODO (jkummerow): Check if the property exists on the prototype id:1132 gh:1140
       // chain. If it doesn't, then there's no point in missing.
       Comment("KeyedLoadGeneric_miss");
       TailCallRuntime(Runtime::kKeyedLoadIC_Miss, p->context, p->receiver,
@@ -1844,7 +1844,7 @@ void AccessorAssembler::GenericPropertyLoad(Node* receiver, Node* receiver_map,
 
   BIND(&special_receiver);
   {
-    // TODO(jkummerow): Consider supporting JSModuleNamespace.
+    // TODO (jkummerow): Consider supporting JSModuleNamespace. id:1203 gh:1211
     GotoIfNot(InstanceTypeEqual(instance_type, JS_PROXY_TYPE), slow);
 
     direct_exit.ReturnCallStub(
@@ -1983,7 +1983,7 @@ void AccessorAssembler::LoadIC_BytecodeHandler(const LoadICParameters* p,
   // This function is hand-tuned to omit frame construction for common cases,
   // e.g.: monomorphic field and constant loads through smi handlers.
   // Polymorphic ICs with a hit in the first two entries also omit frames.
-  // TODO(jgruber): Frame omission is fragile and can be affected by minor
+  // TODO (jgruber): Frame omission is fragile and can be affected by minor id:956 gh:964
   // changes in control flow and logic. We currently have no way of ensuring
   // that no frame is constructed, so it's easy to break this optimization by
   // accident.
@@ -2313,7 +2313,7 @@ void AccessorAssembler::KeyedLoadIC(const LoadICParameters* p) {
     Comment("KeyedLoadIC_try_megamorphic");
     GotoIfNot(WordEqual(feedback, LoadRoot(Heap::kmegamorphic_symbolRootIndex)),
               &try_polymorphic_name);
-    // TODO(jkummerow): Inline this? Or some of it?
+    // TODO (jkummerow): Inline this? Or some of it? id:1117 gh:1125
     TailCallStub(
         Builtins::CallableFor(isolate(), Builtins::kKeyedLoadIC_Megamorphic),
         p->context, p->receiver, p->name, p->slot, p->vector);
@@ -2417,7 +2417,7 @@ void AccessorAssembler::KeyedLoadICGeneric(const LoadICParameters* p) {
   {
     Comment("KeyedLoadGeneric_slow");
     IncrementCounter(isolate()->counters()->ic_keyed_load_generic_slow(), 1);
-    // TODO(jkummerow): Should we use the GetProperty TF stub instead?
+    // TODO (jkummerow): Should we use the GetProperty TF stub instead? id:990 gh:998
     TailCallRuntime(Runtime::kKeyedGetProperty, p->context, p->receiver,
                     p->name);
   }

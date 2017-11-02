@@ -847,7 +847,7 @@ Utf16CharacterStream* ScannerStream::For(Handle<String> data, int start_pos,
         Handle<ExternalTwoByteString>::cast(data),
         static_cast<size_t>(start_pos), static_cast<size_t>(end_pos));
   } else {
-    // TODO(vogelheim): Maybe call data.Flatten() first?
+    // TODO (vogelheim): Maybe call data.Flatten() first? id:1466 gh:1474
     return new GenericStringUtf16CharacterStream(
         data, static_cast<size_t>(start_pos), static_cast<size_t>(end_pos));
   }

@@ -186,7 +186,7 @@ class Symbol : public Name {
  private:
   const char* PrivateSymbolToName() const;
 
-  // TODO(cbruni): remove once the new maptracer is in place.
+  // TODO (cbruni): remove once the new maptracer is in place. id:1457 gh:1465
   friend class Name;  // For PrivateSymbolToName.
 
   DISALLOW_IMPLICIT_CONSTRUCTORS(Symbol);

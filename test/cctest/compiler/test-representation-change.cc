@@ -39,7 +39,7 @@ class RepresentationChangerTester : public HandleAndZoneScope,
   JSGraph* jsgraph() { return &jsgraph_; }
   RepresentationChanger* changer() { return &changer_; }
 
-  // TODO(titzer): use ValueChecker / ValueUtil
+  // TODO (titzer): use ValueChecker / ValueUtil id:1822 gh:1830
   void CheckInt32Constant(Node* n, int32_t expected) {
     Int32Matcher m(n);
     CHECK(m.HasValue());

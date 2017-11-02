@@ -18,7 +18,7 @@ namespace {
 
 inline bool EqualImmutableValues(Object* obj1, Object* obj2) {
   if (obj1 == obj2) return true;  // Valid for both kData and kAccessor kinds.
-  // TODO(ishell): compare AccessorPairs.
+  // TODO (ishell): compare AccessorPairs. id:1053 gh:1061
   return false;
 }
 
@@ -263,7 +263,7 @@ MapUpdater::State MapUpdater::FindRootMap() {
     return CopyGeneralizeAllFields("GenAll_NotEquivalent");
   }
 
-  // TODO(ishell): Add a test for SLOW_SLOPPY_ARGUMENTS_ELEMENTS.
+  // TODO (ishell): Add a test for SLOW_SLOPPY_ARGUMENTS_ELEMENTS. id:1246 gh:1255
   if (from_kind != to_kind && to_kind != DICTIONARY_ELEMENTS &&
       to_kind != SLOW_STRING_WRAPPER_ELEMENTS &&
       to_kind != SLOW_SLOPPY_ARGUMENTS_ELEMENTS &&
@@ -302,7 +302,7 @@ MapUpdater::State MapUpdater::FindRootMap() {
     // Modify root map in-place.
     if (FLAG_modify_map_inplace && new_constness_ != old_details.constness()) {
       // Only prototype root maps are allowed to be updated in-place.
-      // TODO(ishell): fix all the stubs that use prototype map check to
+      // TODO (ishell): fix all the stubs that use prototype map check to id:1314 gh:1322
       // ensure that the prototype was not modified.
       DCHECK(old_map_->is_prototype_map());
       DCHECK(old_map_->is_stable());
@@ -343,7 +343,7 @@ MapUpdater::State MapUpdater::FindTargetMap() {
     DCHECK_EQ(old_details.attributes(), tmp_details.attributes());
     if (old_details.kind() == kAccessor &&
         !EqualImmutableValues(GetValue(i), tmp_descriptors->GetValue(i))) {
-      // TODO(ishell): mutable accessors are not implemented yet.
+      // TODO (ishell): mutable accessors are not implemented yet. id:1030 gh:1038
       return CopyGeneralizeAllFields("GenAll_Incompatible");
     }
     PropertyConstness tmp_constness = tmp_details.constness();
@@ -528,7 +528,7 @@ Handle<DescriptorArray> MapUpdater::BuildDescriptorArray() {
                                   next_constness, next_representation,
                                   wrapped_type);
       } else {
-        // TODO(ishell): mutable accessors are not implemented yet.
+        // TODO (ishell): mutable accessors are not implemented yet. id:1287 gh:1295
         UNIMPLEMENTED();
       }
       current_offset += d.GetDetails().field_width_in_words();
@@ -582,7 +582,7 @@ Handle<DescriptorArray> MapUpdater::BuildDescriptorArray() {
                                   next_constness, next_representation,
                                   wrapped_type);
       } else {
-        // TODO(ishell): mutable accessors are not implemented yet.
+        // TODO (ishell): mutable accessors are not implemented yet. id:1054 gh:1062
         UNIMPLEMENTED();
       }
       current_offset += d.GetDetails().field_width_in_words();

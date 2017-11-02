@@ -25,7 +25,7 @@
 // (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-// TODO(3468): we rely on a precise Math.exp.
+// TODO (3468): we rely on a precise Math.exp. id:1961 gh:1969
 // Flags: --no-fast-math
 
 [Math.sinh, Math.cosh, Math.tanh, Math.asinh, Math.acosh, Math.atanh].

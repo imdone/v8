@@ -153,7 +153,7 @@ def _CheckUnwantedDependencies(input_api, output_api):
   return results
 
 
-# TODO(mstarzinger): Similar checking should be made available as part of
+# TODO (mstarzinger): Similar checking should be made available as part of id:20 gh:21
 # tools/presubmit.py (note that tools/check-inline-includes.sh exists).
 def _CheckNoInlineHeaderIncludesInNormalHeaders(input_api, output_api):
   """Attempts to prevent inclusion of inline headers into normal header

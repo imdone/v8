@@ -398,7 +398,7 @@ TARGET_TEST_F(InstructionSelectorTest, CallJSFunctionWithDeopt) {
   EXPECT_EQ(kArchCallJSFunction, s[index++]->arch_opcode());
   EXPECT_EQ(kArchRet, s[index++]->arch_opcode());
 
-  // TODO(jarin) Check deoptimization table.
+  // TODO (jarin) Check deoptimization table. id:2386 gh:2394
 }
 
 

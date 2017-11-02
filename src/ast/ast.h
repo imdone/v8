@@ -1054,7 +1054,7 @@ class Literal final : public Expression {
   // a heap object if needed.
   Handle<Object> BuildValue(Isolate* isolate) const;
 
-  // Support for using Literal as a HashMap key. NOTE: Currently, this works
+  // Support for using Literal as a HashMap key. NOTE: Currently, this works id:194 gh:195
   // only for string and number literals!
   uint32_t Hash();
   static bool Match(void* literal1, void* literal2);
@@ -2096,7 +2096,7 @@ class Suspend : public Expression {
   // With {kNoControl}, the {Suspend} behaves like yield, except that it never
   // throws and never causes the current generator to return. This is used to
   // desugar yield*.
-  // TODO(caitp): remove once yield* desugaring for async generators is handled
+  // TODO (caitp): remove once yield* desugaring for async generators is handled id:162 gh:163
   // in BytecodeGenerator.
   enum OnAbruptResume { kOnExceptionThrow, kNoControl };
 

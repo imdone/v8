@@ -255,7 +255,7 @@ void TurboAssembler::RestoreRegisters(RegList registers) {
 void TurboAssembler::CallRecordWriteStub(
     Register object, Register address,
     RememberedSetAction remembered_set_action, SaveFPRegsMode fp_mode) {
-  // TODO(albertnetymk): For now we ignore remembered_set_action and fp_mode,
+  // TODO (albertnetymk): For now we ignore remembered_set_action and fp_mode, id:1036 gh:1044
   // i.e. always emit remember set and save FP registers in RecordWriteStub. If
   // large performance regression is observed, we should use these values to
   // avoid unnecessary work.
@@ -4416,7 +4416,7 @@ void MacroAssembler::InvokeFunction(Register function, Register new_target,
   Ld(temp_reg, FieldMemOperand(a1, JSFunction::kSharedFunctionInfoOffset));
   Ld(cp, FieldMemOperand(a1, JSFunction::kContextOffset));
   // The argument count is stored as int32_t on 64-bit platforms.
-  // TODO(plind): Smi on 32-bit platforms.
+  // TODO (plind): Smi on 32-bit platforms. id:1293 gh:1301
   Lw(expected_reg,
      FieldMemOperand(temp_reg,
                      SharedFunctionInfo::kFormalParameterCountOffset));
@@ -4728,7 +4728,7 @@ void TurboAssembler::CallRuntimeDelayed(Zone* zone, Runtime::FunctionId fid,
                                         SaveFPRegsMode save_doubles,
                                         BranchDelaySlot bd) {
   const Runtime::Function* f = Runtime::FunctionForId(fid);
-  // TODO(1236192): Most runtime routines don't need the number of
+  // TODO (1236192): Most runtime routines don't need the number of id:1060 gh:1068
   // arguments passed in because it is constant. At some point we
   // should remove this need and make the runtime routine entry code
   // smarter.
@@ -4747,7 +4747,7 @@ void MacroAssembler::CallRuntime(const Runtime::Function* f, int num_arguments,
   // expectation.
   CHECK(f->nargs < 0 || f->nargs == num_arguments);
 
-  // TODO(1236192): Most runtime routines don't need the number of
+  // TODO (1236192): Most runtime routines don't need the number of id:1322 gh:1330
   // arguments passed in because it is constant. At some point we
   // should remove this need and make the runtime routine entry code
   // smarter.
@@ -5136,7 +5136,7 @@ void MacroAssembler::JumpIfEitherSmi(Register reg1,
                                      Register reg2,
                                      Label* on_either_smi) {
   STATIC_ASSERT(kSmiTag == 0);
-  // TODO(plind): Find some better to fix this assert issue.
+  // TODO (plind): Find some better to fix this assert issue. id:1422 gh:1430
 #if defined(__APPLE__)
   DCHECK_EQ(1, kSmiTagMask);
 #else

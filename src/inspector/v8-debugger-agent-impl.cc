@@ -824,7 +824,7 @@ Response V8DebuggerAgentImpl::setScriptSource(
     return Response::Error("No script with given id found");
   }
   if (it->second->isModule()) {
-    // TODO(kozyatinskiy): LiveEdit should support ES6 module
+    // TODO (kozyatinskiy): LiveEdit should support ES6 module id:1008 gh:1016
     return Response::Error("Editing module's script is not supported.");
   }
   int contextId = it->second->executionContextId();
@@ -994,7 +994,7 @@ Response V8DebuggerAgentImpl::setPauseOnExceptions(
 }
 
 void V8DebuggerAgentImpl::setPauseOnExceptionsImpl(int pauseState) {
-  // TODO(dgozman): this changes the global state and forces all context groups
+  // TODO (dgozman): this changes the global state and forces all context groups id:1176 gh:1184
   // to pause. We should make this flag be per-context-group.
   m_debugger->setPauseOnExceptionsState(
       static_cast<v8::debug::ExceptionBreakState>(pauseState));

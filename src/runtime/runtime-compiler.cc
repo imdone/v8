@@ -143,7 +143,7 @@ RUNTIME_FUNCTION(Runtime_NotifyDeoptimized) {
   Deoptimizer::BailoutType type = deoptimizer->bailout_type();
   bool preserve_optimized_code = deoptimizer->preserve_optimized();
 
-  // TODO(turbofan): We currently need the native context to materialize
+  // TODO (turbofan): We currently need the native context to materialize id:1544 gh:1552
   // the arguments object, but only to get to its map.
   isolate->set_context(deoptimizer->function()->native_context());
 

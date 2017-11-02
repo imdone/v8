@@ -81,7 +81,7 @@ function g() {
   }
   g_was_called = 0;
   var m = Module(this, { g:g });
-  // TODO(6127): Only properly rejected by "new" parser.
+  // TODO (6127): Only properly rejected by "new" parser. id:1896 gh:1904
   // assertFalse(%IsAsmWasmCode(Module));
   assertEquals(23, m.f(1));
   assertEquals(1, g_was_called);

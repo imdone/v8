@@ -296,7 +296,7 @@ class ConcurrentMarkingVisitor final
   }
 
   int VisitJSWeakCollection(Map* map, JSWeakCollection* object) {
-    // TODO(ulan): implement iteration of strong fields.
+    // TODO (ulan): implement iteration of strong fields. id:1104 gh:1112
     bailout_.Push(object);
     return 0;
   }
@@ -338,7 +338,7 @@ class ConcurrentMarkingVisitor final
 
   template <typename T>
   const SlotSnapshot& MakeSlotSnapshot(Map* map, T* object, int size) {
-    // TODO(ulan): Iterate only the existing fields and skip slack at the end
+    // TODO (ulan): Iterate only the existing fields and skip slack at the end id:934 gh:942
     // of the object.
     SlotSnapshottingVisitor visitor(&slot_snapshot_);
     visitor.VisitPointer(object,
@@ -501,7 +501,7 @@ void ConcurrentMarking::ScheduleTasks() {
   if (!FLAG_concurrent_marking) return;
   base::LockGuard<base::Mutex> guard(&pending_lock_);
   if (task_count_ == 0) {
-    // TODO(ulan): Increase the number of tasks for platforms that benefit
+    // TODO (ulan): Increase the number of tasks for platforms that benefit id:1120 gh:1128
     // from it.
     task_count_ = static_cast<int>(
         V8::GetCurrentPlatform()->NumberOfAvailableBackgroundThreads() / 2);

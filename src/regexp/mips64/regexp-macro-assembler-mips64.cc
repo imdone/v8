@@ -40,7 +40,7 @@ namespace internal {
  * The remaining registers are free for computations.
  * Each call to a public method should retain this convention.
  *
- * TODO(plind): O32 documented here with intent of having single 32/64 codebase
+ * TODO (plind): O32 documented here with intent of having single 32/64 codebase id:1493 gh:1501
  *              in the future.
  *
  * The O32 stack will have the following structure:
@@ -664,7 +664,7 @@ Handle<HeapObject> RegExpMacroAssemblerMIPS::GetCode(Handle<String> source) {
     // Start new stack frame.
     // Store link register in existing stack-cell.
     // Order here should correspond to order of offset constants in header file.
-    // TODO(plind): we save s0..s7, but ONLY use s3 here - use the regs
+    // TODO (plind): we save s0..s7, but ONLY use s3 here - use the regs id:1529 gh:1537
     // or dont save.
     RegList registers_to_retain = s0.bit() | s1.bit() | s2.bit() |
         s3.bit() | s4.bit() | s5.bit() | s6.bit() | s7.bit() | fp.bit();
@@ -675,7 +675,7 @@ Handle<HeapObject> RegExpMacroAssemblerMIPS::GetCode(Handle<String> source) {
     __ MultiPush(argument_registers | registers_to_retain | ra.bit());
     // Set frame pointer in space for it if this is not a direct call
     // from generated code.
-    // TODO(plind): this 8 is the # of argument regs, should have definition.
+    // TODO (plind): this 8 is the # of argument regs, should have definition. id:1201 gh:1209
     __ Daddu(frame_pointer(), sp, Operand(8 * kPointerSize));
     __ mov(a0, zero_reg);
     __ push(a0);  // Make room for success counter and initialize it to 0.

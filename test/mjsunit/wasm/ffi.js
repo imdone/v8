@@ -288,7 +288,7 @@ function testCallBinopVoid(type, func, check) {
 
 
 testCallBinopVoid(kWasmI32);
-// TODO testCallBinopVoid(kWasmI64);
+// TODO testCallBinopVoid(kWasmI64); id:2520 gh:2528
 testCallBinopVoid(kWasmF32);
 testCallBinopVoid(kWasmF64);
 

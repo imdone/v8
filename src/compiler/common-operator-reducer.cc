@@ -150,7 +150,7 @@ Reduction CommonOperatorReducer::ReduceDeoptimizeConditional(Node* node) {
   } else {
     control = graph()->NewNode(common()->Deoptimize(p.kind(), p.reason()),
                                frame_state, effect, control);
-    // TODO(bmeurer): This should be on the AdvancedReducer somehow.
+    // TODO (bmeurer): This should be on the AdvancedReducer somehow. id:558 gh:559
     NodeProperties::MergeControlToEnd(graph(), common(), control);
     Revisit(graph()->end());
   }
@@ -295,7 +295,7 @@ Reduction CommonOperatorReducer::ReduceReturn(Node* node) {
     Reduction const reduction = ReduceReturn(node);
     return reduction.Changed() ? reduction : Changed(node);
   }
-  // TODO(ahaas): Extend the reduction below to multiple return values.
+  // TODO (ahaas): Extend the reduction below to multiple return values. id:490 gh:491
   if (ValueInputCountOfReturn(node->op()) != 1) {
     return NoChange();
   }

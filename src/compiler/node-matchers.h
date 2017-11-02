@@ -7,7 +7,7 @@
 
 #include <cmath>
 
-// TODO(turbofan): Move ExternalReference out of assembler.h
+// TODO (turbofan): Move ExternalReference out of assembler.h id:789 gh:797
 #include "src/assembler.h"
 #include "src/base/compiler-specific.h"
 #include "src/compiler/node.h"
@@ -251,7 +251,7 @@ struct BinopMatcher : public NodeMatcher {
  protected:
   void SwapInputs() {
     std::swap(left_, right_);
-    // TODO(tebbi): This modification should notify the reducers using
+    // TODO (tebbi): This modification should notify the reducers using id:649 gh:650
     // BinopMatcher. Alternatively, all reducers (especially value numbering)
     // could ignore the ordering for commutative binops.
     node()->ReplaceInput(0, left().node());

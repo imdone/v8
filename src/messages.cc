@@ -423,7 +423,7 @@ Handle<Object> JSStackFrame::GetMethodName() {
 }
 
 Handle<Object> JSStackFrame::GetTypeName() {
-  // TODO(jgruber): Check for strict/constructor here as in
+  // TODO (jgruber): Check for strict/constructor here as in id:1247 gh:1250
   // CallSitePrototypeGetThis.
 
   if (receiver_->IsNullOrUndefined(isolate_)) {
@@ -738,7 +738,7 @@ Handle<Object> AsmJsWasmStackFrame::GetReceiver() const {
 }
 
 Handle<Object> AsmJsWasmStackFrame::GetFunction() const {
-  // TODO(clemensh): Return lazily created JSFunction.
+  // TODO (clemensh): Return lazily created JSFunction. id:1315 gh:1323
   return Null();
 }
 

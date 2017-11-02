@@ -350,7 +350,7 @@ class ValueHelper {
 
 #define FOR_UINT32_SHIFTS(var) for (uint32_t var = 0; var < 32; var++)
 
-// TODO(bmeurer): Drop this crap once we switch to GTest/Gmock.
+// TODO (bmeurer): Drop this crap once we switch to GTest/Gmock. id:1845 gh:1851
 static inline void CheckFloatEq(volatile float x, volatile float y) {
   if (std::isnan(x)) {
     CHECK(std::isnan(y));

@@ -87,7 +87,7 @@ function test(use_new, add_first, set__proto__) {
   return proto;
 }
 
-// TODO(mstarzinger): This test fails easily if gc happens at the wrong time.
+// TODO (mstarzinger): This test fails easily if gc happens at the wrong time. id:1967 gh:1975
 gc();
 
 for (var i = 0; i < 4; i++) {

@@ -339,7 +339,7 @@ MUST_USE_RESULT static Object* ConvertCaseHelper(
   // length.  This may not be pretty, but it is nicer than what was here before
   // and I hereby claim my vaffel-is.
   //
-  // NOTE: This assumes that the upper/lower case of an ASCII
+  // NOTE: This assumes that the upper/lower case of an ASCII id:301 gh:302
   // character is also ASCII.  This is currently the case, but it
   // might break in the future if we implement more context and locale
   // dependent upper/lower conversions.
@@ -389,7 +389,7 @@ MUST_USE_RESULT static Object* ConvertCaseHelper(
       while (stream.HasMore()) {
         current = stream.GetNext();
         overflows |= ToUpperOverflows(current);
-        // NOTE: we use 0 as the next character here because, while
+        // NOTE: we use 0 as the next character here because, while id:322 gh:323
         // the next character may affect what a character converts to,
         // it does not in any case affect the length of what it convert
         // to.
@@ -437,7 +437,7 @@ MUST_USE_RESULT static Object* ConvertCase(
 
   // Simpler handling of ASCII strings.
   //
-  // NOTE: This assumes that the upper/lower case of an ASCII
+  // NOTE: This assumes that the upper/lower case of an ASCII id:360 gh:361
   // character is also ASCII.  This is currently the case, but it
   // might break in the future if we implement more context and locale
   // dependent upper/lower conversions.

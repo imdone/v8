@@ -663,7 +663,7 @@ static inline int AssembleUnaryOp(Instruction* instr, _R _r, _M _m, _I _i) {
 
 #define ASSEMBLE_IEEE754_UNOP(name)                                            \
   do {                                                                         \
-    /* TODO(bmeurer): We should really get rid of this special instruction, */ \
+    /* TODO (bmeurer): We should really get rid of this special instruction,  id:764 gh:765*/ \
     /* and generate a CallAddress instruction instead. */                      \
     FrameScope scope(tasm(), StackFrame::MANUAL);                              \
     __ PrepareCallCFunction(0, 1, kScratchReg);                                \
@@ -676,7 +676,7 @@ static inline int AssembleUnaryOp(Instruction* instr, _R _r, _M _m, _I _i) {
 
 #define ASSEMBLE_IEEE754_BINOP(name)                                           \
   do {                                                                         \
-    /* TODO(bmeurer): We should really get rid of this special instruction, */ \
+    /* TODO (bmeurer): We should really get rid of this special instruction,  id:733 gh:734*/ \
     /* and generate a CallAddress instruction instead. */                      \
     FrameScope scope(tasm(), StackFrame::MANUAL);                              \
     __ PrepareCallCFunction(0, 2, kScratchReg);                                \
@@ -1149,7 +1149,7 @@ void CodeGenerator::AssembleTailCallBeforeGap(Instruction* instr,
       DCHECK(source.IsRegister());
       LocationOperand source_location(LocationOperand::cast(source));
       pending_pushes.push_back(source_location.GetRegister());
-      // TODO(arm): We can push more than 3 registers at once. Add support in
+      // TODO (arm): We can push more than 3 registers at once. Add support in id:804 gh:812
       // the macro-assembler for pushing a list of registers.
       if (pending_pushes.size() == 3) {
         FlushPendingPushRegisters(tasm(), frame_access_state(),
@@ -1378,7 +1378,7 @@ CodeGenerator::CodeGenResult CodeGenerator::AssembleArchInstruction(
       }
       break;
     case kArchTruncateDoubleToI:
-      // TODO(mbrandy): move slow call to stub out of line.
+      // TODO (mbrandy): move slow call to stub out of line. id:826 gh:834
       __ TruncateDoubleToIDelayed(zone(), i.OutputRegister(),
                                   i.InputDoubleRegister(0));
       break;
@@ -1419,7 +1419,7 @@ CodeGenerator::CodeGenResult CodeGenerator::AssembleArchInstruction(
       break;
     }
     case kS390_Abs32:
-      // TODO(john.yan): zero-ext
+      // TODO (john.yan): zero-ext id:695 gh:696
       __ lpr(i.OutputRegister(0), i.InputRegister(0));
       break;
     case kS390_Abs64:
@@ -1600,7 +1600,7 @@ CodeGenerator::CodeGenResult CodeGenerator::AssembleArchInstruction(
                 Operand(64 - i.InputInt32(1)));
       }
       break;
-    // TODO(john.yan): clean up kS390_RotLeftAnd...
+    // TODO (john.yan): clean up kS390_RotLeftAnd... id:765 gh:766
     case kS390_RotLeftAndClear64:
       if (CpuFeatures::IsSupported(GENERAL_INSTR_EXT)) {
         int shiftAmount = i.InputInt32(1);
@@ -2649,7 +2649,7 @@ void CodeGenerator::AssembleArchBoolean(Instruction* instr,
     __ bunordered(&done);
   }
 
-  // TODO(john.yan): use load imm high on condition here
+  // TODO (john.yan): use load imm high on condition here id:734 gh:735
   __ LoadImmP(reg, Operand::Zero());
   __ LoadImmP(kScratchReg, Operand(1));
   // locr is sufficient since reg's upper 32 is guarrantee to be 0
@@ -2720,7 +2720,7 @@ void CodeGenerator::AssembleConstructFrame() {
       }
     } else {
       StackFrame::Type type = info()->GetOutputStackFrameType();
-      // TODO(mbrandy): Detect cases where ip is the entrypoint (for
+      // TODO (mbrandy): Detect cases where ip is the entrypoint (for id:805 gh:813
       // efficient intialization of the constant pool pointer register).
       __ StubPrologue(type);
     }
@@ -2879,7 +2879,7 @@ void CodeGenerator::AssembleMove(InstructionOperand* source,
           break;
         }
         case Constant::kRpoNumber:
-          UNREACHABLE();  // TODO(dcarney): loading RPO constants on S390.
+          UNREACHABLE();  // TODO (dcarney): loading RPO constants on S390. id:827 gh:835
           break;
       }
       if (destination->IsStackSlot()) {

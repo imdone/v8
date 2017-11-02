@@ -2,7 +2,7 @@
 // Use of this source code is governed by a BSD-style license that can be
 // found in the LICENSE file.
 
-// TODO(kozyatinskiy): fix or remove it later.
+// TODO (kozyatinskiy): fix or remove it later. id:1919 gh:1927
 let {session, contextGroup, Protocol} = InspectorTest.start('Checks that we trim async call chains correctly.');
 
 Protocol.Debugger.enable();

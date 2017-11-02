@@ -115,7 +115,7 @@ Handle<Code> PlatformCodeStub::GenerateCode() {
     isolate()->counters()->code_stubs()->Increment();
 
     // Generate the code for the stub.
-    // TODO(yangguo): remove this once we can serialize IC stubs.
+    // TODO (yangguo): remove this once we can serialize IC stubs. id:372 gh:373
     masm.enable_serializer();
     NoCurrentFrameScope scope(&masm);
     Generate(&masm);
@@ -274,13 +274,13 @@ TF_STUB(StringAddStub, CodeStubAssembler) {
 
   if ((flags & STRING_ADD_CHECK_LEFT) != 0) {
     DCHECK_NE(flags & STRING_ADD_CONVERT, 0);
-    // TODO(danno): The ToString and JSReceiverToPrimitive below could be
+    // TODO (danno): The ToString and JSReceiverToPrimitive below could be id:413 gh:414
     // combined to avoid duplicate smi and instance type checks.
     left = ToString(context, JSReceiverToPrimitive(context, left));
   }
   if ((flags & STRING_ADD_CHECK_RIGHT) != 0) {
     DCHECK_NE(flags & STRING_ADD_CONVERT, 0);
-    // TODO(danno): The ToString and JSReceiverToPrimitive below could be
+    // TODO (danno): The ToString and JSReceiverToPrimitive below could be id:401 gh:402
     // combined to avoid duplicate smi and instance type checks.
     right = ToString(context, JSReceiverToPrimitive(context, right));
   }
@@ -361,14 +361,14 @@ TF_STUB(TransitionElementsKindStub, CodeStubAssembler) {
   }
 }
 
-// TODO(ishell): move to builtins.
+// TODO (ishell): move to builtins. id:428 gh:429
 TF_STUB(NumberToStringStub, CodeStubAssembler) {
   Node* context = Parameter(Descriptor::kContext);
   Node* argument = Parameter(Descriptor::kArgument);
   Return(NumberToString(context, argument));
 }
 
-// TODO(ishell): move to builtins-handler-gen.
+// TODO (ishell): move to builtins-handler-gen. id:457 gh:458
 TF_STUB(KeyedLoadSloppyArgumentsStub, CodeStubAssembler) {
   Node* receiver = Parameter(Descriptor::kReceiver);
   Node* key = Parameter(Descriptor::kName);
@@ -389,7 +389,7 @@ TF_STUB(KeyedLoadSloppyArgumentsStub, CodeStubAssembler) {
   }
 }
 
-// TODO(ishell): move to builtins-handler-gen.
+// TODO (ishell): move to builtins-handler-gen. id:373 gh:374
 TF_STUB(KeyedStoreSloppyArgumentsStub, CodeStubAssembler) {
   Node* receiver = Parameter(Descriptor::kReceiver);
   Node* key = Parameter(Descriptor::kName);
@@ -435,7 +435,7 @@ TF_STUB(StoreScriptContextFieldStub, CodeStubAssembler) {
   Return(value);
 }
 
-// TODO(ishell): move to builtins-handler-gen.
+// TODO (ishell): move to builtins-handler-gen. id:414 gh:415
 TF_STUB(StoreInterceptorStub, CodeStubAssembler) {
   Node* receiver = Parameter(Descriptor::kReceiver);
   Node* name = Parameter(Descriptor::kName);
@@ -447,7 +447,7 @@ TF_STUB(StoreInterceptorStub, CodeStubAssembler) {
                   vector, receiver, name);
 }
 
-// TODO(ishell): move to builtins-handler-gen.
+// TODO (ishell): move to builtins-handler-gen. id:402 gh:404
 TF_STUB(LoadIndexedInterceptorStub, CodeStubAssembler) {
   Node* receiver = Parameter(Descriptor::kReceiver);
   Node* key = Parameter(Descriptor::kName);
@@ -473,7 +473,7 @@ Handle<HandlerTable> JSEntryStub::GenerateHandlerTable() {
 }
 
 
-// TODO(ishell): move to builtins.
+// TODO (ishell): move to builtins. id:429 gh:430
 TF_STUB(GetPropertyStub, CodeStubAssembler) {
   Label call_runtime(this, Label::kDeferred), return_undefined(this), end(this);
 
@@ -527,7 +527,7 @@ TF_STUB(GetPropertyStub, CodeStubAssembler) {
   Return(var_result.value());
 }
 
-// TODO(ishell): move to builtins-handler-gen.
+// TODO (ishell): move to builtins-handler-gen. id:458 gh:459
 TF_STUB(StoreSlowElementStub, CodeStubAssembler) {
   Node* receiver = Parameter(Descriptor::kReceiver);
   Node* name = Parameter(Descriptor::kName);
@@ -722,7 +722,7 @@ TF_STUB(GrowArrayElementsStub, CodeStubAssembler) {
   Return(new_elements);
 
   BIND(&runtime);
-  // TODO(danno): Make this a tail call when the stub is only used from TurboFan
+  // TODO (danno): Make this a tail call when the stub is only used from TurboFan id:374 gh:375
   // code. This musn't be a tail call for now, since the caller site in lithium
   // creates a safepoint. This safepoint musn't have a different number of
   // arguments on the stack in the case that a GC happens from the slow-case

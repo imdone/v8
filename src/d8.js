@@ -42,7 +42,7 @@ function Stringify(x, depth) {
     case "string":
       return "\"" + x.toString() + "\"";
     case "bigint":
-      // TODO(neis): Use x.toString() once we have it.
+      // TODO (neis): Use x.toString() once we have it. id:911 gh:919
       return String(x) + "n";
     case "object":
       if (IS_NULL(x)) return "null";

@@ -359,7 +359,7 @@ bool ProduceWord32Result(Node* node) {
     RESULT_IS_WORD32_LIST(VISITOR)
 #undef VISITOR
     return true;
-    // TODO(john.yan): consider the following case to be valid
+    // TODO (john.yan): consider the following case to be valid id:766 gh:767
     // case IrOpcode::kWord32Equal:
     // case IrOpcode::kInt32LessThan:
     // case IrOpcode::kInt32LessThanOrEqual:
@@ -409,7 +409,7 @@ static inline bool DoZeroExtForResult(Node* node) {
 #endif
 }
 
-// TODO(john.yan): Create VisiteShift to match dst = src shift (R+I)
+// TODO (john.yan): Create VisiteShift to match dst = src shift (R+I) id:735 gh:736
 #if 0
 void VisitShift() { }
 #endif
@@ -727,7 +727,7 @@ void InstructionSelector::VisitLoad(Node* node) {
 }
 
 void InstructionSelector::VisitProtectedLoad(Node* node) {
-  // TODO(eholk)
+  // TODO (eholk) id:806 gh:814
   UNIMPLEMENTED();
 }
 
@@ -840,7 +840,7 @@ void InstructionSelector::VisitStore(Node* node) {
 }
 
 void InstructionSelector::VisitProtectedStore(Node* node) {
-  // TODO(eholk)
+  // TODO (eholk) id:828 gh:836
   UNIMPLEMENTED();
 }
 
@@ -1024,7 +1024,7 @@ void InstructionSelector::VisitWord64And(Node* node) {
 void InstructionSelector::VisitWord64Shl(Node* node) {
   S390OperandGenerator g(this);
   Int64BinopMatcher m(node);
-  // TODO(mbrandy): eliminate left sign extension if right >= 32
+  // TODO (mbrandy): eliminate left sign extension if right >= 32 id:856 gh:864
   if (m.left().IsWord64And() && m.right().IsInRange(0, 63)) {
     Int64BinopMatcher mleft(m.left().node());
     int sh = m.right().Value();
@@ -1272,7 +1272,7 @@ void InstructionSelector::VisitWord32ReverseBytes(Node* node) {
       Node* base = input.node()->InputAt(0);
       Node* offset = input.node()->InputAt(1);
       Emit(kS390_LoadReverse32 | AddressingModeField::encode(kMode_MRR),
-           // TODO(john.yan): one of the base and offset can be imm.
+           // TODO (john.yan): one of the base and offset can be imm. id:767 gh:768
            g.DefineAsRegister(node), g.UseRegister(base),
            g.UseRegister(offset));
       return;
@@ -1433,7 +1433,7 @@ static inline bool TryMatchDoubleConstructFromInsert(
 }
 
 #define null ([]() { return false; })
-// TODO(john.yan): place kAllowRM where available
+// TODO (john.yan): place kAllowRM where available id:736 gh:737
 #define FLOAT_UNARY_OP_LIST_32(V)                                              \
   V(Float32, ChangeFloat32ToFloat64, kS390_Float32ToDouble,                    \
     OperandMode::kAllowRM, null)                                               \
@@ -1473,7 +1473,7 @@ static inline bool TryMatchDoubleConstructFromInsert(
     null)                                                                      \
   V(Float32, Float32Neg, kS390_NegFloat, OperandMode::kNone, null)             \
   V(Float64, Float64Neg, kS390_NegDouble, OperandMode::kNone, null)            \
-  /* TODO(john.yan): can use kAllowRM */                                       \
+  /* TODO (john.yan): can use kAllowRM  id:807 gh:815*/                                       \
   V(Word32, Float64ExtractLowWord32, kS390_DoubleExtractLowWord32,             \
     OperandMode::kNone, null)                                                  \
   V(Word32, Float64ExtractHighWord32, kS390_DoubleExtractHighWord32,           \
@@ -1873,7 +1873,7 @@ void VisitLoadAndTest(InstructionSelector* selector, InstructionCode opcode,
   static_assert(kS390_LoadAndTestFloat64 - kS390_LoadAndTestWord32 == 3,
                 "LoadAndTest Opcode shouldn't contain other opcodes.");
 
-  // TODO(john.yan): Add support for Float32/Float64.
+  // TODO (john.yan): Add support for Float32/Float64. id:829 gh:837
   DCHECK(opcode >= kS390_LoadAndTestWord32 ||
          opcode <= kS390_LoadAndTestWord64);
 

@@ -104,7 +104,7 @@ class RegExpMacroAssemblerMIPS: public NativeRegExpMacroAssembler {
   static const int kStoredRegisters = kFramePointer;
   // Return address (stored from link register, read into pc on return).
 
-  // TODO(plind): This 9 - is 8 s-regs (s0..s7) plus fp.
+  // TODO (plind): This 9 - is 8 s-regs (s0..s7) plus fp. id:1473 gh:1481
 
   static const int kReturnAddress = kStoredRegisters + 9 * kPointerSize;
   // Stack frame header.

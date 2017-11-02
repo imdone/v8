@@ -36,7 +36,7 @@ cat > tools/gyp/gyp.mingw << EOF
 
 import sys
 
-# TODO(mark): sys.path manipulation is some temporary testing stuff.
+# TODO (mark): sys.path manipulation is some temporary testing stuff. id:2437 gh:2445
 try:
   import gyp
 except ImportError, e:

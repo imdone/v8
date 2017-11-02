@@ -1530,7 +1530,7 @@ const char* NameConverter::NameOfByteCPURegister(int reg) const {
 
 const char* NameConverter::NameOfXMMRegister(int reg) const {
   // S390 does not have XMM register
-  // TODO(joransiu): Consider update this for Vector Regs
+  // TODO (joransiu): Consider update this for Vector Regs id:1580 gh:1588
   UNREACHABLE();
 }
 

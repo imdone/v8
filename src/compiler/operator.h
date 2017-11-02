@@ -95,7 +95,7 @@ class V8_EXPORT_PRIVATE Operator : public NON_EXPORTED_BASE(ZoneObject) {
 
   Properties properties() const { return properties_; }
 
-  // TODO(titzer): convert return values here to size_t.
+  // TODO (titzer): convert return values here to size_t. id:682 gh:683
   int ValueInputCount() const { return value_in_; }
   int EffectInputCount() const { return effect_in_; }
   int ControlInputCount() const { return control_in_; }
@@ -116,7 +116,7 @@ class V8_EXPORT_PRIVATE Operator : public NON_EXPORTED_BASE(ZoneObject) {
     return (properties & kPure) == kPure ? 0 : 1;
   }
 
-  // TODO(titzer): API for input and output types, for typechecking graph.
+  // TODO (titzer): API for input and output types, for typechecking graph. id:709 gh:710
 
   // Print the full operator into the given stream, including any
   // static parameters. Useful for debugging and visualizing the IR.
@@ -217,7 +217,7 @@ inline T const& OpParameter(const Operator* op) {
 }
 
 
-// NOTE: We have to be careful to use the right equal/hash functions below, for
+// NOTE: We have to be careful to use the right equal/hash functions below, for id:600 gh:601
 // float/double we always use the ones operating on the bit level, for Handle<>
 // we always use the ones operating on the location level.
 template <>

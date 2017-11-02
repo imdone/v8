@@ -254,7 +254,7 @@ for (var i = 0; i < 100; ++i) {
 
 // Test out of range with a heap number case.
 var num = Math.floor(4) * 0.5;
-// TODO(mvstanton): figure out a reliable way to get a heap number every time.
+// TODO (mvstanton): figure out a reliable way to get a heap number every time. id:2044 gh:2052
 // assertFalse(!%_IsSmi(num));
 var keys = [0, num];
 var str = 'ab', arr = ['a', undefined];

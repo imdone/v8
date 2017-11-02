@@ -99,7 +99,7 @@ class CheckedNumeric {
   // tests and to avoid a big matrix of friend operator overloads. But the
   // values it returns are likely to change in the future.
   // Returns: current validity state (i.e. valid, overflow, underflow, nan).
-  // TODO(jschuh): crbug.com/332611 Figure out and implement semantics for
+  // TODO (jschuh): crbug.com/332611 Figure out and implement semantics for id:231 gh:232
   // saturation/wrapping so we can expose this state consistently and implement
   // saturated arithmetic.
   RangeConstraint validity() const { return state_.validity(); }
@@ -108,7 +108,7 @@ class CheckedNumeric {
   // for tests and to avoid a big matrix of friend operator overloads. But the
   // values it returns are likely to change in the future.
   // Returns: the raw numeric value, regardless of the current state.
-  // TODO(jschuh): crbug.com/332611 Figure out and implement semantics for
+  // TODO (jschuh): crbug.com/332611 Figure out and implement semantics for id:253 gh:254
   // saturation/wrapping so we can expose this state consistently and implement
   // saturated arithmetic.
   T ValueUnsafe() const { return state_.value(); }
@@ -194,7 +194,7 @@ class CheckedNumeric {
 //  * We apply the standard arithmetic promotions.
 //  * We skip range checks for floating points.
 //  * We skip range checks for destination integers with sufficient range.
-// TODO(jschuh): extract these out into templates.
+// TODO (jschuh): extract these out into templates. id:246 gh:247
 #define BASE_NUMERIC_ARITHMETIC_OPERATORS(NAME, OP, COMPOUND_OP)              \
   /* Binary arithmetic operator for CheckedNumerics of the same type. */      \
   template <typename T>                                                       \

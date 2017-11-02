@@ -274,11 +274,11 @@ var funcs = [
   f64_gteq,
   f64_ceil,
   f64_floor,
-// TODO(bradnelson) f64_sqrt,
+// TODO (bradnelson) f64_sqrt, id:2309 gh:2317
   f64_abs,
   f64_neg,
-// TODO(bradnelson) f64_min is wrong for -0
-// TODO(bradnelson) f64_max is wrong for -0
+// TODO (bradnelson) f64_min is wrong for -0 id:2047 gh:2055
+// TODO (bradnelson) f64_max is wrong for -0 id:2276 gh:2285
   f64_acos,
   f64_asin,
   f64_atan,

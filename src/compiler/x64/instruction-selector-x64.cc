@@ -523,7 +523,7 @@ static void VisitBinop(InstructionSelector* selector, Node* node,
   InstructionOperand outputs[2];
   size_t output_count = 0;
 
-  // TODO(turbofan): match complex addressing modes.
+  // TODO (turbofan): match complex addressing modes. id:907 gh:915
   if (left == right) {
     // If both inputs refer to the same operand, enforce allocating a register
     // for both of them to ensure that we don't end up generating code like
@@ -647,7 +647,7 @@ void InstructionSelector::VisitWord64Xor(Node* node) {
 namespace {
 
 // Shared routine for multiple 32-bit shift operations.
-// TODO(bmeurer): Merge this with VisitWord64Shift using template magic?
+// TODO (bmeurer): Merge this with VisitWord64Shift using template magic? id:848 gh:856
 void VisitWord32Shift(InstructionSelector* selector, Node* node,
                       ArchOpcode opcode) {
   X64OperandGenerator g(selector);
@@ -666,7 +666,7 @@ void VisitWord32Shift(InstructionSelector* selector, Node* node,
 
 
 // Shared routine for multiple 64-bit shift operations.
-// TODO(bmeurer): Merge this with VisitWord32Shift using template magic?
+// TODO (bmeurer): Merge this with VisitWord32Shift using template magic? id:875 gh:883
 void VisitWord64Shift(InstructionSelector* selector, Node* node,
                       ArchOpcode opcode) {
   X64OperandGenerator g(selector);
@@ -1002,7 +1002,7 @@ void VisitMulHigh(InstructionSelector* selector, Node* node,
     std::swap(left, right);
   }
   InstructionOperand temps[] = {g.TempRegister(rax)};
-  // TODO(turbofan): We use UseUniqueRegister here to improve register
+  // TODO (turbofan): We use UseUniqueRegister here to improve register id:916 gh:920
   // allocation.
   selector->Emit(opcode, g.DefineAsFixed(node, rdx), g.UseFixed(left, rax),
                  g.UseUniqueRegister(right), arraysize(temps), temps);
@@ -1042,7 +1042,7 @@ void InstructionSelector::VisitInt32Mul(Node* node) {
 }
 
 void InstructionSelector::VisitInt32MulWithOverflow(Node* node) {
-  // TODO(mvstanton): Use Int32ScaleMatcher somehow.
+  // TODO (mvstanton): Use Int32ScaleMatcher somehow. id:901 gh:909
   if (Node* ovf = NodeProperties::FindProjection(node, 1)) {
     FlagsContinuation cont = FlagsContinuation::ForSet(kOverflow, ovf);
     return VisitBinop(this, node, kX64Imul32, &cont);
@@ -1555,7 +1555,7 @@ void InstructionSelector::EmitPrepareArguments(
         Emit(kX64Push, g.NoOutput(), g.UseImmediate(input_node));
       } else if (IsSupported(ATOM) ||
                  sequence()->IsFP(GetVirtualRegister(input_node))) {
-        // TODO(titzer): X64Push cannot handle stack->stack double moves
+        // TODO (titzer): X64Push cannot handle stack->stack double moves id:908 gh:916
         // because there is no way to encode fixed double slots.
         Emit(kX64Push, g.NoOutput(), g.UseRegister(input_node));
       } else if (g.CanBeMemoryOperand(kX64Push, node, input_node,
@@ -1689,7 +1689,7 @@ MachineType MachineTypeForNarrow(Node* node, Node* hint_node) {
 // possible.
 InstructionCode TryNarrowOpcodeSize(InstructionCode opcode, Node* left,
                                     Node* right, FlagsContinuation* cont) {
-  // TODO(epertoso): we can probably get some size information out phi nodes.
+  // TODO (epertoso): we can probably get some size information out phi nodes. id:849 gh:857
   // If the load representations don't match, both operands will be
   // zero/sign-extended to 32bit.
   MachineType left_type = MachineTypeForNarrow(left, right);

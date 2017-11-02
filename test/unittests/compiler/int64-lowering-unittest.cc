@@ -328,7 +328,7 @@ TEST_F(Int64LoweringTest, Parameter2) {
 // The following tests assume that pointers are 32 bit and therefore pointers do
 // not get lowered. This assumption does not hold on 64 bit platforms, which
 // invalidates these tests.
-// TODO(wasm): We can find an alternative to re-activate these tests.
+// TODO (wasm): We can find an alternative to re-activate these tests. id:2327 gh:2335
 #if V8_TARGET_ARCH_32_BIT
 TEST_F(Int64LoweringTest, CallI64Return) {
   int32_t function = 0x9999;

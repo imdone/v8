@@ -428,7 +428,7 @@ void InstructionSelector::VisitLoad(Node* node) {
 }
 
 void InstructionSelector::VisitProtectedLoad(Node* node) {
-  // TODO(eholk)
+  // TODO (eholk) id:596 gh:597
   UNIMPLEMENTED();
 }
 
@@ -442,7 +442,7 @@ void InstructionSelector::VisitStore(Node* node) {
   WriteBarrierKind write_barrier_kind = store_rep.write_barrier_kind();
   MachineRepresentation rep = store_rep.representation();
 
-  // TODO(mips): I guess this could be done in a better way.
+  // TODO (mips): I guess this could be done in a better way. id:723 gh:724
   if (write_barrier_kind != kNoWriteBarrier) {
     DCHECK(CanBeTaggedPointer(rep));
     InstructionOperand inputs[3];
@@ -519,7 +519,7 @@ void InstructionSelector::VisitStore(Node* node) {
 }
 
 void InstructionSelector::VisitProtectedStore(Node* node) {
-  // TODO(eholk)
+  // TODO (eholk) id:648 gh:649
   UNIMPLEMENTED();
 }
 
@@ -1039,7 +1039,7 @@ void InstructionSelector::VisitUint32MulHigh(Node* node) {
 void InstructionSelector::VisitInt64Mul(Node* node) {
   Mips64OperandGenerator g(this);
   Int64BinopMatcher m(node);
-  // TODO(dusmil): Add optimization for shifts larger than 32.
+  // TODO (dusmil): Add optimization for shifts larger than 32. id:679 gh:680
   if (m.right().HasValue() && m.right().Value() > 0) {
     uint32_t value = static_cast<uint32_t>(m.right().Value());
     if (base::bits::IsPowerOfTwo(value)) {
@@ -2756,7 +2756,7 @@ void InstructionSelector::VisitInt64AbsWithOverflow(Node* node) {
   V(I16x8)                \
   V(I8x16)
 
-// TODO(mostynb@opera.com): this is never used, remove it?
+// TODO (mostynb@opera.com): this is never used, remove it? id:706 gh:707
 #define SIMD_FORMAT_LIST(V) \
   V(32x4)                   \
   V(16x8)                   \

@@ -43,9 +43,9 @@ assertEquals(2, get_count);
 assertEquals("gi", r3.flags);
 assertEquals(4, get_count);
 // Overridden flag getters affect string.replace
-// TODO(adamk): Add more tests here once we've switched
+// TODO (adamk): Add more tests here once we've switched id:1963 gh:1971
 // to use [[OriginalFlags]] in more cases.
-// TODO(jgruber): This exact case actually causes an infinite loop in the spec
+// TODO (jgruber): This exact case actually causes an infinite loop in the spec id:2264 gh:2272
 // (@@replace sees global = true while BuiltinExec sees global = false).
 // Comment the test for now and remove / fix once this has been resolved on
 // the spec side.

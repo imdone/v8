@@ -6,7 +6,7 @@
 #define V8_INCLUDE_VERSION_H_
 
 // These macros define the version number for the current version.
-// NOTE these macros are used by some of the tool scripts and the build
+// NOTE these macros are used by some of the tool scripts and the build id:29 gh:24
 // system so their names cannot be changed without changing the scripts.
 #define V8_MAJOR_VERSION 6
 #define V8_MINOR_VERSION 4

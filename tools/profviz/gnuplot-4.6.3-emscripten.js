@@ -464,7 +464,7 @@ var __THREW__ = 0; // Used in checking for thrown exceptions.
 var ABORT = false; // whether we are quitting the application. no code should run after this. set in exit() and abort()
 var undef = 0;
 // tempInt is used for 32-bit signed values or smaller. tempBigInt is used
-// for 32-bit unsigned values or more than 32 bits. TODO: audit all uses of tempInt
+// for 32-bit unsigned values or more than 32 bits. TODO: audit all uses of tempInt id:2438 gh:2446
 var tempValue, tempInt, tempBigInt, tempInt2, tempBigInt2, tempPair, tempBigIntI, tempBigIntR, tempBigIntS, tempBigIntP, tempBigIntD;
 var tempI64, tempI64b;
 var tempRet0, tempRet1, tempRet2, tempRet3, tempRet4, tempRet5, tempRet6, tempRet7, tempRet8, tempRet9;
@@ -846,7 +846,7 @@ function reSign(value, bits, ignore, sig) {
                         : Math.pow(2, bits-1);
   if (value >= half && (bits <= 32 || value > half)) { // for huge values, we can hit the precision limit and always get true here. so don't do that
                                                        // but, in general there is no perfect solution here. With 64-bit ints, we get rounding and errors
-                                                       // TODO: In i64 mode 1, resign the two parts separately and safely
+                                                       // TODO: In i64 mode 1, resign the two parts separately and safely id:2565 gh:2574
     value = -2*half + value; // Cannot bitshift half, as it may be at the limit of the bits JS uses in bitshifts
   }
   return value;
@@ -1219,7 +1219,7 @@ function copyTempDouble(ptr) {
               var doXHR = (function(from, to) {
                 if (from > to) throw new Error("invalid range (" + from + ", " + to + ") or no bytes requested!");
                 if (to > datalength-1) throw new Error("only " + datalength + " bytes available! programmer error!");
-                // TODO: Use mozResponseArrayBuffer, responseStream, etc. if available.
+                // TODO: Use mozResponseArrayBuffer, responseStream, etc. if available. id:2341 gh:2351
                 var xhr = new XMLHttpRequest();
                 xhr.open('GET', url, false);
                 if (datalength !== chunkSize) xhr.setRequestHeader("Range", "bytes=" + from + "-" + to);
@@ -1445,7 +1445,7 @@ function copyTempDouble(ptr) {
           eof: false,
           ungotten: []
         };
-        // TODO: put these low in memory like we used to assert on: assert(Math.max(_stdin, _stdout, _stderr) < 15000); // make sure these are low, we flatten arrays with these
+        // TODO: put these low in memory like we used to assert on: assert(Math.max(_stdin, _stdout, _stderr) < 15000); // make sure these are low, we flatten arrays with these id:2577 gh:2586
         HEAP32[((_stdin)>>2)]=1;
         HEAP32[((_stdout)>>2)]=2;
         HEAP32[((_stderr)>>2)]=3;
@@ -1565,7 +1565,7 @@ function copyTempDouble(ptr) {
       var textIndex = format;
       var argIndex = 0;
       function getNextArg(type) {
-        // NOTE: Explicitly ignoring type safety. Otherwise this fails:
+        // NOTE: Explicitly ignoring type safety. Otherwise this fails: id:2539 gh:2547
         //       int x = 4; printf("%c\n", (char)x);
         var ret;
         if (type === 'double') {
@@ -1922,8 +1922,8 @@ function copyTempDouble(ptr) {
             }
           }
           textIndex += 2;
-          // TODO: Support a/A (hex float) and m (last error) specifiers.
-          // TODO: Support %1${specifier} for arg selection.
+          // TODO: Support a/A (hex float) and m (last error) specifiers. id:2439 gh:2447
+          // TODO: Support %1${specifier} for arg selection. id:2566 gh:2575
         } else {
           ret.push(curr);
           textIndex += 1;
@@ -2437,7 +2437,7 @@ function copyTempDouble(ptr) {
   function _puts(s) {
       // int puts(const char *s);
       // http://pubs.opengroup.org/onlinepubs/000095399/functions/puts.html
-      // NOTE: puts() always writes an extra newline.
+      // NOTE: puts() always writes an extra newline. id:2342 gh:2352
       var stdout = HEAP32[((_stdout)>>2)];
       var ret = _fputs(s, stdout);
       if (ret < 0) {
@@ -2491,7 +2491,7 @@ function copyTempDouble(ptr) {
   var ___dirent_struct_layout={__size__:1040,d_ino:0,d_name:4,d_off:1028,d_reclen:1032,d_type:1036};function _open(path, oflag, varargs) {
       // int open(const char *path, int oflag, ...);
       // http://pubs.opengroup.org/onlinepubs/009695399/functions/open.html
-      // NOTE: This implementation tries to mimic glibc rather than strictly
+      // NOTE: This implementation tries to mimic glibc rather than strictly id:2578 gh:2587
       // following the POSIX standard.
       var mode = HEAP32[((varargs)>>2)];
       // Simplify flags.
@@ -2741,7 +2741,7 @@ function copyTempDouble(ptr) {
   function _chdir(path) {
       // int chdir(const char *path);
       // http://pubs.opengroup.org/onlinepubs/000095399/functions/chdir.html
-      // NOTE: The path argument may be a string, to simplify fchdir().
+      // NOTE: The path argument may be a string, to simplify fchdir(). id:2540 gh:2548
       if (typeof path !== 'string') path = Pointer_stringify(path);
       path = FS.analyzePath(path);
       if (!path.exists) {
@@ -2758,7 +2758,7 @@ function copyTempDouble(ptr) {
   function _tmpnam(s, dir, prefix) {
       // char *tmpnam(char *s);
       // http://pubs.opengroup.org/onlinepubs/000095399/functions/tmpnam.html
-      // NOTE: The dir and prefix arguments are for internal use only.
+      // NOTE: The dir and prefix arguments are for internal use only. id:2440 gh:2448
       var folder = FS.findObject(dir || '/tmp');
       if (!folder || !folder.isFolder) {
         dir = '/tmp';
@@ -2780,7 +2780,7 @@ function copyTempDouble(ptr) {
     }function _tmpfile() {
       // FILE *tmpfile(void);
       // http://pubs.opengroup.org/onlinepubs/000095399/functions/tmpfile.html
-      // TODO: Delete the created file on closing.
+      // TODO: Delete the created file on closing. id:2567 gh:2571
       if (_tmpfile.mode) {
         _tmpfile.mode = allocate(intArrayFromString('w+'), 'i8', ALLOC_NORMAL);
       }
@@ -2826,7 +2826,7 @@ function copyTempDouble(ptr) {
   var ___stat_struct_layout={__size__:68,st_dev:0,st_ino:4,st_mode:8,st_nlink:12,st_uid:16,st_gid:20,st_rdev:24,st_size:28,st_atime:32,st_spare1:36,st_mtime:40,st_spare2:44,st_ctime:48,st_spare3:52,st_blksize:56,st_blocks:60,st_spare4:64};function _stat(path, buf, dontResolveLastLink) {
       // http://pubs.opengroup.org/onlinepubs/7908799/xsh/stat.html
       // int stat(const char *path, struct stat *buf);
-      // NOTE: dontResolveLastLink is a shortcut for lstat(). It should never be
+      // NOTE: dontResolveLastLink is a shortcut for lstat(). It should never be id:2343 gh:2353
       //       used in client code.
       var obj = FS.findObject(Pointer_stringify(path), dontResolveLastLink);
       if (obj === null || !FS.forceLoadFile(obj)) return -1;
@@ -2864,7 +2864,7 @@ function copyTempDouble(ptr) {
       } else {
         dev = 1;
         rdev = 0;
-        // NOTE: In our implementation, st_blocks = Math.ceil(st_size/st_blksize),
+        // NOTE: In our implementation, st_blocks = Math.ceil(st_size/st_blksize), id:2579 gh:2580
         //       but this is not required by the standard.
         if (obj.isFolder) {
           size = 4096;
@@ -2965,7 +2965,7 @@ function copyTempDouble(ptr) {
         __scanString.whiteSpace['\r'] = 1;
       }
       // Supports %x, %4x, %d.%d, %lld, %s, %f, %lf.
-      // TODO: Support all format specifiers.
+      // TODO: Support all format specifiers. id:2541 gh:2551
       format = Pointer_stringify(format);
       var soFar = 0;
       if (format.indexOf('%n') >= 0) {
@@ -2995,7 +2995,7 @@ function copyTempDouble(ptr) {
           formatIndex += 2;
           continue;
         }
-        // TODO: Support strings like "%5c" etc.
+        // TODO: Support strings like "%5c" etc. id:2441 gh:2449
         if (format[formatIndex] === '%' && format[formatIndex+1] == 'c') {
           var argPtr = HEAP32[(((varargs)+(argIndex))>>2)];
           argIndex += Runtime.getAlignSize('void*', null, true);
@@ -3162,7 +3162,7 @@ function copyTempDouble(ptr) {
   Module["_saveSetjmp"] = _saveSetjmp;
   Module["_testSetjmp"] = _testSetjmp;var _setjmp=undefined;
   function _signal(sig, func) {
-      // TODO
+      // TODO id:2568 gh:2576
       return 0;
     }
   function _toupper(chr) {
@@ -3189,15 +3189,15 @@ function copyTempDouble(ptr) {
   var __tzname=allocate(8, "i32*", ALLOC_STATIC);
   var __daylight=allocate(1, "i32*", ALLOC_STATIC);
   var __timezone=allocate(1, "i32*", ALLOC_STATIC);function _tzset() {
-      // TODO: Use (malleable) environment variables instead of system settings.
+      // TODO: Use (malleable) environment variables instead of system settings. id:2344 gh:2349
       if (_tzset.called) return;
       _tzset.called = true;
       HEAP32[((__timezone)>>2)]=-(new Date()).getTimezoneOffset() * 60
       var winter = new Date(2000, 0, 1);
       var summer = new Date(2000, 6, 1);
       HEAP32[((__daylight)>>2)]=Number(winter.getTimezoneOffset() != summer.getTimezoneOffset())
-      var winterName = 'GMT'; // XXX do not rely on browser timezone info, it is very unpredictable | winter.toString().match(/\(([A-Z]+)\)/)[1];
-      var summerName = 'GMT'; // XXX do not rely on browser timezone info, it is very unpredictable | summer.toString().match(/\(([A-Z]+)\)/)[1];
+      var winterName = 'GMT'; // XXX do not rely on browser timezone info, it is very unpredictable | winter.toString().match(/\(([A-Z]+)\)/)[1]; id:2580 gh:2588
+      var summerName = 'GMT'; // XXX do not rely on browser timezone info, it is very unpredictable | summer.toString().match(/\(([A-Z]+)\)/)[1]; id:2542 gh:2552
       var winterNamePtr = allocate(intArrayFromString(winterName), 'i8', ALLOC_NORMAL);
       var summerNamePtr = allocate(intArrayFromString(summerName), 'i8', ALLOC_NORMAL);
       HEAP32[((__tzname)>>2)]=winterNamePtr
@@ -3219,7 +3219,7 @@ function copyTempDouble(ptr) {
       HEAP32[(((tmPtr)+(offsets.tm_gmtoff))>>2)]=start.getTimezoneOffset() * 60
       var dst = Number(start.getTimezoneOffset() != date.getTimezoneOffset());
       HEAP32[(((tmPtr)+(offsets.tm_isdst))>>2)]=dst
-      var timezone = 'GMT'; // XXX do not rely on browser timezone info, it is very unpredictable | date.toString().match(/\(([A-Z]+)\)/)[1];
+      var timezone = 'GMT'; // XXX do not rely on browser timezone info, it is very unpredictable | date.toString().match(/\(([A-Z]+)\)/)[1]; id:2442 gh:2450
       if (!(timezone in ___tm_timezones)) {
         ___tm_timezones[timezone] = allocate(intArrayFromString(timezone), 'i8', ALLOC_NORMAL);
       }
@@ -3294,7 +3294,7 @@ function copyTempDouble(ptr) {
   function _strftime(s, maxsize, format, timeptr) {
       // size_t strftime(char *restrict s, size_t maxsize, const char *restrict format, const struct tm *restrict timeptr);
       // http://pubs.opengroup.org/onlinepubs/009695399/functions/strftime.html
-      // TODO: Implement.
+      // TODO: Implement. id:2569 gh:2577
       return 0;
     }
   function _qsort(base, num, size, cmp) {
@@ -3328,7 +3328,7 @@ function copyTempDouble(ptr) {
   function _opendir(dirname) {
       // DIR *opendir(const char *dirname);
       // http://pubs.opengroup.org/onlinepubs/007908799/xsh/opendir.html
-      // NOTE: Calculating absolute path redundantly since we need to associate it
+      // NOTE: Calculating absolute path redundantly since we need to associate it id:2345 gh:2354
       //       with the opened stream.
       var path = FS.absolutePath(Pointer_stringify(dirname));
       if (path === null) {
@@ -3479,7 +3479,7 @@ function copyTempDouble(ptr) {
   function _setvbuf(stream, buf, type, size) {
       // int setvbuf(FILE *restrict stream, char *restrict buf, int type, size_t size);
       // http://pubs.opengroup.org/onlinepubs/000095399/functions/setvbuf.html
-      // TODO: Implement custom buffering.
+      // TODO: Implement custom buffering. id:2581 gh:2589
       return 0;
     }function _setbuf(stream, buf) {
       // void setbuf(FILE *restrict stream, char *restrict buf);
@@ -4085,7 +4085,7 @@ function copyTempDouble(ptr) {
             } catch(e) {
               return fail();
             }
-            var url = Browser.URLObject.createObjectURL(b); // XXX we never revoke this!
+            var url = Browser.URLObject.createObjectURL(b); // XXX we never revoke this! id:2543 gh:2553
             var audio = new Audio();
             audio.addEventListener('canplaythrough', function() { finish(audio) }, false); // use addEventListener due to chromium bug 124926
             audio.onerror = function(event) {

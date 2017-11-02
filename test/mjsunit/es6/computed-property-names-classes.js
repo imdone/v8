@@ -78,7 +78,7 @@ function ID(x) {
   assertEquals('C', C.c());
   assertEquals('D', C.d());
   assertArrayEquals([], Object.keys(C));
-  // TODO(arv): It is not clear that we are adding the "standard" properties
+  // TODO (arv): It is not clear that we are adding the "standard" properties id:1986 gh:1994
   // in the right order. As far as I can tell the spec adds them in alphabetical
   // order.
   assertArrayEquals(['length', 'prototype', 'a', 'b', 'c', 'd', 'name'],

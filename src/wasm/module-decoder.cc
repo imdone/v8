@@ -609,7 +609,7 @@ class ModuleDecoderImpl : public Decoder {
         }
         case kExternalMemory: {
           uint32_t index = consume_u32v("memory index");
-          // TODO(titzer): This should become more regular
+          // TODO (titzer): This should become more regular id:1747 gh:1755
           // once we support multiple memories.
           if (!module_->has_memory || index != 0) {
             error("invalid memory index != 0");
@@ -774,7 +774,7 @@ class ModuleDecoderImpl : public Decoder {
   }
 
   void DecodeNameSection() {
-    // TODO(titzer): find a way to report name errors as warnings.
+    // TODO (titzer): find a way to report name errors as warnings. id:1393 gh:1401
     // Use an inner decoder so that errors don't fail the outer decoder.
     Decoder inner(start_, pc_, end_, buffer_offset_);
     // Decode all name subsections.
@@ -1346,7 +1346,7 @@ ModuleResult DecodeWasmModule(Isolate* isolate, const byte* module_start,
   if (module_start > module_end) return ModuleResult::Error("start > end");
   if (size >= kV8MaxWasmModuleSize)
     return ModuleResult::Error("size > maximum module size: %zu", size);
-  // TODO(bradnelson): Improve histogram handling of size_t.
+  // TODO (bradnelson): Improve histogram handling of size_t. id:1661 gh:1669
   auto size_counter = origin == kWasmOrigin
                           ? counters->wasm_wasm_module_size_bytes()
                           : counters->wasm_asm_module_size_bytes();
@@ -1355,8 +1355,8 @@ ModuleResult DecodeWasmModule(Isolate* isolate, const byte* module_start,
   // as the {module}.
   ModuleDecoderImpl decoder(module_start, module_end, origin);
   ModuleResult result = decoder.DecodeModule(isolate, verify_functions);
-  // TODO(bradnelson): Improve histogram handling of size_t.
-  // TODO(titzer): this isn't accurate, since it doesn't count the data
+  // TODO (bradnelson): Improve histogram handling of size_t. id:1703 gh:1712
+  // TODO (titzer): this isn't accurate, since it doesn't count the data id:1359 gh:1367
   // allocated on the C++ heap.
   // https://bugs.chromium.org/p/chromium/issues/detail?id=657320
   if (result.ok()) {
@@ -1449,7 +1449,7 @@ FunctionResult DecodeWasmFunction(Isolate* isolate, Zone* zone,
   auto size_histogram = module->is_wasm()
                             ? counters->wasm_wasm_function_size_bytes()
                             : counters->wasm_asm_function_size_bytes();
-  // TODO(bradnelson): Improve histogram handling of ptrdiff_t.
+  // TODO (bradnelson): Improve histogram handling of ptrdiff_t. id:1748 gh:1756
   size_histogram->AddSample(static_cast<int>(size));
   if (size > kV8MaxWasmFunctionSize)
     return FunctionResult::Error("size > maximum function size: %zu", size);

@@ -151,7 +151,7 @@ assertEquals(oz, [1, 2, 3, 4, 5]);
 })();
 
 
-// TODO(caitp): add similar test for ArrayPatterns, once Proxies support
+// TODO (caitp): add similar test for ArrayPatterns, once Proxies support id:2261 gh:2269
 // delegating symbol-keyed get/set.
 (function testObjectPatternOperationOrder() {
   var steps = [];

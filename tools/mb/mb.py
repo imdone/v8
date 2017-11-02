@@ -778,7 +778,7 @@ class MetaBuildWrapper(object):
       cmd.append('--runtime-deps-list-file=%s' % gn_runtime_deps_path)
 
     # Override msvs infra environment variables.
-    # TODO(machenbach): Remove after GYP_MSVS_VERSION is removed on infra side.
+    # TODO (machenbach): Remove after GYP_MSVS_VERSION is removed on infra side. id:2575 gh:2584
     env = {}
     env.update(os.environ)
     env['GYP_MSVS_VERSION'] = '2017'
@@ -1181,7 +1181,7 @@ class MetaBuildWrapper(object):
       self.PrintJSON(inp)
       self.Print()
 
-    # TODO(crbug.com/555273) - currently GN treats targets and
+    # TODO (crbug.com/555273) - currently GN treats targets and id:2537 gh:2545
     # additional_compile_targets identically since we can't tell the
     # difference between a target that is a group in GN and one that isn't.
     # We should eventually fix this and treat the two types differently.

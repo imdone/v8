@@ -91,7 +91,7 @@ bool GCIdleTimeHandler::ShouldDoFinalIncrementalMarkCompact(
 
 bool GCIdleTimeHandler::ShouldDoOverApproximateWeakClosure(
     double idle_time_in_ms) {
-  // TODO(jochen): Estimate the time it will take to build the object groups.
+  // TODO (jochen): Estimate the time it will take to build the object groups. id:1093 gh:1101
   return idle_time_in_ms >= kMinTimeForOverApproximatingWeakClosureInMs;
 }
 

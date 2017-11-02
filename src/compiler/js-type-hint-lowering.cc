@@ -224,7 +224,7 @@ JSTypeHintLowering::LoweringResult JSTypeHintLowering::ReduceBinaryOperation(
               DeoptimizeReason::kInsufficientTypeFeedbackForCompareOperation)) {
         return LoweringResult::Exit(node);
       }
-      // TODO(turbofan): Should we generally support early lowering of
+      // TODO (turbofan): Should we generally support early lowering of id:537 gh:538
       // JSStrictEqual operators here?
       break;
     }
@@ -254,7 +254,7 @@ JSTypeHintLowering::LoweringResult JSTypeHintLowering::ReduceBinaryOperation(
               DeoptimizeReason::kInsufficientTypeFeedbackForCompareOperation)) {
         return LoweringResult::Exit(node);
       }
-      // TODO(turbofan): Should we generally support early lowering of
+      // TODO (turbofan): Should we generally support early lowering of id:581 gh:582
       // JSInstanceOf operators here?
       break;
     }

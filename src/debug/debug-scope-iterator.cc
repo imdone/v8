@@ -77,7 +77,7 @@ bool DebugScopeIterator::ShouldIgnore() {
     return false;
   }
 
-  // TODO(kozyatinskiy): make this function faster.
+  // TODO (kozyatinskiy): make this function faster. id:1080 gh:1088
   Handle<JSObject> value;
   if (!iterator_.ScopeObject().ToHandle(&value)) return false;
   Handle<FixedArray> keys =

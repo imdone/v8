@@ -32,7 +32,7 @@
 function f() {
   var g;
   {
-    // TODO(keuchel): introduce let
+    // TODO (keuchel): introduce let id:1969 gh:1977
     var x = 0;
     g = function () {
       x = x + 1;

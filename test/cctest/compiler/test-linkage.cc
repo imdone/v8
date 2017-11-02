@@ -100,7 +100,7 @@ TEST(TestLinkageJSCall) {
 
 
 TEST(TestLinkageRuntimeCall) {
-  // TODO(titzer): test linkage creation for outgoing runtime calls.
+  // TODO (titzer): test linkage creation for outgoing runtime calls. id:1719 gh:1727
 }
 
 
@@ -117,7 +117,7 @@ TEST(TestLinkageStubCall) {
   CHECK_EQ(1, static_cast<int>(descriptor->ReturnCount()));
   CHECK_EQ(Operator::kNoProperties, descriptor->properties());
   CHECK_EQ(false, descriptor->IsJSFunctionCall());
-  // TODO(titzer): test linkage creation for outgoing stub calls.
+  // TODO (titzer): test linkage creation for outgoing stub calls. id:1509 gh:1517
 }
 
 }  // namespace compiler

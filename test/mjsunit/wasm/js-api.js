@@ -30,7 +30,7 @@ function wasmIsSupported() {
   return (typeof WebAssembly.Module) == 'function';
 }
 function assertErrorMessage(func, type, msg) {
-  // TODO   assertThrows(func, type, msg);
+  // TODO assertThrows(func, type, msg); id:2548 gh:2550
   assertThrows(func, type);
 }
 
@@ -755,7 +755,7 @@ assertErrorMessage(
 assertErrorMessage(() => WebAssembly.validate(), TypeError);
 assertErrorMessage(() => WebAssembly.validate('hi'), TypeError);
 assertTrue(WebAssembly.validate(emptyModuleBinary));
-// TODO: other ways for validate to return false.
+// TODO: other ways for validate to return false. id:2200 gh:2208
 assertFalse(WebAssembly.validate(moduleBinaryImporting2Memories));
 assertFalse(WebAssembly.validate(moduleBinaryWithMemSectionAndMemImport));
 
@@ -775,7 +775,7 @@ function assertCompileError(args, err, msg) {
   var error = null;
   assertPromiseResult(compile(...args), unexpectedSuccess, error => {
     assertTrue(error instanceof err);
-    // TODO  assertTrue(Boolean(error.message.match(msg)));
+    // TODO assertTrue(Boolean(error.message.match(msg))); id:2501 gh:2509
   });
 }
 assertCompileError([], TypeError, /requires more than 0 arguments/);
@@ -821,7 +821,7 @@ function assertInstantiateError(args, err, msg) {
   var error = null;
   assertPromiseResult(instantiate(...args), unexpectedSuccess, error => {
     assertTrue(error instanceof err);
-    // TODO assertTrue(Boolean(error.message.match(msg)));
+    // TODO assertTrue(Boolean(error.message.match(msg))); id:2522 gh:2531
   });
 }
 var scratch_memory = new WebAssembly.Memory(new ArrayBuffer(10));

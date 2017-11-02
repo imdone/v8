@@ -214,7 +214,7 @@ TestCoverage(
 %RunMicrotasks();                         // 0250
 `,
 [{"start":0,"end":299,"count":1},
- {"start":1,"end":201,"count":6},  // TODO(jgruber): Invocation count is off.
+ {"start":1,"end":201,"count":6},  // TODO (jgruber): Invocation count is off. id:1983 gh:1991
  {"start":83,"end":153,"count":4},
  {"start":153,"end":200,"count":1}]
 );
@@ -414,7 +414,7 @@ TestCoverage(
  {"start":284,"end":350,"count":0},
  {"start":401,"end":701,"count":1},
  {"start":569,"end":700,"count":0},
- {"start":561,"end":568,"count":0},  // TODO(jgruber): Sorting.
+ {"start":561,"end":568,"count":0},  // TODO (jgruber): Sorting. id:2167 gh:2175
  {"start":751,"end":1051,"count":1},
  {"start":817,"end":820,"count":0},
  {"start":861,"end":1050,"count":0}]

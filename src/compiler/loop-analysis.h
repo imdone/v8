@@ -15,7 +15,7 @@ namespace v8 {
 namespace internal {
 namespace compiler {
 
-// TODO(titzer): don't assume entry edges have a particular index.
+// TODO (titzer): don't assume entry edges have a particular index. id:542 gh:543
 static const int kAssumedLoopEntryIndex = 0;  // assume loops are entered here.
 
 class LoopFinderImpl;
@@ -118,7 +118,7 @@ class LoopTree : public ZoneObject {
 
   // Return the node that represents the control, i.e. the loop node itself.
   Node* GetLoopControl(Loop* loop) {
-    // TODO(turbofan): make the loop control node always first?
+    // TODO (turbofan): make the loop control node always first? id:586 gh:587
     for (Node* node : HeaderNodes(loop)) {
       if (node->opcode() == IrOpcode::kLoop) return node;
     }

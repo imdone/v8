@@ -28,7 +28,7 @@
 // Test both the Harmony egal operator and it's function equivalent.
 
 function TestEgal(expected, x, y) {
-  // TODO(mstarzinger): Once we have the egal operator, we can test it here.
+  // TODO (mstarzinger): Once we have the egal operator, we can test it here. id:2042 gh:2050
   assertSame(expected, Object.is(x, y));
 }
 

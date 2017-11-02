@@ -1117,7 +1117,7 @@ const Operator* SimplifiedOperatorBuilder::TransitionElementsKind(
 }
 
 const Operator* SimplifiedOperatorBuilder::ToBoolean(ToBooleanHints hints) {
-  // TODO(turbofan): Cache most important versions of this operator.
+  // TODO (turbofan): Cache most important versions of this operator. id:772 gh:777
   return new (zone()) Operator1<ToBooleanHints>(  //--
       IrOpcode::kToBoolean, Operator::kPure,      // opcode
       "ToBoolean",                                // name

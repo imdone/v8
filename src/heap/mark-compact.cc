@@ -1827,7 +1827,7 @@ void MarkCompactCollector::ProcessEphemeralMarking(
                 EmbedderHeapTracer::ForceCompletionAction::FORCE_COMPLETION));
       }
     } else {
-      // TODO(mlippautz): We currently do not trace through blink when
+      // TODO (mlippautz): We currently do not trace through blink when id:1110 gh:1118
       // discovering new objects reachable from weak roots (that have been made
       // strong). This is a limitation of not having a separate handle type
       // that doesn't require zapping before this phase. See crbug.com/668060.
@@ -2922,7 +2922,7 @@ void MarkCompactCollector::ClearWeakCellsAndSimpleMapTransitions(
       // WeakCell and put into Heap::weak_object_to_code_table.
       // Such cells do not have any strong references but we want to keep them
       // alive as long as the cell value is alive.
-      // TODO(ulan): remove this once we remove Heap::weak_object_to_code_table.
+      // TODO (ulan): remove this once we remove Heap::weak_object_to_code_table. id:983 gh:991
       if (value->IsCell()) {
         Object* cell_value = Cell::cast(value)->value();
         if (cell_value->IsHeapObject() &&
@@ -3020,7 +3020,7 @@ static inline SlotCallbackResult UpdateSlot(Object** slot) {
 
 // Visitor for updating root pointers and to-space pointers.
 // It does not expect to encounter pointers to dead objects.
-// TODO(ulan): Remove code object specific functions. This visitor
+// TODO (ulan): Remove code object specific functions. This visitor id:1126 gh:1134
 // nevers visits code objects.
 class PointersUpdatingVisitor : public ObjectVisitor, public RootVisitor {
  public:
@@ -3318,7 +3318,7 @@ void YoungGenerationEvacuator::RawEvacuatePage(Page* page,
           LiveObjectVisitor::kKeepMarking);
       new_to_old_page_visitor_.account_moved_bytes(
           marking_state->live_bytes(page));
-      // TODO(mlippautz): If cleaning array buffers is too slow here we can
+      // TODO (mlippautz): If cleaning array buffers is too slow here we can id:1099 gh:1107
       // delay it until the next GC.
       ArrayBufferTracker::FreeDead(page, marking_state);
       if (heap()->ShouldZapGarbage()) {
@@ -3338,7 +3338,7 @@ void YoungGenerationEvacuator::RawEvacuatePage(Page* page,
           LiveObjectVisitor::kKeepMarking);
       new_to_new_page_visitor_.account_moved_bytes(
           marking_state->live_bytes(page));
-      // TODO(mlippautz): If cleaning array buffers is too slow here we can
+      // TODO (mlippautz): If cleaning array buffers is too slow here we can id:950 gh:958
       // delay it until the next GC.
       ArrayBufferTracker::FreeDead(page, marking_state);
       if (heap()->ShouldZapGarbage()) {
@@ -3527,7 +3527,7 @@ int MarkCompactCollector::Sweeper::RawSweep(
          space->identity() == CODE_SPACE || space->identity() == MAP_SPACE);
   DCHECK(!p->IsEvacuationCandidate() && !p->SweepingDone());
 
-  // TODO(ulan): we don't have to clear type old-to-old slots in code space
+  // TODO (ulan): we don't have to clear type old-to-old slots in code space id:1111 gh:1119
   // because the concurrent marker doesn't mark code objects. This requires
   // the write barrier for code objects to check the color of the code object.
   bool non_empty_typed_slots = p->typed_slot_set<OLD_TO_NEW>() != nullptr ||

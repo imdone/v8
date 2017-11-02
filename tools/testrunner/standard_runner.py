@@ -48,7 +48,7 @@ VARIANT_ALIASES = {
   "dev": VARIANTS,
   # Additional variants, run on all bots.
   "more": MORE_VARIANTS,
-  # TODO(machenbach): Deprecate this after the step is removed on infra side.
+  # TODO (machenbach): Deprecate this after the step is removed on infra side. id:2353 gh:2361
   # Additional variants, run on a subset of bots.
   "extra": [],
 }
@@ -82,7 +82,7 @@ class StandardTestRunner(base_runner.BaseTestRunner):
         print ' '.join(sys.argv)
 
         if utils.GuessOS() == "macos":
-          # TODO(machenbach): Temporary output for investigating hanging test
+          # TODO (machenbach): Temporary output for investigating hanging test id:2589 gh:2597
           # driver on mac.
           print "V8 related processes running on this host:"
           try:
@@ -275,7 +275,7 @@ class StandardTestRunner(base_runner.BaseTestRunner):
         # Other options for manipulating variants still apply afterwards.
         VARIANTS = EXHAUSTIVE_VARIANTS
 
-      # TODO(machenbach): Figure out how to test a bigger subset of variants on
+      # TODO (machenbach): Figure out how to test a bigger subset of variants on id:2594 gh:2602
       # msan.
       if self.build_config.msan:
         VARIANTS = ["default"]
@@ -390,8 +390,8 @@ class StandardTestRunner(base_runner.BaseTestRunner):
                             use_perf_data=not options.swarming,
                             sancov_dir=self.sancov_dir)
 
-      # TODO(all): Combine "simulator" and "simulator_run".
-      # TODO(machenbach): In GN we can derive simulator run from
+      # TODO (all): Combine "simulator" and "simulator_run". id:2451 gh:2459
+      # TODO (machenbach): In GN we can derive simulator run from id:2599 gh:2607
       # target_arch != v8_target_arch in the dumped build config.
       simulator_run = (
         not options.dont_skip_simulator_slow_tests and

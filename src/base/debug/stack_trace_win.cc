@@ -56,7 +56,7 @@ bool InitializeSymbols() {
   SymSetOptions(SYMOPT_DEFERRED_LOADS | SYMOPT_UNDNAME | SYMOPT_LOAD_LINES);
   if (!SymInitialize(GetCurrentProcess(), nullptr, TRUE)) {
     g_init_error = GetLastError();
-    // TODO(awong): Handle error: SymInitialize can fail with
+    // TODO (awong): Handle error: SymInitialize can fail with id:238 gh:239
     // ERROR_INVALID_PARAMETER.
     // When it fails, we should not call debugbreak since it kills the current
     // process (prevents future tests from running or kills the browser

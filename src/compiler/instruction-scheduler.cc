@@ -278,7 +278,7 @@ int InstructionScheduler::GetInstructionFlags(const Instruction* instr) const {
       //    its original value.
       // Those opcode cannot be reordered with instructions with side effects
       // such as Arm64ClaimCSP.
-      // TODO(arm64): remove when JSSP is gone.
+      // TODO (arm64): remove when JSSP is gone. id:496 gh:497
       return kHasSideEffect;
 #else
       return kNoOpcodeFlags;

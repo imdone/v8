@@ -1035,7 +1035,7 @@ FieldAccess AccessBuilder::ForHashTableBaseCapacity() {
 
 // static
 FieldAccess AccessBuilder::ForOrderedHashTableBaseNextTable() {
-  // TODO(turbofan): This will be redundant with the HashTableBase
+  // TODO (turbofan): This will be redundant with the HashTableBase id:378 gh:379
   // methods above once the hash table unification is done.
   FieldAccess const access = {
       kTaggedBase,         OrderedHashTableBase::kNextTableOffset,
@@ -1047,7 +1047,7 @@ FieldAccess AccessBuilder::ForOrderedHashTableBaseNextTable() {
 
 // static
 FieldAccess AccessBuilder::ForOrderedHashTableBaseNumberOfBuckets() {
-  // TODO(turbofan): This will be redundant with the HashTableBase
+  // TODO (turbofan): This will be redundant with the HashTableBase id:478 gh:479
   // methods above once the hash table unification is done.
   FieldAccess const access = {kTaggedBase,
                               OrderedHashTableBase::kNumberOfBucketsOffset,
@@ -1061,7 +1061,7 @@ FieldAccess AccessBuilder::ForOrderedHashTableBaseNumberOfBuckets() {
 
 // static
 FieldAccess AccessBuilder::ForOrderedHashTableBaseNumberOfDeletedElements() {
-  // TODO(turbofan): This will be redundant with the HashTableBase
+  // TODO (turbofan): This will be redundant with the HashTableBase id:407 gh:409
   // methods above once the hash table unification is done.
   FieldAccess const access = {
       kTaggedBase,
@@ -1076,7 +1076,7 @@ FieldAccess AccessBuilder::ForOrderedHashTableBaseNumberOfDeletedElements() {
 
 // static
 FieldAccess AccessBuilder::ForOrderedHashTableBaseNumberOfElements() {
-  // TODO(turbofan): This will be redundant with the HashTableBase
+  // TODO (turbofan): This will be redundant with the HashTableBase id:434 gh:435
   // methods above once the hash table unification is done.
   FieldAccess const access = {kTaggedBase,
                               OrderedHashTableBase::kNumberOfElementsOffset,

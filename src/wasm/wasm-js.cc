@@ -673,7 +673,7 @@ void WebAssemblyTableGrow(const v8::FunctionCallbackInfo<v8::Value>& args) {
     receiver->set_functions(*new_array);
   }
 
-  // TODO(gdeepti): use weak links for instances
+  // TODO (gdeepti): use weak links for instances id:1398 gh:1406
   v8::ReturnValue<v8::Value> return_value = args.GetReturnValue();
   return_value.Set(old_size);
 }
@@ -714,7 +714,7 @@ void WebAssemblyTableSet(const v8::FunctionCallbackInfo<v8::Value>& args) {
 
   // Parameter 1.
   i::Handle<i::Object> value = Utils::OpenHandle(*args[1]);
-  // TODO(titzer): use WasmExportedFunction::IsWasmExportedFunction() here.
+  // TODO (titzer): use WasmExportedFunction::IsWasmExportedFunction() here. id:1666 gh:1674
   if (!value->IsNull(i_isolate) &&
       (!value->IsJSFunction() ||
        i::Handle<i::JSFunction>::cast(value)->code()->kind() !=
@@ -801,7 +801,7 @@ void WebAssemblyMemoryGetBuffer(
   DCHECK(buffer_obj->IsJSArrayBuffer());
   i::Handle<i::JSArrayBuffer> buffer(i::JSArrayBuffer::cast(*buffer_obj));
   if (buffer->is_shared()) {
-    // TODO(gdeepti): More needed here for when cached buffer, and current
+    // TODO (gdeepti): More needed here for when cached buffer, and current id:1708 gh:1716
     // buffer are out of sync, handle that here when bounds checks, and Grow
     // are handled correctly.
     Maybe<bool> result =
@@ -816,7 +816,7 @@ void WebAssemblyMemoryGetBuffer(
 }
 }  // namespace
 
-// TODO(titzer): we use the API to create the function template because the
+// TODO (titzer): we use the API to create the function template because the id:1364 gh:1372
 // internal guts are too ugly to replicate here.
 static i::Handle<i::FunctionTemplateInfo> NewTemplate(i::Isolate* i_isolate,
                                                       FunctionCallback func) {
@@ -846,7 +846,7 @@ void InstallGetter(Isolate* isolate, Handle<JSObject> object,
                    const char* str, FunctionCallback func) {
   Handle<String> name = v8_str(isolate, str);
   Handle<FunctionTemplateInfo> temp = NewTemplate(isolate, func);
-  // TODO(ishell): shouldn't we set "get "+name as getter's name?
+  // TODO (ishell): shouldn't we set "get "+name as getter's name? id:1753 gh:1761
   Handle<JSFunction> function =
       ApiNatives::InstantiateFunction(temp).ToHandleChecked();
   DCHECK(function->shared()->has_shared_name());

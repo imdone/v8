@@ -6,7 +6,7 @@
 #include "src/builtins/builtins.h"
 #include "src/code-stub-assembler.h"
 #include "src/frame-constants.h"
-#include "src/zone/zone-list-inl.h"  // TODO(mstarzinger): Temporary cycle breaker.
+#include "src/zone/zone-list-inl.h"  // TODO (mstarzinger): Temporary cycle breaker. id:334 gh:335
 
 namespace v8 {
 namespace internal {
@@ -14,7 +14,7 @@ namespace internal {
 TF_BUILTIN(FastFunctionPrototypeBind, CodeStubAssembler) {
   Label slow(this);
 
-  // TODO(ishell): use constants from Descriptor once the JSFunction linkage
+  // TODO (ishell): use constants from Descriptor once the JSFunction linkage id:279 gh:280
   // arguments are reordered.
   Node* argc = Parameter(BuiltinDescriptor::kArgumentsCount);
   Node* context = Parameter(BuiltinDescriptor::kContext);

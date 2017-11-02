@@ -39,7 +39,7 @@ std::string AsmType::Name() {
 }
 
 bool AsmType::IsExactly(AsmType* that) {
-  // TODO(jpp): maybe this can become this == that.
+  // TODO (jpp): maybe this can become this == that. id:161 gh:162
   AsmValueType* avt = this->AsValueType();
   if (avt != nullptr) {
     AsmValueType* tavt = that->AsValueType();
@@ -49,7 +49,7 @@ bool AsmType::IsExactly(AsmType* that) {
     return avt->Bitset() == tavt->Bitset();
   }
 
-  // TODO(jpp): is it useful to allow non-value types to be tested with
+  // TODO (jpp): is it useful to allow non-value types to be tested with id:137 gh:138
   // IsExactly?
   return that == this;
 }

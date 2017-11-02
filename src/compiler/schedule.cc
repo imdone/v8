@@ -437,7 +437,7 @@ void Schedule::MovePhis(BasicBlock* from, BasicBlock* to) {
 void Schedule::PropagateDeferredMark() {
   // Push forward the deferred block marks through newly inserted blocks and
   // other improperly marked blocks until a fixed point is reached.
-  // TODO(danno): optimize the propagation
+  // TODO (danno): optimize the propagation id:857 gh:865
   bool done = false;
   while (!done) {
     done = true;

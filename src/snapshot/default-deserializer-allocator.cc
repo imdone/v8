@@ -32,7 +32,7 @@ Address DefaultDeserializerAllocator::AllocateRaw(AllocationSpace space,
   if (space == LO_SPACE) {
     AlwaysAllocateScope scope(isolate());
     LargeObjectSpace* lo_space = isolate()->heap()->lo_space();
-    // TODO(jgruber): May be cleaner to pass in executability as an argument.
+    // TODO (jgruber): May be cleaner to pass in executability as an argument. id:1267 gh:1275
     Executability exec =
         static_cast<Executability>(deserializer_->source()->Get());
     AllocationResult result = lo_space->AllocateRaw(size, exec);

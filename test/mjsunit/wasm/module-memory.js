@@ -17,7 +17,7 @@ function genModule(memory) {
   builder.addFunction("main", kSig_i_i)
     .addBody([
       // main body: while(i) { if(mem[i]) return -1; i -= 4; } return 0;
-      // TODO(titzer): this manual bytecode has a copy of test-run-wasm.cc
+      // TODO (titzer): this manual bytecode has a copy of test-run-wasm.cc id:2549 gh:2557
       /**/ kExprLoop, kWasmStmt,           // --
       /*  */ kExprGetLocal, 0,             // --
       /*  */ kExprIf, kWasmStmt,           // --

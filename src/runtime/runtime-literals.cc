@@ -341,7 +341,7 @@ struct ObjectBoilerplate {
 
     // Add the constant properties to the boilerplate.
     int length = boilerplate_description->size();
-    // TODO(verwaest): Support tracking representations in the boilerplate.
+    // TODO (verwaest): Support tracking representations in the boilerplate. id:1305 gh:1313
     for (int index = 0; index < length; index++) {
       Handle<Object> key(boilerplate_description->name(index), isolate);
       Handle<Object> value(boilerplate_description->value(index), isolate);
@@ -370,7 +370,7 @@ struct ObjectBoilerplate {
     }
 
     if (map->is_dictionary_map() && !has_null_prototype) {
-      // TODO(cbruni): avoid making the boilerplate fast again, the clone stub
+      // TODO (cbruni): avoid making the boilerplate fast again, the clone stub id:1502 gh:1510
       // supports dict-mode objects directly.
       JSObject::MigrateSlowToFast(boilerplate,
                                   boilerplate->map()->UnusedPropertyFields(),
@@ -474,7 +474,7 @@ MaybeHandle<JSObject> CreateLiteral(Isolate* isolate,
     // Eagerly create AllocationSites for literals that contain an Array.
     bool needs_initial_allocation_site =
         (flags & AggregateLiteral::kNeedsInitialAllocationSite) != 0;
-    // TODO(cbruni): Even in the case where we need an initial allocation site
+    // TODO (cbruni): Even in the case where we need an initial allocation site id:1600 gh:1608
     // we could still create the boilerplate lazily to save memory.
     if (!needs_initial_allocation_site &&
         IsUninitializedLiteralSite(*literal_site)) {

@@ -89,7 +89,7 @@ TEST(PreParserScopeAnalysis) {
        "get_method();",
        true, true, false},
 
-      // FIXME(marja): Generators and async functions
+      // FIXME (marja): Generators and async functions id:1646 gh:1654
   };
 
   struct Inner {
@@ -568,7 +568,7 @@ TEST(PreParserScopeAnalysis) {
        SKIP_STRICT_FUNCTION, PreciseMaybeAssigned::NO},
 
       // Hoisted sloppy block function shadowing a parameter.
-      // FIXME(marja): why is maybe_assigned inaccurate?
+      // FIXME (marja): why is maybe_assigned inaccurate? id:1692 gh:1700
       {"var1, var2", "for (;;) { function var1() { } }", DONT_SKIP,
        PreciseMaybeAssigned::NO},
 

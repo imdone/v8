@@ -94,7 +94,7 @@ struct WasmIndirectFunctionTable {
   uint32_t initial_size = 0;      // initial table size.
   uint32_t maximum_size = 0;      // maximum table size.
   bool has_maximum_size = false;  // true if there is a maximum size.
-  // TODO(titzer): Move this to WasmInstance. Needed by interpreter only.
+  // TODO (titzer): Move this to WasmInstance. Needed by interpreter only. id:1668 gh:1676
   std::vector<int32_t> values;  // function table, -1 indicating invalid.
   bool imported = false;        // true if imported.
   bool exported = false;        // true if exported.
@@ -155,7 +155,7 @@ struct V8_EXPORT_PRIVATE WasmModule {
   uint32_t num_declared_functions = 0;
   uint32_t num_exported_functions = 0;
   WireBytesRef name = {0, 0};
-  // TODO(wasm): Add url here, for spec'ed location information.
+  // TODO (wasm): Add url here, for spec'ed location information. id:1710 gh:1718
   std::vector<FunctionSig*> signatures;  // by signature index
   std::vector<uint32_t> signature_ids;   // by signature index
   std::vector<WasmFunction> functions;
@@ -176,7 +176,7 @@ struct V8_EXPORT_PRIVATE WasmModule {
   bool is_asm_js() const { return origin_ == kAsmJsOrigin; }
 
  private:
-  // TODO(kschimpf) - Encapsulate more fields.
+  // TODO (kschimpf) - Encapsulate more fields. id:1366 gh:1374
   ModuleOrigin origin_ = kWasmOrigin;  // origin of the module
 };
 
@@ -280,7 +280,7 @@ Handle<FixedArray> DecodeLocalNames(Isolate*, Handle<WasmCompiledModule>);
 // to the wrapped wasm function; in all other cases, return nullptr.
 // The returned pointer is owned by the wasm instance target belongs to. The
 // result is alive as long as the instance exists.
-// TODO(titzer): move this to WasmExportedFunction.
+// TODO (titzer): move this to WasmExportedFunction. id:1755 gh:1763
 WasmFunction* GetWasmFunctionForExport(Isolate* isolate, Handle<Object> target);
 
 void UpdateDispatchTables(Isolate* isolate, Handle<FixedArray> dispatch_tables,

@@ -71,7 +71,7 @@ Instruction* GetLastInstruction(InstructionSequence* code,
   return code->InstructionAt(block->last_instruction_index());
 }
 
-// TODO(dcarney): fix frame to allow frame accesses to half size location.
+// TODO (dcarney): fix frame to allow frame accesses to half size location. id:801 gh:809
 int GetByteWidth(MachineRepresentation rep) {
   switch (rep) {
     case MachineRepresentation::kBit:
@@ -2062,7 +2062,7 @@ void LiveRangeBuilder::ProcessInstructions(const InstructionBlock* block,
               v8::internal::kReturnRegister0) {
         // The register defined here is blocked from gap start - it is the
         // exception value.
-        // TODO(mtrofin): should we explore an explicit opcode for
+        // TODO (mtrofin): should we explore an explicit opcode for id:661 gh:662
         // the first instruction in the handler?
         Define(LifetimePosition::GapFromInstructionIndex(index), output);
       } else {
@@ -2310,7 +2310,7 @@ void LiveRangeBuilder::ProcessPhis(const InstructionBlock* block,
       // Note that we cannot simply look up data()->live_ranges()[vreg] here
       // because the live ranges are still being built when this function is
       // called.
-      // TODO(v8): Find a way to separate hinting from live range analysis in
+      // TODO (v8): Find a way to separate hinting from live range analysis in id:692 gh:693
       // BuildLiveRanges so that we can use the O(1) live-range look-up.
       auto moves = predecessor_instr->GetParallelMove(Instruction::START);
       if (moves != nullptr) {
@@ -2403,7 +2403,7 @@ void LiveRangeBuilder::BuildLiveRanges() {
     if (range->has_slot_use() && range->HasNoSpillType()) {
       data()->AssignSpillRangeToLiveRange(range);
     }
-    // TODO(bmeurer): This is a horrible hack to make sure that for constant
+    // TODO (bmeurer): This is a horrible hack to make sure that for constant id:762 gh:763
     // live ranges, every use requires the constant to be in a register.
     // Without this hack, all uses with "any" policy would get the constant
     // operand assigned.
@@ -3014,7 +3014,7 @@ void LinearScanAllocator::FindFreeRegistersForRange(
     int cur_reg = cur_inactive->assigned_register();
     // No need to carry out intersections, when this register won't be
     // interesting to this range anyway.
-    // TODO(mtrofin): extend to aliased ranges, too.
+    // TODO (mtrofin): extend to aliased ranges, too. id:731 gh:732
     if ((kSimpleFPAliasing || !check_fp_aliasing()) &&
         positions[cur_reg] < range->Start()) {
       continue;
@@ -3230,7 +3230,7 @@ void LinearScanAllocator::AllocateBlockedReg(LiveRange* current) {
 
     // Don't perform costly intersections if they are guaranteed to not update
     // block_pos or use_pos.
-    // TODO(mtrofin): extend to aliased ranges, too.
+    // TODO (mtrofin): extend to aliased ranges, too. id:802 gh:810
     if ((kSimpleFPAliasing || !check_fp_aliasing())) {
       if (is_fixed) {
         if (block_pos[cur_reg] < range->Start()) continue;

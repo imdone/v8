@@ -97,7 +97,7 @@ void ConstantArrayBuilder::ConstantArraySlice::CheckAllElementsAreUnique(
         UNREACHABLE();  // Should be kHandle at this point.
       case Entry::Tag::kJumpTableSmi:
       case Entry::Tag::kUninitializedJumpTableSmi:
-        // TODO(leszeks): Ignore jump tables because they have to be contiguous,
+        // TODO (leszeks): Ignore jump tables because they have to be contiguous, id:1234 gh:1243
         // so they can contain duplicates.
         break;
 #define CASE_TAG(NAME, ...) case Entry::Tag::k##NAME:
@@ -374,7 +374,7 @@ Handle<Object> ConstantArrayBuilder::Entry::ToHandle(Isolate* isolate) const {
     case Tag::kJumpTableSmi:
       return handle(smi_, isolate);
     case Tag::kUninitializedJumpTableSmi:
-      // TODO(leszeks): There's probably a better value we could use here.
+      // TODO (leszeks): There's probably a better value we could use here. id:1220 gh:1228
       return isolate->factory()->the_hole_value();
     case Tag::kRawString:
       return raw_string_->string();

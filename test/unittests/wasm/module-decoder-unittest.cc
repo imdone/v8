@@ -1079,7 +1079,7 @@ TEST_F(WasmFunctionVerifyTest, Ok_v_v_empty) {
     EXPECT_EQ(static_cast<uint32_t>(SIZEOF_SIG_ENTRY_v_v),
               function->code.offset());
     EXPECT_EQ(sizeof(data), function->code.end_offset());
-    // TODO(titzer): verify encoding of local declarations
+    // TODO (titzer): verify encoding of local declarations id:2391 gh:2399
   }
 }
 

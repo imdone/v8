@@ -107,7 +107,7 @@ class AdvancedReducer : public Reducer {
 
   // Relax the effects of {node} by immediately replacing effect and control
   // uses of {node} with the effect and control input to {node}.
-  // TODO(turbofan): replace the effect input to {node} with {graph->start()}.
+  // TODO (turbofan): replace the effect input to {node} with {graph->start()}. id:520 gh:521
   void RelaxEffectsAndControls(Node* node) {
     ReplaceWithValue(node, node, nullptr, nullptr);
   }

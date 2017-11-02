@@ -72,7 +72,7 @@ protocol::Response toProtocolValue(v8::Local<v8::Context> context,
       v8::Local<v8::Value> name;
       if (!propertyNames->Get(context, i).ToLocal(&name))
         return Response::InternalError();
-      // FIXME(yurys): v8::Object should support GetOwnPropertyNames
+      // FIXME (yurys): v8::Object should support GetOwnPropertyNames id:1010 gh:1018
       if (name->IsString()) {
         v8::Maybe<bool> hasRealNamedProperty = object->HasRealNamedProperty(
             context, v8::Local<v8::String>::Cast(name));

@@ -7,7 +7,7 @@
 // Ensure `Array.prototype.includes` functions correctly for numerous elements
 // kinds, and various exotic receiver types,
 
-// TODO(caitp): update kIterCount to a high enough number to trigger inlining,
+// TODO (caitp): update kIterCount to a high enough number to trigger inlining, id:2299 gh:2307
 // once inlining this builtin is supported
 var kIterCount = 1;
 var kTests = {
@@ -133,7 +133,7 @@ var kTests = {
 
       var object = { 0: r, 1: s, 2: p, length: 3 };
       assertTrue(%HasObjectElements(object));
-      // TODO(caitp): JSObjects always seem to start with HOLEY_ELEMENTS
+      // TODO (caitp): JSObjects always seem to start with HOLEY_ELEMENTS id:1965 gh:1973
       // assertFalse(%HasHoleyElements(object));
 
       for (var i = 0; i < kIterCount; ++i) {
@@ -159,7 +159,7 @@ var kTests = {
 
     PACKED_SMI_ELEMENTS() {
       var object = { 0: 0, 1: 88, 2: 9999, 3: 1, 4: -5, 5: 7, length: 6 };
-      // TODO(caitp): JSObjects always seem to start with HOLEY_ELEMENTS
+      // TODO (caitp): JSObjects always seem to start with HOLEY_ELEMENTS id:2266 gh:2274
       // assertTrue(%HasSmiElements(object));
       // assertFalse(%HasHoleyElements(object));
 
@@ -174,7 +174,7 @@ var kTests = {
 
     HOLEY_SMI_ELEMENTS() {
       var object = { 0: 49, 3: 72, 6: 67, 7: -48, length: 8 };
-      // TODO(caitp): JSObjects always seem to start with HOLEY_ELEMENTS
+      // TODO (caitp): JSObjects always seem to start with HOLEY_ELEMENTS id:2222 gh:2230
       // assertTrue(%HasSmiElements(object));
       // assertTrue(%HasHoleyElements(object));
 
@@ -192,7 +192,7 @@ var kTests = {
       var object = { 0: 7.00000001, 1: -13000.89412, 2: 73451.4124,
                    3: 5824.48, 4: 6.0000495, 5: 48.3488, 6: 44.0, 7: 76.35,
                    8: NaN, 9: 78.4, length: 10 };
-      // TODO(caitp): JSObjects always seem to start with HOLEY_ELEMENTS
+      // TODO (caitp): JSObjects always seem to start with HOLEY_ELEMENTS id:2036 gh:2044
       // assertTrue(%HasDoubleElements(object));
       // assertFalse(%HasHoleyElements(object));
 
@@ -210,7 +210,7 @@ var kTests = {
     HOLEY_DOUBLE_ELEMENTS() {
       var object = { 0: 7.00000001, 1: -13000.89412, 3: 5824.48, 5: 48.3488,
                     7: NaN, 9: 78.4, length: 10 };
-      // TODO(caitp): JSObjects always seem to start with HOLEY_ELEMENTS
+      // TODO (caitp): JSObjects always seem to start with HOLEY_ELEMENTS id:2300 gh:2308
       // assertTrue(%HasDoubleElements(object));
       // assertTrue(%HasHoleyElements(object));
 

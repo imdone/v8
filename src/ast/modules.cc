@@ -94,7 +94,7 @@ const AstRawString* FromStringOrUndefined(Isolate* isolate,
 
 Handle<ModuleInfoEntry> ModuleDescriptor::Entry::Serialize(
     Isolate* isolate) const {
-  CHECK(Smi::IsValid(module_request));  // TODO(neis): Check earlier?
+  CHECK(Smi::IsValid(module_request));  // TODO (neis): Check earlier? id:165 gh:166
   return ModuleInfoEntry::New(
       isolate, ToStringOrUndefined(isolate, export_name),
       ToStringOrUndefined(isolate, local_name),

@@ -14,7 +14,7 @@
 
 // Simulator specific helpers.
 #if USE_SIMULATOR
-  // TODO(all): If possible automatically prepend an indicator like
+  // TODO (all): If possible automatically prepend an indicator like id:100 gh:101
   // UNIMPLEMENTED or LOCATION.
   #define ASM_UNIMPLEMENTED(message)                                         \
   __ Debug(message, __LINE__, NO_PARAM)
@@ -707,7 +707,7 @@ class TurboAssembler : public Assembler {
   // We assume the size of the arguments is the pointer size.
   // An optional mode argument is passed, which can indicate we need to
   // explicitly add the receiver to the count.
-  // TODO(arm64): Update this to round up the number of bytes dropped to
+  // TODO (arm64): Update this to round up the number of bytes dropped to id:142 gh:143
   // a multiple of 16, so that we can remove jssp.
   enum ArgumentsCountMode { kCountIncludesReceiver, kCountExcludesReceiver };
   inline void DropArguments(const Register& count,
@@ -715,12 +715,12 @@ class TurboAssembler : public Assembler {
 
   // Drop slots from stack without actually accessing memory.
   // This will currently drop 'count' slots of the given size from the stack.
-  // TODO(arm64): Update this to round up the number of bytes dropped to
+  // TODO (arm64): Update this to round up the number of bytes dropped to id:127 gh:128
   // a multiple of 16, so that we can remove jssp.
   inline void DropSlots(int64_t count, uint64_t unit_size = kXRegSize);
 
   // Push a single argument to the stack.
-  // TODO(arm64): Update this to push a padding slot above the argument.
+  // TODO (arm64): Update this to push a padding slot above the argument. id:114 gh:116
   inline void PushArgument(const Register& arg);
 
   // Re-synchronizes the system stack pointer (csp) with the current stack

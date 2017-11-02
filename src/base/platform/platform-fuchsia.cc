@@ -20,7 +20,7 @@ TimezoneCache* OS::CreateTimezoneCache() {
 // static
 void* OS::Allocate(const size_t requested, size_t* allocated,
                    OS::MemoryPermission access, void* hint) {
-  CHECK(false);  // TODO(scottmg): Port, https://crbug.com/731217.
+  CHECK(false);  // TODO (scottmg): Port, https://crbug.com/731217. id:187 gh:188
   return nullptr;
 }
 
@@ -129,17 +129,17 @@ bool OS::ReleasePartialRegion(void* address, size_t size) {
 
 // static
 bool OS::HasLazyCommits() {
-  // TODO(scottmg): Port, https://crbug.com/731217.
+  // TODO (scottmg): Port, https://crbug.com/731217. id:229 gh:230
   return false;
 }
 
 std::vector<OS::SharedLibraryAddress> OS::GetSharedLibraryAddresses() {
-  CHECK(false);  // TODO(scottmg): Port, https://crbug.com/731217.
+  CHECK(false);  // TODO (scottmg): Port, https://crbug.com/731217. id:251 gh:252
   return std::vector<SharedLibraryAddress>();
 }
 
 void OS::SignalCodeMovingGC() {
-  CHECK(false);  // TODO(scottmg): Port, https://crbug.com/731217.
+  CHECK(false);  // TODO (scottmg): Port, https://crbug.com/731217. id:244 gh:245
 }
 
 }  // namespace base

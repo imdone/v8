@@ -186,7 +186,7 @@ TEST(EvalCall) {
 
 
 TEST(ReceiverPatching) {
-  // TODO(turbofan): Note that this test only checks that the function prologue
+  // TODO (turbofan): Note that this test only checks that the function prologue id:1517 gh:1525
   // patches an undefined receiver to the global receiver. If this starts to
   // fail once we fix the calling protocol, just remove this test.
   FunctionTester T("(function(a) { return this; })");

@@ -544,7 +544,7 @@ void JSEntryStub::Generate(MacroAssembler* masm) {
   Label invoke, handler_entry, exit;
   Isolate* isolate = masm->isolate();
 
-  // TODO(plind): unify the ABI description here.
+  // TODO (plind): unify the ABI description here. id:1035 gh:1043
   // Registers:
   // a0: entry address
   // a1: function
@@ -1648,7 +1648,7 @@ void CallApiCallbackStub::Generate(MacroAssembler* masm) {
   int return_value_offset = 2 + FCA::kReturnValueOffset;
   MemOperand return_value_operand(fp, return_value_offset * kPointerSize);
   const int stack_space = argc() + FCA::kArgsLength + 1;
-  // TODO(adamk): Why are we clobbering this immediately?
+  // TODO (adamk): Why are we clobbering this immediately? id:1292 gh:1300
   const int32_t stack_space_offset = kInvalidStackOffset;
   CallApiFunctionAndReturn(masm, api_function_address, thunk_ref, stack_space,
                            stack_space_offset, return_value_operand);

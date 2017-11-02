@@ -331,7 +331,7 @@ int main(int argc, char* argv[]) {
   if (print_run_count && tests_run != 1)
     printf("Ran %i tests.\n", tests_run);
   CcTest::TearDown();
-  // TODO(svenpanne) See comment above.
+  // TODO (svenpanne) See comment above. id:1527 gh:1535
   // if (!disable_automatic_dispose_) v8::V8::Dispose();
   v8::V8::ShutdownPlatform();
   delete platform;

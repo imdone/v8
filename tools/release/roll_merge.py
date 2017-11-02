@@ -72,7 +72,7 @@ class SearchArchitecturePorts(Step):
         self._options.revisions))
     port_revision_list = []
     for revision in self["full_revision_list"]:
-      # Search for commits which matches the "Port XXX" pattern.
+      # Search for commits which matches the "Port XXX " pattern. id:2348 gh:2356
       git_hashes = self.GitLog(reverse=True, format="%H",
                                grep="Port %s" % revision,
                                branch=self.vc.RemoteMasterBranch())

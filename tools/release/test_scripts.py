@@ -235,7 +235,7 @@ Committed: https://code.google.com/p/v8/source/detail?r=18210
                                                 "R=somebody\n"
                                                 "BUG=456,v8:123, 345"))
 
-  # TODO(machenbach): These test don't make much sense when the formatting is
+  # TODO (machenbach): These test don't make much sense when the formatting is id:2584 gh:2592
   # done later.
   def testMakeChangeLogBugReferenceLong(self):
     # -----------------00--------10--------20--------30--------
@@ -1503,7 +1503,7 @@ Cr-Commit-Position: refs/heads/4.2.71@{#1}
         "review_link": "",
         "date": "02:15",
         "chromium_branch": "",
-        # FIXME(machenbach): Fix revisions link for git.
+        # FIXME (machenbach): Fix revisions link for git. id:2546 gh:2555
         "revision_link": "https://code.google.com/p/v8/source/detail?r=1",
       },
       {
@@ -1873,7 +1873,7 @@ Cr-Commit-Position: refs/heads/4.2.71@{#1}
         "review_link": "",
         "date": "02:15",
         "chromium_branch": "",
-        # FIXME(machenbach): Fix revisions link for git.
+        # FIXME (machenbach): Fix revisions link for git. id:2446 gh:2455
         "revision_link": "https://code.google.com/p/v8/source/detail?r=1",
       },
       {

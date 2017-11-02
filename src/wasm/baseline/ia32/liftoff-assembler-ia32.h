@@ -77,17 +77,17 @@ void LiftoffAssembler::MoveStackValue(uint32_t dst_index, uint32_t src_index,
 }
 
 void LiftoffAssembler::Spill(uint32_t index, Register reg) {
-  // TODO(clemensh): Handle different types here.
+  // TODO (clemensh): Handle different types here. id:1615 gh:1619
   mov(liftoff::GetStackSlot(index), reg);
 }
 
 void LiftoffAssembler::Spill(uint32_t index, WasmValue value) {
-  // TODO(clemensh): Handle different types here.
+  // TODO (clemensh): Handle different types here. id:1346 gh:1354
   mov(liftoff::GetStackSlot(index), Immediate(value.to_i32()));
 }
 
 void LiftoffAssembler::Fill(Register reg, uint32_t index) {
-  // TODO(clemensh): Handle different types here.
+  // TODO (clemensh): Handle different types here. id:1590 gh:1598
   mov(reg, liftoff::GetStackSlot(index));
 }
 

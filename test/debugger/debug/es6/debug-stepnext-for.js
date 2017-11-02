@@ -93,7 +93,7 @@ Debug.setListener(null);         // Break z
 print("log:\n"+ JSON.stringify(log));
 // The let declaration differs from var in that the loop variable
 // is declared in every iteration.
-// TODO(verwaest): For-of has hacky position numbers for Symbol.iterator and
+// TODO (verwaest): For-of has hacky position numbers for Symbol.iterator and id:1633 gh:1641
 // .next. Restore to proper positions once the CallPrinter can disambiguate
 // based on other values.
 var expected = [

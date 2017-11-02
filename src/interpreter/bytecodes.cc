@@ -143,7 +143,7 @@ Bytecode Bytecodes::GetDebugBreak(Bytecode bytecode) {
 int Bytecodes::GetOperandOffset(Bytecode bytecode, int i,
                                 OperandScale operand_scale) {
   DCHECK_LT(i, Bytecodes::NumberOfOperands(bytecode));
-  // TODO(oth): restore this to a statically determined constant.
+  // TODO (oth): restore this to a statically determined constant. id:1006 gh:1014
   int offset = 1;
   for (int operand_index = 0; operand_index < i; ++operand_index) {
     OperandSize operand_size =

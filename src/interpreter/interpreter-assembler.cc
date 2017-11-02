@@ -202,7 +202,7 @@ void InterpreterAssembler::GotoIfHasContextExtensionUpToDepth(Node* context,
   Goto(&context_search);
   BIND(&context_search);
   {
-    // TODO(leszeks): We only need to do this check if the context had a sloppy
+    // TODO (leszeks): We only need to do this check if the context had a sloppy id:1275 gh:1283
     // eval, we could pass in a context chain bitmask to figure out which
     // contexts actually need to be checked.
 
@@ -846,7 +846,7 @@ Node* InterpreterAssembler::Construct(Node* target, Node* context,
       Label create_allocation_site(this), create_weak_cell(this);
       Comment("check if function in same native context");
       GotoIf(TaggedIsSmi(new_target), &mark_megamorphic);
-      // TODO(bmeurer): Add support for arbitrary constructors here, and
+      // TODO (bmeurer): Add support for arbitrary constructors here, and id:1007 gh:1015
       // check via GetFunctionRealm (see src/objects.cc).
       GotoIfNot(IsJSFunction(new_target), &mark_megamorphic);
       Node* new_target_context =
@@ -901,7 +901,7 @@ Node* InterpreterAssembler::Construct(Node* target, Node* context,
 
   BIND(&construct_array);
   {
-    // TODO(bmeurer): Introduce a dedicated builtin to deal with the Array
+    // TODO (bmeurer): Introduce a dedicated builtin to deal with the Array id:1235 gh:1244
     // constructor feedback collection inside of Ignition.
     Comment("call using ConstructArray builtin");
     Callable callable = CodeFactory::InterpreterPushArgsThenConstruct(
@@ -915,7 +915,7 @@ Node* InterpreterAssembler::Construct(Node* target, Node* context,
 
   BIND(&construct);
   {
-    // TODO(bmeurer): Remove the generic type_info parameter from the Construct.
+    // TODO (bmeurer): Remove the generic type_info parameter from the Construct. id:1221 gh:1229
     Comment("call using Construct builtin");
     Callable callable = CodeFactory::InterpreterPushArgsThenConstruct(
         isolate(), InterpreterPushArgsMode::kOther);
@@ -935,7 +935,7 @@ Node* InterpreterAssembler::ConstructWithSpread(Node* target, Node* context,
                                                 Node* first_arg,
                                                 Node* arg_count, Node* slot_id,
                                                 Node* feedback_vector) {
-  // TODO(bmeurer): Unify this with the Construct bytecode feedback
+  // TODO (bmeurer): Unify this with the Construct bytecode feedback id:1019 gh:1027
   // above once we have a way to pass the AllocationSite to the Array
   // constructor _and_ spread the last argument at the same time.
   DCHECK(Bytecodes::MakesCallAlongCriticalPath(bytecode_));
@@ -985,7 +985,7 @@ Node* InterpreterAssembler::ConstructWithSpread(Node* target, Node* context,
       // context.
       Comment("check if function in same native context");
       GotoIf(TaggedIsSmi(new_target), &mark_megamorphic);
-      // TODO(bmeurer): Add support for arbitrary constructors here, and
+      // TODO (bmeurer): Add support for arbitrary constructors here, and id:1276 gh:1284
       // check via GetFunctionRealm (see src/objects.cc).
       GotoIfNot(IsJSFunction(new_target), &mark_megamorphic);
       Node* target_context =
@@ -1219,7 +1219,7 @@ Node* InterpreterAssembler::DispatchToBytecode(Node* target_bytecode,
 
 Node* InterpreterAssembler::DispatchToBytecodeHandler(Node* handler,
                                                       Node* bytecode_offset) {
-  // TODO(ishell): Add CSA::CodeEntryPoint(code).
+  // TODO (ishell): Add CSA::CodeEntryPoint(code). id:1043 gh:1051
   Node* handler_entry =
       IntPtrAdd(BitcastTaggedToWord(handler),
                 IntPtrConstant(Code::kHeaderSize - kHeapObjectTag));
@@ -1271,7 +1271,7 @@ void InterpreterAssembler::DispatchWide(OperandScale operand_scale) {
 }
 
 void InterpreterAssembler::UpdateInterruptBudgetOnReturn() {
-  // TODO(rmcilroy): Investigate whether it is worth supporting self
+  // TODO (rmcilroy): Investigate whether it is worth supporting self id:1236 gh:1245
   // optimization of primitive functions like FullCodegen.
 
   // Update profiling count by the number of bytes between the end of the

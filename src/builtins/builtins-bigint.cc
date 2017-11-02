@@ -39,7 +39,7 @@ BUILTIN(BigIntConstructor_ConstructStub) {
   ASSIGN_RETURN_FAILURE_ON_EXCEPTION(isolate, result,
                                      JSObject::New(target, new_target));
 
-  // TODO(jkummerow): Implement.
+  // TODO (jkummerow): Implement. id:331 gh:332
   USE(value);
   USE(result);
 
@@ -79,7 +79,7 @@ BUILTIN(BigIntAsUintN) {
   Handle<Object> bits_obj = args.atOrUndefined(isolate, 1);
   Handle<Object> bigint_obj = args.atOrUndefined(isolate, 2);
 
-  // TODO(jkummerow): Implement.
+  // TODO (jkummerow): Implement. id:276 gh:277
   USE(bits_obj);
   USE(bigint_obj);
 
@@ -91,7 +91,7 @@ BUILTIN(BigIntAsIntN) {
   Handle<Object> bits_obj = args.atOrUndefined(isolate, 1);
   Handle<Object> bigint_obj = args.atOrUndefined(isolate, 2);
 
-  // TODO(jkummerow): Implement.
+  // TODO (jkummerow): Implement. id:289 gh:290
   USE(bits_obj);
   USE(bigint_obj);
 
@@ -101,7 +101,7 @@ BUILTIN(BigIntAsIntN) {
 BUILTIN(BigIntPrototypeToLocaleString) {
   HandleScope scope(isolate);
 
-  // TODO(jkummerow): Implement.
+  // TODO (jkummerow): Implement. id:310 gh:311
 
   UNIMPLEMENTED();
 }

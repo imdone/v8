@@ -98,7 +98,7 @@ class ModuleDescriptor : public ZoneObject {
     // GetCellIndexKind(cell_index) == kInvalid.
     int cell_index;
 
-    // TODO(neis): Remove local_name component?
+    // TODO (neis): Remove local_name component? id:171 gh:172
     explicit Entry(Scanner::Location loc)
         : location(loc),
           export_name(nullptr),

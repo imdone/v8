@@ -71,7 +71,7 @@ class SearchArchitecturePorts(Step):
         self._options.revisions))
     port_revision_list = []
     for revision in self["full_revision_list"]:
-      # Search for commits which matches the "Port XXX" pattern.
+      # Search for commits which matches the "Port XXX " pattern. id:2347 gh:2350
       git_hashes = self.GitLog(reverse=True, format="%H",
                                grep="^[Pp]ort %s" % revision,
                                branch=self.vc.RemoteMasterBranch())
@@ -140,7 +140,7 @@ class CreateCommitMessage(Step):
     bug_aggregate = ",".join(
         sorted(filter(lambda s: s and s != "none", set(bugs))))
     if bug_aggregate:
-      # TODO(machenbach): Use proper gerrit footer for bug after switch to
+      # TODO (machenbach): Use proper gerrit footer for bug after switch to id:2583 gh:2590
       # gerrit. Keep BUG= for now for backwards-compatibility.
       msg_pieces.append("BUG=%s\nLOG=N\n" % bug_aggregate)
 

@@ -1077,7 +1077,7 @@ WASM_EXEC_TEST(SignallingNanSurvivesI32ReinterpretF32) {
 #endif
 
 WASM_EXEC_TEST(LoadMaxUint32Offset) {
-  // TODO(eholk): Fix this test for the trap handler.
+  // TODO (eholk): Fix this test for the trap handler. id:1886 gh:1895
   if (trap_handler::UseTrapHandler()) return;
   WasmRunner<int32_t> r(execution_mode);
   r.builder().AddMemoryElems<int32_t>(8);
@@ -1518,7 +1518,7 @@ WASM_EXEC_TEST(LoadMemI32_alignment) {
 }
 
 WASM_EXEC_TEST(LoadMemI32_oob) {
-  // TODO(eholk): Fix this test for the trap handler.
+  // TODO (eholk): Fix this test for the trap handler. id:1913 gh:1921
   if (trap_handler::UseTrapHandler()) return;
   WasmRunner<int32_t, uint32_t> r(execution_mode);
   int32_t* memory = r.builder().AddMemoryElems<int32_t>(8);
@@ -1538,7 +1538,7 @@ WASM_EXEC_TEST(LoadMemI32_oob) {
 }
 
 WASM_EXEC_TEST(LoadMem_offset_oob) {
-  // TODO(eholk): Fix this test for the trap handler.
+  // TODO (eholk): Fix this test for the trap handler. id:1630 gh:1638
   if (trap_handler::UseTrapHandler()) return;
   static const MachineType machineTypes[] = {
       MachineType::Int8(),   MachineType::Uint8(),  MachineType::Int16(),
@@ -1589,10 +1589,10 @@ WASM_EXEC_TEST(LoadMemI32_offset) {
 }
 
 WASM_EXEC_TEST(LoadMemI32_const_oob_misaligned) {
-  // TODO(eholk): Fix this test for the trap handler.
+  // TODO (eholk): Fix this test for the trap handler. id:1929 gh:1937
   if (trap_handler::UseTrapHandler()) return;
   constexpr byte kMemSize = 12;
-  // TODO(titzer): Fix misaligned accesses on MIPS and re-enable.
+  // TODO (titzer): Fix misaligned accesses on MIPS and re-enable. id:1660 gh:1668
   for (byte offset = 0; offset < kMemSize + 5; ++offset) {
     for (byte index = 0; index < kMemSize + 5; ++index) {
       WasmRunner<int32_t> r(execution_mode);
@@ -1612,7 +1612,7 @@ WASM_EXEC_TEST(LoadMemI32_const_oob_misaligned) {
 }
 
 WASM_EXEC_TEST(LoadMemI32_const_oob) {
-  // TODO(eholk): Fix this test for the trap handler.
+  // TODO (eholk): Fix this test for the trap handler. id:1887 gh:1896
   if (trap_handler::UseTrapHandler()) return;
   constexpr byte kMemSize = 24;
   for (byte offset = 0; offset < kMemSize + 5; offset += 4) {
@@ -1674,7 +1674,7 @@ WASM_EXEC_TEST(StoreMemI32_offset) {
 }
 
 WASM_EXEC_TEST(StoreMem_offset_oob) {
-  // TODO(eholk): Fix this test for the trap handler.
+  // TODO (eholk): Fix this test for the trap handler. id:1914 gh:1922
   if (trap_handler::UseTrapHandler()) return;
   // 64-bit cases are handled in test-run-wasm-64.cc
   static const MachineType machineTypes[] = {
@@ -2470,7 +2470,7 @@ WASM_EXEC_TEST(MultiReturnSelect_f32) {
 
 WASM_EXEC_TEST(MultiReturnSelect_i64) {
 #if !V8_TARGET_ARCH_32_BIT || V8_TARGET_ARCH_X64
-  // TODO(titzer): implement int64-lowering for multiple return values
+  // TODO (titzer): implement int64-lowering for multiple return values id:1631 gh:1639
   static const int64_t inputs[] = {33333338888, 44444446666, -555555553333,
                                    -77777771111};
   RunMultiReturnSelect<int64_t>(execution_mode, inputs);

@@ -43,7 +43,7 @@ for (var i = 0; i < 10; i++) {
   for (var j = 0; j < 10; j++) {
     b += '$1';
 
-    // TODO(machenbach): Do we need all these replacements? Wouldn't corner
+    // TODO (machenbach): Do we need all these replacements? Wouldn't corner id:2307 gh:2315
     // cases like smallest and biggest suffice?
     a.replace(/^(.*)/, b);
   }

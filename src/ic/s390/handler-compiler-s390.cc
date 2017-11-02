@@ -118,7 +118,7 @@ void PropertyHandlerCompiler::GenerateDictionaryNegativeLookup(
   __ bne(miss_label);
 
   // Check that receiver is a JSObject.
-  // TODO(joransiu): Merge into SI compare
+  // TODO (joransiu): Merge into SI compare id:995 gh:1003
   __ LoadlB(scratch0, FieldMemOperand(map, Map::kInstanceTypeOffset));
   __ CmpP(scratch0, Operand(FIRST_JS_RECEIVER_TYPE));
   __ blt(miss_label);

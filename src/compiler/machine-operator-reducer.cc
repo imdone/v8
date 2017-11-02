@@ -184,7 +184,7 @@ Reduction MachineOperatorReducer::Reduce(Node* node) {
         node->ReplaceInput(1, msub.right().node());
         return Changed(node);
       }
-      // TODO(turbofan): fold HeapConstant, ExternalReference, pointer compares
+      // TODO (turbofan): fold HeapConstant, ExternalReference, pointer compares id:696 gh:697
       if (m.LeftEqualsRight()) return ReplaceBool(true);  // x == x => true
       break;
     }
@@ -199,7 +199,7 @@ Reduction MachineOperatorReducer::Reduce(Node* node) {
         node->ReplaceInput(1, msub.right().node());
         return Changed(node);
       }
-      // TODO(turbofan): fold HeapConstant, ExternalReference, pointer compares
+      // TODO (turbofan): fold HeapConstant, ExternalReference, pointer compares id:587 gh:588
       if (m.LeftEqualsRight()) return ReplaceBool(true);  // x == x => true
       break;
     }
@@ -299,7 +299,7 @@ Reduction MachineOperatorReducer::Reduce(Node* node) {
             node->ReplaceInput(1, Uint32Constant(c << k));
             return Changed(node);
           }
-          // TODO(turbofan): else the comparison is always true.
+          // TODO (turbofan): else the comparison is always true. id:714 gh:715
         }
       }
       break;
@@ -425,7 +425,7 @@ Reduction MachineOperatorReducer::Reduce(Node* node) {
       Float64BinopMatcher m(node);
       if (allow_signalling_nan_ && m.right().Is(1))
         return Replace(m.left().node());  // x / 1.0 => x
-      // TODO(ahaas): We could do x / 1.0 = x if we knew that x is not an sNaN.
+      // TODO (ahaas): We could do x / 1.0 = x if we knew that x is not an sNaN. id:639 gh:640
       if (m.right().IsNaN()) {                               // x / NaN => NaN
         // Do some calculation to make a signalling NaN quiet.
         return ReplaceFloat64(m.right().Value() - m.right().Value());

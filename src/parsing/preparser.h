@@ -347,7 +347,7 @@ class PreParserExpression {
   // Expression ASTNode --- This is by necessity, due to the fact that
   // Expression nodes may be represented as multiple Types, not exclusively
   // through kExpression.
-  // TODO(caitp, adamk): clean up PreParserExpression bitfields.
+  // TODO (caitp, adamk): clean up PreParserExpression bitfields. id:1164 gh:1172
   typedef BitField<bool, 31, 1> ParenthesizedField;
 
   // The rest of the bits are interpreted depending on the value
@@ -482,7 +482,7 @@ class PreParserStatement {
   // and PreParser.
   PreParserStatement* operator->() { return this; }
 
-  // TODO(adamk): These should return something even lighter-weight than
+  // TODO (adamk): These should return something even lighter-weight than id:1485 gh:1493
   // PreParserStatementList.
   PreParserStatementList statements() { return PreParserStatementList(); }
   PreParserStatementList cases() { return PreParserStatementList(); }
@@ -1021,7 +1021,7 @@ class PreParser : public ParserBase<PreParser> {
     return labels;
   }
 
-  // TODO(nikolaos): The preparser currently does not keep track of labels.
+  // TODO (nikolaos): The preparser currently does not keep track of labels. id:1449 gh:1457
   V8_INLINE bool ContainsLabel(ZoneList<const AstRawString*>* labels,
                                const PreParserIdentifier& label) {
     return false;
@@ -1096,7 +1096,7 @@ class PreParser : public ParserBase<PreParser> {
     return PreParserExpression::Default();
   }
 
-  // TODO(nikolaos): The preparser currently does not keep track of labels
+  // TODO (nikolaos): The preparser currently does not keep track of labels id:1193 gh:1201
   // and targets.
   V8_INLINE PreParserStatement
   LookupBreakTarget(const PreParserIdentifier& label, bool* ok) {
@@ -1156,7 +1156,7 @@ class PreParser : public ParserBase<PreParser> {
     // Account for the default constructor.
     if (has_default_constructor) {
       // Creating and disposing of a FunctionState makes tracking of
-      // next_function_is_likely_called match what Parser does. TODO(marja):
+      // next_function_is_likely_called match what Parser does. TODO (marja): id:1465 gh:1473
       // Make the lazy function + next_function_is_likely_called + default ctor
       // logic less surprising. Default ctors shouldn't affect the laziness of
       // functions.
@@ -1281,7 +1281,7 @@ class PreParser : public ParserBase<PreParser> {
 
   V8_INLINE void MarkExpressionAsAssigned(
       const PreParserExpression& expression) {
-    // TODO(marja): To be able to produce the same errors, the preparser needs
+    // TODO (marja): To be able to produce the same errors, the preparser needs id:1165 gh:1173
     // to start tracking which expressions are variables and which are assigned.
     if (expression.variables_ != nullptr) {
       DCHECK(FLAG_lazy_inner_functions);
@@ -1632,7 +1632,7 @@ class PreParser : public ParserBase<PreParser> {
       PreParserFormalParameters* parameters, const PreParserExpression& params,
       const Scanner::Location& params_loc, Scanner::Location* duplicate_loc,
       bool* ok) {
-    // TODO(wingo): Detect duplicated identifiers in paramlists.  Detect
+    // TODO (wingo): Detect duplicated identifiers in paramlists.  Detect id:1486 gh:1494
     // parameter lists that are too long.
     if (track_unresolved_variables_) {
       DCHECK(FLAG_lazy_inner_functions);

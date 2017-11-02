@@ -58,7 +58,7 @@ bool EnableInProcessStackDumping() {
   // When running in an application, our code typically expects SIGPIPE
   // to be ignored.  Therefore, when testing that same code, it should run
   // with SIGPIPE ignored as well.
-  // TODO(phajdan.jr): De-duplicate this SIGPIPE code.
+  // TODO (phajdan.jr): De-duplicate this SIGPIPE code. id:180 gh:181
   struct sigaction action;
   memset(&action, 0, sizeof(action));
   action.sa_handler = SIG_IGN;

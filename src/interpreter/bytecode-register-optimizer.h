@@ -43,7 +43,7 @@ class V8_EXPORT_PRIVATE BytecodeRegisterOptimizer final
 
   // Perform explicit register transfer operations.
   void DoLdar(Register input) {
-    // TODO(rmcilroy): Avoid treating accumulator loads as clobbering the
+    // TODO (rmcilroy): Avoid treating accumulator loads as clobbering the id:1017 gh:1025
     // accumulator until the value is actually materialized in the accumulator.
     RegisterInfo* input_info = GetRegisterInfo(input);
     RegisterTransfer(input_info, accumulator_info_);
@@ -176,7 +176,7 @@ class V8_EXPORT_PRIVATE BytecodeRegisterOptimizer final
 
   uint32_t NextEquivalenceId() {
     equivalence_id_++;
-    // TODO(rmcilroy): use the same type for these and remove static_cast.
+    // TODO (rmcilroy): use the same type for these and remove static_cast. id:1274 gh:1282
     CHECK_NE(static_cast<size_t>(equivalence_id_), kInvalidEquivalenceId);
     return equivalence_id_;
   }

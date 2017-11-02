@@ -644,7 +644,7 @@ static void VerifyCharacterStream(
   // Do not want to test ConString traversal on flat string.
   CHECK(flat_string->IsFlat() && !flat_string->IsConsString());
   CHECK(cons_string->IsConsString());
-  // TODO(dcarney) Test stream reset as well.
+  // TODO (dcarney) Test stream reset as well. id:1657 gh:1665
   int length = flat_string->length();
   // Iterate start search in multiple places in the string.
   int outer_iterations = length > 20 ? 20 : length;
@@ -1191,7 +1191,7 @@ class OneByteVectorResource : public v8::String::ExternalOneByteStringResource {
 };
 
 TEST(InternalizeExternal) {
-  // TODO(mlippautz): Remove once we add support for forwarding ThinStrings in
+  // TODO (mlippautz): Remove once we add support for forwarding ThinStrings in id:1884 gh:1893
   // minor MC.
   if (FLAG_minor_mc) return;
   FLAG_stress_incremental_marking = false;

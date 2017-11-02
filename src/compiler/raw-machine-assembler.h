@@ -71,7 +71,7 @@ class V8_EXPORT_PRIVATE RawMachineAssembler {
     return IntPtrConstant(reinterpret_cast<intptr_t>(value));
   }
   Node* IntPtrConstant(intptr_t value) {
-    // TODO(dcarney): mark generated code as unserializable if value != 0.
+    // TODO (dcarney): mark generated code as unserializable if value != 0. id:660 gh:661
     return kPointerSize == 8 ? Int64Constant(value)
                              : Int32Constant(static_cast<int>(value));
   }

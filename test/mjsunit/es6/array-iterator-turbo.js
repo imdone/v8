@@ -43,7 +43,7 @@ let tests = {
           return sum;
       },
 
-      // TODO(6587): Re-enable the below test case once we no longer deopt due
+      // TODO (6587): Re-enable the below test case once we no longer deopt due id:1958 gh:1966
       // to non-truncating uses of {CheckFloat64Hole} nodes.
       /*HOLEY_DOUBLE_ELEMENTS(array) {
         let sum = 0.0;
@@ -86,7 +86,7 @@ let tests = {
         array2: [0.6, 0.4, 0.2],
         expected2: 1.2
       },
-      // TODO(6587): Re-enable the below test case once we no longer deopt due
+      // TODO (6587): Re-enable the below test case once we no longer deopt due id:2259 gh:2267
       // to non-truncating uses of {CheckFloat64Hole} nodes.
       /*HOLEY_DOUBLE_ELEMENTS: {
         array: [0.1, , 0.3, , 0.5, , 0.7, , 0.9, ,],

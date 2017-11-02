@@ -73,7 +73,7 @@ const int64_t kWRegMask = 0x00000000ffffffffL;
 const int64_t kXRegMask = 0xffffffffffffffffL;
 const int64_t kSRegMask = 0x00000000ffffffffL;
 const int64_t kDRegMask = 0xffffffffffffffffL;
-// TODO(all) check if the expression below works on all compilers or if it
+// TODO (all) check if the expression below works on all compilers or if it id:95 gh:96
 // triggers an overflow error.
 const int64_t kDSignBit = 63;
 const int64_t kDSignMask = 0x1L << kDSignBit;

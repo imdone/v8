@@ -473,7 +473,7 @@ class Redirection {
     redirect_call_.SetInstructionBits(
         HLT | Assembler::ImmException(kImmExceptionIsRedirectedCall));
     next_ = isolate->simulator_redirection();
-    // TODO(all): Simulator flush I cache
+    // TODO (all): Simulator flush I cache id:68 gh:69
     isolate->set_simulator_redirection(this);
   }
 
@@ -1054,7 +1054,7 @@ void Simulator::Extract(Instruction* instr) {
 void Simulator::FPCompare(double val0, double val1) {
   AssertSupportedFPCR();
 
-  // TODO(jbramley): This assumes that the C++ implementation handles
+  // TODO (jbramley): This assumes that the C++ implementation handles id:101 gh:102
   // comparisons in the way that we expect (as per AssertSupportedFPCR()).
   if ((std::isnan(val0) != 0) || (std::isnan(val1) != 0)) {
     nzcv().SetRawValue(FPUnorderedFlag);

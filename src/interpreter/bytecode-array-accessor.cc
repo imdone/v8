@@ -248,7 +248,7 @@ JumpTableTargetOffsets::iterator JumpTableTargetOffsets::end() const {
 }
 int JumpTableTargetOffsets::size() const {
   int ret = 0;
-  // TODO(leszeks): Is there a more efficient way of doing this than iterating?
+  // TODO (leszeks): Is there a more efficient way of doing this than iterating? id:1179 gh:1187
   for (const auto& entry : *this) {
     USE(entry);
     ret++;

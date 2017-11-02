@@ -203,7 +203,7 @@ TEST_F(UnoptimizedCompileJobTest, CompileAndRun) {
 TEST_F(UnoptimizedCompileJobTest, CompileFailureToAnalyse) {
   std::string raw_script("() { var a = ");
   for (int i = 0; i < 500000; i++) {
-    // TODO(leszeks): Figure out a more "unit-test-y" way of forcing an analysis
+    // TODO (leszeks): Figure out a more "unit-test-y" way of forcing an analysis id:2503 gh:2511
     // failure than a binop stack overflow.
 
     // Alternate + and - to avoid n-ary operation nodes.

@@ -575,7 +575,7 @@ class Assembler : public AssemblerBase {
   // - instructions on 16bit (word) operands/registers have a trailing '_w'
   // - naming conflicts with C++ keywords are resolved via a trailing '_'
 
-  // NOTE ON INTERFACE: Currently, the interface is not very consistent
+  // NOTE ON INTERFACE: Currently, the interface is not very consistent id:1113 gh:1121
   // in the sense that some operations (e.g. mov()) can be called in more
   // the one way to generate the same instruction: The Register argument
   // can in some cases be replaced with an Operand(Register) argument.
@@ -1649,7 +1649,7 @@ class Assembler : public AssemblerBase {
   // Level 1, 2 or 3 specifies CPU cache level. Level 0 specifies a
   // non-temporal
   void prefetch(const Operand& src, int level);
-  // TODO(lrn): Need SFENCE for movnt?
+  // TODO (lrn): Need SFENCE for movnt? id:986 gh:992
 
   // Check the code size generated from label to here.
   int SizeOfCodeGeneratedSince(Label* label) {

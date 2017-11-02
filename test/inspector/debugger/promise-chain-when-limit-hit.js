@@ -2,7 +2,7 @@
 // Use of this source code is governed by a BSD-style license that can be
 // found in the LICENSE file.
 
-// TODO(kozyatinskiy): fix or remove it later.
+// TODO (kozyatinskiy): fix or remove it later. id:1636 gh:1644
 let {session, contextGroup, Protocol} = InspectorTest.start('Tests how async promise chains behave when reaching the limit of stacks');
 
 (async function test(){

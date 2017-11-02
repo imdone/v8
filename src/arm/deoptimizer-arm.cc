@@ -54,7 +54,7 @@ void Deoptimizer::TableEntryGenerator::Generate() {
   }
 
   // Push all 16 registers (needed to populate FrameDescription::registers_).
-  // TODO(1588) Note that using pc with stm is deprecated, so we should perhaps
+  // TODO (1588) Note that using pc with stm is deprecated, so we should perhaps id:116 gh:112
   // handle this a bit differently.
   __ stm(db_w, sp, restored_regs  | sp.bit() | lr.bit() | pc.bit());
 

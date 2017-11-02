@@ -16,7 +16,7 @@ namespace internal {
 
 enum RememberedSetIterationMode { SYNCHRONIZED, NON_SYNCHRONIZED };
 
-// TODO(ulan): Investigate performance of de-templatizing this class.
+// TODO (ulan): Investigate performance of de-templatizing this class. id:1127 gh:1135
 template <RememberedSetType type>
 class RememberedSet : public AllStatic {
  public:

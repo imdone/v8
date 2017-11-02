@@ -28,7 +28,7 @@ load("test/mjsunit/wasm/wasm-module-builder.js");
   assertEquals(9, func.apply([2, 3]));
   assertEquals(9, func.apply([6, 7, 9, 9]));
 
-  // TODO(titzer): assertEquals(1, func.length);
+  // TODO (titzer): assertEquals(1, func.length); id:2382 gh:2390
 
   // Check we don't crash when converting to a string.
   print(func.toString());

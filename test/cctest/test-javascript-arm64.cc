@@ -140,7 +140,7 @@ static void if_comparison_effectcontext_helper(Local<v8::Context> context,
 static void if_comparison_helper(Local<v8::Context> context, char const* op,
                                  int expect_when_lt, int expect_when_eq,
                                  int expect_when_gt) {
-  // TODO(all): Non-SMI tests.
+  // TODO (all): Non-SMI tests. id:1880 gh:1888
 
   if_comparison_testcontext_helper(context, op, "1", "3", expect_when_lt);
   if_comparison_testcontext_helper(context, op, "5", "5", expect_when_eq);

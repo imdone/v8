@@ -87,7 +87,7 @@ BuiltinDeserializerAllocator::CreateReservationsForEagerBuiltinsAndHandlers() {
 
   BSU::ForEachBytecode(
       [=, &result](Bytecode bytecode, OperandScale operand_scale) {
-        // TODO(jgruber): Replace with DeserializeLazy handler.
+        // TODO (jgruber): Replace with DeserializeLazy handler. id:1607 gh:1615
 
         if (!BSU::BytecodeHasDedicatedHandler(bytecode, operand_scale)) return;
 
@@ -173,7 +173,7 @@ void BuiltinDeserializerAllocator::InitializeFromReservations(
 
   BSU::ForEachBytecode(
       [=, &reservation_index](Bytecode bytecode, OperandScale operand_scale) {
-        // TODO(jgruber): Replace with DeserializeLazy handler.
+        // TODO (jgruber): Replace with DeserializeLazy handler. id:1266 gh:1274
 
         if (!BSU::BytecodeHasDedicatedHandler(bytecode, operand_scale)) return;
         InitializeHandlerFromReservation(reservation[reservation_index],

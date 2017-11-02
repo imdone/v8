@@ -31,7 +31,7 @@ assertEquals(
 assertFalse(Reflect.deleteProperty(foo, "yo"));
 assertTrue(Reflect.has(foo, "yo"));
 assertFalse(Reflect.set(foo, "yo", true));
-// TODO(neis): The next two should be False.
+// TODO (neis): The next two should be False. id:2272 gh:2280
 assertTrue(Reflect.defineProperty(foo, "yo",
     Reflect.getOwnPropertyDescriptor(foo, "yo")));
 assertTrue(Reflect.defineProperty(foo, "yo", {}));

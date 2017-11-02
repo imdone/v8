@@ -36,7 +36,7 @@ class StackTransferRecipe {
   ~StackTransferRecipe() { Execute(); }
 
   void Execute() {
-    // TODO(clemensh): Find suitable schedule.
+    // TODO (clemensh): Find suitable schedule. id:1381 gh:1389
     for (RegisterMove& rm : register_moves) {
       asm_->Move(rm.dst, rm.src);
     }
@@ -74,7 +74,7 @@ class StackTransferRecipe {
       case kStackState:
         switch (src.loc) {
           case kConstantState:
-            // TODO(clemensh): Handle other types than i32.
+            // TODO (clemensh): Handle other types than i32. id:1563 gh:1571
             asm_->Spill(dst_index, WasmValue(src.i32_const));
             break;
           case kRegisterState:
@@ -82,7 +82,7 @@ class StackTransferRecipe {
             break;
           case kStackState:
             if (src_index == dst_index) break;
-            // TODO(clemensh): Implement other types than i32.
+            // TODO (clemensh): Implement other types than i32. id:1616 gh:1624
             asm_->MoveStackValue(dst_index, src_index, wasm::kWasmI32);
             break;
         }
@@ -127,7 +127,7 @@ class StackTransferRecipe {
 
 }  // namespace
 
-// TODO(clemensh): Don't copy the full parent state (this makes us N^2).
+// TODO (clemensh): Don't copy the full parent state (this makes us N^2). id:1347 gh:1355
 void LiftoffAssembler::CacheState::InitMerge(const CacheState& source,
                                              uint32_t num_locals,
                                              uint32_t arity) {
@@ -218,7 +218,7 @@ Register LiftoffAssembler::GetBinaryOpTargetRegister(
 
 void LiftoffAssembler::MergeFullStackWith(CacheState& target) {
   DCHECK_EQ(cache_state_.stack_height(), target.stack_height());
-  // TODO(clemensh): Reuse the same StackTransferRecipe object to save some
+  // TODO (clemensh): Reuse the same StackTransferRecipe object to save some id:1591 gh:1599
   // allocations.
   StackTransferRecipe transfers(this);
   for (uint32_t i = 0, e = cache_state_.stack_height(); i < e; ++i) {

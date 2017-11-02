@@ -1274,7 +1274,7 @@ DEFINE_METHOD(
   of(...args) {
     var length = args.length;
     var constructor = this;
-    // TODO: Implement IsConstructor (ES6 section 7.2.5)
+    // TODO: Implement IsConstructor (ES6 section 7.2.5) id:1048 gh:1056
     var array = %IsConstructor(constructor) ? new constructor(length) : [];
     for (var i = 0; i < length; i++) {
       %CreateDataProperty(array, i, args[i]);

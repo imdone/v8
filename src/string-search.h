@@ -155,7 +155,7 @@ class StringSearch : private StringSearchBase {
   }
 
   // The following tables are shared by all searches.
-  // TODO(lrn): Introduce a way for a pattern to keep its tables
+  // TODO (lrn): Introduce a way for a pattern to keep its tables id:1610 gh:1618
   // between searches (e.g., for an Atom RegExp).
 
   // Store for the BoyerMoore(Horspool) bad char shift table.

@@ -104,7 +104,7 @@ def MakeChangeLogBody(commit_messages, auto_format=False):
   result = ""
   added_titles = set()
   for (title, body, author) in commit_messages:
-    # TODO(machenbach): Better check for reverts. A revert should remove the
+    # TODO (machenbach): Better check for reverts. A revert should remove the id:2582 gh:2591
     # original CL from the actual log entry.
     title = title.strip()
     if auto_format:
@@ -189,7 +189,7 @@ def SortingKey(version):
 # from subscripts like git cl upload.
 def Command(cmd, args="", prefix="", pipe=True, cwd=None):
   cwd = cwd or os.getcwd()
-  # TODO(machenbach): Use timeout.
+  # TODO (machenbach): Use timeout. id:2544 gh:2549
   cmd_line = "%s %s %s" % (prefix, cmd, args)
   print "Command: %s" % cmd_line
   print "in %s" % cwd

@@ -207,7 +207,7 @@ Handle<FixedArray> WasmTableObject::AddDispatchTable(
   DCHECK_EQ(0, dispatch_tables->length() % 4);
 
   if (instance.is_null()) return dispatch_tables;
-  // TODO(titzer): use weak cells here to avoid leaking instances.
+  // TODO (titzer): use weak cells here to avoid leaking instances. id:1401 gh:1409
 
   // Grow the dispatch table and add a new entry at the end.
   Handle<FixedArray> new_dispatch_tables =
@@ -296,7 +296,7 @@ void WasmTableObject::Set(Isolate* isolate, Handle<WasmTableObject> table,
     // by the caller.
     DCHECK_NOT_NULL(wasm_function);
     value = function;
-    // TODO(titzer): Make JSToWasm wrappers just call the WASM to WASM wrapper,
+    // TODO (titzer): Make JSToWasm wrappers just call the WASM to WASM wrapper, id:1669 gh:1677
     // and then we can just reuse the WASM to WASM wrapper.
     Address new_context_address = reinterpret_cast<Address>(
         exported_function->instance()->wasm_context()->get());
@@ -784,7 +784,7 @@ void WasmSharedModuleData::ReinitializeAfterDeserialization(
     const byte* start =
         reinterpret_cast<const byte*>(module_bytes->GetCharsAddress());
     const byte* end = start + module_bytes->length();
-    // TODO(titzer): remember the module origin in the compiled_module
+    // TODO (titzer): remember the module origin in the compiled_module id:1711 gh:1720
     // For now, we assume serialized modules did not originate from asm.js.
     wasm::ModuleResult result =
         SyncDecodeWasmModule(isolate, start, end, false, wasm::kWasmOrigin);
@@ -947,7 +947,7 @@ Handle<WasmCompiledModule> WasmCompiledModule::New(
   compiled_module->set_native_context(isolate->native_context());
   compiled_module->set_code_table(code_table);
   compiled_module->set_export_wrappers(export_wrappers);
-  // TODO(mtrofin): we copy these because the order of finalization isn't
+  // TODO (mtrofin): we copy these because the order of finalization isn't id:1367 gh:1375
   // reliable, and we need these at Reset (which is called at
   // finalization). If the order were reliable, and top-down, we could instead
   // just get them from shared().
@@ -966,7 +966,7 @@ Handle<WasmCompiledModule> WasmCompiledModule::New(
       SetTableValue(isolate, ft, i, function_tables[index]);
       SetTableValue(isolate, st, i, signature_tables[index]);
     }
-    // TODO(wasm): setting the empty tables here this way is OK under the
+    // TODO (wasm): setting the empty tables here this way is OK under the id:1756 gh:1764
     // assumption that we compile and then instantiate. It needs rework if we do
     // direct instantiation. The empty tables are used as a default when
     // resetting the compiled module.
@@ -976,7 +976,7 @@ Handle<WasmCompiledModule> WasmCompiledModule::New(
     compiled_module->set_empty_function_tables(ft);
   }
 
-  // TODO(mtrofin): copy the rest of the specialization parameters over.
+  // TODO (mtrofin): copy the rest of the specialization parameters over. id:1402 gh:1410
   // We're currently OK because we're only using defaults.
   return compiled_module;
 }
@@ -1073,7 +1073,7 @@ void WasmCompiledModule::Reset(Isolate* isolate,
       }
       bool changed =
           code_specialization.ApplyToWasmCode(code, SKIP_ICACHE_FLUSH);
-      // TODO(wasm): Check if this is faster than passing FLUSH_ICACHE_IF_NEEDED
+      // TODO (wasm): Check if this is faster than passing FLUSH_ICACHE_IF_NEEDED id:1670 gh:1678
       // above.
       if (changed) {
         Assembler::FlushICache(isolate, code->instruction_start(),
@@ -1094,7 +1094,7 @@ void WasmCompiledModule::InitId() {
 MaybeHandle<String> WasmCompiledModule::ExtractUtf8StringFromModuleBytes(
     Isolate* isolate, Handle<WasmCompiledModule> compiled_module,
     wasm::WireBytesRef ref) {
-  // TODO(wasm): cache strings from modules if it's a performance win.
+  // TODO (wasm): cache strings from modules if it's a performance win. id:1712 gh:1721
   Handle<SeqOneByteString> module_bytes(compiled_module->module_bytes(),
                                         isolate);
   return WasmCompiledModule::ExtractUtf8StringFromModuleBytes(

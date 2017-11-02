@@ -344,7 +344,7 @@ V8ConsoleMessage::wrapException(V8InspectorSessionImpl* session,
 
   v8::Isolate* isolate = inspectedContext->isolate();
   v8::HandleScope handles(isolate);
-  // TODO(dgozman): should we use different object group?
+  // TODO (dgozman): should we use different object group? id:996 gh:1004
   return session->wrapObject(inspectedContext->context(),
                              m_arguments[0]->Get(isolate), "console",
                              generatePreview);

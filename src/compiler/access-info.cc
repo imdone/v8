@@ -39,7 +39,7 @@ bool CanInlinePropertyAccess(Handle<Map> map) {
   if (map->instance_type() < LAST_PRIMITIVE_TYPE) return true;
   return map->IsJSObjectMap() && !map->is_dictionary_map() &&
          !map->has_named_interceptor() &&
-         // TODO(verwaest): Whitelist contexts to which we have access.
+         // TODO (verwaest): Whitelist contexts to which we have access. id:463 gh:464
          !map->is_access_check_needed();
 }
 
@@ -401,7 +401,7 @@ bool AccessInfoFactory::ComputePropertyAccessInfo(
           return true;
         } else {
           DCHECK_EQ(kAccessor, details.kind());
-          // TODO(turbofan): Add support for general accessors?
+          // TODO (turbofan): Add support for general accessors? id:379 gh:380
           return false;
         }
 
@@ -652,7 +652,7 @@ bool AccessInfoFactory::LookupTransition(Handle<Map> map, Handle<Name> name,
       transition_map->instance_descriptors()->GetDetails(number);
   // Don't bother optimizing stores to read-only properties.
   if (details.IsReadOnly()) return false;
-  // TODO(bmeurer): Handle transition to data constant?
+  // TODO (bmeurer): Handle transition to data constant? id:479 gh:480
   if (details.location() != kField) return false;
   int const index = details.field_index();
   Representation details_representation = details.representation();

@@ -130,7 +130,7 @@ Atomic64 Acquire_Load(volatile const Atomic64* ptr);
 #if defined(V8_OS_WIN)
 #include "src/base/atomicops_internals_std.h"
 #else
-// TODO(ulan): Switch to std version after performance regression with Wheezy
+// TODO (ulan): Switch to std version after performance regression with Wheezy id:214 gh:215
 // sysroot is no longer relevant. Debian Wheezy LTS ends on 31st of May 2018.
 #include "src/base/atomicops_internals_portable.h"
 #endif

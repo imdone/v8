@@ -181,7 +181,7 @@ void MemoryOptimizer::VisitAllocate(Node* node, AllocationState const* state) {
       }
 
       // Update the allocation top with the new object allocation.
-      // TODO(bmeurer): Defer writing back top as much as possible.
+      // TODO (bmeurer): Defer writing back top as much as possible. id:670 gh:671
       Node* top = __ IntAdd(state->top(), __ IntPtrConstant(object_size));
       __ Store(StoreRepresentation(MachineType::PointerRepresentation(),
                                    kNoWriteBarrier),
@@ -441,7 +441,7 @@ MemoryOptimizer::AllocationState const* MemoryOptimizer::MergeStates(
     if (group != nullptr) {
       // We cannot fold any more allocations into this group, but we can still
       // eliminate write barriers on stores to this group.
-      // TODO(bmeurer): We could potentially just create a Phi here to merge
+      // TODO (bmeurer): We could potentially just create a Phi here to merge id:697 gh:698
       // the various tops; but we need to pay special attention not to create
       // an unschedulable graph.
       state = AllocationState::Closed(group, zone());

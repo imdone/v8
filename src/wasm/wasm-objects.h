@@ -93,7 +93,7 @@ class WasmTableObject : public JSObject {
   DECL_CAST(WasmTableObject)
 
   DECL_ACCESSORS(functions, FixedArray)
-  // TODO(titzer): introduce DECL_I64_ACCESSORS macro
+  // TODO (titzer): introduce DECL_I64_ACCESSORS macro id:1368 gh:1376
   DECL_ACCESSORS(maximum_length, Object)
   DECL_ACCESSORS(dispatch_tables, FixedArray)
 

@@ -277,7 +277,7 @@ void Decoder<V>::DecodeLoadStore(Instruction* instr) {
                 break;
               }
               case 2: {
-                // TODO(all): VisitLoadStoreRegisterOffsetUnpriv.
+                // TODO (all): VisitLoadStoreRegisterOffsetUnpriv. id:82 gh:83
                 V::VisitUnimplemented(instr);
                 break;
               }

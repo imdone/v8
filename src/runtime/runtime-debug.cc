@@ -328,7 +328,7 @@ RUNTIME_FUNCTION(Runtime_DebugGetPropertyDetails) {
   // Check if the name is trivially convertible to an index and get the element
   // if so.
   uint32_t index;
-  // TODO(verwaest): Make sure DebugGetProperty can handle arrays, and remove
+  // TODO (verwaest): Make sure DebugGetProperty can handle arrays, and remove id:1254 gh:1262
   // this special case.
   if (name->AsArrayIndex(&index)) {
     Handle<FixedArray> details = isolate->factory()->NewFixedArray(2);
@@ -356,7 +356,7 @@ RUNTIME_FUNCTION(Runtime_DebugGetPropertyDetails) {
   Handle<FixedArray> details =
       isolate->factory()->NewFixedArray(has_js_accessors ? 6 : 3);
   details->set(0, *value);
-  // TODO(verwaest): Get rid of this random way of handling interceptors.
+  // TODO (verwaest): Get rid of this random way of handling interceptors. id:1477 gh:1485
   PropertyDetails d = it.state() == LookupIterator::INTERCEPTOR
                           ? PropertyDetails::Empty()
                           : it.property_details();
@@ -594,7 +594,7 @@ RUNTIME_FUNCTION(Runtime_GetFrameDetails) {
     locals.emplace_back(scope_info->LocalName(i), isolate);
     Handle<Object> value =
         frame_inspector.GetExpression(scope_info->StackLocalIndex(i));
-    // TODO(yangguo): We convert optimized out values to {undefined} when they
+    // TODO (yangguo): We convert optimized out values to {undefined} when they id:1301 gh:1309
     // are passed to the debugger. Eventually we should handle them somehow.
     if (value->IsOptimizedOut(isolate)) {
       value = isolate->factory()->undefined_value();
@@ -1093,7 +1093,7 @@ RUNTIME_FUNCTION(Runtime_SetFunctionBreakPoint) {
 }
 
 // Changes the state of a break point in a script and returns source position
-// where break point was set. NOTE: Regarding performance see the NOTE for
+// where break point was set. NOTE: Regarding performance see the NOTE for id:1498 gh:1506
 // GetScriptFromScriptData.
 // args[0]: script to set break point in
 // args[1]: number: break source position (within the script source)
@@ -1386,14 +1386,14 @@ RUNTIME_FUNCTION(Runtime_DebugGetPrototype) {
   HandleScope shs(isolate);
   DCHECK_EQ(1, args.length());
   CONVERT_ARG_HANDLE_CHECKED(JSObject, obj, 0);
-  // TODO(1543): Come up with a solution for clients to handle potential errors
+  // TODO (1543): Come up with a solution for clients to handle potential errors id:1545 gh:1553
   // thrown by an intermediate proxy.
   RETURN_RESULT_OR_FAILURE(isolate, JSReceiver::GetPrototype(isolate, obj));
 }
 
 
 // Patches script source (should be called upon BeforeCompile event).
-// TODO(5530): Remove once uses in debug.js are gone.
+// TODO (5530): Remove once uses in debug.js are gone. id:1255 gh:1263
 RUNTIME_FUNCTION(Runtime_DebugSetScriptSource) {
   HandleScope scope(isolate);
   DCHECK_EQ(2, args.length());
@@ -1485,7 +1485,7 @@ RUNTIME_FUNCTION(Runtime_GetHeapUsage) {
 }
 
 
-// Finds the script object from the script data. NOTE: This operation uses
+// Finds the script object from the script data. NOTE: This operation uses id:1478 gh:1486
 // heap traversal to find the function generated for the source position
 // for the requested break point. For lazily compiled functions several heap
 // traversals might be required rendering this operation as a rather slow
@@ -1514,7 +1514,7 @@ RUNTIME_FUNCTION(Runtime_GetScript) {
   return *Script::GetWrapper(found);
 }
 
-// TODO(5530): Remove once uses in debug.js are gone.
+// TODO (5530): Remove once uses in debug.js are gone. id:1302 gh:1310
 RUNTIME_FUNCTION(Runtime_ScriptLineCount) {
   HandleScope scope(isolate);
   DCHECK_EQ(1, args.length());
@@ -1558,7 +1558,7 @@ int ScriptLinePosition(Handle<Script> script, int line) {
 
 }  // namespace
 
-// TODO(5530): Remove once uses in debug.js are gone.
+// TODO (5530): Remove once uses in debug.js are gone. id:1499 gh:1507
 RUNTIME_FUNCTION(Runtime_ScriptLineStartPosition) {
   HandleScope scope(isolate);
   DCHECK_EQ(2, args.length());
@@ -1571,7 +1571,7 @@ RUNTIME_FUNCTION(Runtime_ScriptLineStartPosition) {
   return Smi::FromInt(ScriptLinePosition(script_handle, line));
 }
 
-// TODO(5530): Remove once uses in debug.js are gone.
+// TODO (5530): Remove once uses in debug.js are gone. id:1546 gh:1554
 RUNTIME_FUNCTION(Runtime_ScriptLineEndPosition) {
   HandleScope scope(isolate);
   DCHECK_EQ(2, args.length());
@@ -1697,7 +1697,7 @@ bool GetScriptById(Isolate* isolate, int needle, Handle<Script>* result) {
 // start position of the source for the function within the full script source.
 // Note that incoming line and column parameters may be undefined, and are
 // assumed to be passed *with* offsets.
-// TODO(5530): Remove once uses in debug.js are gone.
+// TODO (5530): Remove once uses in debug.js are gone. id:1256 gh:1264
 RUNTIME_FUNCTION(Runtime_ScriptLocationFromLine) {
   HandleScope scope(isolate);
   DCHECK_EQ(4, args.length());
@@ -1713,7 +1713,7 @@ RUNTIME_FUNCTION(Runtime_ScriptLocationFromLine) {
                                  offset);
 }
 
-// TODO(5530): Rename once conflicting function has been deleted.
+// TODO (5530): Rename once conflicting function has been deleted. id:1479 gh:1487
 RUNTIME_FUNCTION(Runtime_ScriptLocationFromLine2) {
   HandleScope scope(isolate);
   DCHECK_EQ(4, args.length());
@@ -1728,7 +1728,7 @@ RUNTIME_FUNCTION(Runtime_ScriptLocationFromLine2) {
   return *ScriptLocationFromLine(isolate, script, opt_line, opt_column, offset);
 }
 
-// TODO(5530): Remove once uses in debug.js are gone.
+// TODO (5530): Remove once uses in debug.js are gone. id:1303 gh:1311
 RUNTIME_FUNCTION(Runtime_ScriptPositionInfo) {
   HandleScope scope(isolate);
   DCHECK_EQ(3, args.length());
@@ -1744,7 +1744,7 @@ RUNTIME_FUNCTION(Runtime_ScriptPositionInfo) {
   return *GetJSPositionInfo(script_handle, position, offset_flag, isolate);
 }
 
-// TODO(5530): Rename once conflicting function has been deleted.
+// TODO (5530): Rename once conflicting function has been deleted. id:1500 gh:1508
 RUNTIME_FUNCTION(Runtime_ScriptPositionInfo2) {
   HandleScope scope(isolate);
   DCHECK_EQ(3, args.length());
@@ -1762,7 +1762,7 @@ RUNTIME_FUNCTION(Runtime_ScriptPositionInfo2) {
 
 // Returns the given line as a string, or null if line is out of bounds.
 // The parameter line is expected to include the script's line offset.
-// TODO(5530): Remove once uses in debug.js are gone.
+// TODO (5530): Remove once uses in debug.js are gone. id:1547 gh:1555
 RUNTIME_FUNCTION(Runtime_ScriptSourceLine) {
   HandleScope scope(isolate);
   DCHECK_EQ(2, args.length());

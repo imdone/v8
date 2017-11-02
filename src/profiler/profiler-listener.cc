@@ -93,7 +93,7 @@ void ProfilerListener::CodeCreateEvent(CodeEventListener::LogEventsAndTags tag,
                                          : BytecodeArray::kHeaderSize;
     for (SourcePositionTableIterator it(abstract_code->source_position_table());
          !it.done(); it.Advance()) {
-      // TODO(alph,tebbi) Skipping inlined positions for now, because they might
+      // TODO (alph,tebbi) Skipping inlined positions for now, because they might id:1489 gh:1497
       // refer to a different script.
       if (it.source_position().InliningId() != SourcePosition::kNotInlined)
         continue;

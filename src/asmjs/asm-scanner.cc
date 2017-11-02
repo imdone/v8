@@ -144,7 +144,7 @@ void AsmJsScanner::Next() {
         } else if (IsNumberStart(ch)) {
           ConsumeNumber(ch);
         } else {
-          // TODO(bradnelson): Support unicode (probably via UnicodeCache).
+          // TODO (bradnelson): Support unicode (probably via UnicodeCache). id:136 gh:137
           token_ = kParseError;
         }
         return;
@@ -154,7 +154,7 @@ void AsmJsScanner::Next() {
 
 void AsmJsScanner::Rewind() {
   DCHECK_NE(kUninitialized, preceding_token_);
-  // TODO(bradnelson): Currently rewinding needs to leave in place the
+  // TODO (bradnelson): Currently rewinding needs to leave in place the id:169 gh:170
   // preceding newline state (in case a |0 ends a line).
   // This is weird and stateful, fix me.
   DCHECK(!rewind_);
@@ -280,7 +280,7 @@ void AsmJsScanner::ConsumeNumber(uc32 ch) {
         ch == 'x' ||
         ((ch == '-' || ch == '+') && (number[number.size() - 1] == 'e' ||
                                       number[number.size() - 1] == 'E'))) {
-      // TODO(bradnelson): Test weird cases ending in -.
+      // TODO (bradnelson): Test weird cases ending in -. id:150 gh:151
       if (ch == '.') {
         has_dot = true;
       }
@@ -312,7 +312,7 @@ void AsmJsScanner::ConsumeNumber(uc32 ch) {
     // Check if string to number conversion didn't consume all the characters.
     // This happens if the character filter let through something invalid
     // like: 0123ef for example.
-    // TODO(bradnelson): Check if this happens often enough to be a perf
+    // TODO (bradnelson): Check if this happens often enough to be a perf id:193 gh:194
     // problem.
     if (number[0] == '.') {
       for (size_t k = 1; k < number.size(); ++k) {

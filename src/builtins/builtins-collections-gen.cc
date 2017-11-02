@@ -159,7 +159,7 @@ Node* CollectionsBuiltinsAssembler::AllocateOrderedHashTable() {
              IntPtrLessThanOrEqual(
                  length_intptr, IntPtrConstant(FixedArray::kMaxRegularLength)));
   Heap::RootListIndex map_index = Heap::kOrderedHashTableMapRootIndex;
-  // TODO(gsathya): Directly store correct in AllocateFixedArray,
+  // TODO (gsathya): Directly store correct in AllocateFixedArray, id:262 gh:263
   // instead of overwriting here.
   StoreMapNoWriteBarrier(table, map_index);
 
@@ -272,7 +272,7 @@ TF_BUILTIN(MapConstructor, CollectionsBuiltinsAssembler) {
   GotoIf(Word32Or(IsUndefined(iterable), IsNull(iterable)), &exit);
 
   Label if_notcallable(this);
-  // TODO(gsathya): Add fast path for unmodified maps.
+  // TODO (gsathya): Add fast path for unmodified maps. id:332 gh:333
   Node* const adder = GetProperty(context, var_result.value(),
                                   isolate()->factory()->set_string());
   GotoIf(TaggedIsSmi(adder), &if_notcallable);
@@ -392,7 +392,7 @@ TF_BUILTIN(SetConstructor, CollectionsBuiltinsAssembler) {
   GotoIf(Word32Or(IsUndefined(iterable), IsNull(iterable)), &exit);
 
   Label if_notcallable(this);
-  // TODO(gsathya): Add fast path for unmodified maps.
+  // TODO (gsathya): Add fast path for unmodified maps. id:277 gh:278
   Node* const adder = GetProperty(context, var_result.value(),
                                   isolate()->factory()->add_string());
   GotoIf(TaggedIsSmi(adder), &if_notcallable);
@@ -2074,7 +2074,7 @@ TF_BUILTIN(WeakCollectionSet, WeakCollectionsBuiltinsAssembler) {
     TNode<IntPtrT> number_of_deleted = LoadNumberOfDeleted(table);
     TNode<IntPtrT> number_of_elements = LoadNumberOfElements(table, 1);
 
-    // TODO(pwong): Port HashTable's Rehash() and EnsureCapacity() to CSA.
+    // TODO (pwong): Port HashTable's Rehash() and EnsureCapacity() to CSA. id:290 gh:291
     GotoIf(Word32Or(ShouldRehash(number_of_elements, number_of_deleted),
                     InsufficientCapacityToAdd(capacity, number_of_elements,
                                               number_of_deleted)),

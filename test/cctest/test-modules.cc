@@ -85,7 +85,7 @@ TEST(ModuleInstantiationFailures) {
     CHECK_EQ(Module::kErrored, module->GetStatus());
     Local<Value> exception = module->GetException();
     CHECK(exception->StrictEquals(v8_str("boom")));
-    // TODO(neis): Check object identity.
+    // TODO (neis): Check object identity. id:1624 gh:1632
   }
 
   // Start over again...

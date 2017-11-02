@@ -336,7 +336,7 @@ var Runtime = {
         if (field[1] === '0') {
           // this is [0 x something]. When inside another structure like here, it must be at the end,
           // and it adds no size
-          // XXX this happens in java-nbody for example... assert(index === type.fields.length, 'zero-length in the middle!');
+          // XXX this happens in java-nbody for example... assert(index === type.fields.length, 'zero-length in the middle!'); id:2206 gh:2214
           size = 0;
           if (Types.types[field]) {
             alignSize = Runtime.getAlignSize(null, Types.types[field].alignSize);
@@ -570,7 +570,7 @@ var EXITSTATUS = 0;
 
 var undef = 0;
 // tempInt is used for 32-bit signed values or smaller. tempBigInt is used
-// for 32-bit unsigned values or more than 32 bits. TODO: audit all uses of tempInt
+// for 32-bit unsigned values or more than 32 bits. TODO: audit all uses of tempInt id:1976 gh:1985
 var tempValue, tempInt, tempBigInt, tempInt2, tempBigInt2, tempPair, tempBigIntI, tempBigIntR, tempBigIntS, tempBigIntP, tempBigIntD, tempDouble, tempFloat;
 var tempI64, tempI64b;
 var tempRet0, tempRet1, tempRet2, tempRet3, tempRet4, tempRet5, tempRet6, tempRet7, tempRet8, tempRet9;
@@ -803,7 +803,7 @@ function allocate(slab, types, allocator, ptr) {
 Module['allocate'] = allocate;
 
 function Pointer_stringify(ptr, /* optional */ length) {
-  // TODO: use TextDecoder
+  // TODO: use TextDecoder id:2160 gh:2168
   // Find the length, and check for UTF while doing so
   var hasUtf = false;
   var t;
@@ -1289,7 +1289,7 @@ function reSign(value, bits, ignore, sig) {
                         : Math.pow(2, bits-1);
   if (value >= half && (bits <= 32 || value > half)) { // for huge values, we can hit the precision limit and always get true here. so don't do that
                                                        // but, in general there is no perfect solution here. With 64-bit ints, we get rounding and errors
-                                                       // TODO: In i64 mode 1, resign the two parts separately and safely
+                                                       // TODO: In i64 mode 1, resign the two parts separately and safely id:1950 gh:1958
     value = -2*half + value; // Cannot bitshift half, as it may be at the limit of the bits JS uses in bitshifts
   }
   return value;
@@ -1825,7 +1825,7 @@ function copyTempDouble(ptr) {
           attr.atime = new Date(node.timestamp);
           attr.mtime = new Date(node.timestamp);
           attr.ctime = new Date(node.timestamp);
-          // NOTE: In our implementation, st_blocks = Math.ceil(st_size/st_blksize),
+          // NOTE: In our implementation, st_blocks = Math.ceil(st_size/st_blksize), id:2103 gh:2111
           //       but this is not required by the standard.
           attr.blksize = 4096;
           attr.blocks = Math.ceil(attr.size / attr.blksize);
@@ -2077,7 +2077,7 @@ function copyTempDouble(ptr) {
             // delete file from local
             try {
               if (FS.isDir(entry.mode)) {
-                // TODO recursive delete?
+                // TODO recursive delete? id:2207 gh:2215
                 FS.rmdir(path);
               } else if (FS.isFile(entry.mode)) {
                 FS.unlink(path);
@@ -2363,7 +2363,7 @@ function copyTempDouble(ptr) {
             throw new FS.ErrnoError(ERRNO_CODES[e.code]);
           }
         },read:function (stream, buffer, offset, length, position) {
-          // FIXME this is terrible.
+          // FIXME this is terrible. id:1977 gh:1986
           var nbuffer = new Buffer(length);
           var res;
           try {
@@ -2378,7 +2378,7 @@ function copyTempDouble(ptr) {
           }
           return res;
         },write:function (stream, buffer, offset, length, position) {
-          // FIXME this is terrible.
+          // FIXME this is terrible. id:2161 gh:2169
           var nbuffer = new Buffer(buffer.subarray(offset, offset + length));
           var res;
           try {
@@ -2551,7 +2551,7 @@ function copyTempDouble(ptr) {
 
           FS.FSNode.prototype = {};
 
-          // NOTE we must use Object.defineProperties instead of individual calls to
+          // NOTE we must use Object.defineProperties instead of individual calls to id:1951 gh:1959
           // Object.defineProperty in order to make closure compiler happy
           Object.defineProperties(FS.FSNode.prototype, {
             read: {
@@ -3214,7 +3214,7 @@ function copyTempDouble(ptr) {
         }
         stream.stream_ops.allocate(stream, offset, length);
       },mmap:function (stream, buffer, offset, length, position, prot, flags) {
-        // TODO if PROT is PROT_WRITE, make sure we have write access
+        // TODO if PROT is PROT_WRITE, make sure we have write access id:2104 gh:2112
         if ((stream.flags & 2097155) === 1) {
           throw new FS.ErrnoError(ERRNO_CODES.EACCES);
         }
@@ -3300,7 +3300,7 @@ function copyTempDouble(ptr) {
         FS.mkdir('/dev/shm');
         FS.mkdir('/dev/shm/tmp');
       },createStandardStreams:function () {
-        // TODO deprecate the old functionality of a single
+        // TODO deprecate the old functionality of a single id:2208 gh:2216
         // input / output callback and that utilizes FS.createDevice
         // and instead require a unique set of stream ops
 
@@ -3587,7 +3587,7 @@ function copyTempDouble(ptr) {
                 if (from > to) throw new Error("invalid range (" + from + ", " + to + ") or no bytes requested!");
                 if (to > datalength-1) throw new Error("only " + datalength + " bytes available! programmer error!");
 
-                // TODO: Use mozResponseArrayBuffer, responseStream, etc. if available.
+                // TODO: Use mozResponseArrayBuffer, responseStream, etc. if available. id:1978 gh:1987
                 var xhr = new XMLHttpRequest();
                 xhr.open('GET', url, false);
                 if (datalength !== chunkSize) xhr.setRequestHeader("Range", "bytes=" + from + "-" + to);
@@ -3693,7 +3693,7 @@ function copyTempDouble(ptr) {
         return node;
       },createPreloadedFile:function (parent, name, url, canRead, canWrite, onload, onerror, dontCreateFile, canOwn) {
         Browser.init();
-        // TODO we should allow people to just pass in a complete filename instead
+        // TODO we should allow people to just pass in a complete filename instead id:2162 gh:2170
         // of parent and name being that we just join them anyways
         var fullname = name ? PATH.resolve(PATH.join2(parent, name)) : parent;
         function processData(byteArray) {
@@ -4223,7 +4223,7 @@ function copyTempDouble(ptr) {
             throw new FS.ErrnoError(ERRNO_CODS.EOPNOTSUPP);
           }
 
-          // TODO autobind
+          // TODO autobind id:1952 gh:1960
           // if (!sock.addr && sock.type == 2) {
           // }
 
@@ -4259,7 +4259,7 @@ function copyTempDouble(ptr) {
           sock.server = new WebSocketServer({
             host: host,
             port: sock.sport
-            // TODO support backlog
+            // TODO support backlog id:2105 gh:2113
           });
 
           sock.server.on('connection', function(ws) {
@@ -4302,7 +4302,7 @@ function copyTempDouble(ptr) {
             addr = sock.daddr;
             port = sock.dport;
           } else {
-            // TODO saddr and sport will be set for bind()'d UDP sockets, but what
+            // TODO saddr and sport will be set for bind()'d UDP sockets, but what id:2209 gh:2217
             // should we be returning for TCP sockets that've been connect()'d?
             addr = sock.saddr || 0;
             port = sock.sport || 0;
@@ -4425,7 +4425,7 @@ function copyTempDouble(ptr) {
         ___setErrNo(ERRNO_CODES.EBADF);
         return -1;
       }
-      // TODO honor flags
+      // TODO honor flags id:1979 gh:1981
       return _write(fd, buf, len);
     }
 
@@ -4631,7 +4631,7 @@ function copyTempDouble(ptr) {
             } catch(e) {
               return fail();
             }
-            var url = Browser.URLObject.createObjectURL(b); // XXX we never revoke this!
+            var url = Browser.URLObject.createObjectURL(b); // XXX we never revoke this! id:2163 gh:2171
             var audio = new Audio();
             audio.addEventListener('canplaythrough', function() { finish(audio) }, false); // use addEventListener due to chromium bug 124926
             audio.onerror = function audio_onerror(event) {
@@ -4868,7 +4868,7 @@ function copyTempDouble(ptr) {
           	Browser.mouseY = SDL.mouseY + Browser.mouseMovementY;
           } else {
           	// just add the mouse delta to the current absolut mouse position
-          	// FIXME: ideally this should be clamped against the canvas size and zero
+          	// FIXME: ideally this should be clamped against the canvas size and zero id:1953 gh:1962
           	Browser.mouseX += Browser.mouseMovementX;
           	Browser.mouseY += Browser.mouseMovementY;
           }
@@ -4984,7 +4984,7 @@ function copyTempDouble(ptr) {
         ___setErrNo(ERRNO_CODES.EBADF);
         return -1;
       }
-      // TODO honor flags
+      // TODO honor flags id:2106 gh:2114
       return _read(fd, buf, len);
     }
 
@@ -5081,7 +5081,7 @@ function copyTempDouble(ptr) {
     }function _opendir(dirname) {
       // DIR *opendir(const char *dirname);
       // http://pubs.opengroup.org/onlinepubs/007908799/xsh/opendir.html
-      // NOTE: Calculating absolute path redundantly since we need to associate it
+      // NOTE: Calculating absolute path redundantly since we need to associate it id:2210 gh:2218
       //       with the opened stream.
       var path = Pointer_stringify(dirname);
       if (!path) {
@@ -5148,7 +5148,7 @@ function copyTempDouble(ptr) {
       var textIndex = format;
       var argIndex = 0;
       function getNextArg(type) {
-        // NOTE: Explicitly ignoring type safety. Otherwise this fails:
+        // NOTE: Explicitly ignoring type safety. Otherwise this fails: id:1980 gh:1988
         //       int x = 4; printf("%c\n", (char)x);
         var ret;
         if (type === 'double') {
@@ -5537,8 +5537,8 @@ function copyTempDouble(ptr) {
             }
           }
           textIndex += 2;
-          // TODO: Support a/A (hex float) and m (last error) specifiers.
-          // TODO: Support %1${specifier} for arg selection.
+          // TODO: Support a/A (hex float) and m (last error) specifiers. id:2164 gh:2172
+          // TODO: Support %1${specifier} for arg selection. id:1954 gh:1961
         } else {
           ret.push(curr);
           textIndex += 1;
@@ -5668,7 +5668,7 @@ function copyTempDouble(ptr) {
         ___setErrNo(ERRNO_CODES.EBADF);
         return 0;
       }
-      // TODO Is it supposed to be safe to execute multiple readdirs?
+      // TODO Is it supposed to be safe to execute multiple readdirs? id:2107 gh:2115
       if (!_readdir.entry) _readdir.entry = _malloc(268);
       if (!_readdir.result) _readdir.result = _malloc(4);
       var err = _readdir_r(dirp, _readdir.entry, _readdir.result);
@@ -5731,7 +5731,7 @@ function copyTempDouble(ptr) {
   function _puts(s) {
       // int puts(const char *s);
       // http://pubs.opengroup.org/onlinepubs/000095399/functions/puts.html
-      // NOTE: puts() always writes an extra newline.
+      // NOTE: puts() always writes an extra newline. id:2211 gh:2219
       var stdout = HEAP32[((_stdout)>>2)];
       var ret = _fputs(s, stdout);
       if (ret < 0) {
@@ -5792,7 +5792,7 @@ function copyTempDouble(ptr) {
 
   function _munmap(start, num) {
       if (!_mmap.mappings) _mmap.mappings = {};
-      // TODO: support unmmap'ing parts of allocations
+      // TODO: support unmmap'ing parts of allocations id:1981 gh:1989
       var info = _mmap.mappings[start];
       if (!info) return 0;
       if (num == info.num) {
@@ -5934,7 +5934,7 @@ function copyTempDouble(ptr) {
   Module["_strcpy"] = _strcpy;
 
   function _mmap(start, num, prot, flags, stream, offset) {
-      /* FIXME: Since mmap is normally implemented at the kernel level,
+      /* FIXME: Since mmap is normally implemented at the kernel level, id:2165 gh:2173
        * this implementation simply uses malloc underneath the call to
        * mmap.
        */
@@ -6360,7 +6360,7 @@ function copyTempDouble(ptr) {
   function _stat(path, buf, dontResolveLastLink) {
       // http://pubs.opengroup.org/onlinepubs/7908799/xsh/stat.html
       // int stat(const char *path, struct stat *buf);
-      // NOTE: dontResolveLastLink is a shortcut for lstat(). It should never be
+      // NOTE: dontResolveLastLink is a shortcut for lstat(). It should never be id:1955 gh:1963
       //       used in client code.
       path = typeof path !== 'string' ? Pointer_stringify(path) : path;
       try {
@@ -6436,7 +6436,7 @@ function copyTempDouble(ptr) {
         __scanString.whiteSpace[13] = 1;
       }
       // Supports %x, %4x, %d.%d, %lld, %s, %f, %lf.
-      // TODO: Support all format specifiers.
+      // TODO: Support all format specifiers. id:2256 gh:2264
       format = Pointer_stringify(format);
       var soFar = 0;
       if (format.indexOf('%n') >= 0) {
@@ -7406,7 +7406,7 @@ Runtime.stackSave = function() { return asm['stackSave']() };
 Runtime.stackRestore = function(top) { asm['stackRestore'](top) };
 
 
-// TODO: strip out parts of this we do not need
+// TODO: strip out parts of this we do not need id:2212 gh:2221
 
 //======= begin closure i64 code =======
 
@@ -7473,7 +7473,7 @@ var i64Math = (function() { // Emscripten wrapper
   };
 
 
-  // NOTE: Common constant values ZERO, ONE, NEG_ONE, etc. are defined below the
+  // NOTE: Common constant values ZERO, ONE, NEG_ONE, etc. are defined below the id:1982 gh:1990
   // from* methods on which they depend.
 
 
@@ -7584,7 +7584,7 @@ var i64Math = (function() { // Emscripten wrapper
   };
 
 
-  // NOTE: the compiler should inline these constant values below and then remove
+  // NOTE: the compiler should inline these constant values below and then remove id:2166 gh:2174
   // these variables, so there should be no runtime penalty for these.
 
 
@@ -9166,7 +9166,7 @@ function exit(status) {
   // exit the runtime
   exitRuntime();
 
-  // TODO We should handle this differently based on environment.
+  // TODO We should handle this differently based on environment. id:1956 gh:1964
   // In the browser, the best we can do is throw an exception
   // to halt execution, but in node we could process.exit and
   // I'd imagine SM shell would have something equivalent.

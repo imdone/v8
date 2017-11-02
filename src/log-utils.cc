@@ -149,7 +149,7 @@ void Log::MessageBuilder::AppendString(const char* string) {
 void Log::MessageBuilder::AppendStringPart(String* str, int len) {
   DCHECK_LE(len, str->length());
   DisallowHeapAllocation no_gc;  // Ensure string stay valid.
-  // TODO(cbruni): unify escaping.
+  // TODO (cbruni): unify escaping. id:1028 gh:1036
   for (int i = 0; i < len; i++) {
     uc32 c = str->Get(i);
     if (c <= 0xff) {

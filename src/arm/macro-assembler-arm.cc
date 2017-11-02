@@ -565,7 +565,7 @@ void TurboAssembler::RestoreRegisters(RegList registers) {
 void TurboAssembler::CallRecordWriteStub(
     Register object, Register address,
     RememberedSetAction remembered_set_action, SaveFPRegsMode fp_mode) {
-  // TODO(albertnetymk): For now we ignore remembered_set_action and fp_mode,
+  // TODO (albertnetymk): For now we ignore remembered_set_action and fp_mode, id:54 gh:55
   // i.e. always emit remember set and save FP registers in RecordWriteStub. If
   // large performance regression is observed, we should use these values to
   // avoid unnecessary work.
@@ -955,7 +955,7 @@ void TurboAssembler::VmovExtended(int dst_code, const MemOperand& src) {
   if (dst_code < SwVfpRegister::kNumRegisters) {
     vldr(SwVfpRegister::from_code(dst_code), src);
   } else {
-    // TODO(bbudge) If Neon supported, use load single lane form of vld1.
+    // TODO (bbudge) If Neon supported, use load single lane form of vld1. id:57 gh:58
     int dst_s_code = kScratchDoubleReg.low().code() + (dst_code & 1);
     vmov(kScratchDoubleReg, DwVfpRegister::from_code(dst_code / 2));
     vldr(SwVfpRegister::from_code(dst_s_code), src);
@@ -967,7 +967,7 @@ void TurboAssembler::VmovExtended(const MemOperand& dst, int src_code) {
   if (src_code < SwVfpRegister::kNumRegisters) {
     vstr(SwVfpRegister::from_code(src_code), dst);
   } else {
-    // TODO(bbudge) If Neon supported, use store single lane form of vst1.
+    // TODO (bbudge) If Neon supported, use store single lane form of vst1. id:39 gh:40
     int src_s_code = kScratchDoubleReg.low().code() + (src_code & 1);
     vmov(kScratchDoubleReg, DwVfpRegister::from_code(src_code / 2));
     vstr(SwVfpRegister::from_code(src_s_code), dst);
@@ -1747,7 +1747,7 @@ void TurboAssembler::TruncateDoubleToIDelayed(Zone* zone, Register result,
 void TurboAssembler::CallRuntimeDelayed(Zone* zone, Runtime::FunctionId fid,
                                         SaveFPRegsMode save_doubles) {
   const Runtime::Function* f = Runtime::FunctionForId(fid);
-  // TODO(1236192): Most runtime routines don't need the number of
+  // TODO (1236192): Most runtime routines don't need the number of id:77 gh:74
   // arguments passed in because it is constant. At some point we
   // should remove this need and make the runtime routine entry code
   // smarter.
@@ -1766,7 +1766,7 @@ void MacroAssembler::CallRuntime(const Runtime::Function* f,
   // expectation.
   CHECK(f->nargs < 0 || f->nargs == num_arguments);
 
-  // TODO(1236192): Most runtime routines don't need the number of
+  // TODO (1236192): Most runtime routines don't need the number of id:117 gh:118
   // arguments passed in because it is constant. At some point we
   // should remove this need and make the runtime routine entry code
   // smarter.
@@ -1780,7 +1780,7 @@ void MacroAssembler::TailCallRuntime(Runtime::FunctionId fid) {
   const Runtime::Function* function = Runtime::FunctionForId(fid);
   DCHECK_EQ(1, function->result_size);
   if (function->nargs >= 0) {
-    // TODO(1236192): Most runtime routines don't need the number of
+    // TODO (1236192): Most runtime routines don't need the number of id:55 gh:56
     // arguments passed in because it is constant. At some point we
     // should remove this need and make the runtime routine entry code
     // smarter.

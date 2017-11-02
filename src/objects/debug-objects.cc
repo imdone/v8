@@ -188,7 +188,7 @@ bool DebugInfo::ClearCoverageInfo() {
 
 namespace {
 bool IsEqual(Object* break_point1, Object* break_point2) {
-  // TODO(kozyatinskiy): remove non-BreakPoint logic once the JS debug API has
+  // TODO (kozyatinskiy): remove non-BreakPoint logic once the JS debug API has id:1438 gh:1446
   // been removed.
   if (break_point1->IsBreakPoint() != break_point2->IsBreakPoint())
     return false;

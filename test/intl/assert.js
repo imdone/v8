@@ -99,7 +99,7 @@ function deepEquals(a, b) {
  * Throws an exception containing the user_message (if any) and the values.
  */
 function fail(expected, found, user_message = '') {
-  // TODO(cira): Replace String with PrettyPrint for objects and arrays.
+  // TODO (cira): Replace String with PrettyPrint for objects and arrays. id:1637 gh:1645
   var message = 'Failure' + (user_message ? ' (' + user_message + ')' : '') +
       ': expected <' + String(expected) + '>, found <' + String(found) + '>.';
   throw new Error(message);

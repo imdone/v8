@@ -1033,7 +1033,7 @@ Node* ObjectBuiltinsAssembler::GetAccessorOrUndefined(Node* accessor,
   GotoIf(IsNull(accessor), &bind_undefined);
   result.Bind(accessor);
   Node* map = LoadMap(accessor);
-  // TODO(ishell): probe template instantiations cache.
+  // TODO (ishell): probe template instantiations cache. id:294 gh:295
   GotoIf(IsFunctionTemplateInfoMap(map), if_bailout);
   Goto(&return_result);
 

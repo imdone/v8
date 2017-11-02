@@ -203,7 +203,7 @@ class V8_EXPORT_PRIVATE ParseInfo {
   FunctionKind function_kind() const;
 
   //--------------------------------------------------------------------------
-  // TODO(titzer): these should not be part of ParseInfo.
+  // TODO (titzer): these should not be part of ParseInfo. id:1186 gh:1194
   //--------------------------------------------------------------------------
   Handle<Script> script() const { return script_; }
   MaybeHandle<ScopeInfo> maybe_outer_scope_info() const {
@@ -272,7 +272,7 @@ class V8_EXPORT_PRIVATE ParseInfo {
   int function_literal_id_;
   int max_function_literal_id_;
 
-  // TODO(titzer): Move handles out of ParseInfo.
+  // TODO (titzer): Move handles out of ParseInfo. id:1458 gh:1466
   Handle<Script> script_;
   MaybeHandle<ScopeInfo> maybe_outer_scope_info_;
 

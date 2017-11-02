@@ -1122,7 +1122,7 @@ void RegExpMacroAssemblerARM64::LoadCurrentCharacter(int cp_offset,
                                                      Label* on_end_of_input,
                                                      bool check_bounds,
                                                      int characters) {
-  // TODO(pielan): Make sure long strings are caught before this, and not
+  // TODO (pielan): Make sure long strings are caught before this, and not id:1470 gh:1478
   // just asserted in debug mode.
   // Be sane! (And ensure that an int32_t can be used to index the string)
   DCHECK(cp_offset < (1<<30));
@@ -1612,7 +1612,7 @@ void RegExpMacroAssemblerARM64::LoadCurrentCharacterUnchecked(int cp_offset,
 
   // ARMv8 supports unaligned accesses but V8 or the kernel can decide to
   // disable it.
-  // TODO(pielan): See whether or not we should disable unaligned accesses.
+  // TODO (pielan): See whether or not we should disable unaligned accesses. id:1170 gh:1178
   if (!CanReadUnaligned()) {
     DCHECK_EQ(1, characters);
   }

@@ -65,7 +65,7 @@ class Daemon(object):
     si = file(self.stdin, 'r')
     so = file(self.stdout, 'a+')
     se = file(self.stderr, 'a+', 0)
-    # TODO: (debug) re-enable this!
+    # TODO: (debug) re-enable this! id:2352 gh:2360
     #os.dup2(si.fileno(), sys.stdin.fileno())
     #os.dup2(so.fileno(), sys.stdout.fileno())
     #os.dup2(se.fileno(), sys.stderr.fileno())

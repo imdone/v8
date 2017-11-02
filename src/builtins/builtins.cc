@@ -23,7 +23,7 @@ BUILTIN_LIST_C(FORWARD_DECLARE)
 
 namespace {
 
-// TODO(jgruber): Pack in CallDescriptors::Key.
+// TODO (jgruber): Pack in CallDescriptors::Key. id:362 gh:363
 struct BuiltinMetadata {
   const char* name;
   Builtins::Kind kind;
@@ -238,7 +238,7 @@ bool Builtins::IsLazy(int index) {
   // * To avoid conflicts in SharedFunctionInfo::function_data (Illegal,
   //   HandleApiCall, interpreter entry trampolines).
   // * Frequent use makes lazy loading unnecessary (CompileLazy).
-  // TODO(wasm): Remove wasm builtins once immovability is no longer required.
+  // TODO (wasm): Remove wasm builtins once immovability is no longer required. id:346 gh:347
   switch (index) {
     case kAbort:  // Required by wasm.
     case kArrayForEachLoopEagerDeoptContinuation:  // https://crbug.com/v8/6786.
@@ -275,7 +275,7 @@ bool Builtins::IsLazy(int index) {
     case kWasmStackGuard:                     // Required by wasm.
       return false;
     default:
-      // TODO(6624): Extend to other kinds.
+      // TODO (6624): Extend to other kinds. id:391 gh:392
       return KindOf(index) == TFJ;
   }
   UNREACHABLE();
@@ -327,7 +327,7 @@ bool Builtins::AllowDynamicFunction(Isolate* isolate, Handle<JSFunction> target,
   Handle<Context> responsible_context =
       impl->MicrotaskContextIsLastEnteredContext() ? impl->MicrotaskContext()
                                                    : impl->LastEnteredContext();
-  // TODO(jochen): Remove this.
+  // TODO (jochen): Remove this. id:418 gh:419
   if (responsible_context.is_null()) {
     return true;
   }

@@ -29,7 +29,7 @@
 
 function smi_field() {
   // Assign twice to make the field non-constant.
-  // TODO(ishell): update test once constant field tracking is done.
+  // TODO (ishell): update test once constant field tracking is done. id:2357 gh:2365
   var o = {smi: 1};
   o.smi = 0;
   return o;

@@ -140,7 +140,7 @@ inline MemOperand UntagSmiFieldMemOperand(Register rm, int offset) {
 
 // Generate a MemOperand for storing arguments 5..N on the stack
 // when calling CallCFunction().
-// TODO(plind): Currently ONLY used for O32. Should be fixed for
+// TODO (plind): Currently ONLY used for O32. Should be fixed for id:1037 gh:1045
 //              n64, and used in RegExp code, and other places
 //              with more than 8 arguments.
 inline MemOperand CFunctionArgumentOperand(int index) {

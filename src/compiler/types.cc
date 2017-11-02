@@ -14,7 +14,7 @@ namespace v8 {
 namespace internal {
 namespace compiler {
 
-// NOTE: If code is marked as being a "shortcut", this means that removing
+// NOTE: If code is marked as being a "shortcut", this means that removing id:774 gh:772
 // the code won't affect the semantics of the surrounding function definition.
 
 // static
@@ -217,7 +217,7 @@ Type::bitset BitsetType::Lub(i::Map* map) {
     case JS_ASYNC_GENERATOR_OBJECT_TYPE:
     case JS_MODULE_NAMESPACE_TYPE:
     case JS_ARRAY_BUFFER_TYPE:
-    case JS_REGEXP_TYPE:  // TODO(rossberg): there should be a RegExp type.
+    case JS_REGEXP_TYPE:  // TODO (rossberg): there should be a RegExp type. id:743 gh:744
     case JS_TYPED_ARRAY_TYPE:
     case JS_DATA_VIEW_TYPE:
     case JS_SET_TYPE:
@@ -777,7 +777,7 @@ Type* Type::NormalizeRangeAndBitset(Type* range, bitset* bits, Zone* zone) {
   double range_max = range->Max();
 
   // Remove the number bits from the bitset, they would just confuse us now.
-  // NOTE: bits contains OtherNumber iff bits contains PlainNumber, in which
+  // NOTE: bits contains OtherNumber iff bits contains PlainNumber, in which id:814 gh:819
   // case we already returned after the subtype check above.
   *bits &= ~number_bits;
 

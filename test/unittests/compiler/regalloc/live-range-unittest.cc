@@ -5,7 +5,7 @@
 #include "test/unittests/compiler/live-range-builder.h"
 #include "test/unittests/test-utils.h"
 
-// TODO(mtrofin): would we want to centralize this definition?
+// TODO (mtrofin): would we want to centralize this definition? id:2526 gh:2534
 #ifdef DEBUG
 #define V8_ASSERT_DEBUG_DEATH(statement, regex) \
   ASSERT_DEATH_IF_SUPPORTED(statement, regex)

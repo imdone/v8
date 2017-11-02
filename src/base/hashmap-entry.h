@@ -45,7 +45,7 @@ struct TemplateHashMapEntry<Key*, Value> {
   void clear() { key = nullptr; }
 };
 
-// TODO(leszeks): There could be a specialisation for void values (e.g. for
+// TODO (leszeks): There could be a specialisation for void values (e.g. for id:182 gh:183
 // sets), which omits the value field
 
 }  // namespace base

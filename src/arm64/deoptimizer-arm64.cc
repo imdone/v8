@@ -19,7 +19,7 @@ namespace internal {
 void Deoptimizer::TableEntryGenerator::Generate() {
   GeneratePrologue();
 
-  // TODO(all): This code needs to be revisited. We probably only need to save
+  // TODO (all): This code needs to be revisited. We probably only need to save id:122 gh:123
   // caller-saved registers here. Callee-saved registers can be stored directly
   // in the input frame.
 
@@ -201,12 +201,12 @@ void Deoptimizer::TableEntryGenerator::Generate() {
     __ Ldr(reg, MemOperand(x1, src_offset));
   }
 
-  // TODO(all): ARM copies a lot (if not all) of the last output frame onto the
+  // TODO (all): ARM copies a lot (if not all) of the last output frame onto the id:109 gh:110
   // stack, then pops it all into registers. Here, we try to load it directly
   // into the relevant registers. Is this correct? If so, we should improve the
   // ARM code.
 
-  // TODO(all): This code needs to be revisited, We probably don't need to
+  // TODO (all): This code needs to be revisited, We probably don't need to id:63 gh:64
   // restore all the registers as fullcodegen does not keep live values in
   // registers (note that at least fp must be restored though).
 
@@ -224,7 +224,7 @@ void Deoptimizer::TableEntryGenerator::Generate() {
   saved_registers.Remove(continuation);
 
   while (!saved_registers.IsEmpty()) {
-    // TODO(all): Look for opportunities to optimize this by using ldp.
+    // TODO (all): Look for opportunities to optimize this by using ldp. id:96 gh:97
     CPURegister current_reg = saved_registers.PopLowestIndex();
     int offset = (current_reg.code() * kPointerSize) +
         FrameDescription::registers_offset();

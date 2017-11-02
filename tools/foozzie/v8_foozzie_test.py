@@ -16,7 +16,7 @@ TEST_DATA = os.path.join(BASE_DIR, 'testdata')
 
 class UnitTest(unittest.TestCase):
   def testDiff(self):
-    # TODO(machenbach): Mock out suppression configuration.
+    # TODO (machenbach): Mock out suppression configuration. id:2335 gh:2343
     suppress = v8_suppressions.get_suppression(
         'x64', 'ignition', 'x64', 'ignition_turbo')
     one = ''

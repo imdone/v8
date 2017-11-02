@@ -485,7 +485,7 @@ Condition FlagsConditionToCondition(FlagsCondition condition) {
 
 #define ASSEMBLE_IEEE754_BINOP(name)                                           \
   do {                                                                         \
-    /* TODO(bmeurer): We should really get rid of this special instruction, */ \
+    /* TODO (bmeurer): We should really get rid of this special instruction,  id:464 gh:465*/ \
     /* and generate a CallAddress instruction instead. */                      \
     FrameScope scope(tasm(), StackFrame::MANUAL);                              \
     __ PrepareCallCFunction(0, 2);                                             \
@@ -500,7 +500,7 @@ Condition FlagsConditionToCondition(FlagsCondition condition) {
 
 #define ASSEMBLE_IEEE754_UNOP(name)                                            \
   do {                                                                         \
-    /* TODO(bmeurer): We should really get rid of this special instruction, */ \
+    /* TODO (bmeurer): We should really get rid of this special instruction,  id:380 gh:381*/ \
     /* and generate a CallAddress instruction instead. */                      \
     FrameScope scope(tasm(), StackFrame::MANUAL);                              \
     __ PrepareCallCFunction(0, 1);                                             \
@@ -658,7 +658,7 @@ void CodeGenerator::AssembleTailCallBeforeGap(Instruction* instr,
       DCHECK(source.IsRegister());
       LocationOperand source_location(LocationOperand::cast(source));
       pending_pushes.push_back(source_location.GetRegister());
-      // TODO(arm): We can push more than 3 registers at once. Add support in
+      // TODO (arm): We can push more than 3 registers at once. Add support in id:480 gh:481
       // the macro-assembler for pushing a list of registers.
       if (pending_pushes.size() == 3) {
         FlushPendingPushRegisters(tasm(), frame_access_state(),
@@ -1337,7 +1337,7 @@ CodeGenerator::CodeGenResult CodeGenerator::AssembleArchInstruction(
       DCHECK_EQ(LeaveCC, i.OutputSBit());
       break;
     case kArmVmodF64: {
-      // TODO(bmeurer): We should really get rid of this special instruction,
+      // TODO (bmeurer): We should really get rid of this special instruction, id:409 gh:410
       // and generate a CallAddress instruction instead.
       FrameScope scope(tasm(), StackFrame::MANUAL);
       __ PrepareCallCFunction(0, 2);
@@ -3013,7 +3013,7 @@ void CodeGenerator::AssembleMove(InstructionOperand* source,
           break;
         }
         case Constant::kRpoNumber:
-          UNREACHABLE();  // TODO(dcarney): loading RPO constants on arm.
+          UNREACHABLE();  // TODO (dcarney): loading RPO constants on arm. id:436 gh:437
           break;
       }
       if (destination->IsStackSlot()) __ str(dst, g.ToMemOperand(destination));

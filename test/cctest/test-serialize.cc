@@ -60,7 +60,7 @@ namespace internal {
 void DisableLazyDeserialization() {
   // UNINITIALIZED tests do not set up the isolate sufficiently for lazy
   // deserialization to work.
-  // TODO(jgruber): Fix this. It may just be enough to set the snapshot_blob.
+  // TODO (jgruber): Fix this. It may just be enough to set the snapshot_blob. id:1926 gh:1929
   FLAG_lazy_deserialization = false;
 }
 

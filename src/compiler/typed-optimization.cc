@@ -33,7 +33,7 @@ Reduction TypedOptimization::Reduce(Node* node) {
   // result value and can simply replace the node if it's eliminable.
   if (!NodeProperties::IsConstant(node) && NodeProperties::IsTyped(node) &&
       node->op()->HasProperty(Operator::kEliminatable)) {
-    // TODO(v8:5303): We must not eliminate FinishRegion here. This special
+    // TODO (v8:5303): We must not eliminate FinishRegion here. This special id:812 gh:821
     // case can be removed once we have separate operators for value and
     // effect regions.
     if (node->opcode() == IrOpcode::kFinishRegion) return NoChange();
@@ -230,7 +230,7 @@ Reduction TypedOptimization::ReduceCheckEqualsInternalizedString(Node* node) {
   Type* const val_type = NodeProperties::GetType(val);
   Node* const effect = NodeProperties::GetEffectInput(node);
   if (val_type->Is(exp_type)) return Replace(effect);
-  // TODO(turbofan): Should we also try to optimize the
+  // TODO (turbofan): Should we also try to optimize the id:834 gh:842
   // non-internalized String case for {val} here?
   return NoChange();
 }

@@ -2262,7 +2262,7 @@ TEST(AllocationSitesAreVisible) {
   const v8::HeapGraphNode* vector_cell =
       GetProperty(env->GetIsolate(), fun_code, v8::HeapGraphEdge::kInternal,
                   "feedback_vector_cell");
-  // TODO(mvstanton): I'm not sure if this is the best way to expose
+  // TODO (mvstanton): I'm not sure if this is the best way to expose id:1653 gh:1661
   // literals. Is it too much to expose the Cell?
   CHECK(vector_cell);
   const v8::HeapGraphNode* vector = GetProperty(

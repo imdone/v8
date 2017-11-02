@@ -281,7 +281,7 @@ void ByteArray::ByteArrayVerify() {
 
 
 void BytecodeArray::BytecodeArrayVerify() {
-  // TODO(oth): Walk bytecodes and immediate values to validate sanity.
+  // TODO (oth): Walk bytecodes and immediate values to validate sanity. id:1405 gh:1413
   // - All bytecodes are known and well formed.
   // - Jumps must go to new instructions starts.
   // - No Illegal bytecodes.
@@ -940,7 +940,7 @@ void JSSet::JSSetVerify() {
   JSObjectVerify();
   VerifyHeapPointer(table());
   CHECK(table()->IsOrderedHashTable() || table()->IsUndefined(GetIsolate()));
-  // TODO(arv): Verify OrderedHashTable too.
+  // TODO (arv): Verify OrderedHashTable too. id:1063 gh:1071
 }
 
 
@@ -949,7 +949,7 @@ void JSMap::JSMapVerify() {
   JSObjectVerify();
   VerifyHeapPointer(table());
   CHECK(table()->IsOrderedHashTable() || table()->IsUndefined(GetIsolate()));
-  // TODO(arv): Verify OrderedHashTable too.
+  // TODO (arv): Verify OrderedHashTable too. id:1325 gh:1333
 }
 
 
@@ -1223,7 +1223,7 @@ void BigInt::BigIntVerify() {
   CHECK(IsBigInt());
   CHECK_GE(length(), 0);
   CHECK_IMPLIES(is_zero(), !sign());  // There is no -0n.
-  // TODO(neis): Somewhere check that MSD is non-zero. Doesn't hold during some
+  // TODO (neis): Somewhere check that MSD is non-zero. Doesn't hold during some id:1425 gh:1433
   // operations that allocate which is why we can't test it here.
 }
 

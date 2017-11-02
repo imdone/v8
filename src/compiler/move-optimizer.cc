@@ -397,7 +397,7 @@ void MoveOptimizer::OptimizeMerge(InstructionBlock* block) {
       if (!op->IsConstant() && !op->IsImmediate()) return;
     }
   }
-  // TODO(dcarney): pass a ZoneStats down for this?
+  // TODO (dcarney): pass a ZoneStats down for this? id:597 gh:598
   MoveMap move_map(local_zone());
   size_t correct_counts = 0;
   // Accumulate set of shared moves.

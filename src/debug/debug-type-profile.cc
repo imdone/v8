@@ -34,7 +34,7 @@ std::unique_ptr<TypeProfile> TypeProfile::Collect(Isolate* isolate) {
     TypeProfileScript type_profile_script(script_handle);
     std::vector<TypeProfileEntry>* entries = &type_profile_script.entries;
 
-    // TODO(franzih): Sort the vectors by script first instead of iterating
+    // TODO (franzih): Sort the vectors by script first instead of iterating id:1081 gh:1089
     // the list multiple times.
     for (int i = 0; i < list->Length(); i++) {
       FeedbackVector* vector = FeedbackVector::cast(list->Get(i));

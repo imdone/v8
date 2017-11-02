@@ -312,7 +312,7 @@ bool Debug::Load() {
   // Create the debugger context.
   HandleScope scope(isolate_);
   ExtensionConfiguration no_extensions;
-  // TODO(yangguo): we rely on the fact that first context snapshot is usable
+  // TODO (yangguo): we rely on the fact that first context snapshot is usable id:893 gh:901
   //                as debug context. This dependency is gone once we remove
   //                debug context completely.
   static const int kFirstContextSnapshotIndex = 0;
@@ -506,7 +506,7 @@ bool Debug::CheckBreakPoint(Handle<Object> break_point_object) {
   Factory* factory = isolate_->factory();
   HandleScope scope(isolate_);
 
-  // TODO(kozyatinskiy): replace this if by DCHEK once the JS debug API has been
+  // TODO (kozyatinskiy): replace this if by DCHEK once the JS debug API has been id:882 gh:890
   // removed.
   if (break_point_object->IsBreakPoint()) {
     Handle<BreakPoint> break_point =
@@ -938,7 +938,7 @@ void Debug::PrepareStep(StepAction step_action) {
       // and deoptimize every frame along the way.
       bool in_current_frame = true;
       for (; !frames_it.done(); frames_it.Advance()) {
-        // TODO(clemensh): Implement stepping out from JS to wasm.
+        // TODO (clemensh): Implement stepping out from JS to wasm. id:923 gh:931
         if (frames_it.frame()->is_wasm()) continue;
         JavaScriptFrame* frame = JavaScriptFrame::cast(frames_it.frame());
         if (last_step_action() == StepIn) {
@@ -968,7 +968,7 @@ void Debug::PrepareStep(StepAction step_action) {
       thread_local_.target_frame_count_ = current_frame_count;
     // Fall through.
     case StepIn:
-      // TODO(clemensh): Implement stepping from JS into wasm.
+      // TODO (clemensh): Implement stepping from JS into wasm. id:963 gh:971
       FloodWithOneShot(shared);
       break;
   }
@@ -1595,7 +1595,7 @@ bool Debug::IsFrameBlackboxed(JavaScriptFrame* frame) {
 
 void Debug::OnException(Handle<Object> exception, Handle<Object> promise) {
   // We cannot generate debug events when JS execution is disallowed.
-  // TODO(5530): Reenable debug events within DisallowJSScopes once relevant
+  // TODO (5530): Reenable debug events within DisallowJSScopes once relevant id:1082 gh:1090
   // code (MakeExceptionEvent and ProcessDebugEvent) have been moved to C++.
   if (!AllowJavascriptExecution::IsAllowed(isolate_)) return;
 
@@ -1724,7 +1724,7 @@ namespace {
 // If this isn't a case of async function, we return false, otherwise
 // we set the correct id and return true.
 //
-// TODO(littledan): Improve this case.
+// TODO (littledan): Improve this case. id:894 gh:902
 int GetReferenceAsyncTaskId(Isolate* isolate, Handle<JSPromise> promise) {
   Handle<Symbol> handled_by_symbol =
       isolate->factory()->promise_handled_by_symbol();
@@ -2015,7 +2015,7 @@ void Debug::HandleDebugBreak(IgnoreBreakMode ignore_break_mode) {
         // statement. To achieve this goal we need to deoptimize current
         // function and don't clear requested DebugBreak even if it's blackboxed
         // to be able to break on not blackboxed function call.
-        // TODO(yangguo): introduce break_on_function_entry since current
+        // TODO (yangguo): introduce break_on_function_entry since current id:883 gh:891
         // implementation is slow.
         if (isolate_->stack_guard()->CheckDebugBreak()) {
           Deoptimizer::DeoptimizeFunction(*function);

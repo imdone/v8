@@ -501,7 +501,7 @@ bool TurboAssembler::AllowThisStubCall(CodeStub* stub) {
 void TurboAssembler::CallRuntimeDelayed(Zone* zone, Runtime::FunctionId fid,
                                         SaveFPRegsMode save_doubles) {
   const Runtime::Function* f = Runtime::FunctionForId(fid);
-  // TODO(1236192): Most runtime routines don't need the number of
+  // TODO (1236192): Most runtime routines don't need the number of id:1369 gh:1377
   // arguments passed in because it is constant. At some point we
   // should remove this need and make the runtime routine entry code
   // smarter.
@@ -518,7 +518,7 @@ void MacroAssembler::CallRuntime(const Runtime::Function* f,
   // expectation.
   CHECK(f->nargs < 0 || f->nargs == num_arguments);
 
-  // TODO(1236192): Most runtime routines don't need the number of
+  // TODO (1236192): Most runtime routines don't need the number of id:1758 gh:1766
   // arguments passed in because it is constant. At some point we
   // should remove this need and make the runtime routine entry code
   // smarter.
@@ -1669,7 +1669,7 @@ void MacroAssembler::Jump(Address destination, RelocInfo::Mode rmode) {
 
 
 void MacroAssembler::Jump(Handle<Code> code_object, RelocInfo::Mode rmode) {
-  // TODO(X64): Inline this
+  // TODO (X64): Inline this id:1404 gh:1412
   jmp(code_object, rmode);
 }
 
@@ -2262,7 +2262,7 @@ void TurboAssembler::PrepareForTailCall(const ParameterCount& callee_args_count,
     leap(count_reg, Operand(callee_args_count.reg(), 2));
   } else {
     movp(count_reg, Immediate(callee_args_count.immediate() + 2));
-    // TODO(ishell): Unroll copying loop for small immediate values.
+    // TODO (ishell): Unroll copying loop for small immediate values. id:1672 gh:1680
   }
 
   // Now copy callee arguments to the caller frame going backwards to avoid

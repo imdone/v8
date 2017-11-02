@@ -288,7 +288,7 @@ Object* DoFunctionBind(Isolate* isolate, BuiltinArguments args) {
 // ES6 section 19.2.3.2 Function.prototype.bind ( thisArg, ...args )
 BUILTIN(FunctionPrototypeBind) { return DoFunctionBind(isolate, args); }
 
-// TODO(verwaest): This is a temporary helper until the FastFunctionBind stub
+// TODO (verwaest): This is a temporary helper until the FastFunctionBind stub id:292 gh:293
 // can tailcall to the builtin directly.
 RUNTIME_FUNCTION(Runtime_FunctionBind) {
   DCHECK_EQ(2, args.length());

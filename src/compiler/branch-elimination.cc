@@ -107,7 +107,7 @@ Reduction BranchElimination::ReduceDeoptimizeConditional(Node* node) {
     } else {
       control = graph()->NewNode(common()->Deoptimize(p.kind(), p.reason()),
                                  frame_state, effect, control);
-      // TODO(bmeurer): This should be on the AdvancedReducer somehow.
+      // TODO (bmeurer): This should be on the AdvancedReducer somehow. id:554 gh:555
       NodeProperties::MergeControlToEnd(graph(), common(), control);
       Revisit(graph()->end());
     }

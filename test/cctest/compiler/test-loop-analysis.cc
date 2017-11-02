@@ -147,7 +147,7 @@ class LoopFinderTester : HandleAndZoneScope {
     }
 
     CHECK_EQ(body_count, static_cast<int>(loop->BodySize()));
-    // TODO(turbofan): O(n^2) set equivalence in this test.
+    // TODO (turbofan): O(n^2) set equivalence in this test. id:1815 gh:1823
     for (int i = 0; i < body_count; i++) {
       // Each body node should be contained in the loop.
       CHECK(tree->Contains(loop, body[i]));

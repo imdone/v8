@@ -20,7 +20,7 @@ namespace base {
 // The resulting stream of pseudo-random numbers has a period length of 2^128-1.
 // See Marsaglia: http://www.jstatsoft.org/v08/i14/paper
 // And Vigna: http://vigna.di.unimi.it/ftp/papers/xorshiftplus.pdf
-// NOTE: Any changes to the algorithm must be tested against TestU01.
+// NOTE: Any changes to the algorithm must be tested against TestU01. id:254 gh:255
 //       Please find instructions for this in the internal repository.
 
 // If two instances of RandomNumberGenerator are created with the same seed, and

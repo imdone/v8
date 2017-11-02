@@ -70,7 +70,7 @@ class ZoneChunkList : public ZoneObject {
   // Very memory-inefficient. Do only use sparsely! If you have many items to
   // add in front, consider using 'push_front_many'.
   void push_front(const T& item);
-  // TODO(heimbuef): Add 'push_front_many'.
+  // TODO (heimbuef): Add 'push_front_many'. id:1526 gh:1534
 
   // Cuts the last list elements so at most 'limit' many remain. Does not
   // free the actual memory, since it is zone allocated.
@@ -80,7 +80,7 @@ class ZoneChunkList : public ZoneObject {
   // *not* check bounds.
   ForwardZoneChunkListIterator<T> Find(const size_t index);
   ForwardZoneChunkListIterator<const T> Find(const size_t index) const;
-  // TODO(heimbuef): Add 'rFind', seeking from the end and returning a
+  // TODO (heimbuef): Add 'rFind', seeking from the end and returning a id:1673 gh:1681
   // reverse iterator.
 
   void CopyTo(T* ptr);

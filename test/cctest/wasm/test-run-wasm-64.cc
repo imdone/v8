@@ -924,7 +924,7 @@ WASM_EXEC_TEST(CallI64Parameter) {
 }
 
 WASM_EXEC_TEST(CallI64Return) {
-  ValueType return_types[3];  // TODO(rossberg): support more in the future
+  ValueType return_types[3];  // TODO (rossberg): support more in the future id:1658 gh:1666
   for (int i = 0; i < 3; i++) return_types[i] = kWasmI64;
   return_types[1] = kWasmI32;
   FunctionSig sig(2, 1, return_types);
@@ -1514,7 +1514,7 @@ WASM_EXEC_TEST(I64Rol) {
 }
 
 WASM_EXEC_TEST(StoreMem_offset_oob_i64) {
-  // TODO(eholk): Fix this test for the trap handler.
+  // TODO (eholk): Fix this test for the trap handler. id:1885 gh:1894
   if (trap_handler::UseTrapHandler()) return;
   static const MachineType machineTypes[] = {
       MachineType::Int8(),   MachineType::Uint8(),  MachineType::Int16(),

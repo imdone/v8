@@ -207,7 +207,7 @@ PredictableCodeSizeScope::PredictableCodeSizeScope(AssemblerBase* assembler,
 }
 
 PredictableCodeSizeScope::~PredictableCodeSizeScope() {
-  // TODO(svenpanne) Remove the 'if' when everything works.
+  // TODO (svenpanne) Remove the 'if' when everything works. id:170 gh:171
   if (expected_size_ >= 0) {
     CHECK_EQ(expected_size_, assembler_->pc_offset() - start_offset_);
   }

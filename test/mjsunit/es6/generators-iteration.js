@@ -340,7 +340,7 @@ TestGenerator(
     "foo",
     [undefined, undefined]);
 
-// TODO(wingo): We should use TestGenerator for these, except that
+// TODO (wingo): We should use TestGenerator for these, except that id:1987 gh:1995
 // currently yield* will unconditionally propagate a throw() to the
 // delegate iterator, which fails for these iterators that don't have
 // throw().  See http://code.google.com/p/v8/issues/detail?id=3484.

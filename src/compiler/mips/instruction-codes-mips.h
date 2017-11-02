@@ -290,7 +290,7 @@ namespace compiler {
 // I = immediate (handle, external, int32)
 // MRI = [register + immediate]
 // MRR = [register + register]
-// TODO(plind): Add the new r6 address modes.
+// TODO (plind): Add the new r6 address modes. id:718 gh:719
 #define TARGET_ADDRESSING_MODE_LIST(V) \
   V(MRI) /* [%r0 + K] */               \
   V(MRR) /* [%r0 + %r1] */

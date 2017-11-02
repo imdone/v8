@@ -76,7 +76,7 @@ const RegList kJSCallerSaved = 0x3ffff;
 
 // Number of registers for which space is reserved in safepoints. Must be a
 // multiple of eight.
-// TODO(all): Refine this number.
+// TODO (all): Refine this number. id:91 gh:92
 const int kNumSafepointRegisters = 32;
 
 // Define the list of registers actually saved at safepoints.
@@ -265,11 +265,11 @@ class Register : public CPURegister {
   //   - x18 to x24
   //   - x27 (also context)
   //
-  // TODO(all): Register x25 is currently free and could be available for
+  // TODO (all): Register x25 is currently free and could be available for id:59 gh:60
   // crankshaft, but we don't use it as we might use it as a per function
   // literal pool pointer in the future.
   //
-  // TODO(all): Consider storing cp in x25 to have only two ranges.
+  // TODO (all): Consider storing cp in x25 to have only two ranges. id:84 gh:86
   // We split allocatable registers in three ranges called
   //   - "low range"
   //   - "high range"
@@ -632,7 +632,7 @@ class CPURegList {
   static CPURegList GetCalleeSavedV(int size = kDRegSizeInBits);
 
   // AAPCS64 caller-saved registers. Note that this includes lr.
-  // TODO(all): Determine how we handle d8-d15 being callee-saved, but the top
+  // TODO (all): Determine how we handle d8-d15 being callee-saved, but the top id:79 gh:80
   // 64-bits being caller-saved.
   static CPURegList GetCallerSaved(int size = kXRegSizeInBits);
   static CPURegList GetCallerSavedV(int size = kDRegSizeInBits);
@@ -742,8 +742,8 @@ constexpr uint64_t kSmiShiftMask = (1UL << kSmiShift) - 1;
 
 // Represents an operand in a machine instruction.
 class Operand {
-  // TODO(all): If necessary, study more in details which methods
-  // TODO(all): should be inlined or not.
+  // TODO (all): If necessary, study more in details which methods id:119 gh:120
+  // TODO (all): should be inlined or not. id:106 gh:107
  public:
   // rm, {<shift> {#<shift_amount>}}
   // where <shift> is one of {LSL, LSR, ASR, ROR}.
@@ -1061,7 +1061,7 @@ class Assembler : public AssemblerBase {
   // Check the size of the code generated since the given label. This function
   // is used primarily to work around comparisons between signed and unsigned
   // quantities, since V8 uses both.
-  // TODO(jbramley): Work out what sign to use for these things and if possible,
+  // TODO (jbramley): Work out what sign to use for these things and if possible, id:60 gh:61
   // change things to be consistent.
   void AssertSizeOfCodeGeneratedSince(const Label* label, ptrdiff_t size) {
     DCHECK_GE(size, 0);
@@ -3499,7 +3499,7 @@ class Assembler : public AssemblerBase {
     DCHECK_EQ(sizeof(*pc_), 1);
     DCHECK((pc_ + size) <= (buffer_ + buffer_size_));
 
-    // TODO(all): Somehow register we have some data here. Then we can
+    // TODO (all): Somehow register we have some data here. Then we can id:85 gh:87
     // disassemble it correctly.
     memcpy(pc_, data, size);
     pc_ += size;

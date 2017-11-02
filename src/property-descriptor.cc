@@ -54,7 +54,7 @@ bool ToPropertyDescriptorFastPath(Isolate* isolate, Handle<JSReceiver> obj,
       isolate->native_context()->object_function_prototype_map()) {
     return false;
   }
-  // TODO(jkummerow): support dictionary properties?
+  // TODO (jkummerow): support dictionary properties? id:1169 gh:1177
   if (map->is_dictionary_map()) return false;
   Handle<DescriptorArray> descs =
       Handle<DescriptorArray>(map->instance_descriptors());

@@ -145,7 +145,7 @@ int InstructionScheduler::GetTargetInstructionFlags(
 
 
 int InstructionScheduler::GetInstructionLatency(const Instruction* instr) {
-  // TODO(all): Add instruction cost modeling.
+  // TODO (all): Add instruction cost modeling. id:796 gh:804
   return 1;
 }
 

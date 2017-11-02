@@ -48,7 +48,7 @@ try {
   with ({y:19}) {
     assertEquals(19, y);
     try {
-      // NOTE: This checks that the object containing x has been
+      // NOTE: This checks that the object containing x has been id:2523 gh:2532
       // removed from the context chain.
       x;
       assertTrue(false);  // should not reach here

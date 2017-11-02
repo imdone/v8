@@ -324,7 +324,7 @@ void Isolate::PushStackTraceAndDie(unsigned int magic1, void* ptr1, void* ptr2,
   int length = Min(kMaxStackTraceSize - 1, trace->length());
   String::WriteToFlat(*trace, buffer, 0, length);
   buffer[length] = '\0';
-  // TODO(dcarney): convert buffer to utf8?
+  // TODO (dcarney): convert buffer to utf8? id:1046 gh:1054
   base::OS::PrintError(
       "Stacktrace:"
       "\n   magic1=%x magic2=%x ptr1=%p ptr2=%p ptr3=%p ptr4=%p ptr5=%p "
@@ -542,7 +542,7 @@ class FrameArrayBuilder {
     return isolate_->context()->HasSameSecurityTokenAs(function->context());
   }
 
-  // TODO(jgruber): Fix all cases in which frames give us a hole value (e.g. the
+  // TODO (jgruber): Fix all cases in which frames give us a hole value (e.g. the id:1239 gh:1247
   // receiver in RegExp constructor frames.
   Handle<Object> TheHoleToUndefined(Isolate* isolate, Handle<Object> in) {
     return (in->IsTheHole(isolate))
@@ -612,7 +612,7 @@ Handle<Object> Isolate::CaptureSimpleStackTrace(Handle<JSReceiver> error_object,
     }
   }
 
-  // TODO(yangguo): Queue this structured stack trace for preprocessing on GC.
+  // TODO (yangguo): Queue this structured stack trace for preprocessing on GC. id:1225 gh:1233
   return factory()->NewJSArrayWithElements(builder.GetElements());
 }
 
@@ -1307,7 +1307,7 @@ Object* Isolate::UnwindAndFindHandler() {
         // Gather information from the frame.
         Code* code = frame->LookupCode();
 
-        // TODO(bmeurer): Turbofanned BUILTIN frames appear as OPTIMIZED,
+        // TODO (bmeurer): Turbofanned BUILTIN frames appear as OPTIMIZED, id:1023 gh:1031
         // but do not have a code kind of OPTIMIZED_FUNCTION.
         if (code->kind() == Code::OPTIMIZED_FUNCTION &&
             code->marked_for_deoptimization()) {
@@ -1391,7 +1391,7 @@ Object* Isolate::UnwindAndFindHandler() {
         }
         WasmInterpreterEntryFrame* interpreter_frame =
             WasmInterpreterEntryFrame::cast(frame);
-        // TODO(wasm): Implement try-catch in the interpreter.
+        // TODO (wasm): Implement try-catch in the interpreter. id:1280 gh:1288
         interpreter_frame->wasm_instance()->debug_info()->Unwind(frame->fp());
       } break;
 
@@ -2140,7 +2140,7 @@ char* Isolate::RestoreThread(char* from) {
 Isolate::ThreadDataTable::ThreadDataTable() : list_(nullptr) {}
 
 Isolate::ThreadDataTable::~ThreadDataTable() {
-  // TODO(svenpanne) The assertion below would fire if an embedder does not
+  // TODO (svenpanne) The assertion below would fire if an embedder does not id:1047 gh:1055
   // cleanly dispose all Isolates before disposing v8, so we are conservative
   // and leave it out for now.
   // DCHECK_NULL(list_);
@@ -2375,7 +2375,7 @@ Isolate::Isolate(bool enable_serializer)
       regexp_stack_(nullptr),
       date_cache_(nullptr),
       call_descriptor_data_(nullptr),
-      // TODO(bmeurer) Initialized lazily because it depends on flags; can
+      // TODO (bmeurer) Initialized lazily because it depends on flags; can id:1240 gh:1248
       // be fixed once the default isolate cleanup is done.
       random_number_generator_(nullptr),
       rail_mode_(PERFORMANCE_ANIMATION),
@@ -3209,7 +3209,7 @@ bool Isolate::IsIsConcatSpreadableLookupChainIntact() {
   Handle<Object> value;
   LookupIterator it(array_prototype, key);
   if (it.IsFound() && !JSReceiver::GetDataProperty(&it)->IsUndefined(this)) {
-    // TODO(cbruni): Currently we do not revert if we unset the
+    // TODO (cbruni): Currently we do not revert if we unset the id:1226 gh:1234
     // @@isConcatSpreadable property on Array.prototype or Object.prototype
     // hence the reverse implication doesn't hold.
     DCHECK(is_is_concat_spreadable_set);

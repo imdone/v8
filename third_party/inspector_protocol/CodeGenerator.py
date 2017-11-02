@@ -546,7 +546,7 @@ def main():
 
         lib_templates_dir = os.path.join(module_path, "lib")
         # Note these should be sorted in the right order.
-        # TODO(dgozman): sort them programmatically based on commented includes.
+        # TODO (dgozman): sort them programmatically based on commented includes. id:2510 gh:2518
         lib_h_templates = [
             "Collections_h.template",
             "ErrorSupport_h.template",

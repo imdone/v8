@@ -107,7 +107,7 @@ def RunProcess(verbose, timeout, args, additional_env, **rest):
           sys.stdout.flush()
       else:
         if utils.GuessOS() == "macos":
-          # TODO(machenbach): Temporary output for investigating hanging test
+          # TODO (machenbach): Temporary output for investigating hanging test id:2448 gh:2452
           # driver on mac.
           print "Attempting to kill process %d - cmd %s" % (process.pid, args)
           try:
@@ -118,7 +118,7 @@ def RunProcess(verbose, timeout, args, additional_env, **rest):
           sys.stdout.flush()
         process.kill()
         if utils.GuessOS() == "macos":
-          # TODO(machenbach): Temporary output for investigating hanging test
+          # TODO (machenbach): Temporary output for investigating hanging test id:2596 gh:2604
           # driver on mac. This will probably not print much, since kill only
           # sends the signal.
           print "Return code after signalling the kill: %s" % process.returncode
@@ -144,7 +144,7 @@ def RunProcess(verbose, timeout, args, additional_env, **rest):
   )
 
 
-# TODO(machenbach): Instead of passing args around, we should introduce an
+# TODO (machenbach): Instead of passing args around, we should introduce an id:2351 gh:2359
 # immutable Command class (that just represents the command with all flags and
 # is pretty-printable) and a member method for running such a command.
 def Execute(args, verbose=False, timeout=None, env=None):

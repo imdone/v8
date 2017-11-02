@@ -375,7 +375,7 @@ void StringToIntHelper::ParseInternal(Char start) {
   int lim_a = 'a' + (radix_ - 10);
   int lim_A = 'A' + (radix_ - 10);
 
-  // NOTE: The code for computing the value may seem a bit complex at
+  // NOTE: The code for computing the value may seem a bit complex at id:957 gh:965
   // first glance. It is structured to use 32-bit multiply-and-add
   // loops as long as possible to avoid losing precision.
 

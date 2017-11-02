@@ -918,7 +918,7 @@ function TestMapSetSubclassing(container, is_map) {
 
   var o = Reflect.construct(RegExp, [pattern], f);
   assertEquals(["match", "tostring"], log);
-  // TODO(littledan): Is the RegExp constructor correct to create
+  // TODO (littledan): Is the RegExp constructor correct to create id:2216 gh:2224
   // the internal slots and do these type checks this way?
   assertThrows(() => Object.getOwnPropertyDescriptor(RegExp.prototype,
                                                      'source').get(o),

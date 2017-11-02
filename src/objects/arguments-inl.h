@@ -45,7 +45,7 @@ void SloppyArgumentsElements::set_mapped_entry(uint32_t entry, Object* object) {
   set(entry + kParameterMapStart, object);
 }
 
-// TODO(danno): This shouldn't be inline here, but to defensively avoid
+// TODO (danno): This shouldn't be inline here, but to defensively avoid id:1074 gh:1082
 // regressions associated with the fix for the bug 778574, it's staying that way
 // until the splice implementation in builtin-arrays.cc can be removed and this
 // function can be moved into runtime-arrays.cc near its other usage.

@@ -35,7 +35,7 @@ if (!%IsConcurrentRecompilationSupported()) {
 
 function g() {  // g() cannot be optimized.
   const x = 1;
-  // TODO(adamk): Is this test still testing anything?
+  // TODO (adamk): Is this test still testing anything? id:2306 gh:2314
   // x++;
 }
 

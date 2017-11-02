@@ -37,7 +37,7 @@ FILES_PATTERN = re.compile(r"//\s+Files:(.*)")
 SELF_SCRIPT_PATTERN = re.compile(r"//\s+Env: TEST_FILE_NAME")
 
 
-# TODO (machenbach): Share commonalities with mjstest.
+# TODO (machenbach): Share commonalities with mjstest. id:2530 gh:2538
 class WebkitTestSuite(testsuite.TestSuite):
 
   def __init__(self, name, root):
@@ -101,13 +101,13 @@ class WebkitTestSuite(testsuite.TestSuite):
     with open(filename) as f:
       return f.read()
 
-  # TODO(machenbach): Share with test/message/testcfg.py
+  # TODO (machenbach): Share with test/message/testcfg.py id:2392 gh:2400
   def _IgnoreLine(self, string):
     """Ignore empty lines, valgrind output and Android output."""
     if not string: return True
     return (string.startswith("==") or string.startswith("**") or
             string.startswith("ANDROID") or
-            # FIXME(machenbach): The test driver shouldn't try to use slow
+            # FIXME (machenbach): The test driver shouldn't try to use slow id:2557 gh:2561
             # asserts if they weren't compiled. This fails in optdebug=2.
             string == "Warning: unknown flag --enable-slow-asserts." or
             string == "Try --help for options")

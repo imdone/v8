@@ -411,7 +411,7 @@ class PerfTest(unittest.TestCase):
   # require lots of complicated mocks for the android tools.
   def testAndroid(self):
     self._WriteTestInput(V8_JSON)
-    # FIXME(machenbach): This is not test-local!
+    # FIXME (machenbach): This is not test-local! id:2590 gh:2598
     platform = run_perf.AndroidPlatform
     platform.PreExecution = MagicMock(return_value=None)
     platform.PostExecution = MagicMock(return_value=None)

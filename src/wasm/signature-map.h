@@ -34,7 +34,7 @@ class V8_EXPORT_PRIVATE SignatureMap {
   void Freeze() { frozen_ = true; }
 
  private:
-  // TODO(wasm): use a hashmap instead of an ordered map?
+  // TODO (wasm): use a hashmap instead of an ordered map? id:1394 gh:1402
   struct CompareFunctionSigs {
     bool operator()(FunctionSig* a, FunctionSig* b) const;
   };

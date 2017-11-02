@@ -82,7 +82,7 @@ const six = BigInt(6);
   assertEquals(%Typeof(zero), "bigint");
   assertEquals(%Typeof(one), "bigint");
 }{
-  // TODO(neis): Enable once --no-opt can be removed.
+  // TODO (neis): Enable once --no-opt can be removed. id:1968 gh:1976
   //
   // function Typeof(x) { return typeof x }
   // assertEquals(Typeof(zero), "bigint");

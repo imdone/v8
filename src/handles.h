@@ -129,7 +129,7 @@ class Handle final : public HandleBase {
     return Handle<T>(reinterpret_cast<T**>(that.location_));
   }
 
-  // TODO(yangguo): Values that contain empty handles should be declared as
+  // TODO (yangguo): Values that contain empty handles should be declared as id:943 gh:951
   // MaybeHandle to force validation before being used as handles.
   static const Handle<T> null() { return Handle<T>(); }
 

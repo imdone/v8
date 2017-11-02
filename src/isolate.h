@@ -328,7 +328,7 @@ class ThreadLocalTop BASE_EMBEDDED {
   Context* context_;
   ThreadId thread_id_;
   Object* pending_exception_;
-  // TODO(kschimpf): Change this to a stack of caught exceptions (rather than
+  // TODO (kschimpf): Change this to a stack of caught exceptions (rather than id:1024 gh:1032
   // just innermost catching try block).
   Object* wasm_caught_exception_;
 
@@ -1469,7 +1469,7 @@ class Isolate {
     return "";
   }
 
-  // TODO(alph): Remove along with the deprecated GetCpuProfiler().
+  // TODO (alph): Remove along with the deprecated GetCpuProfiler(). id:1281 gh:1289
   friend v8::CpuProfiler* v8::Isolate::GetCpuProfiler();
   CpuProfiler* cpu_profiler() const { return cpu_profiler_; }
 

@@ -118,7 +118,7 @@ BUILTIN(DataViewPrototypeGetBuffer) {
 BUILTIN(DataViewPrototypeGetByteLength) {
   HandleScope scope(isolate);
   CHECK_RECEIVER(JSDataView, data_view, "get DataView.prototype.byteLength");
-  // TODO(bmeurer): According to the ES6 spec, we should throw a TypeError
+  // TODO (bmeurer): According to the ES6 spec, we should throw a TypeError id:291 gh:292
   // here if the JSArrayBuffer of the {data_view} was neutered.
   return data_view->byte_length();
 }
@@ -127,7 +127,7 @@ BUILTIN(DataViewPrototypeGetByteLength) {
 BUILTIN(DataViewPrototypeGetByteOffset) {
   HandleScope scope(isolate);
   CHECK_RECEIVER(JSDataView, data_view, "get DataView.prototype.byteOffset");
-  // TODO(bmeurer): According to the ES6 spec, we should throw a TypeError
+  // TODO (bmeurer): According to the ES6 spec, we should throw a TypeError id:312 gh:313
   // here if the JSArrayBuffer of the {data_view} was neutered.
   return data_view->byte_offset();
 }

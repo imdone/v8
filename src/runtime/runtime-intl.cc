@@ -69,7 +69,7 @@ RUNTIME_FUNCTION(Runtime_CanonicalizeLanguageTag) {
   v8::String::Utf8Value locale_id(v8_isolate,
                                   v8::Utils::ToLocal(locale_id_str));
 
-  // TODO(jshin): uloc_{for,to}TanguageTag can fail even for a structually valid
+  // TODO (jshin): uloc_{for,to}TanguageTag can fail even for a structually valid id:1480 gh:1488
   // language tag if it's too long (much longer than 100 chars). Even if we
   // allocate a longer buffer, ICU will still fail if it's too long. Either
   // propose to Ecma 402 to put a limit on the locale length or change ICU to
@@ -118,7 +118,7 @@ RUNTIME_FUNCTION(Runtime_AvailableLocalesOf) {
   } else if (service->IsUtf8EqualTo(CStrVector("breakiterator"))) {
     available_locales = icu::BreakIterator::getAvailableLocales(count);
   } else if (service->IsUtf8EqualTo(CStrVector("pluralrules"))) {
-    // TODO(littledan): For PluralRules, filter out locales that
+    // TODO (littledan): For PluralRules, filter out locales that id:1304 gh:1312
     // don't support PluralRules.
     // PluralRules is missing an appropriate getAvailableLocales method,
     // so we should filter from all locales, but it's not clear how; see
@@ -481,7 +481,7 @@ RUNTIME_FUNCTION(Runtime_CurrencyDigits) {
 
   CONVERT_ARG_HANDLE_CHECKED(String, currency, 0);
 
-  // TODO(littledan): Avoid transcoding the string twice
+  // TODO (littledan): Avoid transcoding the string twice id:1501 gh:1509
   v8::String::Utf8Value currency_string(v8_isolate,
                                         v8::Utils::ToLocal(currency));
   icu::UnicodeString currency_icu =
@@ -622,7 +622,7 @@ RUNTIME_FUNCTION(Runtime_PluralRulesSelect) {
   // the Intl spec provides; format and parse the number to round to the
   // appropriate amount, then apply PluralRules.
   //
-  // TODO(littledan): If a future ICU version supports an extended API to avoid
+  // TODO (littledan): If a future ICU version supports an extended API to avoid id:1548 gh:1556
   // this step, then switch to that API. Bug thread:
   // http://bugs.icu-project.org/trac/ticket/12763
   icu::UnicodeString rounded_string;
@@ -763,7 +763,7 @@ RUNTIME_FUNCTION(Runtime_BreakIteratorBreakType) {
       V8BreakIterator::UnpackBreakIterator(isolate, break_iterator_holder);
   CHECK_NOT_NULL(break_iterator);
 
-  // TODO(cira): Remove cast once ICU fixes base BreakIterator class.
+  // TODO (cira): Remove cast once ICU fixes base BreakIterator class. id:1258 gh:1266
   icu::RuleBasedBreakIterator* rule_based_iterator =
       static_cast<icu::RuleBasedBreakIterator*>(break_iterator);
   int32_t status = rule_based_iterator->getRuleStatus();
@@ -826,7 +826,7 @@ RUNTIME_FUNCTION(Runtime_StringLocaleConvertCase) {
     c1 = lang.Get(0);
     c2 = lang.Get(1);
   }
-  // TODO(jshin): Consider adding a fast path for ASCII or Latin-1. The fastpath
+  // TODO (jshin): Consider adding a fast path for ASCII or Latin-1. The fastpath id:1481 gh:1489
   // in the root locale needs to be adjusted for az, lt and tr because even case
   // mapping of ASCII range characters are different in those locales.
   // Greek (el) does not require any adjustment.

@@ -820,7 +820,7 @@ bool RegExpParser::CreateNamedCaptureAtIndex(const ZoneVector<uc16>* name,
     named_captures_ = new (zone()) ZoneList<RegExpCapture*>(1, zone());
   } else {
     // Check for duplicates and bail if we find any.
-    // TODO(jgruber): O(n^2).
+    // TODO (jgruber): O(n^2). id:1541 gh:1549
     for (const auto& named_capture : *named_captures_) {
       if (*named_capture->name() == *name) {
         ReportError(CStrVector("Duplicate capture group name"));
@@ -879,7 +879,7 @@ void RegExpParser::PatchNamedBackReferences() {
   }
 
   // Look up and patch the actual capture for each named back reference.
-  // TODO(jgruber): O(n^2), optimize if necessary.
+  // TODO (jgruber): O(n^2), optimize if necessary. id:1251 gh:1259
 
   for (int i = 0; i < named_back_references_->length(); i++) {
     RegExpBackReference* ref = named_back_references_->at(i);
@@ -1225,7 +1225,7 @@ bool IsSupportedBinaryProperty(UProperty property) {
     case UCHAR_DEPRECATED:
     case UCHAR_DIACRITIC:
     case UCHAR_EMOJI:
-    // TODO(yangguo): Uncomment this once we upgrade to ICU 60.
+    // TODO (yangguo): Uncomment this once we upgrade to ICU 60. id:1474 gh:1482
     //                See https://ssl.icu-project.org/trac/ticket/13062
     // case UCHAR_EMOJI_COMPONENT:
     case UCHAR_EMOJI_MODIFIER_BASE:
@@ -1411,7 +1411,7 @@ uc32 RegExpParser::ParseClassCharacterEscape() {
       }
       // We match JSC in reading the backslash as a literal
       // character instead of as starting an escape.
-      // TODO(v8:6201): Not yet covered by the spec.
+      // TODO (v8:6201): Not yet covered by the spec. id:1298 gh:1306
       return '\\';
     }
     case '0':
@@ -1824,7 +1824,7 @@ void RegExpBuilder::FlushTerms() {
 
 bool RegExpBuilder::NeedsDesugaringForUnicode(RegExpCharacterClass* cc) {
   if (!unicode()) return false;
-  // TODO(yangguo): we could be smarter than this. Case-insensitivity does not
+  // TODO (yangguo): we could be smarter than this. Case-insensitivity does not id:1495 gh:1503
   // necessarily mean that we need to desugar. It's probably nicer to have a
   // separate pass to figure out unicode desugarings.
   if (ignore_case()) return true;

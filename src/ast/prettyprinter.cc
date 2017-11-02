@@ -219,7 +219,7 @@ void CallPrinter::VisitConditional(Conditional* node) {
 
 
 void CallPrinter::VisitLiteral(Literal* node) {
-  // TODO(adamk): Teach Literal how to print its values without
+  // TODO (adamk): Teach Literal how to print its values without id:152 gh:153
   // allocating on the heap.
   PrintLiteral(node->BuildValue(isolate_), true);
 }
@@ -291,7 +291,7 @@ void CallPrinter::VisitProperty(Property* node) {
       literal->BuildValue(isolate_)->IsInternalizedString()) {
     Find(node->obj(), true);
     Print(".");
-    // TODO(adamk): Teach Literal how to print its values without
+    // TODO (adamk): Teach Literal how to print its values without id:195 gh:196
     // allocating on the heap.
     PrintLiteral(literal->BuildValue(isolate_), false);
   } else {
@@ -772,14 +772,14 @@ void AstPrinter::VisitBlock(Block* node) {
 }
 
 
-// TODO(svenpanne) Start with IndentedScope.
+// TODO (svenpanne) Start with IndentedScope. id:163 gh:164
 void AstPrinter::VisitVariableDeclaration(VariableDeclaration* node) {
   PrintLiteralWithModeIndented("VARIABLE", node->proxy()->var(),
                                node->proxy()->name());
 }
 
 
-// TODO(svenpanne) Start with IndentedScope.
+// TODO (svenpanne) Start with IndentedScope. id:166 gh:167
 void AstPrinter::VisitFunctionDeclaration(FunctionDeclaration* node) {
   PrintIndented("FUNCTION ");
   PrintLiteral(node->proxy()->name(), true);
@@ -1029,7 +1029,7 @@ void AstPrinter::VisitConditional(Conditional* node) {
 
 
 void AstPrinter::VisitLiteral(Literal* node) {
-  // TODO(adamk): Teach Literal how to print its values without
+  // TODO (adamk): Teach Literal how to print its values without id:172 gh:173
   // allocating on the heap.
   PrintLiteralIndented("LITERAL", node->BuildValue(isolate_), true);
 }
@@ -1185,7 +1185,7 @@ void AstPrinter::VisitProperty(Property* node) {
   Literal* literal = node->key()->AsLiteral();
   if (literal != nullptr &&
       literal->BuildValue(isolate_)->IsInternalizedString()) {
-    // TODO(adamk): Teach Literal how to print its values without
+    // TODO (adamk): Teach Literal how to print its values without id:153 gh:154
     // allocating on the heap.
     PrintLiteralIndented("NAME", literal->BuildValue(isolate_), false);
   } else {

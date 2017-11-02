@@ -46,7 +46,7 @@ enum ArchVariants {
 #endif
 
 
-// TODO(plind): consider renaming these ...
+// TODO (plind): consider renaming these ... id:1059 gh:1067
 #if(defined(__mips_hard_float) && __mips_hard_float != 0)
 // Use floating-point coprocessor instructions. This flag is raised when
 // -mhard-float is passed to the compiler.
@@ -1748,8 +1748,8 @@ class Instruction : public InstructionGetters<InstructionBase> {
 // C/C++ argument slots size.
 const int kCArgSlotCount = 0;
 
-// TODO(plind): below should be based on kPointerSize
-// TODO(plind): find all usages and remove the needless instructions for n64.
+// TODO (plind): below should be based on kPointerSize id:1321 gh:1329
+// TODO (plind): find all usages and remove the needless instructions for n64. id:1421 gh:1429
 const int kCArgsSlotsSize = kCArgSlotCount * Instruction::kInstrSize * 2;
 
 const int kInvalidStackOffset = -1;

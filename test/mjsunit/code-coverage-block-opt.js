@@ -17,9 +17,9 @@ f(); f(); %OptimizeFunctionOnNextCall(f); // 0100
 f(); f(); f(); f(); f(); f();             // 0150
 `,
 [{"start":0,"end":199,"count":1},
- {"start":0,"end":33,"count":4},   // TODO(jgruber): Invocation count is off.
+ {"start":0,"end":33,"count":4},   // TODO (jgruber): Invocation count is off. id:2257 gh:2265
  {"start":25,"end":32,"count":16},
- {"start":50,"end":76,"count":2}]  // TODO(jgruber): Invocation count is off.
+ {"start":50,"end":76,"count":2}]  // TODO (jgruber): Invocation count is off. id:2213 gh:2222
 );
 
 // This test is tricky: it requires a non-toplevel, optimized function.

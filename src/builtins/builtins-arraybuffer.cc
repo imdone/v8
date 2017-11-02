@@ -98,7 +98,7 @@ BUILTIN(ArrayBufferPrototypeGetByteLength) {
   HandleScope scope(isolate);
   CHECK_RECEIVER(JSArrayBuffer, array_buffer, kMethodName);
   CHECK_SHARED(false, array_buffer, kMethodName);
-  // TODO(franzih): According to the ES6 spec, we should throw a TypeError
+  // TODO (franzih): According to the ES6 spec, we should throw a TypeError id:260 gh:261
   // here if the JSArrayBuffer is detached.
   return array_buffer->byte_length();
 }
@@ -251,7 +251,7 @@ static Object* SliceHelper(BuiltinArguments args, Isolate* isolate,
                                : MessageTemplate::kArrayBufferTooShort));
   }
 
-  // * [AB] NOTE: Side-effects of the above steps may have detached O.
+  // * [AB] NOTE: Side-effects of the above steps may have detached O. id:330 gh:331
   // * [AB] If IsDetachedBuffer(O) is true, throw a TypeError exception.
   if (!is_shared && array_buffer->was_neutered()) {
     THROW_NEW_ERROR_RETURN_FAILURE(

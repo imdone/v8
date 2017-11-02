@@ -778,8 +778,8 @@ assertTrue(/^\ca$/.test("\u{1}"));  // ... ControlLetter.
 assertTrue(/^\cA$/.test("\u{1}"));  // ... ControlLetter.
 assertTrue(/^\c9$/.test("\\c9"));   // ... ExtendedPatternCharacter.
 assertTrue(/^\c$/.test("\\c"));   // ... ExtendedPatternCharacter.
-assertTrue(/^[\c%]*$/.test("\\c%"));  // TODO(v8:6201): Not covered by the spec.
-assertTrue(/^[\c:]*$/.test("\\c:"));  // TODO(v8:6201): Not covered by the spec.
+assertTrue(/^[\c%]*$/.test("\\c%"));  // TODO (v8:6201): Not covered by the spec. id:2273 gh:2282
+assertTrue(/^[\c:]*$/.test("\\c:"));  // TODO (v8:6201): Not covered by the spec. id:2356 gh:2364
 assertTrue(/^[\c0]*$/.test("\u{10}"));  // ... ClassControlLetter.
 assertTrue(/^[\c1]*$/.test("\u{11}"));  // ('0' % 32 == 0x10)
 assertTrue(/^[\c2]*$/.test("\u{12}"));

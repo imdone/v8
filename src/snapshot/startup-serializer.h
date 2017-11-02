@@ -83,7 +83,7 @@ class StartupSerializer : public Serializer<> {
   PartialCacheIndexMap partial_cache_index_map_;
   std::vector<AccessorInfo*> accessor_infos_;
   // Indicates whether we only serialized hash tables that we can rehash.
-  // TODO(yangguo): generalize rehashing, and remove this flag.
+  // TODO (yangguo): generalize rehashing, and remove this flag. id:1557 gh:1565
   bool can_be_rehashed_;
 
   DISALLOW_COPY_AND_ASSIGN(StartupSerializer);

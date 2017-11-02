@@ -137,7 +137,7 @@ class PrototypeIterator {
   }
 
   // Returns false iff a call to JSProxy::GetPrototype throws.
-  // TODO(neis): This should probably replace Advance().
+  // TODO (neis): This should probably replace Advance(). id:1198 gh:1206
   MUST_USE_RESULT bool AdvanceFollowingProxies() {
     DCHECK(!(handle_.is_null() && object_->IsJSProxy()));
     if (!HasAccess()) {

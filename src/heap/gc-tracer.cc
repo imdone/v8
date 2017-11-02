@@ -32,7 +32,7 @@ RuntimeCallStats::CounterId GCTracer::RCSCounterFromScope(Scope::ScopeId id) {
 GCTracer::Scope::Scope(GCTracer* tracer, ScopeId scope)
     : tracer_(tracer), scope_(scope) {
   start_time_ = tracer_->heap_->MonotonicallyIncreasingTimeInMs();
-  // TODO(cbruni): remove once we fully moved to a trace-based system.
+  // TODO (cbruni): remove once we fully moved to a trace-based system. id:944 gh:952
   if (V8_LIKELY(!FLAG_runtime_stats)) return;
   runtime_stats_ = tracer_->heap_->isolate()->counters()->runtime_call_stats();
   RuntimeCallStats::Enter(runtime_stats_, &timer_,
@@ -42,7 +42,7 @@ GCTracer::Scope::Scope(GCTracer* tracer, ScopeId scope)
 GCTracer::Scope::~Scope() {
   tracer_->AddScopeSample(
       scope_, tracer_->heap_->MonotonicallyIncreasingTimeInMs() - start_time_);
-  // TODO(cbruni): remove once we fully moved to a trace-based system.
+  // TODO (cbruni): remove once we fully moved to a trace-based system. id:1105 gh:1113
   if (V8_LIKELY(runtime_stats_ == nullptr)) return;
   RuntimeCallStats::Leave(runtime_stats_, &timer_);
 }

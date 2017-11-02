@@ -120,7 +120,7 @@ function ReadonlyByProto(o, name) {
   o.__proto__ = p;
 }
 
-// TODO(neis,cbruni): Enable once the necessary traps work again.
+// TODO (neis,cbruni): Enable once the necessary traps work again. id:1972 gh:1980
 // Allow Proxy to be undefined, so test can run in non-Harmony mode as well.
 var global = this;
 

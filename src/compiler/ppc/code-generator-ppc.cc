@@ -473,7 +473,7 @@ Condition FlagsConditionToCondition(FlagsCondition condition, ArchOpcode op) {
 
 #define ASSEMBLE_IEEE754_UNOP(name)                                            \
   do {                                                                         \
-    /* TODO(bmeurer): We should really get rid of this special instruction, */ \
+    /* TODO (bmeurer): We should really get rid of this special instruction,  id:685 gh:686*/ \
     /* and generate a CallAddress instruction instead. */                      \
     FrameScope scope(tasm(), StackFrame::MANUAL);                              \
     __ PrepareCallCFunction(0, 1, kScratchReg);                                \
@@ -487,7 +487,7 @@ Condition FlagsConditionToCondition(FlagsCondition condition, ArchOpcode op) {
 
 #define ASSEMBLE_IEEE754_BINOP(name)                                           \
   do {                                                                         \
-    /* TODO(bmeurer): We should really get rid of this special instruction, */ \
+    /* TODO (bmeurer): We should really get rid of this special instruction,  id:712 gh:713*/ \
     /* and generate a CallAddress instruction instead. */                      \
     FrameScope scope(tasm(), StackFrame::MANUAL);                              \
     __ PrepareCallCFunction(0, 2, kScratchReg);                                \
@@ -659,7 +659,7 @@ Condition FlagsConditionToCondition(FlagsCondition condition, ArchOpcode op) {
   } while (0)
 
 #if V8_TARGET_ARCH_PPC64
-// TODO(mbrandy): fix paths that produce garbage in offset's upper 32-bits.
+// TODO (mbrandy): fix paths that produce garbage in offset's upper 32-bits. id:724 gh:725
 #define CleanUInt32(x) __ ClearLeftImm(x, x, Operand(32))
 #else
 #define CleanUInt32(x)
@@ -941,7 +941,7 @@ void CodeGenerator::AssembleTailCallBeforeGap(Instruction* instr,
       DCHECK(source.IsRegister());
       LocationOperand source_location(LocationOperand::cast(source));
       pending_pushes.push_back(source_location.GetRegister());
-      // TODO(arm): We can push more than 3 registers at once. Add support in
+      // TODO (arm): We can push more than 3 registers at once. Add support in id:795 gh:803
       // the macro-assembler for pushing a list of registers.
       if (pending_pushes.size() == 3) {
         FlushPendingPushRegisters(tasm(), frame_access_state(),
@@ -1184,7 +1184,7 @@ CodeGenerator::CodeGenResult CodeGenerator::AssembleArchInstruction(
       }
       break;
     case kArchTruncateDoubleToI:
-      // TODO(mbrandy): move slow call to stub out of line.
+      // TODO (mbrandy): move slow call to stub out of line. id:655 gh:656
       __ TruncateDoubleToIDelayed(zone(), i.OutputRegister(),
                                   i.InputDoubleRegister(0));
       DCHECK_EQ(LeaveRC, i.OutputRCBit());
@@ -1562,7 +1562,7 @@ CodeGenerator::CodeGenResult CodeGenerator::AssembleArchInstruction(
       break;
 #endif
     case kPPC_ModDouble:
-      // TODO(bmeurer): We should really get rid of this special instruction,
+      // TODO (bmeurer): We should really get rid of this special instruction, id:686 gh:687
       // and generate a CallAddress instruction instead.
       ASSEMBLE_FLOAT_MODULO();
       break;
@@ -2344,7 +2344,7 @@ void CodeGenerator::AssembleConstructFrame() {
       }
     } else {
       StackFrame::Type type = info()->GetOutputStackFrameType();
-      // TODO(mbrandy): Detect cases where ip is the entrypoint (for
+      // TODO (mbrandy): Detect cases where ip is the entrypoint (for id:756 gh:757
       // efficient intialization of the constant pool pointer register).
       __ StubPrologue(type);
     }
@@ -2511,7 +2511,7 @@ void CodeGenerator::AssembleMove(InstructionOperand* source,
           break;
         }
         case Constant::kRpoNumber:
-          UNREACHABLE();  // TODO(dcarney): loading RPO constants on PPC.
+          UNREACHABLE();  // TODO (dcarney): loading RPO constants on PPC. id:725 gh:726
           break;
       }
       if (destination->IsStackSlot()) {

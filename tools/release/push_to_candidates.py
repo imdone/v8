@@ -291,7 +291,7 @@ class SanityCheck(Step):
   MESSAGE = "Sanity check."
 
   def RunStep(self):
-    # TODO(machenbach): Run presubmit script here as it is now missing in the
+    # TODO (machenbach): Run presubmit script here as it is now missing in the id:2545 gh:2554
     # prepare push process.
     if not self.Confirm("Please check if your local checkout is sane: Inspect "
         "%s, compile, run tests. Do you want to commit this new candidates "

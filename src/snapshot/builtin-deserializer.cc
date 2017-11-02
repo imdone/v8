@@ -82,7 +82,7 @@ void BuiltinDeserializer::DeserializeEagerBuiltinsAndHandlers() {
   DCHECK(isolate()->interpreter()->IsDispatchTableInitialized());
 
   BSU::ForEachBytecode([=](Bytecode bytecode, OperandScale operand_scale) {
-    // TODO(jgruber): Replace with DeserializeLazy handler.
+    // TODO (jgruber): Replace with DeserializeLazy handler. id:1373 gh:1381
 
     // Bytecodes without a dedicated handler are patched up in a second pass.
     if (!BSU::BytecodeHasDedicatedHandler(bytecode, operand_scale)) return;

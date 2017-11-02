@@ -190,7 +190,7 @@ typedef struct _iJIT_Method_NIDS
     /* unique method ID */
     unsigned int       method_id;
 
-    /* NOTE: no need to fill this field, it's filled by VTune */
+    /* NOTE: no need to fill this field, it's filled by VTune  id:1611 gh:1620*/
     unsigned int       stack_id;
 
     /* method name (just the method, without the class) */
@@ -250,7 +250,7 @@ typedef struct _iJIT_Method_Load
     /* the size of the user data buffer */
     unsigned int        user_data_size;
 
-    /* NOTE: no need to fill this field, it's filled by VTune */
+    /* NOTE: no need to fill this field, it's filled by VTune  id:1270 gh:1278*/
     iJDEnvironmentType  env;
 
 } *piJIT_Method_Load, iJIT_Method_Load;

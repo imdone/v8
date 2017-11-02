@@ -374,7 +374,7 @@ TF_BUILTIN(ProxyGetProperty, ProxiesCodeStubAssembler) {
   BIND(&trap_undefined);
   {
     // 7.a. Return ? target.[[Get]](P, Receiver).
-    // TODO(mslekova): Introduce GetPropertyWithReceiver stub
+    // TODO (mslekova): Introduce GetPropertyWithReceiver stub id:383 gh:385
     Return(CallRuntime(Runtime::kGetPropertyWithReceiver, context, target, name,
                        receiver));
   }

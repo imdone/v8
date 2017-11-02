@@ -7,7 +7,7 @@
 
 #include "include/v8.h"
 #include "src/allocation.h"
-// TODO(ishell): remove once FLAG_track_constant_fields is removed.
+// TODO (ishell): remove once FLAG_track_constant_fields is removed. id:1490 gh:1498
 #include "src/flags.h"
 #include "src/utils.h"
 
@@ -78,7 +78,7 @@ enum PropertyLocation { kField = 0, kDescriptor = 1 };
 // Must fit in the BitField PropertyDetails::ConstnessField.
 enum PropertyConstness { kMutable = 0, kConst = 1 };
 
-// TODO(ishell): remove once constant field tracking is done.
+// TODO (ishell): remove once constant field tracking is done. id:1454 gh:1462
 const PropertyConstness kDefaultFieldConstness =
     FLAG_track_constant_fields ? kConst : kMutable;
 

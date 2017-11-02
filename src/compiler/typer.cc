@@ -514,7 +514,7 @@ Type* Typer::Visitor::ToString(Type* type, Typer* t) {
 // Type checks.
 
 Type* Typer::Visitor::ObjectIsArrayBufferView(Type* type, Typer* t) {
-  // TODO(turbofan): Introduce a Type::ArrayBufferView?
+  // TODO (turbofan): Introduce a Type::ArrayBufferView? id:862 gh:870
   if (!type->Maybe(Type::OtherObject())) return t->singleton_false_;
   return Type::Boolean();
 }
@@ -526,7 +526,7 @@ Type* Typer::Visitor::ObjectIsCallable(Type* type, Typer* t) {
 }
 
 Type* Typer::Visitor::ObjectIsConstructor(Type* type, Typer* t) {
-  // TODO(turbofan): Introduce a Type::Constructor?
+  // TODO (turbofan): Introduce a Type::Constructor? id:773 gh:779
   if (!type->Maybe(Type::Callable())) return t->singleton_false_;
   return Type::Boolean();
 }
@@ -844,7 +844,7 @@ Type* Typer::Visitor::TypeFinishRegion(Node* node) { return Operand(node, 0); }
 
 
 Type* Typer::Visitor::TypeFrameState(Node* node) {
-  // TODO(rossberg): Ideally FrameState wouldn't have a value output.
+  // TODO (rossberg): Ideally FrameState wouldn't have a value output. id:742 gh:743
   return Type::Internal();
 }
 
@@ -1648,7 +1648,7 @@ Type* Typer::Visitor::TypeJSCallForwardVarargs(Node* node) {
 }
 
 Type* Typer::Visitor::TypeJSCall(Node* node) {
-  // TODO(bmeurer): We could infer better types if we wouldn't ignore the
+  // TODO (bmeurer): We could infer better types if we wouldn't ignore the id:813 gh:822
   // argument types for the JSCallTyper above.
   return TypeUnaryOp(node, JSCallTyper);
 }
@@ -1693,7 +1693,7 @@ Type* Typer::Visitor::TypeJSCallRuntime(Node* node) {
     default:
       break;
   }
-  // TODO(turbofan): This should be Type::NonInternal(), but unfortunately we
+  // TODO (turbofan): This should be Type::NonInternal(), but unfortunately we id:835 gh:843
   // have a few weird runtime calls that return the hole or even FixedArrays;
   // change this once those weird runtime calls have been removed.
   return Type::Any();

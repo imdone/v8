@@ -255,7 +255,7 @@ RUNTIME_FUNCTION(Runtime_ObjectHasOwnProperty) {
     // Fast case: either the key is a real named property or it is not
     // an array index and there are no interceptors or hidden
     // prototypes.
-    // TODO(jkummerow): Make JSReceiver::HasOwnProperty fast enough to
+    // TODO (jkummerow): Make JSReceiver::HasOwnProperty fast enough to id:1259 gh:1267
     // handle all cases directly (without this custom fast path).
     {
       LookupIterator::Configuration c = LookupIterator::OWN_SKIP_INTERCEPTOR;
@@ -326,7 +326,7 @@ RUNTIME_FUNCTION(Runtime_AddDictionaryProperty) {
 }
 
 // ES6 section 19.1.2.2 Object.create ( O [ , Properties ] )
-// TODO(verwaest): Support the common cases with precached map directly in
+// TODO (verwaest): Support the common cases with precached map directly in id:1575 gh:1583
 // an Object.create stub.
 RUNTIME_FUNCTION(Runtime_ObjectCreate) {
   HandleScope scope(isolate);
@@ -338,7 +338,7 @@ RUNTIME_FUNCTION(Runtime_ObjectCreate) {
 
   // Generate the map with the specified {prototype} based on the Object
   // function's initial map from the current native context.
-  // TODO(bmeurer): Use a dedicated cache for Object.create; think about
+  // TODO (bmeurer): Use a dedicated cache for Object.create; think about id:1306 gh:1314
   // slack tracking for Object.create.
   Handle<Map> map =
       Map::GetObjectCreateMap(Handle<HeapObject>::cast(prototype));

@@ -27,7 +27,7 @@ class JSCacheTesterHelper {
 };
 
 
-// TODO(dcarney): JSConstantCacheTester inherits from JSGraph???
+// TODO (dcarney): JSConstantCacheTester inherits from JSGraph??? id:1508 gh:1511
 class JSConstantCacheTester : public HandleAndZoneScope,
                               public JSCacheTesterHelper,
                               public JSGraph {
@@ -215,7 +215,7 @@ TEST(OddballValues) {
 
 
 TEST(ExternalReferences) {
-  // TODO(titzer): test canonicalization of external references.
+  // TODO (titzer): test canonicalization of external references. id:1814 gh:1822
 }
 
 

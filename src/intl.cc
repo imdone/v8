@@ -264,7 +264,7 @@ MUST_USE_RESULT Object* ConvertToLower(Handle<String> s, Isolate* isolate) {
 
   // Scan the string for uppercase and non-ASCII characters for strings
   // shorter than a machine-word without any memory allocation overhead.
-  // TODO(jshin): Apply this to a longer input by breaking FastAsciiConvert()
+  // TODO (jshin): Apply this to a longer input by breaking FastAsciiConvert() id:1279 gh:1287
   // to two parts, one for scanning the prefix with no change and the other for
   // handling ASCII-only characters.
 

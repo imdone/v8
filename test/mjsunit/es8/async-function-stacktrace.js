@@ -81,7 +81,7 @@ async function runTests() {
     try { await reject(); } catch (e) { throw new Error("FAIL"); }
   } }).c4, ["c4"]);
 
-  // TODO(caitp): We should infer anonymous async functions as the empty
+  // TODO (caitp): We should infer anonymous async functions as the empty id:2267 gh:2275
   // string, not as the name of a function they're passed as a parameter to.
   await test(async x => { throw new Error("FAIL") },
              ["test", "test", "runTests"]);

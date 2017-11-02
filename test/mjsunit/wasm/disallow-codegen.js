@@ -62,7 +62,7 @@ async function AsyncTestFail() {
 
 async function StreamingTestOk() {
   print('streaming module compile (ok)...');
-  // TODO(titzer): compileStreaming must be supplied by embedder.
+  // TODO (titzer): compileStreaming must be supplied by embedder. id:2312 gh:2320
   // (and it takes a response, not a buffer)
   %DisallowCodegenFromStrings(false);
   if ("Function" != typeof WebAssembly.compileStreaming) {
@@ -77,7 +77,7 @@ async function StreamingTestOk() {
 async function StreamingTestFail() {
   print('streaming module compile (fail)...');
   %DisallowCodegenFromStrings(true);
-  // TODO(titzer): compileStreaming must be supplied by embedder.
+  // TODO (titzer): compileStreaming must be supplied by embedder. id:2050 gh:2058
   // (and it takes a response, not a buffer)
   if ("Function" != typeof WebAssembly.compileStreaming) {
     print("  no embedder for streaming compilation");

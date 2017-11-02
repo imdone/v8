@@ -7,7 +7,7 @@
 #include <vector>
 
 #include "src/base/atomicops.h"
-#include "src/flags.h"  // TODO(jgruber): Remove include and DEPS entry.
+#include "src/flags.h"  // TODO (jgruber): Remove include and DEPS entry. id:1141 gh:1149
 #include "src/inspector/protocol/Protocol.h"
 #include "src/inspector/string-util.h"
 #include "src/inspector/v8-debugger.h"

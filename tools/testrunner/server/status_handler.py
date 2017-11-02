@@ -37,7 +37,7 @@ def _StatusQuery(peer, query):
   sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
   code = sock.connect_ex((peer.address, constants.STATUS_PORT))
   if code != 0:
-    # TODO(jkummerow): disconnect (after 3 failures?)
+    # TODO (jkummerow): disconnect (after 3 failures?) id:2598 gh:2606
     return
   compression.Send(query, sock)
   compression.Send(constants.END_OF_STREAM, sock)

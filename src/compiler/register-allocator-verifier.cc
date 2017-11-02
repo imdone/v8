@@ -56,7 +56,7 @@ RegisterAllocatorVerifier::RegisterAllocatorVerifier(
       assessments_(zone),
       outstanding_assessments_(zone) {
   constraints_.reserve(sequence->instructions().size());
-  // TODO(dcarney): model unique constraints.
+  // TODO (dcarney): model unique constraints. id:691 gh:692
   // Construct OperandConstraints for all InstructionOperands, eliminating
   // kSameAsFirst along the way.
   for (const Instruction* instr : sequence->instructions()) {
@@ -330,7 +330,7 @@ BlockAssessments* RegisterAllocatorVerifier::CreateForBlock(
 
   BlockAssessments* ret = new (zone()) BlockAssessments(zone());
   if (block->PredecessorCount() == 0) {
-    // TODO(mtrofin): the following check should hold, however, in certain
+    // TODO (mtrofin): the following check should hold, however, in certain id:761 gh:762
     // unit tests it is invalidated by the last block. Investigate and
     // normalize the CFG.
     // CHECK_EQ(0, current_block_id.ToInt());

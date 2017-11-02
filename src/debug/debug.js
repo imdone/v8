@@ -113,7 +113,7 @@ function MakeBreakPoint(source_position, opt_script_break_point) {
 
 
 // Object representing a break point.
-// NOTE: This object does not have a reference to the function having break
+// NOTE: This object does not have a reference to the function having break id:1083 gh:1091
 // point as this would cause function not to be garbage collected when it is
 // not used any more. We do not want break points to keep functions alive.
 function BreakPoint(source_position, opt_script_break_point) {
@@ -774,7 +774,7 @@ Debug.scripts = function() {
 
 
 // Get a specific script currently loaded. This is based on scanning the heap.
-// TODO(clemensh): Create a runtime function for this.
+// TODO (clemensh): Create a runtime function for this. id:895 gh:903
 function scriptById(scriptId) {
   var scripts = Debug.scripts();
   for (var script of scripts) {

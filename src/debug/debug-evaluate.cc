@@ -110,7 +110,7 @@ MaybeHandle<Object> DebugEvaluate::Evaluate(
   // real global object.
   if (result->IsJSGlobalProxy()) {
     PrototypeIterator iter(isolate, Handle<JSGlobalProxy>::cast(result));
-    // TODO(verwaest): This will crash when the global proxy is detached.
+    // TODO (verwaest): This will crash when the global proxy is detached. id:879 gh:887
     result = PrototypeIterator::GetCurrent<JSObject>(iter);
   }
 
@@ -723,7 +723,7 @@ bool DebugEvaluate::FunctionHasNoSideEffect(Handle<SharedFunctionInfo> info) {
       if (info->code()->builtin_index() == Builtins::kDeserializeLazy) {
         return true;  // Target builtin is not yet deserialized.
       }
-      // TODO(yangguo): Check builtin-to-builtin calls too.
+      // TODO (yangguo): Check builtin-to-builtin calls too. id:920 gh:928
       int mode = RelocInfo::ModeMask(RelocInfo::EXTERNAL_REFERENCE);
       bool failed = false;
       for (RelocIterator it(info->code(), mode); !it.done(); it.next()) {

@@ -241,7 +241,7 @@ class RetrieveV8Releases(Step):
         releases.append(release)
 
         # Follow branches only until their creation point.
-        # TODO(machenbach): This omits patches if the version file wasn't
+        # TODO (machenbach): This omits patches if the version file wasn't id:2445 gh:2451
         # manipulated correctly. Find a better way to detect the point where
         # the parent of the branch head leads to the trunk branch.
         if branch != self.vc.CandidateBranch() and patch_level == "0":
@@ -381,7 +381,7 @@ class RetrieveChromiumV8Releases(Step):
       releases_dict.get(hsh, {})["chromium_revision"] = ranges
 
 
-# TODO(machenbach): Unify common code with method above.
+# TODO (machenbach): Unify common code with method above. id:2572 gh:2581
 class RetrieveChromiumBranches(Step):
   MESSAGE = "Retrieve Chromium branch information."
 

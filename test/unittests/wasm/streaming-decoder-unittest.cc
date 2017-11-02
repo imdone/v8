@@ -21,7 +21,7 @@ class MockStreamingProcessor : public StreamingProcessor {
  public:
   bool ProcessModuleHeader(Vector<const uint8_t> bytes,
                            uint32_t offset) override {
-    // TODO(ahaas): Share code with the module-decoder.
+    // TODO (ahaas): Share code with the module-decoder. id:2556 gh:2560
     Decoder decoder(bytes.begin(), bytes.end());
     uint32_t magic_word = decoder.consume_u32("wasm magic");
     if (decoder.failed() || magic_word != kWasmMagic) {

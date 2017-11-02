@@ -206,10 +206,10 @@ var funcs = [
   f32_div,
   f32_ceil,
   f32_floor,
-// TODO(bradnelson) f32_sqrt,
-// TODO(bradnelson) f32_abs,
-// TODO(bradnelson) f32_min is wrong for -0
-// TODO(bradnelson) f32_max is wrong for -0
+// TODO (bradnelson) f32_sqrt, id:2046 gh:2054
+// TODO (bradnelson) f32_abs, id:2275 gh:2284
+// TODO (bradnelson) f32_min is wrong for -0 id:2358 gh:2366
+// TODO (bradnelson) f32_max is wrong for -0 id:2084 gh:2092
   f32_eq,
   f32_ne,
   f32_lt,

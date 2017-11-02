@@ -12,7 +12,7 @@
 // No-op macro which is used to work around MSVC's funky VA_ARGS support.
 #define EXPAND(x) x
 
-// TODO(all) Replace all uses of this macro with C++'s offsetof. To do that, we
+// TODO (all) Replace all uses of this macro with C++'s offsetof. To do that, we id:183 gh:184
 // have to make sure that only standard-layout types and simple field
 // designators are used.
 #define OFFSET_OF(type, field) \
@@ -186,10 +186,10 @@ V8_INLINE Dest bit_cast(Source const& source) {
 #endif
 
 
-// TODO(all) Replace all uses of this macro with static_assert, remove macro.
+// TODO (all) Replace all uses of this macro with static_assert, remove macro. id:225 gh:226
 #define STATIC_ASSERT(test) static_assert(test, #test)
 
-// TODO(rongjie) Remove this workaround once we require gcc >= 5.0
+// TODO (rongjie) Remove this workaround once we require gcc >= 5.0 id:247 gh:248
 #if __GNUG__ && __GNUC__ < 5
 #define IS_TRIVIALLY_COPYABLE(T) \
   (__has_trivial_copy(T) && __has_trivial_destructor(T))

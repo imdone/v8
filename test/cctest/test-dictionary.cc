@@ -141,7 +141,7 @@ static void TestHashSet(Handle<HashSet> table) {
   CHECK(!table->Has(isolate, b));
 
   // Keys that have been removed are mapped to the hole.
-  // TODO(cbruni): not implemented yet.
+  // TODO (cbruni): not implemented yet. id:1620 gh:1628
   // bool was_present = false;
   // table = HashSet::Remove(table, a, &was_present);
   // CHECK(was_present);

@@ -420,7 +420,7 @@ void KeyedStoreGenericAssembler::StoreElementWithCapacity(
 
   BIND(&check_cow_elements);
   {
-    // TODO(jkummerow): Use GrowElementsCapacity instead of bailing out.
+    // TODO (jkummerow): Use GrowElementsCapacity instead of bailing out. id:1207 gh:1215
     Goto(slow);
   }
 }
@@ -480,7 +480,7 @@ void KeyedStoreGenericAssembler::EmitGenericElementStore(
   BIND(&if_grow);
   {
     Comment("Grow backing store");
-    // TODO(jkummerow): Support inline backing store growth.
+    // TODO (jkummerow): Support inline backing store growth. id:977 gh:985
     Goto(slow);
   }
 
@@ -501,14 +501,14 @@ void KeyedStoreGenericAssembler::EmitGenericElementStore(
   BIND(&if_dictionary);
   {
     Comment("Dictionary");
-    // TODO(jkummerow): Support storing to dictionary elements.
+    // TODO (jkummerow): Support storing to dictionary elements. id:1173 gh:1181
     Goto(slow);
   }
 
   BIND(&if_typed_array);
   {
     Comment("Typed array");
-    // TODO(jkummerow): Support typed arrays.
+    // TODO (jkummerow): Support typed arrays. id:994 gh:1002
     Goto(slow);
   }
 }
@@ -549,7 +549,7 @@ void KeyedStoreGenericAssembler::LookupPropertyOnPrototypeChain(
         JumpIfDataProperty(details, &ok_to_write, readonly);
 
         // Accessor case.
-        // TODO(jkummerow): Implement a trimmed-down LoadAccessorFromFastObject.
+        // TODO (jkummerow): Implement a trimmed-down LoadAccessorFromFastObject. id:1137 gh:1145
         VARIABLE(var_details, MachineRepresentation::kWord32);
         LoadPropertyFromFastObject(holder, holder_map, descriptors, name_index,
                                    &var_details, var_accessor_pair);
@@ -671,7 +671,7 @@ void KeyedStoreGenericAssembler::OverwriteExistingFastProperty(
          slow);
 
   if (FLAG_track_constant_fields) {
-    // TODO(ishell): Taking the slow path is not necessary if new and old
+    // TODO (ishell): Taking the slow path is not necessary if new and old id:1208 gh:1216
     // values are identical.
     GotoIf(Word32Equal(DecodeWord32<PropertyDetails::ConstnessField>(details),
                        Int32Constant(kConst)),
@@ -773,7 +773,7 @@ void KeyedStoreGenericAssembler::EmitGenericPropertyStore(
       JumpIfDataProperty(details, &data_property, &readonly);
 
       // Accessor case.
-      // TODO(jkummerow): Implement a trimmed-down LoadAccessorFromFastObject.
+      // TODO (jkummerow): Implement a trimmed-down LoadAccessorFromFastObject. id:978 gh:986
       VARIABLE(var_details, MachineRepresentation::kWord32);
       LoadPropertyFromFastObject(receiver, receiver_map, descriptors,
                                  name_index, &var_details, &var_accessor_pair);
@@ -803,7 +803,7 @@ void KeyedStoreGenericAssembler::EmitGenericPropertyStore(
       GotoIf(WordEqual(handler_map, Tuple3MapConstant()), &tuple3);
       GotoIf(WordEqual(handler_map, FixedArrayMapConstant()), &fixedarray);
 
-      // TODO(jkummerow): Consider implementing TransitionArray search.
+      // TODO (jkummerow): Consider implementing TransitionArray search. id:1174 gh:1182
       Goto(notfound);
 
       VARIABLE(var_transition_cell, MachineRepresentation::kTagged);

@@ -145,7 +145,7 @@ class StringStream final {
   void PrintUsingMap(JSObject* js_object);
   void PrintPrototype(JSFunction* fun, Object* receiver);
   void PrintSecurityTokenIfChanged(Object* function);
-  // NOTE: Returns the code in the output parameter.
+  // NOTE: Returns the code in the output parameter. id:1269 gh:1277
   void PrintFunction(Object* function, Object* receiver, Code** code);
 
   // Reset the stream.

@@ -364,7 +364,7 @@ struct Tests {
 
   void MinMax() {
     // If b is regular numeric bitset, then Range(b->Min(), b->Max())->Is(b).
-    // TODO(neis): Need to ignore representation for this to be true.
+    // TODO (neis): Need to ignore representation for this to be true. id:1911 gh:1919
     /*
     for (TypeIterator it = T.types.begin(); it != T.types.end(); ++it) {
       Type* type = *it;

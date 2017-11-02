@@ -396,7 +396,7 @@ void BytecodeGraphBuilder::Environment::PrepareForLoopExit(
                                          GetEffectDependency(), loop_exit);
   UpdateEffectDependency(effect_rename);
 
-  // TODO(jarin) We should also rename context here. However, unconditional
+  // TODO (jarin) We should also rename context here. However, unconditional id:471 gh:472
   // renaming confuses global object and native context specialization.
   // We should only rename if the context is assigned in the loop.
 
@@ -1502,7 +1502,7 @@ void BytecodeGraphBuilder::VisitCreateArrayLiteral() {
   // data to converge. So, we disable allocation site mementos in optimized
   // code. We can revisit this when we have data to the contrary.
   literal_flags |= ArrayLiteral::kDisableMementos;
-  // TODO(mstarzinger): Thread through number of elements. The below number is
+  // TODO (mstarzinger): Thread through number of elements. The below number is id:555 gh:556
   // only an estimate and does not match {ArrayLiteral::values::length}.
   int number_of_elements = constant_elements->constant_values()->length();
   Node* literal = NewNode(javascript()->CreateLiteralArray(
@@ -1526,7 +1526,7 @@ void BytecodeGraphBuilder::VisitCreateObjectLiteral() {
   int bytecode_flags = bytecode_iterator().GetFlagOperand(2);
   int literal_flags =
       interpreter::CreateObjectLiteralFlags::FlagsBits::decode(bytecode_flags);
-  // TODO(mstarzinger): Thread through number of properties. The below number is
+  // TODO (mstarzinger): Thread through number of properties. The below number is id:487 gh:488
   // only an estimate and does not match {ObjectLiteral::properties_count}.
   int number_of_properties = constant_properties->size();
   Node* literal = NewNode(javascript()->CreateLiteralObject(
@@ -2086,7 +2086,7 @@ CallFrequency BytecodeGraphBuilder::ComputeCallFrequency(int slot_id) const {
 void BytecodeGraphBuilder::VisitNegate() {
   PrepareEagerCheckpoint();
 
-  // TODO(adamk): Create a JSNegate operator, as this desugaring is
+  // TODO (adamk): Create a JSNegate operator, as this desugaring is id:515 gh:516
   // invalid for BigInts.
   const Operator* op = javascript()->Multiply();
   Node* operand = environment()->LookupAccumulator();
@@ -2112,7 +2112,7 @@ void BytecodeGraphBuilder::VisitNegate() {
 void BytecodeGraphBuilder::VisitBitwiseNot() {
   PrepareEagerCheckpoint();
 
-  // TODO(adamk): Create a JSBitwiseNot operator, as this desugaring is
+  // TODO (adamk): Create a JSBitwiseNot operator, as this desugaring is id:443 gh:442
   // invalid for BigInts.
   const Operator* op = javascript()->BitwiseXor();
   Node* operand = environment()->LookupAccumulator();
@@ -2381,7 +2381,7 @@ void BytecodeGraphBuilder::VisitTestGreaterThanOrEqual() {
 }
 
 void BytecodeGraphBuilder::VisitTestEqualStrictNoFeedback() {
-  // TODO(5310): Currently this is used with both Smi operands and with
+  // TODO (5310): Currently this is used with both Smi operands and with id:472 gh:473
   // string operands. We pass string operands for static property check in
   // VisitClassLiteralProperties. This should be changed, so we only use this
   // for Smi operations and lower it to SpeculativeNumberEqual[kSignedSmall]
@@ -2518,7 +2518,7 @@ void BytecodeGraphBuilder::VisitToNumber() {
 }
 
 void BytecodeGraphBuilder::VisitToNumeric() {
-  // TODO(neis): This is currently only correct in the absence of bigints.
+  // TODO (neis): This is currently only correct in the absence of bigints. id:556 gh:557
   DCHECK(!FLAG_harmony_bigint);
   VisitToNumber();
 }
@@ -2839,7 +2839,7 @@ void BytecodeGraphBuilder::MergeIntoSuccessorEnvironment(int target_offset) {
     // Append merge nodes to the environment. We may merge here with another
     // environment. So add a place holder for merge nodes. We may add redundant
     // but will be eliminated in a later pass.
-    // TODO(mstarzinger): Be smarter about this!
+    // TODO (mstarzinger): Be smarter about this! id:488 gh:489
     NewMerge();
     merge_environment = environment();
   } else {

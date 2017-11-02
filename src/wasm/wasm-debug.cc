@@ -199,7 +199,7 @@ class InterpreterHandle {
     thread->InitFrame(&module()->functions[func_index], wasm_args.start());
     bool finished = false;
     while (!finished) {
-      // TODO(clemensh): Add occasional StackChecks.
+      // TODO (clemensh): Add occasional StackChecks. id:1360 gh:1368
       WasmInterpreter::State state = ContinueExecution(thread);
       switch (state) {
         case WasmInterpreter::State::PAUSED:
@@ -234,7 +234,7 @@ class InterpreterHandle {
 
     // Copy back the return value
     DCHECK_GE(kV8MaxWasmFunctionReturns, sig->return_count());
-    // TODO(wasm): Handle multi-value returns.
+    // TODO (wasm): Handle multi-value returns. id:1749 gh:1757
     DCHECK_EQ(1, kV8MaxWasmFunctionReturns);
     if (sig->return_count()) {
       WasmValue ret_val = thread->GetReturnValue(0);
@@ -394,7 +394,7 @@ class InterpreterHandle {
         thread->ActivationFrameBase(activation_id)) {
       using ExceptionResult = WasmInterpreter::Thread::ExceptionHandlingResult;
       ExceptionResult result = thread->HandleException(isolate_);
-      // TODO(wasm): Handle exceptions caught in wasm land.
+      // TODO (wasm): Handle exceptions caught in wasm land. id:1395 gh:1403
       CHECK_EQ(ExceptionResult::UNWOUND, result);
     }
 
@@ -411,7 +411,7 @@ class InterpreterHandle {
     Isolate* isolate = debug_info->GetIsolate();
     Handle<WasmInstanceObject> instance(debug_info->wasm_instance(), isolate);
 
-    // TODO(clemensh): Add globals to the global scope.
+    // TODO (clemensh): Add globals to the global scope. id:1663 gh:1671
     Handle<JSObject> global_scope_object =
         isolate_->factory()->NewJSObjectWithNullProto();
     if (instance->has_memory_object()) {
@@ -597,7 +597,7 @@ void RedirectCallsitesInInstance(Isolate* isolate, WasmInstanceObject* instance,
   for (int i = 0, e = GetNumFunctions(instance); i < e; ++i) {
     RedirectCallsitesInCode(Code::cast(code_table->get(i)), map);
   }
-  // TODO(6668): Find instances that imported our code and also patch those.
+  // TODO (6668): Find instances that imported our code and also patch those. id:1705 gh:1714
 
   // Redirect all calls in exported functions.
   FixedArray* weak_exported_functions =

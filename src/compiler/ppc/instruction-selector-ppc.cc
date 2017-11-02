@@ -246,7 +246,7 @@ void InstructionSelector::VisitLoad(Node* node) {
 }
 
 void InstructionSelector::VisitProtectedLoad(Node* node) {
-  // TODO(eholk)
+  // TODO (eholk) id:656 gh:657
   UNIMPLEMENTED();
 }
 
@@ -356,7 +356,7 @@ void InstructionSelector::VisitStore(Node* node) {
 }
 
 void InstructionSelector::VisitProtectedStore(Node* node) {
-  // TODO(eholk)
+  // TODO (eholk) id:687 gh:688
   UNIMPLEMENTED();
 }
 
@@ -496,7 +496,7 @@ static void VisitLogical(InstructionSelector* selector, Node* node, Matcher* m,
       right_can_cover) {
     Matcher mright(m->right().node());
     if (mright.right().Is(-1)) {
-      // TODO(all): support shifted operand on right.
+      // TODO (all): support shifted operand on right. id:757 gh:758
       selector->Emit(inv_opcode, g.DefineAsRegister(node),
                      g.UseRegister(m->left().node()),
                      g.UseRegister(mright.left().node()));
@@ -534,7 +534,7 @@ static inline bool IsContiguousMask64(uint64_t value, int* mb, int* me) {
 #endif
 
 
-// TODO(mbrandy): Absorb rotate-right into rlwinm?
+// TODO (mbrandy): Absorb rotate-right into rlwinm? id:726 gh:727
 void InstructionSelector::VisitWord32And(Node* node) {
   PPCOperandGenerator g(this);
   Int32BinopMatcher m(node);
@@ -573,7 +573,7 @@ void InstructionSelector::VisitWord32And(Node* node) {
 
 
 #if V8_TARGET_ARCH_PPC64
-// TODO(mbrandy): Absorb rotate-right into rldic?
+// TODO (mbrandy): Absorb rotate-right into rldic? id:797 gh:805
 void InstructionSelector::VisitWord64And(Node* node) {
   PPCOperandGenerator g(this);
   Int64BinopMatcher m(node);
@@ -701,7 +701,7 @@ void InstructionSelector::VisitWord32Shl(Node* node) {
 void InstructionSelector::VisitWord64Shl(Node* node) {
   PPCOperandGenerator g(this);
   Int64BinopMatcher m(node);
-  // TODO(mbrandy): eliminate left sign extension if right >= 32
+  // TODO (mbrandy): eliminate left sign extension if right >= 32 id:657 gh:658
   if (m.left().IsWord64And() && m.right().IsInRange(0, 63)) {
     // Try to absorb logical-and into rldic
     Int64BinopMatcher mleft(m.left().node());
@@ -970,14 +970,14 @@ void InstructionSelector::VisitWord64Sar(Node* node) {
 #endif
 
 
-// TODO(mbrandy): Absorb logical-and into rlwinm?
+// TODO (mbrandy): Absorb logical-and into rlwinm? id:688 gh:689
 void InstructionSelector::VisitWord32Ror(Node* node) {
   VisitRRO(this, kPPC_RotRight32, node, kShift32Imm);
 }
 
 
 #if V8_TARGET_ARCH_PPC64
-// TODO(mbrandy): Absorb logical-and into rldic?
+// TODO (mbrandy): Absorb logical-and into rldic? id:758 gh:759
 void InstructionSelector::VisitWord64Ror(Node* node) {
   VisitRRO(this, kPPC_RotRight64, node, kShift64Imm);
 }
@@ -1232,13 +1232,13 @@ void InstructionSelector::VisitTryTruncateFloat64ToUint64(Node* node) {
 
 
 void InstructionSelector::VisitChangeInt32ToInt64(Node* node) {
-  // TODO(mbrandy): inspect input to see if nop is appropriate.
+  // TODO (mbrandy): inspect input to see if nop is appropriate. id:727 gh:728
   VisitRR(this, kPPC_ExtendSignWord32, node);
 }
 
 
 void InstructionSelector::VisitChangeUint32ToUint64(Node* node) {
-  // TODO(mbrandy): inspect input to see if nop is appropriate.
+  // TODO (mbrandy): inspect input to see if nop is appropriate. id:798 gh:806
   VisitRR(this, kPPC_Uint32ToUint64, node);
 }
 
@@ -1273,7 +1273,7 @@ void InstructionSelector::VisitTruncateFloat32ToUint32(Node* node) {
 
 #if V8_TARGET_ARCH_PPC64
 void InstructionSelector::VisitTruncateInt64ToInt32(Node* node) {
-  // TODO(mbrandy): inspect input to see if nop is appropriate.
+  // TODO (mbrandy): inspect input to see if nop is appropriate. id:658 gh:659
   VisitRR(this, kPPC_Int64ToInt32, node);
 }
 
@@ -1329,7 +1329,7 @@ void InstructionSelector::VisitFloat32Add(Node* node) {
 
 
 void InstructionSelector::VisitFloat64Add(Node* node) {
-  // TODO(mbrandy): detect multiply-add
+  // TODO (mbrandy): detect multiply-add id:689 gh:690
   VisitRRR(this, kPPC_AddDouble, node);
 }
 
@@ -1339,7 +1339,7 @@ void InstructionSelector::VisitFloat32Sub(Node* node) {
 }
 
 void InstructionSelector::VisitFloat64Sub(Node* node) {
-  // TODO(mbrandy): detect multiply-subtract
+  // TODO (mbrandy): detect multiply-subtract id:759 gh:760
   VisitRRR(this, kPPC_SubDouble, node);
 }
 
@@ -1349,7 +1349,7 @@ void InstructionSelector::VisitFloat32Mul(Node* node) {
 
 
 void InstructionSelector::VisitFloat64Mul(Node* node) {
-  // TODO(mbrandy): detect negate
+  // TODO (mbrandy): detect negate id:728 gh:729
   VisitRRR(this, kPPC_MulDouble, node);
 }
 
@@ -1736,10 +1736,10 @@ void VisitWordCompareZero(InstructionSelector* selector, Node* user,
       case IrOpcode::kInt32Sub:
         return VisitWord32Compare(selector, value, cont);
       case IrOpcode::kWord32And:
-        // TODO(mbandy): opportunity for rlwinm?
+        // TODO (mbandy): opportunity for rlwinm? id:799 gh:807
         return VisitWordCompare(selector, value, kPPC_Tst32, cont, true,
                                 kInt16Imm_Unsigned);
-// TODO(mbrandy): Handle?
+// TODO (mbrandy): Handle? id:659 gh:660
 // case IrOpcode::kInt32Add:
 // case IrOpcode::kWord32Or:
 // case IrOpcode::kWord32Xor:
@@ -1751,10 +1751,10 @@ void VisitWordCompareZero(InstructionSelector* selector, Node* user,
       case IrOpcode::kInt64Sub:
         return VisitWord64Compare(selector, value, cont);
       case IrOpcode::kWord64And:
-        // TODO(mbandy): opportunity for rldic?
+        // TODO (mbandy): opportunity for rldic? id:690 gh:691
         return VisitWordCompare(selector, value, kPPC_Tst64, cont, true,
                                 kInt16Imm_Unsigned);
-// TODO(mbrandy): Handle?
+// TODO (mbrandy): Handle? id:760 gh:761
 // case IrOpcode::kInt64Add:
 // case IrOpcode::kWord64Or:
 // case IrOpcode::kWord64Xor:

@@ -241,7 +241,7 @@ class V8_EXPORT_PRIVATE WasmModuleBuilder : public ZoneObject {
   void WriteTo(ZoneBuffer& buffer) const;
   void WriteAsmJsOffsetTable(ZoneBuffer& buffer) const;
 
-  // TODO(titzer): use SignatureMap from signature-map.h here.
+  // TODO (titzer): use SignatureMap from signature-map.h here. id:1365 gh:1373
   // This signature map is zone-allocated, but the other is heap allocated.
   struct CompareFunctionSigs {
     bool operator()(FunctionSig* a, FunctionSig* b) const;

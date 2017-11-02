@@ -60,7 +60,7 @@ namespace internal {
       __allocation__ = FUNCTION_CALL;                                         \
     }                                                                         \
     RETURN_OBJECT_UNLESS_RETRY(ISOLATE, TYPE)                                 \
-    /* TODO(1181417): Fix this. */                                            \
+    /* TODO (1181417): Fix this.  id:969 gh:977*/                                            \
     v8::internal::Heap::FatalProcessOutOfMemory("CALL_AND_RETRY_LAST", true); \
     return Handle<TYPE>();                                                    \
   } while (false)
@@ -208,7 +208,7 @@ Handle<FixedArray> Factory::NewFixedArrayWithHoles(int size,
 }
 
 Handle<FixedArray> Factory::NewUninitializedFixedArray(int size) {
-  // TODO(ulan): As an experiment this temporarily returns an initialized fixed
+  // TODO (ulan): As an experiment this temporarily returns an initialized fixed id:1088 gh:1096
   // array. After getting canary/performance coverage, either remove the
   // function or revert to returning uninitilized array.
   CALL_HEAP_FUNCTION(isolate(),
@@ -422,7 +422,7 @@ MaybeHandle<String> Factory::NewStringFromUtf8SubString(
   int non_ascii_start = String::NonAsciiStart(start, length);
   if (non_ascii_start >= length) {
     // If the string is ASCII, we can just make a substring.
-    // TODO(v8): the pretenure flag is ignored in this case.
+    // TODO (v8): the pretenure flag is ignored in this case. id:939 gh:947
     return NewSubString(str, begin, begin + length);
   }
 
@@ -888,7 +888,7 @@ MaybeHandle<String> Factory::NewExternalStringFromOneByte(
 
   Handle<Map> map;
   if (resource->IsCompressible()) {
-    // TODO(hajimehoshi): Rename this to 'uncached_external_one_byte_string_map'
+    // TODO (hajimehoshi): Rename this to 'uncached_external_one_byte_string_map' id:889 gh:897
     map = short_external_one_byte_string_map();
   } else {
     map = external_one_byte_string_map();
@@ -918,7 +918,7 @@ MaybeHandle<String> Factory::NewExternalStringFromTwoByte(
       String::IsOneByte(resource->data(), static_cast<int>(length));
   Handle<Map> map;
   if (resource->IsCompressible()) {
-    // TODO(hajimehoshi): Rename these to 'uncached_external_string_...'.
+    // TODO (hajimehoshi): Rename these to 'uncached_external_string_...'. id:930 gh:938
     map = is_one_byte ? short_external_string_with_one_byte_data_map()
                       : short_external_string_map();
   } else {
@@ -1654,7 +1654,7 @@ Handle<JSFunction> Factory::NewFunction(Handle<String> name, Handle<Code> code,
       type == JS_ARRAY_TYPE ? PACKED_SMI_ELEMENTS : HOLEY_SMI_ELEMENTS;
   Handle<Map> initial_map =
       NewMap(type, instance_size, elements_kind, inobject_properties);
-  // TODO(littledan): Why do we have this is_generator test when
+  // TODO (littledan): Why do we have this is_generator test when id:970 gh:978
   // NewFunctionPrototype already handles finding an appropriately
   // shared prototype?
   if (!IsResumableFunction(function->shared()->kind())) {
@@ -2846,7 +2846,7 @@ Handle<JSObject> Factory::NewArgumentsObject(Handle<JSFunction> callee,
 
 
 Handle<JSWeakMap> Factory::NewJSWeakMap() {
-  // TODO(adamk): Currently the map is only created three times per
+  // TODO (adamk): Currently the map is only created three times per id:1089 gh:1097
   // isolate. If it's created more often, the map should be moved into the
   // strong root list.
   Handle<Map> map = NewMap(JS_WEAK_MAP_TYPE, JSWeakMap::kSize);

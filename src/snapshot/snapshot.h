@@ -152,7 +152,7 @@ class Snapshot : public AllStatic {
   // ... context 1 snapshot data
 
   static const uint32_t kNumberOfContextsOffset = 0;
-  // TODO(yangguo): generalize rehashing, and remove this flag.
+  // TODO (yangguo): generalize rehashing, and remove this flag. id:1375 gh:1383
   static const uint32_t kRehashabilityOffset =
       kNumberOfContextsOffset + kUInt32Size;
   static const uint32_t kVersionStringOffset =

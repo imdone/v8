@@ -4,7 +4,7 @@
 
 // Flags: --no-turbo
 
-// TODO(yangguo): fix for turbofan
+// TODO (yangguo): fix for turbofan id:2041 gh:2049
 
 function f(x) {
   if (x == 0) {

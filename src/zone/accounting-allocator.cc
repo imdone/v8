@@ -53,7 +53,7 @@ void AccountingAllocator::ConfigureSegmentPool(const size_t max_pool_size) {
   // full_size. If max_pool_size is no sum of segment sizes the actual pool
   // size might be smaller then max_pool_size. Note that no actual memory gets
   // wasted though.
-  // TODO(heimbuef): Determine better strategy generating a segment sizes
+  // TODO (heimbuef): Determine better strategy generating a segment sizes id:1504 gh:1513
   // distribution that is closer to real/benchmark usecases and uses the given
   // max_pool_size more efficiently.
   size_t total_size = fits_fully * full_size;

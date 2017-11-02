@@ -260,7 +260,7 @@ class RegisterAllocatorVerifier final : public ZoneObject {
   Constraints constraints_;
   ZoneMap<RpoNumber, BlockAssessments*> assessments_;
   ZoneMap<RpoNumber, DelayedAssessments*> outstanding_assessments_;
-  // TODO(chromium:725559): remove after we understand this bug's root cause.
+  // TODO (chromium:725559): remove after we understand this bug's root cause. id:730 gh:731
   const char* caller_info_ = nullptr;
 
   DISALLOW_COPY_AND_ASSIGN(RegisterAllocatorVerifier);
