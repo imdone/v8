@@ -147,11 +147,11 @@ void CompilationJob::RecordUnoptimizedCompilationStats() const {
   }
 
   Counters* counters = compilation_info()->isolate()->counters();
-  // TODO(4280): Rename counters from "baseline" to "unoptimized" eventually.
+  // TODO (4280): Rename counters from "baseline" to "unoptimized" eventually. id:404 gh:406
   counters->total_baseline_code_size()->Increment(code_size);
   counters->total_baseline_compile_count()->Increment(1);
 
-  // TODO(5203): Add timers for each phase of compilation.
+  // TODO (5203): Add timers for each phase of compilation. id:431 gh:432
 }
 
 void CompilationJob::RecordOptimizedCompilationStats() const {
@@ -255,7 +255,7 @@ void EnsureFeedbackMetadata(CompilationInfo* compilation_info) {
   // vectors for a different configuration, hence we also recreate a new vector
   // when the function is not compiled (i.e. no code was serialized).
 
-  // TODO(mvstanton): reintroduce is_empty() predicate to feedback_metadata().
+  // TODO (mvstanton): reintroduce is_empty() predicate to feedback_metadata(). id:460 gh:461
   if (compilation_info->shared_info()->feedback_metadata()->length() == 0 ||
       !compilation_info->shared_info()->is_compiled()) {
     Handle<FeedbackMetadata> feedback_metadata = FeedbackMetadata::New(
@@ -403,7 +403,7 @@ std::unique_ptr<CompilationJob> PrepareAndExecuteUnoptimizedCompileJob(
   return std::unique_ptr<CompilationJob>();  // Compilation failed, return null.
 }
 
-// TODO(rmcilroy): Remove |isolate| once CompilationJob doesn't need it.
+// TODO (rmcilroy): Remove |isolate| once CompilationJob doesn't need it. id:376 gh:377
 std::unique_ptr<CompilationJob> GenerateUnoptimizedCode(
     ParseInfo* parse_info, Isolate* isolate,
     std::forward_list<std::unique_ptr<CompilationJob>>* inner_function_jobs) {
@@ -466,7 +466,7 @@ bool FinalizeUnoptimizedCode(
             inner_job->compilation_info()->literal(), parse_info->script(),
             isolate);
     // The inner function might be compiled already if compiling for debug.
-    // TODO(rmcilroy): Fix this and DCHECK !is_compiled() once Full-Codegen dies
+    // TODO (rmcilroy): Fix this and DCHECK !is_compiled() once Full-Codegen dies id:476 gh:477
     if (inner_shared_info->is_compiled()) continue;
     inner_job->compilation_info()->set_shared_info(inner_shared_info);
     if (FinalizeUnoptimizedCompilationJob(inner_job.get()) !=
@@ -1024,7 +1024,7 @@ MaybeHandle<JSArray> Compiler::CompileForLiveEdit(Handle<Script> script) {
   ParseInfo parse_info(script);
   parse_info.set_eager();
 
-  // TODO(635): support extensions.
+  // TODO (635): support extensions. id:405 gh:407
   Handle<JSArray> infos;
   Handle<SharedFunctionInfo> shared_info;
   if (CompileToplevel(&parse_info, isolate).ToHandle(&shared_info)) {
@@ -1288,7 +1288,7 @@ struct ScriptCompileTimerScope {
  private:
   Isolate* isolate_;
   LazyTimedHistogramScope histogram_scope_;
-  // TODO(leszeks): This timer is the sum of the other times, consider removing
+  // TODO (leszeks): This timer is the sum of the other times, consider removing id:432 gh:433
   // it to save space.
   HistogramTimerScope all_scripts_histogram_scope_;
   ScriptCompiler::NoCacheReason no_cache_reason_;
@@ -1368,10 +1368,10 @@ struct ScriptCompileTimerScope {
       case CacheBehaviour::kNoCacheBecauseNoResource:
       case CacheBehaviour::kNoCacheBecauseInspector:
       case CacheBehaviour::kNoCacheBecauseCachingDisabled:
-      // TODO(leszeks): Consider counting separately once modules are more
+      // TODO (leszeks): Consider counting separately once modules are more id:461 gh:462
       // common.
       case CacheBehaviour::kNoCacheBecauseModule:
-      // TODO(leszeks): Count separately or remove entirely once we have
+      // TODO (leszeks): Count separately or remove entirely once we have id:377 gh:378
       // background compilation.
       case CacheBehaviour::kNoCacheBecauseStreamingSource:
         return isolate_->counters()->compile_script_no_cache_other();
@@ -1559,7 +1559,7 @@ MaybeHandle<SharedFunctionInfo> Compiler::GetSharedFunctionInfoForScript(
 Handle<SharedFunctionInfo> Compiler::GetSharedFunctionInfoForStreamedScript(
     Handle<Script> script, ParseInfo* parse_info, int source_length) {
   Isolate* isolate = script->GetIsolate();
-  // TODO(titzer): increment the counters in caller.
+  // TODO (titzer): increment the counters in caller. id:477 gh:478
   isolate->counters()->total_load_size()->Increment(source_length);
   isolate->counters()->total_compile_size()->Increment(source_length);
 
@@ -1675,7 +1675,7 @@ void Compiler::PostInstantiation(Handle<JSFunction> function,
   if (FLAG_always_opt && shared->allows_lazy_compilation() &&
       !shared->optimization_disabled() && !shared->HasAsmWasmData() &&
       shared->is_compiled()) {
-    // TODO(mvstanton): pass pretenure flag to EnsureLiterals.
+    // TODO (mvstanton): pass pretenure flag to EnsureLiterals. id:406 gh:408
     JSFunction::EnsureLiterals(function);
 
     if (!function->IsOptimized()) {
@@ -1687,7 +1687,7 @@ void Compiler::PostInstantiation(Handle<JSFunction> function,
   }
 
   if (shared->is_compiled() && !shared->HasAsmWasmData()) {
-    // TODO(mvstanton): pass pretenure flag to EnsureLiterals.
+    // TODO (mvstanton): pass pretenure flag to EnsureLiterals. id:433 gh:434
     JSFunction::EnsureLiterals(function);
 
     Code* code = function->feedback_vector()->optimized_code();

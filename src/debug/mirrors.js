@@ -174,7 +174,7 @@ function GetUndefinedMirror() {
  * Inherit the prototype methods from one constructor into another.
  *
  * The Function.prototype.inherits from lang.js rewritten as a standalone
- * function (not on Function.prototype). NOTE: If this file is to be loaded
+ * function (not on Function.prototype). NOTE: If this file is to be loaded id:926 gh:934
  * during bootstrapping this function needs to be revritten using some native
  * functions as prototype setup using normal JavaScript does not work as
  * expected during bootstrapping (see mirror.js in r114903).
@@ -210,7 +210,7 @@ PropertyAttribute.DontDelete = DONT_DELETE;
 
 
 // A copy of the scope types from runtime-debug.cc.
-// NOTE: these constants should be backward-compatible, so
+// NOTE: these constants should be backward-compatible, so id:966 gh:974
 // add new ones to the end of this list.
 var ScopeType = { Global:  0,
                   Local:   1,
@@ -1800,7 +1800,7 @@ FrameMirror.prototype.func = function() {
   // Get the function for this frame from the VM.
   var f = this.details_.func();
 
-  // Create a function mirror. NOTE: MakeMirror cannot be used here as the
+  // Create a function mirror. NOTE: MakeMirror cannot be used here as the id:1085 gh:1093
   // value returned from the VM might be a string if the function for the
   // frame is unresolved.
   if (IS_FUNCTION(f)) {

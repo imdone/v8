@@ -66,7 +66,7 @@ try {
   assertEquals(25, e);
   (function () {
     try {
-      // NOTE: This checks that the block scope containing xx has been
+      // NOTE: This checks that the block scope containing xx has been id:2260 gh:2268
       // removed from the context chain.
       eval('xx');
       assertTrue(false);  // should not reach here

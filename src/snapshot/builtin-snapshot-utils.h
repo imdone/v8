@@ -30,7 +30,7 @@ class BuiltinSnapshotUtils : public AllStatic {
       Bytecodes::kBytecodeCount * BytecodeOperands::kOperandScaleCount;
 
   // The number of code objects in the builtin snapshot.
-  // TODO(jgruber): This could be reduced by a bit since not every
+  // TODO (jgruber): This could be reduced by a bit since not every id:1608 gh:1616
   // {bytecode, operand_scale} combination has an associated handler, and some
   // handlers are reused (see BytecodeHasDedicatedHandler).
   static const int kNumberOfCodeObjects = kNumberOfBuiltins + kNumberOfHandlers;

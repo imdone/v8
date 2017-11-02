@@ -131,7 +131,7 @@ var kTests = {
 
       var object = { 0: r, 1: s, 2: p, length: 3 };
       assertTrue(%HasObjectElements(object));
-      // TODO(caitp): JSObjects always seem to start with HOLEY_ELEMENTS
+      // TODO (caitp): JSObjects always seem to start with HOLEY_ELEMENTS id:1895 gh:1903
       // assertFalse(%HasHoleyElements(object));
 
       for (var i = 0; i < kIterCount; ++i) {
@@ -157,7 +157,7 @@ var kTests = {
 
     PACKED_SMI_ELEMENTS() {
       var object = { 0: 0, 1: 88, 2: 9999, 3: 1, 4: -5, 5: 7, length: 6 };
-      // TODO(caitp): JSObjects always seem to start with HOLEY_ELEMENTS
+      // TODO (caitp): JSObjects always seem to start with HOLEY_ELEMENTS id:1922 gh:1931
       // assertTrue(%HasSmiElements(object));
       // assertFalse(%HasHoleyElements(object));
 
@@ -172,7 +172,7 @@ var kTests = {
 
     HOLEY_SMI_ELEMENTS() {
       var object = { 0: 49, 3: 72, 6: 67, 7: -48, length: 8 };
-      // TODO(caitp): JSObjects always seem to start with HOLEY_ELEMENTS
+      // TODO (caitp): JSObjects always seem to start with HOLEY_ELEMENTS id:1639 gh:1647
       // assertTrue(%HasSmiElements(object));
       // assertTrue(%HasHoleyElements(object));
 
@@ -190,7 +190,7 @@ var kTests = {
       var object = { 0: 7.00000001, 1: -13000.89412, 2: 73451.4124,
                    3: 5824.48, 4: 6.0000495, 5: 48.3488, 6: 44.0, 7: 76.35,
                    8: NaN, 9: 78.4, length: 10 };
-      // TODO(caitp): JSObjects always seem to start with HOLEY_ELEMENTS
+      // TODO (caitp): JSObjects always seem to start with HOLEY_ELEMENTS id:1938 gh:1946
       // assertTrue(%HasDoubleElements(object));
       // assertFalse(%HasHoleyElements(object));
 
@@ -208,7 +208,7 @@ var kTests = {
     HOLEY_DOUBLE_ELEMENTS() {
       var object = { 0: 7.00000001, 1: -13000.89412, 3: 5824.48, 5: 48.3488,
                     7: NaN, 9: 78.4, length: 10 };
-      // TODO(caitp): JSObjects always seem to start with HOLEY_ELEMENTS
+      // TODO (caitp): JSObjects always seem to start with HOLEY_ELEMENTS id:1731 gh:1739
       // assertTrue(%HasDoubleElements(object));
       // assertTrue(%HasHoleyElements(object));
 

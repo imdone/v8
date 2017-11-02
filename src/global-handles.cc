@@ -49,7 +49,7 @@ class GlobalHandles::Node {
 
 #ifdef ENABLE_HANDLE_ZAPPING
   ~Node() {
-    // TODO(1428): if it's a weak handle we should have invoked its callback.
+    // TODO (1428): if it's a weak handle we should have invoked its callback. id:1091 gh:1099
     // Zap the values for eager trapping.
     object_ = reinterpret_cast<Object*>(kGlobalHandleZapValue);
     class_id_ = v8::HeapProfiler::kPersistentHandleNoClassId;

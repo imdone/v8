@@ -125,7 +125,7 @@ enum CategoryGroupEnabledFlags {
 // No barriers are needed, because this code is designed to operate safely
 // even when the unsigned char* points to garbage data (which may be the case
 // on processors without cache coherency).
-// TODO(fmeawad): This implementation contradicts that we can have a different
+// TODO (fmeawad): This implementation contradicts that we can have a different id:1377 gh:1385
 // configuration for each isolate,
 // https://code.google.com/p/v8/issues/detail?id=4563
 #define INTERNAL_TRACE_EVENT_GET_CATEGORY_INFO_CUSTOM_VARIABLES(             \

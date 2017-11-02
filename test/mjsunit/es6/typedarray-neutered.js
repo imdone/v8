@@ -26,7 +26,7 @@ function TestArrayBufferCreation() {
   assertThrows(function() { new ArrayBuffer(-10); }, RangeError);
   assertThrows(function() { new ArrayBuffer(-2.567); }, RangeError);
 
-/* TODO[dslomov]: Reenable the test
+/* TODO [dslomov]: Reenable the test id:2265 gh:2273
   assertThrows(function() {
     var ab1 = new ArrayBuffer(0xFFFFFFFFFFFF)
   }, RangeError);

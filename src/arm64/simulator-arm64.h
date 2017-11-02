@@ -393,7 +393,7 @@ class SimRegisterBase {
     return result;
   }
 
-  // TODO(all): Make this return a map of updated bytes, so that we can
+  // TODO (all): Make this return a map of updated bytes, so that we can id:143 gh:144
   // highlight updated lanes for load-and-insert. (That never happens for scalar
   // code, but NEON has some instructions that can update individual lanes.)
   bool WrittenSinceLastLog() const { return written_since_last_log_; }
@@ -754,7 +754,7 @@ class Simulator : public DecoderVisitor {
     }
 
     explicit CallArgument(float argument) {
-      // TODO(all): CallArgument(float) is untested, remove this check once
+      // TODO (all): CallArgument(float) is untested, remove this check once id:128 gh:129
       //            tested.
       UNIMPLEMENTED();
       // Make the D register a NaN to try to trap errors if the callee expects a

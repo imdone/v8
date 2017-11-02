@@ -685,7 +685,7 @@ void Builtins::Generate_ResumeGeneratorTrampoline(MacroAssembler* masm) {
   __ jmp(&stepping_prepared);
 }
 
-// TODO(juliana): if we remove the code below then we don't need all
+// TODO (juliana): if we remove the code below then we don't need all id:365 gh:366
 // the parameters.
 static void ReplaceClosureCodeWithOptimizedCode(
     MacroAssembler* masm, Register optimized_code, Register closure,
@@ -957,7 +957,7 @@ void Builtins::Generate_InterpreterEntryTrampoline(MacroAssembler* masm) {
     __ LoadRoot(rax, Heap::kUndefinedValueRootIndex);
     __ j(always, &loop_check);
     __ bind(&loop_header);
-    // TODO(rmcilroy): Consider doing more than one push per loop iteration.
+    // TODO (rmcilroy): Consider doing more than one push per loop iteration. id:349 gh:350
     __ Push(rax);
     // Continue loop if not done.
     __ bind(&loop_check);
@@ -1281,7 +1281,7 @@ void Builtins::Generate_CheckOptimizationMarker(MacroAssembler* masm) {
   GenerateTailCallToSharedCode(masm);
 }
 
-// TODO(jupvfranco): investigate whether there is any case where the CompileLazy
+// TODO (jupvfranco): investigate whether there is any case where the CompileLazy id:394 gh:395
 // builtin does not set the code field in the JS function. If there isn't then
 // we do not need this builtin and can jump directly to CompileLazy.
 void Builtins::Generate_CompileLazyDeoptimizedCode(MacroAssembler* masm) {
@@ -2244,7 +2244,7 @@ void Builtins::Generate_CallFunction(MacroAssembler* masm,
       __ bind(&convert_to_object);
       {
         // Convert receiver using ToObject.
-        // TODO(bmeurer): Inline the allocation here to avoid building the frame
+        // TODO (bmeurer): Inline the allocation here to avoid building the frame id:421 gh:422
         // in the fast case? (fall back to AllocateInNewSpace?)
         FrameScope scope(masm, StackFrame::INTERNAL);
         __ Integer32ToSmi(rax, rax);

@@ -64,7 +64,7 @@ class InspectorProtocolTestSuite(testsuite.TestSuite):
     if not string: return True
     return (string.startswith("==") or string.startswith("**") or
             string.startswith("ANDROID") or
-            # FIXME(machenbach): The test driver shouldn't try to use slow
+            # FIXME (machenbach): The test driver shouldn't try to use slow id:1920 gh:1928
             # asserts if they weren't compiled. This fails in optdebug=2.
             string == "Warning: unknown flag --enable-slow-asserts." or
             string == "Try --help for options")

@@ -35,7 +35,7 @@ namespace internal {
 class DebugScope;
 
 
-// Step actions. NOTE: These values are in macros.py as well.
+// Step actions. NOTE: These values are in macros.py as well. id:924 gh:932
 enum StepAction : int8_t {
   StepNone = -1,  // Stepping not prepared.
   StepOut = 0,    // Step out of the current function.
@@ -45,7 +45,7 @@ enum StepAction : int8_t {
   LastStepAction = StepIn
 };
 
-// Type of exception break. NOTE: These values are in macros.py as well.
+// Type of exception break. NOTE: These values are in macros.py as well. id:964 gh:972
 enum ExceptionBreakType {
   BreakException = 0,
   BreakUncaughtException = 1

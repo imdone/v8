@@ -393,7 +393,7 @@ class LogReader(object):
             self.code_map.Remove(conficting_code)
           else:
             LogReader._HandleCodeConflict(conficting_code, code)
-            # TODO(vitalyr): this warning is too noisy because of our
+            # TODO (vitalyr): this warning is too noisy because of our id:2339 gh:2347
             # attempts to reconstruct code log from the snapshot.
             # print >>sys.stderr, \
             #     "Warning: Skipping duplicate code log entry %s" % code

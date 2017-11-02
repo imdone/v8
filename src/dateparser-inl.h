@@ -150,7 +150,7 @@ bool DateParser::Parse(Isolate* isolate, Vector<Char> str, FixedArray* out) {
 
       if (scanner.Peek().IsSymbol(':')) {
         tz.SetAbsoluteHour(n);
-        // TODO(littledan): Use minutes as part of timezone?
+        // TODO (littledan): Use minutes as part of timezone? id:852 gh:860
         tz.SetAbsoluteMinute(kNone);
       } else if (length == 2 || length == 1) {
         // Handle time zones like GMT-8

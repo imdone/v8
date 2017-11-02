@@ -536,7 +536,7 @@ JsonStringifier::Result JsonStringifier::SerializeJSObject(
     bool comma = false;
     for (int i = 0; i < map->NumberOfOwnDescriptors(); i++) {
       Handle<Name> name(map->instance_descriptors()->GetKey(i), isolate_);
-      // TODO(rossberg): Should this throw?
+      // TODO (rossberg): Should this throw? id:1311 gh:1319
       if (!name->IsString()) continue;
       Handle<String> key = Handle<String>::cast(name);
       PropertyDetails details = map->instance_descriptors()->GetDetails(i);

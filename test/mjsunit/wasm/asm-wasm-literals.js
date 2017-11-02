@@ -250,7 +250,7 @@ function ManyF32a(stdlib) {
 }
 
 if (false) {
-  // TODO(bradnelson): fails validation of F32 literals somehow.
+  // TODO (bradnelson): fails validation of F32 literals somehow. id:2048 gh:2056
 RunAsmJsTest(ManyF32a, function(module) {
   assertEquals(2.0999999917333043e-24, module.k1());
   assertEquals(2.099999868734112e-19, module.k2());

@@ -41,12 +41,12 @@ local FLAGS = {
    verbose = false;
 
    -- Perform dead variable analysis (generates many false positives).
-   -- TODO add some sort of whiteliste to filter out false positives.
+   -- TODO add some sort of whiteliste to filter out false positives. id:2336 gh:2344
    dead_vars = false;
 
    -- When building gcsuspects whitelist certain functions as if they
    -- can be causing GC. Currently used to reduce number of false
-   -- positives in dead variables analysis. See TODO for WHITELIST
+   -- positives in dead variables analysis. See TODO for WHITELIST id:2513 gh:2522
    -- below.
    whitelist = true;
 }
@@ -183,7 +183,7 @@ end
 -------------------------------------------------------------------------------
 -- GYP file parsing
 
--- TODO(machenbach): Remove this when deprecating gyp.
+-- TODO (machenbach): Remove this when deprecating gyp. id:2534 gh:2543
 local function ParseGYPFile()
    local result = {}
    local gyp_files = {
@@ -261,7 +261,7 @@ end
 local gyp_sources = ParseGYPFile()
 local gn_sources = ParseGNFile()
 
--- TODO(machenbach): Remove this comparison logic when deprecating gyp.
+-- TODO (machenbach): Remove this comparison logic when deprecating gyp. id:2434 gh:2442
 local function CompareSources(sources1, sources2, what)
   for condition, files1 in pairs(sources1) do
     local files2 = sources2[condition]
@@ -336,7 +336,7 @@ local WHITELIST = {
    -- It is pinned and always present.
    "DirectCEntryStub.*GenerateCall",
 
-   -- TODO GCMole currently is sensitive enough to understand that certain
+   -- TODO GCMole currently is sensitive enough to understand that certain id:2561 gh:2572
    --      functions only cause GC and return Failure simulataneously.
    --      Callsites of such functions are safe as long as they are properly
    --      check return value and propagate the Failure to the caller.

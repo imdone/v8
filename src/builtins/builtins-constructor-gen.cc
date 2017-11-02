@@ -248,7 +248,7 @@ Node* ConstructorBuiltinsAssembler::EmitFastNewFunctionContext(
     Node* function, Node* slots, Node* context, ScopeType scope_type) {
   slots = ChangeUint32ToWord(slots);
 
-  // TODO(ishell): Use CSA::OptimalParameterMode() here.
+  // TODO (ishell): Use CSA::OptimalParameterMode() here. id:263 gh:264
   ParameterMode mode = INTPTR_PARAMETERS;
   Node* min_context_slots = IntPtrConstant(Context::MIN_CONTEXT_SLOTS);
   Node* length = IntPtrAdd(slots, min_context_slots);
@@ -410,7 +410,7 @@ Node* ConstructorBuiltinsAssembler::EmitCreateEmptyArrayLiteral(
   Branch(TaggedIsSmi(allocation_site.value()), &initialize_allocation_site,
          &create_empty_array);
 
-  // TODO(cbruni): create the AllocationSite in CSA.
+  // TODO (cbruni): create the AllocationSite in CSA. id:333 gh:334
   BIND(&initialize_allocation_site);
   {
     allocation_site.Bind(
@@ -475,7 +475,7 @@ Node* ConstructorBuiltinsAssembler::EmitCreateShallowObjectLiteral(
     }
     BIND(&if_fast);
     {
-      // TODO(cbruni): support copying out-of-object properties.
+      // TODO (cbruni): support copying out-of-object properties. id:278 gh:279
       Node* boilerplate_properties = LoadFastProperties(boilerplate);
       GotoIfNot(IsEmptyFixedArray(boilerplate_properties), call_runtime);
       var_properties.Bind(EmptyFixedArrayConstant());

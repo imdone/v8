@@ -305,7 +305,7 @@ assertEquals(5,
              try_control(integers_until(10),
                          function(x) { return (x == 5) ? x : "continue" }));
 
-// TODO(neis,cbruni): Enable once the corresponding traps work again.
+// TODO (neis,cbruni): Enable once the corresponding traps work again. id:2171 gh:2179
 // Proxy results, with getters.
 // function transparent_proxy(x) {
 //   return new Proxy({}, {

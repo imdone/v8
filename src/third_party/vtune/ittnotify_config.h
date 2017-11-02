@@ -138,7 +138,7 @@
 #define ITTAPI    CDECL
 #define LIBITTAPI CDECL
 
-/* TODO: Temporary for compatibility! */
+/* TODO: Temporary for compatibility!  id:1376 gh:1384*/
 #define ITTAPI_CALL    CDECL
 #define LIBITTAPI_CALL CDECL
 
@@ -286,7 +286,7 @@ ITT_INLINE int __itt_interlocked_increment(volatile long* ptr)
 #ifdef __INTEL_COMPILER
 #define __TBB_machine_fetchadd4(addr, val) __fetchadd4_acq((void *)addr, val)
 #else  /* __INTEL_COMPILER */
-/* TODO: Add Support for not Intel compilers for IA64 */
+/* TODO: Add Support for not Intel compilers for IA64  id:1558 gh:1566*/
 #endif /* __INTEL_COMPILER */
 #else /* ITT_ARCH!=ITT_ARCH_IA64 */
 /*ITT_INLINE int __TBB_machine_fetchadd4(volatile void* ptr, long addend) ITT_INLINE_ATTRIBUTE;

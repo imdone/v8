@@ -76,7 +76,7 @@ class BuiltinArguments : public Arguments {
 //
 // In the body of the builtin function the arguments can be accessed
 // through the BuiltinArguments object args.
-// TODO(cbruni): add global flag to check whether any tracing events have been
+// TODO (cbruni): add global flag to check whether any tracing events have been id:324 gh:325
 // enabled.
 #define BUILTIN(name)                                                         \
   MUST_USE_RESULT static Object* Builtin_Impl_##name(BuiltinArguments args,   \

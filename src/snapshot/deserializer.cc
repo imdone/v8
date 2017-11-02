@@ -154,7 +154,7 @@ HeapObject* Deserializer<AllocatorT>::PostProcessNewObject(HeapObject* obj,
     // Allocation sites are present in the snapshot, and must be linked into
     // a list at deserialization time.
     AllocationSite* site = AllocationSite::cast(obj);
-    // TODO(mvstanton): consider treating the heap()->allocation_sites_list()
+    // TODO (mvstanton): consider treating the heap()->allocation_sites_list() id:1583 gh:1591
     // as a (weak) root. If this root is relocated correctly, this becomes
     // unnecessary.
     if (isolate_->heap()->allocation_sites_list() == Smi::kZero) {

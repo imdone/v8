@@ -56,7 +56,7 @@ var new_source = new_source.replace("17", "18");
 // The call to array causes a change in the number of type feedback slots for
 // the script.
 //
-// TODO(mvstanton): For now, the inclusion of the Array() call at the top level
+// TODO (mvstanton): For now, the inclusion of the Array() call at the top level id:1889 gh:1890
 // of the script causes us to visit a corner case, but I'd like to validate
 // correctness more explicitly.
 var new_source = new_source.replace("// Array", "Array");

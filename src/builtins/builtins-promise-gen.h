@@ -57,7 +57,7 @@ class PromiseBuiltinsAssembler : public CodeStubAssembler {
 
   // This is used by the Promise.prototype.finally builtin to store
   // onFinally callback and the Promise constructor.
-  // TODO(gsathya): For native promises we can create a variant of
+  // TODO (gsathya): For native promises we can create a variant of id:338 gh:339
   // this without extra space for the constructor to save memory.
   enum PromiseFinallyContextSlot {
     kOnFinallySlot = Context::MIN_CONTEXT_SLOTS,

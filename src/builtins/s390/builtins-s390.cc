@@ -966,7 +966,7 @@ void Builtins::Generate_InterpreterEntryTrampoline(MacroAssembler* masm) {
     __ bind(&ok);
 
     // If ok, push undefined as the initial value for all register file entries.
-    // TODO(rmcilroy): Consider doing more than one push per loop iteration.
+    // TODO (rmcilroy): Consider doing more than one push per loop iteration. id:420 gh:421
     Label loop, no_args;
     __ LoadRoot(r8, Heap::kUndefinedValueRootIndex);
     __ ShiftRightP(r4, r4, Operand(kPointerSizeLog2));
@@ -2074,7 +2074,7 @@ void Builtins::Generate_CallFunction(MacroAssembler* masm,
       __ bind(&convert_to_object);
       {
         // Convert receiver using ToObject.
-        // TODO(bmeurer): Inline the allocation here to avoid building the frame
+        // TODO (bmeurer): Inline the allocation here to avoid building the frame id:449 gh:450
         // in the fast case? (fall back to AllocateInNewSpace?)
         FrameAndConstantPoolScope scope(masm, StackFrame::INTERNAL);
         __ SmiTag(r2);

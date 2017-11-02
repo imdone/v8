@@ -304,7 +304,7 @@ var Runtime = {
         if (field[1] === '0') {
           // this is [0 x something]. When inside another structure like here, it must be at the end,
           // and it adds no size
-          // XXX this happens in java-nbody for example... assert(index === type.fields.length, 'zero-length in the middle!');
+          // XXX this happens in java-nbody for example... assert(index === type.fields.length, 'zero-length in the middle!'); id:1923 gh:1932
           size = 0;
           if (Types.types[field]) {
             alignSize = Runtime.getAlignSize(null, Types.types[field].alignSize);
@@ -504,7 +504,7 @@ var Runtime = {
       return ret;
     }
     this.processJSString = function processJSString(string) {
-      /* TODO: use TextEncoder when present,
+      /* TODO: use TextEncoder when present, id:1640 gh:1648
         var encoder = new TextEncoder();
         encoder['encoding'] = "utf-8";
         var utf8Array = encoder['encode'](aMsg.data);
@@ -552,7 +552,7 @@ var EXITSTATUS = 0;
 
 var undef = 0;
 // tempInt is used for 32-bit signed values or smaller. tempBigInt is used
-// for 32-bit unsigned values or more than 32 bits. TODO: audit all uses of tempInt
+// for 32-bit unsigned values or more than 32 bits. TODO: audit all uses of tempInt id:1939 gh:1947
 var tempValue, tempInt, tempBigInt, tempInt2, tempBigInt2, tempPair, tempBigIntI, tempBigIntR, tempBigIntS, tempBigIntP, tempBigIntD, tempDouble, tempFloat;
 var tempI64, tempI64b;
 var tempRet0, tempRet1, tempRet2, tempRet3, tempRet4, tempRet5, tempRet6, tempRet7, tempRet8, tempRet9;
@@ -785,7 +785,7 @@ function allocate(slab, types, allocator, ptr) {
 Module['allocate'] = allocate;
 
 function Pointer_stringify(ptr, /* optional */ length) {
-  // TODO: use TextDecoder
+  // TODO: use TextDecoder id:1732 gh:1740
   // Find the length, and check for UTF while doing so
   var hasUtf = false;
   var t;
@@ -1278,7 +1278,7 @@ function reSign(value, bits, ignore) {
                         : Math.pow(2, bits-1);
   if (value >= half && (bits <= 32 || value > half)) { // for huge values, we can hit the precision limit and always get true here. so don't do that
                                                        // but, in general there is no perfect solution here. With 64-bit ints, we get rounding and errors
-                                                       // TODO: In i64 mode 1, resign the two parts separately and safely
+                                                       // TODO: In i64 mode 1, resign the two parts separately and safely id:1897 gh:1905
     value = -2*half + value; // Cannot bitshift half, as it may be at the limit of the bits JS uses in bitshifts
   }
   return value;
@@ -2016,7 +2016,7 @@ function copyTempDouble(ptr) {
           attr.atime = new Date(node.timestamp);
           attr.mtime = new Date(node.timestamp);
           attr.ctime = new Date(node.timestamp);
-          // NOTE: In our implementation, st_blocks = Math.ceil(st_size/st_blksize),
+          // NOTE: In our implementation, st_blocks = Math.ceil(st_size/st_blksize), id:2009 gh:2017
           //       but this is not required by the standard.
           attr.blksize = 4096;
           attr.blocks = Math.ceil(attr.size / attr.blksize);
@@ -2601,7 +2601,7 @@ function copyTempDouble(ptr) {
             throw new FS.ErrnoError(ERRNO_CODES[e.code]);
           }
         },read:function (stream, buffer, offset, length, position) {
-          // FIXME this is terrible.
+          // FIXME this is terrible. id:1641 gh:1649
           var nbuffer = new Buffer(length);
           var res;
           try {
@@ -2616,7 +2616,7 @@ function copyTempDouble(ptr) {
           }
           return res;
         },write:function (stream, buffer, offset, length, position) {
-          // FIXME this is terrible.
+          // FIXME this is terrible. id:1940 gh:1948
           var nbuffer = new Buffer(buffer.subarray(offset, offset + length));
           var res;
           try {
@@ -2798,7 +2798,7 @@ function copyTempDouble(ptr) {
           var readMode = 292 | 73;
           var writeMode = 146;
 
-          // NOTE we must use Object.defineProperties instead of individual calls to
+          // NOTE we must use Object.defineProperties instead of individual calls to id:1733 gh:1741
           // Object.defineProperty in order to make closure compiler happy
           Object.defineProperties(FS.FSNode.prototype, {
             read: {
@@ -3538,7 +3538,7 @@ function copyTempDouble(ptr) {
         }
         stream.stream_ops.allocate(stream, offset, length);
       },mmap:function (stream, buffer, offset, length, position, prot, flags) {
-        // TODO if PROT is PROT_WRITE, make sure we have write access
+        // TODO if PROT is PROT_WRITE, make sure we have write access id:1898 gh:1906
         if ((stream.flags & 2097155) === 1) {
           throw new FS.ErrnoError(ERRNO_CODES.EACCES);
         }
@@ -3626,7 +3626,7 @@ function copyTempDouble(ptr) {
         FS.mkdir('/dev/shm');
         FS.mkdir('/dev/shm/tmp');
       },createStandardStreams:function () {
-        // TODO deprecate the old functionality of a single
+        // TODO deprecate the old functionality of a single id:2010 gh:2018
         // input / output callback and that utilizes FS.createDevice
         // and instead require a unique set of stream ops
 
@@ -3910,7 +3910,7 @@ function copyTempDouble(ptr) {
               if (from > to) throw new Error("invalid range (" + from + ", " + to + ") or no bytes requested!");
               if (to > datalength-1) throw new Error("only " + datalength + " bytes available! programmer error!");
 
-              // TODO: Use mozResponseArrayBuffer, responseStream, etc. if available.
+              // TODO: Use mozResponseArrayBuffer, responseStream, etc. if available. id:1760 gh:1768
               var xhr = new XMLHttpRequest();
               xhr.open('GET', url, false);
               if (datalength !== chunkSize) xhr.setRequestHeader("Range", "bytes=" + from + "-" + to);
@@ -4017,7 +4017,7 @@ function copyTempDouble(ptr) {
         return node;
       },createPreloadedFile:function (parent, name, url, canRead, canWrite, onload, onerror, dontCreateFile, canOwn) {
         Browser.init();
-        // TODO we should allow people to just pass in a complete filename instead
+        // TODO we should allow people to just pass in a complete filename instead id:1941 gh:1949
         // of parent and name being that we just join them anyways
         var fullname = name ? PATH.resolve(PATH.join2(parent, name)) : parent;
         function processData(byteArray) {
@@ -4446,7 +4446,7 @@ function copyTempDouble(ptr) {
             throw new FS.ErrnoError(ERRNO_CODS.EOPNOTSUPP);
           }
 
-          // TODO autobind
+          // TODO autobind id:1734 gh:1742
           // if (!sock.addr && sock.type == 2) {
           // }
 
@@ -4482,7 +4482,7 @@ function copyTempDouble(ptr) {
           sock.server = new WebSocketServer({
             host: host,
             port: sock.sport
-            // TODO support backlog
+            // TODO support backlog id:1899 gh:1907
           });
 
           sock.server.on('connection', function(ws) {
@@ -4525,7 +4525,7 @@ function copyTempDouble(ptr) {
             addr = sock.daddr;
             port = sock.dport;
           } else {
-            // TODO saddr and sport will be set for bind()'d UDP sockets, but what
+            // TODO saddr and sport will be set for bind()'d UDP sockets, but what id:2011 gh:2019
             // should we be returning for TCP sockets that've been connect()'d?
             addr = sock.saddr || 0;
             port = sock.sport || 0;
@@ -4648,7 +4648,7 @@ function copyTempDouble(ptr) {
         ___setErrNo(ERRNO_CODES.EBADF);
         return -1;
       }
-      // TODO honor flags
+      // TODO honor flags id:1761 gh:1769
       return _write(fd, buf, len);
     }
 
@@ -4718,7 +4718,7 @@ function copyTempDouble(ptr) {
       var textIndex = format;
       var argIndex = 0;
       function getNextArg(type) {
-        // NOTE: Explicitly ignoring type safety. Otherwise this fails:
+        // NOTE: Explicitly ignoring type safety. Otherwise this fails: id:1942 gh:1950
         //       int x = 4; printf("%c\n", (char)x);
         var ret;
         if (type === 'double') {
@@ -5094,8 +5094,8 @@ function copyTempDouble(ptr) {
             }
           }
           textIndex += 2;
-          // TODO: Support a/A (hex float) and m (last error) specifiers.
-          // TODO: Support %1${specifier} for arg selection.
+          // TODO: Support a/A (hex float) and m (last error) specifiers. id:1735 gh:1743
+          // TODO: Support %1${specifier} for arg selection. id:1900 gh:1908
         } else {
           ret.push(curr);
           textIndex += 1;
@@ -5149,7 +5149,7 @@ function copyTempDouble(ptr) {
     }function _puts(s) {
       // int puts(const char *s);
       // http://pubs.opengroup.org/onlinepubs/000095399/functions/puts.html
-      // NOTE: puts() always writes an extra newline.
+      // NOTE: puts() always writes an extra newline. id:2012 gh:2020
       var stdout = HEAP32[((_stdout)>>2)];
       var ret = _fputs(s, stdout);
       if (ret < 0) {
@@ -5303,7 +5303,7 @@ function copyTempDouble(ptr) {
             } catch(e) {
               return fail();
             }
-            var url = Browser.URLObject.createObjectURL(b); // XXX we never revoke this!
+            var url = Browser.URLObject.createObjectURL(b); // XXX we never revoke this! id:1762 gh:1770
             var audio = new Audio();
             audio.addEventListener('canplaythrough', function() { finish(audio) }, false); // use addEventListener due to chromium bug 124926
             audio.onerror = function audio_onerror(event) {
@@ -5571,7 +5571,7 @@ function copyTempDouble(ptr) {
     Browser.mouseY = SDL.mouseY + Browser.mouseMovementY;
           } else {
     // just add the mouse delta to the current absolut mouse position
-    // FIXME: ideally this should be clamped against the canvas size and zero
+    // FIXME: ideally this should be clamped against the canvas size and zero id:1943 gh:1951
     Browser.mouseX += Browser.mouseMovementX;
     Browser.mouseY += Browser.mouseMovementY;
           }
@@ -20275,7 +20275,7 @@ function exit(status) {
   // exit the runtime
   exitRuntime();
 
-  // TODO We should handle this differently based on environment.
+  // TODO We should handle this differently based on environment. id:1736 gh:1744
   // In the browser, the best we can do is throw an exception
   // to halt execution, but in node we could process.exit and
   // I'd imagine SM shell would have something equivalent.

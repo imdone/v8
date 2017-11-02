@@ -774,7 +774,7 @@ Handle<HeapObject> RegExpMacroAssemblerS390::GetCode(Handle<String> source) {
       __ lay(r2, MemOperand(r2, num_saved_registers_ * kIntSize));
       for (int i = 0; i < num_saved_registers_;) {
         if (false && i < num_saved_registers_ - 4) {
-          // TODO(john.yan): Can be optimized by SIMD instructions
+          // TODO (john.yan): Can be optimized by SIMD instructions id:1252 gh:1260
           __ LoadMultipleP(r3, r6, register_location(i + 3));
           if (mode_ == UC16) {
             __ ShiftRightArithP(r3, r3, Operand(1));

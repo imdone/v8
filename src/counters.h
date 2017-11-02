@@ -294,7 +294,7 @@ class TimedHistogramScope {
 
 // Helper class for scoping a TimedHistogram, where the histogram is selected at
 // stop time rather than start time.
-// TODO(leszeks): This is heavily reliant on TimedHistogram::Start() doing
+// TODO (leszeks): This is heavily reliant on TimedHistogram::Start() doing id:909 gh:917
 // nothing but starting the timer, and TimedHistogram::Stop() logging the sample
 // correctly even if Start() was not called. This happens to be true iff Stop()
 // is passed a null isolate, but that's an implementation detail of
@@ -334,7 +334,7 @@ class HistogramTimer : public TimedHistogram {
     return Enabled() && timer_.IsStarted();
   }
 
-  // TODO(bmeurer): Remove this when HistogramTimerScope is fixed.
+  // TODO (bmeurer): Remove this when HistogramTimerScope is fixed. id:850 gh:858
 #ifdef DEBUG
   base::ElapsedTimer* timer() { return &timer_; }
 #endif
@@ -348,7 +348,7 @@ class HistogramTimer : public TimedHistogram {
 };
 
 // Helper class for scoping a HistogramTimer.
-// TODO(bmeurer): The ifdeffery is an ugly hack around the fact that the
+// TODO (bmeurer): The ifdeffery is an ugly hack around the fact that the id:877 gh:885
 // Parser is currently reentrant (when it throws an error, we call back
 // into JavaScript and all bets are off), but ElapsedTimer is not
 // reentry-safe. Fix this properly and remove |allow_nesting|.

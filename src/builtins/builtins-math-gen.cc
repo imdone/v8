@@ -6,7 +6,7 @@
 #include "src/builtins/builtins.h"
 #include "src/code-factory.h"
 #include "src/code-stub-assembler.h"
-#include "src/zone/zone-list-inl.h"  // TODO(mstarzinger): Temporary cycle breaker.
+#include "src/zone/zone-list-inl.h"  // TODO (mstarzinger): Temporary cycle breaker. id:280 gh:281
 
 namespace v8 {
 namespace internal {
@@ -520,7 +520,7 @@ TF_BUILTIN(MathTrunc, MathBuiltinsAssembler) {
 
 // ES6 #sec-math.max
 TF_BUILTIN(MathMax, MathBuiltinsAssembler) {
-  // TODO(ishell): use constants from Descriptor once the JSFunction linkage
+  // TODO (ishell): use constants from Descriptor once the JSFunction linkage id:293 gh:294
   // arguments are reordered.
   Node* context = Parameter(BuiltinDescriptor::kContext);
   Node* argc = Parameter(BuiltinDescriptor::kArgumentsCount);
@@ -529,7 +529,7 @@ TF_BUILTIN(MathMax, MathBuiltinsAssembler) {
 
 // ES6 #sec-math.min
 TF_BUILTIN(MathMin, MathBuiltinsAssembler) {
-  // TODO(ishell): use constants from Descriptor once the JSFunction linkage
+  // TODO (ishell): use constants from Descriptor once the JSFunction linkage id:314 gh:315
   // arguments are reordered.
   Node* context = Parameter(BuiltinDescriptor::kContext);
   Node* argc = Parameter(BuiltinDescriptor::kArgumentsCount);

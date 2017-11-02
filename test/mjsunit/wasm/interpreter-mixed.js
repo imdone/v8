@@ -162,7 +162,7 @@ function redirectToInterpreter(
     // Call plus_two, which calls plus_one.
     assertEquals(9, instance2.exports.plus_two(7));
 
-    // TODO(6668): Fix patching of instances which imported others' code.
+    // TODO (6668): Fix patching of instances which imported others' code. id:2383 gh:2391
     //assertEquals(interpreted_before_1 + (run == 1 ? 0 : 1),
     //             %WasmNumInterpretedCalls(instance1));
     assertEquals(interpreted_before_2 + (run == 0 ? 0 : 1),

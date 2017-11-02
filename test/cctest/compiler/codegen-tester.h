@@ -308,7 +308,7 @@ static const bool USE_RETURN_REGISTER = false;
 static const int32_t CHECK_VALUE = 0x99BEEDCE;
 
 
-// TODO(titzer): use the C-style calling convention, or any register-based
+// TODO (titzer): use the C-style calling convention, or any register-based id:1530 gh:1538
 // calling convention for binop tests.
 template <typename CType, bool use_result_buffer>
 class BinopTester {
@@ -424,7 +424,7 @@ class Float64BinopTester : public BinopTester<double, USE_RESULT_BUFFER> {
 
 // A helper class for testing code sequences that take two pointer parameters
 // and return a pointer value.
-// TODO(titzer): pick word size of pointers based on V8_TARGET.
+// TODO (titzer): pick word size of pointers based on V8_TARGET. id:1675 gh:1683
 template <typename Type>
 class PointerBinopTester : public BinopTester<Type*, USE_RETURN_REGISTER> {
  public:

@@ -100,7 +100,7 @@ Reduction JSCallReducer::Reduce(Node* node) {
 }
 
 void JSCallReducer::Finalize() {
-  // TODO(turbofan): This is not the best solution; ideally we would be able
+  // TODO (turbofan): This is not the best solution; ideally we would be able id:574 gh:576
   // to teach the GraphReducer about arbitrary dependencies between different
   // nodes, even if they don't show up in the use list of the other node.
   std::set<Node*> const waitlist = std::move(waitlist_);
@@ -449,7 +449,7 @@ Reduction JSCallReducer::ReduceFunctionPrototypeHasInstance(Node* node) {
   Node* effect = NodeProperties::GetEffectInput(node);
   Node* control = NodeProperties::GetControlInput(node);
 
-  // TODO(turbofan): If JSOrdinaryToInstance raises an exception, the
+  // TODO (turbofan): If JSOrdinaryToInstance raises an exception, the id:615 gh:616
   // stack trace doesn't contain the @@hasInstance call; we have the
   // corresponding bug in the baseline case. Some massaging of the frame
   // state would be necessary here.
@@ -1072,7 +1072,7 @@ Reduction JSCallReducer::ReduceArrayMap(Handle<JSFunction> function,
 
   const ElementsKind kind = receiver_maps[0]->elements_kind();
 
-  // TODO(danno): Handle holey elements kinds.
+  // TODO (danno): Handle holey elements kinds. id:571 gh:572
   if (!IsFastPackedElementsKind(kind)) {
     return NoChange();
   }
@@ -1247,7 +1247,7 @@ Reduction JSCallReducer::ReduceArrayFilter(Handle<JSFunction> function,
 
   const ElementsKind kind = receiver_maps[0]->elements_kind();
 
-  // TODO(danno): Handle holey and double elements kinds.
+  // TODO (danno): Handle holey and double elements kinds. id:503 gh:504
   if (!IsFastPackedElementsKind(kind) || IsDoubleElementsKind(kind)) {
     return NoChange();
   }
@@ -1468,7 +1468,7 @@ Node* JSCallReducer::DoFilterPostCallbackWork(ElementsKind kind, Node** control,
         etrue, if_true);
 
     GrowFastElementsMode mode = GrowFastElementsMode::kSmiOrObjectElements;
-    // TODO(mvstanton): Make sure{flags} is correct when we handle{a} as a
+    // TODO (mvstanton): Make sure{flags} is correct when we handle{a} as a id:531 gh:532
     // double output array.
     DCHECK(!IsDoubleElementsKind(kind));
     elements = etrue =
@@ -1625,7 +1625,7 @@ Reduction JSCallReducer::ReduceCallApiFunction(Node* node,
 
   // CallApiCallbackStub's register arguments: code, target, call data, holder,
   // function address.
-  // TODO(turbofan): Consider introducing a JSCallApiCallback operator for
+  // TODO (turbofan): Consider introducing a JSCallApiCallback operator for id:575 gh:577
   // this and lower it during JSGenericLowering, and unify this with the
   // JSNativeContextSpecialization::InlineApiCall method a bit.
   Handle<CallHandlerInfo> call_handler_info(
@@ -1768,7 +1768,7 @@ Reduction JSCallReducer::ReduceCallOrConstructWithArrayLikeOrSpread(
   if (type == CreateArgumentsType::kMappedArguments) {
     // Mapped arguments (sloppy mode) that are aliased can only be handled
     // here if there's no side-effect between the {node} and the {arg_array}.
-    // TODO(turbofan): Further relax this constraint.
+    // TODO (turbofan): Further relax this constraint. id:616 gh:617
     if (formal_parameter_count != 0) {
       Node* effect = NodeProperties::GetEffectInput(node);
       if (!NodeProperties::NoObservableSideEffectBetween(effect,
@@ -2031,7 +2031,7 @@ Reduction JSCallReducer::ReduceJSCall(Node* node) {
     }
 
     // Don't mess with other {node}s that have a constant {target}.
-    // TODO(bmeurer): Also support proxies here.
+    // TODO (bmeurer): Also support proxies here. id:627 gh:628
     return NoChange();
   }
 
@@ -2228,7 +2228,7 @@ Reduction JSCallReducer::ReduceJSConstruct(Node* node) {
 
       // Check for the ArrayConstructor.
       if (*function == function->native_context()->array_function()) {
-        // TODO(bmeurer): Deal with Array subclasses here.
+        // TODO (bmeurer): Deal with Array subclasses here. id:504 gh:505
         Handle<AllocationSite> site;
         // Turn the {node} into a {JSCreateArray} call.
         for (int i = arity; i > 0; --i) {
@@ -2262,7 +2262,7 @@ Reduction JSCallReducer::ReduceJSConstruct(Node* node) {
       }
     }
 
-    // TODO(bmeurer): Also support optimizing bound functions and proxies here.
+    // TODO (bmeurer): Also support optimizing bound functions and proxies here. id:532 gh:533
   }
 
   return NoChange();
@@ -2302,7 +2302,7 @@ Reduction JSCallReducer::ReduceSoftDeoptimize(Node* node,
   Node* deoptimize =
       graph()->NewNode(common()->Deoptimize(DeoptimizeKind::kSoft, reason),
                        frame_state, effect, control);
-  // TODO(bmeurer): This should be on the AdvancedReducer somehow.
+  // TODO (bmeurer): This should be on the AdvancedReducer somehow. id:576 gh:578
   NodeProperties::MergeControlToEnd(graph(), common(), deoptimize);
   Revisit(graph()->end());
   node->TrimInputCount(0);

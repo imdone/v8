@@ -14,7 +14,7 @@ TF_BUILTIN(FastConsoleAssert, CodeStubAssembler) {
   Label runtime(this);
   Label out(this);
 
-  // TODO(ishell): use constants from Descriptor once the JSFunction linkage
+  // TODO (ishell): use constants from Descriptor once the JSFunction linkage id:311 gh:312
   // arguments are reordered.
   Node* argc = Parameter(BuiltinDescriptor::kArgumentsCount);
   Node* context = Parameter(BuiltinDescriptor::kContext);

@@ -19,7 +19,7 @@ for (let i = 0; i < props.length; i++) {
   assertFalse(desc.enumerable, prop);
   assertTrue(desc.get !== undefined, prop);
 
-  // TODO(jgruber): Although the spec proposal specifies setting setters to
+  // TODO (jgruber): Although the spec proposal specifies setting setters to id:2045 gh:2053
   // undefined, we are not sure that this change would be web-compatible, and
   // we are intentionally sticking with the old behavior for now.
   assertTrue(desc.set !== undefined, prop);

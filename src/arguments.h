@@ -78,7 +78,7 @@ double ClobberDoubleRegisters(double x1, double x2, double x3, double x4);
 #define CLOBBER_DOUBLE_REGISTERS()
 #endif
 
-// TODO(cbruni): add global flag to check whether any tracing events have been
+// TODO (cbruni): add global flag to check whether any tracing events have been id:75 gh:78
 // enabled.
 #define RUNTIME_FUNCTION_RETURNS_TYPE(Type, Name)                             \
   static INLINE(Type __RT_impl_##Name(Arguments args, Isolate* isolate));     \

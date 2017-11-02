@@ -299,7 +299,7 @@ void MemoryAllocator::TearDown() {
 
   // Check that spaces were torn down before MemoryAllocator.
   DCHECK_EQ(size_.Value(), 0u);
-  // TODO(gc) this will be true again when we fix FreeMemory.
+  // TODO (gc) this will be true again when we fix FreeMemory. id:1100 gh:1108
   // DCHECK_EQ(0, size_executable_);
   capacity_ = 0;
 
@@ -425,7 +425,7 @@ bool MemoryAllocator::CommitMemory(Address base, size_t size,
 
 void MemoryAllocator::FreeMemory(VirtualMemory* reservation,
                                  Executability executable) {
-  // TODO(gc) make code_range part of memory allocator?
+  // TODO (gc) make code_range part of memory allocator? id:951 gh:959
   // Code which is part of the code-range does not have its own VirtualMemory.
   DCHECK(code_range() == nullptr ||
          !code_range()->contains(static_cast<Address>(reservation->address())));
@@ -438,7 +438,7 @@ void MemoryAllocator::FreeMemory(VirtualMemory* reservation,
 
 void MemoryAllocator::FreeMemory(Address base, size_t size,
                                  Executability executable) {
-  // TODO(gc) make code_range part of memory allocator?
+  // TODO (gc) make code_range part of memory allocator? id:1112 gh:1120
   if (code_range() != nullptr &&
       code_range()->contains(static_cast<Address>(base))) {
     DCHECK(executable == EXECUTABLE);
@@ -530,7 +530,7 @@ void MemoryChunk::InitializationMemoryFence() {
 
 void MemoryChunk::SetReadAndExecutable() {
   DCHECK(IsFlagSet(MemoryChunk::IS_EXECUTABLE));
-  // TODO(hpayer): owner() can only be null if we use the MemoryChunk outside
+  // TODO (hpayer): owner() can only be null if we use the MemoryChunk outside id:985 gh:994
   // of spaces. We actually should not do that and we should untangle this.
   DCHECK(owner() == nullptr || owner()->identity() == CODE_SPACE ||
          owner()->identity() == LO_SPACE);
@@ -557,7 +557,7 @@ void MemoryChunk::SetReadAndExecutable() {
 
 void MemoryChunk::SetReadAndWritable() {
   DCHECK(IsFlagSet(MemoryChunk::IS_EXECUTABLE));
-  // TODO(hpayer): owner() can only be null if we use the MemoryChunk outside
+  // TODO (hpayer): owner() can only be null if we use the MemoryChunk outside id:1128 gh:1136
   // of spaces. We actually should not do that and we should untangle this.
   DCHECK(owner() == nullptr || owner()->identity() == CODE_SPACE ||
          owner()->identity() == LO_SPACE);
@@ -2245,7 +2245,7 @@ void NewSpace::ResumeAllocationObservers() {
   StartNextInlineAllocationStep();
 }
 
-// TODO(ofrobots): refactor into SpaceWithLinearArea
+// TODO (ofrobots): refactor into SpaceWithLinearArea id:1101 gh:1109
 void PagedSpace::ResumeAllocationObservers() {
   DCHECK_NULL(top_on_previous_step_);
   Space::ResumeAllocationObservers();

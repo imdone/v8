@@ -100,7 +100,7 @@ Reduction JSNativeContextSpecialization::Reduce(Node* node) {
 }
 
 Reduction JSNativeContextSpecialization::ReduceJSAdd(Node* node) {
-  // TODO(turbofan): This has to run together with the inlining and
+  // TODO (turbofan): This has to run together with the inlining and id:508 gh:509
   // native context specialization to be able to leverage the string
   // constant-folding for optimizing property access, but we should
   // nevertheless find a better home for this at some point.
@@ -1096,7 +1096,7 @@ Reduction JSNativeContextSpecialization::ReduceElementAccess(
     // chain contains no setters for elements, and we need to guard those checks
     // via code dependencies on the relevant prototype maps.
     if (access_mode == AccessMode::kStore) {
-      // TODO(turbofan): We could have a fast path here, that checks for the
+      // TODO (turbofan): We could have a fast path here, that checks for the id:536 gh:537
       // common case of Array or Object prototype only and therefore avoids
       // the zone allocation of this vector.
       ZoneVector<Handle<Map>> prototype_maps(zone());
@@ -1151,7 +1151,7 @@ Reduction JSNativeContextSpecialization::ReduceElementAccess(
             receiver, effect, control);
       }
 
-      // TODO(turbofan): The effect/control linearization will not find a
+      // TODO (turbofan): The effect/control linearization will not find a id:580 gh:581
       // FrameState after the StoreField or Call that is generated for the
       // elements kind transition above. This is because those operators
       // don't have the kNoWrite flag on it, even though they are not
@@ -1429,7 +1429,7 @@ Reduction JSNativeContextSpecialization::ReduceSoftDeoptimize(
   Node* deoptimize =
       graph()->NewNode(common()->Deoptimize(DeoptimizeKind::kSoft, reason),
                        frame_state, effect, control);
-  // TODO(bmeurer): This should be on the AdvancedReducer somehow.
+  // TODO (bmeurer): This should be on the AdvancedReducer somehow. id:621 gh:622
   NodeProperties::MergeControlToEnd(graph(), common(), deoptimize);
   Revisit(graph()->end());
   node->TrimInputCount(0);
@@ -2077,7 +2077,7 @@ JSNativeContextSpecialization::BuildElementAccess(
     KeyedAccessStoreMode store_mode) {
   DCHECK_NE(AccessMode::kStoreInLiteral, access_mode);
 
-  // TODO(bmeurer): We currently specialize based on elements kind. We should
+  // TODO (bmeurer): We currently specialize based on elements kind. We should id:632 gh:633
   // also be able to properly support strings and other JSObjects here.
   ElementsKind elements_kind = access_info.elements_kind();
   MapHandles const& receiver_maps = access_info.receiver_maps();
@@ -2457,7 +2457,7 @@ Node* JSNativeContextSpecialization::BuildIndexedStringLoad(
 
 Node* JSNativeContextSpecialization::BuildExtendPropertiesBackingStore(
     Handle<Map> map, Node* properties, Node* effect, Node* control) {
-  // TODO(bmeurer/jkummerow): Property deletions can undo map transitions
+  // TODO (bmeurer/jkummerow): Property deletions can undo map transitions id:663 gh:664
   // while keeping the backing store around, meaning that even though the
   // map might believe that objects have no unused property fields, there
   // might actually be some. It would be nice to not create a new backing

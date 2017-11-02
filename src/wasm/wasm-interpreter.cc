@@ -1054,7 +1054,7 @@ Handle<Object> WasmValueToNumber(Factory* factory, WasmValue val,
     case kWasmF64:
       return factory->NewNumber(val.to<double>());
     default:
-      // TODO(wasm): Implement simd.
+      // TODO (wasm): Implement simd. id:1361 gh:1369
       UNIMPLEMENTED();
       return Handle<Object>::null();
   }
@@ -1089,7 +1089,7 @@ WasmValue ToWebAssemblyValue(Isolate* isolate, Handle<Object> value,
       return WasmValue(maybe_number.ToHandleChecked()->Number());
     }
     default:
-      // TODO(wasm): Handle simd.
+      // TODO (wasm): Handle simd. id:1750 gh:1758
       UNIMPLEMENTED();
       return WasmValue();
   }
@@ -1266,7 +1266,7 @@ class ThreadImpl {
   WasmInterpreter::Thread::ExceptionHandlingResult HandleException(
       Isolate* isolate) {
     DCHECK(isolate->has_pending_exception());
-    // TODO(wasm): Add wasm exception handling (would return HANDLED).
+    // TODO (wasm): Add wasm exception handling (would return HANDLED). id:1396 gh:1404
     USE(isolate->pending_exception());
     TRACE("----- UNWIND -----\n");
     DCHECK_LT(0, activations_.size());
@@ -1905,7 +1905,7 @@ class ThreadImpl {
       result = defval;                                              \
     } else {                                                        \
       byte* addr = wasm_context_->mem_start + index;                \
-      /* TODO(titzer): alignment for asmjs load mem? */             \
+      /* TODO (titzer): alignment for asmjs load mem?  id:1664 gh:1672*/             \
       result = static_cast<ctype>(*reinterpret_cast<mtype*>(addr)); \
     }                                                               \
     Push(WasmValue(result));                                        \
@@ -1928,7 +1928,7 @@ class ThreadImpl {
     uint32_t index = Pop().to<uint32_t>();                                     \
     if (BoundsCheck<mtype>(wasm_context_->mem_size, 0, index)) {               \
       byte* addr = wasm_context_->mem_start + index;                           \
-      /* TODO(titzer): alignment for asmjs store mem? */                       \
+      /* TODO (titzer): alignment for asmjs store mem?  id:1706 gh:1715*/                       \
       *(reinterpret_cast<mtype*>(addr)) = static_cast<mtype>(val.to<ctype>()); \
     }                                                                          \
     Push(val);                                                                 \
@@ -2140,7 +2140,7 @@ class ThreadImpl {
     return {ExternalCallResult::EXTERNAL_RETURNED};
   }
 
-  // TODO(clemensh): Remove this, call JS via existing wasm-to-js wrapper, using
+  // TODO (clemensh): Remove this, call JS via existing wasm-to-js wrapper, using id:1362 gh:1370
   //                 CallExternalWasmFunction.
   ExternalCallResult CallExternalJSFunction(Isolate* isolate, Handle<Code> code,
                                             FunctionSig* signature) {
@@ -2186,7 +2186,7 @@ class ThreadImpl {
     sp_ -= num_args;
     // Push return values.
     if (signature->return_count() > 0) {
-      // TODO(wasm): Handle multiple returns.
+      // TODO (wasm): Handle multiple returns. id:1751 gh:1759
       DCHECK_EQ(1, signature->return_count());
       WasmValue value =
           ToWebAssemblyValue(isolate, retval, signature->GetReturn());
@@ -2207,7 +2207,7 @@ class ThreadImpl {
     TRACE("  => Calling external wasm function\n");
 
     // Copy the arguments to one buffer.
-    // TODO(clemensh): Introduce a helper for all argument buffer
+    // TODO (clemensh): Introduce a helper for all argument buffer id:1397 gh:1405
     // con-/destruction.
     int num_args = static_cast<int>(sig->parameter_count());
     std::vector<uint8_t> arg_buffer(num_args * 8);
@@ -2269,7 +2269,7 @@ class ThreadImpl {
     sp_ -= num_args;
     // Push return values.
     if (sig->return_count() > 0) {
-      // TODO(wasm): Handle multiple returns.
+      // TODO (wasm): Handle multiple returns. id:1665 gh:1673
       DCHECK_EQ(1, sig->return_count());
       switch (sig->GetReturn()) {
         case kWasmI32:
@@ -2331,7 +2331,7 @@ class ThreadImpl {
     if (!codemap()->has_instance() ||
         !codemap()->instance()->compiled_module()->has_function_tables()) {
       // No instance. Rely on the information stored in the WasmModule.
-      // TODO(wasm): This is only needed for testing. Refactor testing to use
+      // TODO (wasm): This is only needed for testing. Refactor testing to use id:1707 gh:1710
       // the same paths as production.
       InterpreterCode* code =
           codemap()->GetIndirectCode(table_index, entry_index);

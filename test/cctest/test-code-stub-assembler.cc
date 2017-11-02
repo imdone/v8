@@ -1136,7 +1136,7 @@ TEST(TryGetOwnProperty) {
     objects.push_back(object);
   }
 
-  // TODO(ishell): test proxy and interceptors when they are supported.
+  // TODO (ishell): test proxy and interceptors when they are supported. id:1852 gh:1860
 
   {
     for (Handle<JSObject> object : objects) {
@@ -1387,7 +1387,7 @@ TEST(TryLookupElement) {
     CHECK_NOT_FOUND(object, 42);
   }
 
-// TODO(ishell): uncomment once NO_ELEMENTS kind is supported.
+// TODO (ishell): uncomment once NO_ELEMENTS kind is supported. id:1851 gh:1859
 //  {
 //    Handle<Map> map = Map::Create(isolate, 0);
 //    map->set_elements_kind(NO_ELEMENTS);
@@ -1469,7 +1469,7 @@ TEST(AllocateJSObjectFromMap) {
   }
 
   {
-    // TODO(cbruni): handle in-object properties
+    // TODO (cbruni): handle in-object properties id:1619 gh:1627
     Handle<JSObject> object = Handle<JSObject>::cast(
         v8::Utils::OpenHandle(*CompileRun("var object = {a:1,b:2, 1:1, 2:2}; "
                                           "object")));

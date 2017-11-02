@@ -141,7 +141,7 @@ class BitVector : public ZoneObject {
   }
 
   void AddAll() {
-    // TODO(leszeks): This sets bits outside of the length of this bit-vector,
+    // TODO (leszeks): This sets bits outside of the length of this bit-vector, id:269 gh:270
     // which is observable if we resize it or copy from it. If this is a
     // problem, we should clear the high bits either on add, or on resize/copy.
     if (is_inline()) {

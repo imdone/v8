@@ -303,7 +303,7 @@ DEFINE_BOOL(trace_block_coverage, false,
             "trace collected block coverage information")
 DEFINE_BOOL(feedback_normalization, false,
             "feed back normalization to constructors")
-// TODO(jkummerow): This currently adds too much load on the stub cache.
+// TODO (jkummerow): This currently adds too much load on the stub cache. id:931 gh:939
 DEFINE_BOOL_READONLY(internalize_on_the_fly, false,
                      "internalize string keys for generic keyed ICs on the fly")
 

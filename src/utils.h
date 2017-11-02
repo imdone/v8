@@ -898,7 +898,7 @@ inline int32_t signed_bitextract_32(int msb, int lsb, int32_t x) {
 }
 
 inline int signed_bitextract_64(int msb, int lsb, int x) {
-  // TODO(jbramley): This is broken for big bitfields.
+  // TODO (jbramley): This is broken for big bitfields. id:1588 gh:1596
   return (x << (63 - msb)) >> (lsb + 63 - msb);
 }
 

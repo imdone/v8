@@ -25,7 +25,7 @@ namespace {
 // capture index or -1 on failure.
 int LookupNamedCapture(std::function<bool(String*)> name_matches,
                        FixedArray* capture_name_map) {
-  // TODO(jgruber): Sort capture_name_map and do binary search via
+  // TODO (jgruber): Sort capture_name_map and do binary search via id:1503 gh:1512
   // internalized strings.
 
   int maybe_capture_index = -1;
@@ -773,7 +773,7 @@ MUST_USE_RESULT static Object* StringReplaceGlobalRegExpWithEmptyString(
   // freshly allocated page or on an already swept page. Hence, the sweeper
   // thread can not get confused with the filler creation. No synchronization
   // needed.
-  // TODO(hpayer): We should shrink the large object page if the size
+  // TODO (hpayer): We should shrink the large object page if the size id:1601 gh:1609
   // of the object changed significantly.
   if (!heap->lo_space()->Contains(*answer)) {
     heap->CreateFillerObjectAt(end_of_string, delta, ClearRecordedSlots::kNo);
@@ -1273,7 +1273,7 @@ static Object* SearchRegExpMultiple(Isolate* isolate, Handle<String> subject,
 
     if (subject_length > kMinLengthToCache) {
       // Store the last successful match into the array for caching.
-      // TODO(yangguo): do not expose last match to JS and simplify caching.
+      // TODO (yangguo): do not expose last match to JS and simplify caching. id:1260 gh:1268
       int capture_registers = (capture_count + 1) * 2;
       Handle<FixedArray> last_match_cache =
           isolate->factory()->NewFixedArray(capture_registers);
@@ -1440,7 +1440,7 @@ RUNTIME_FUNCTION(Runtime_StringReplaceNonGlobalRegExpWithFunction) {
   const int flags = regexp->GetFlags();
   DCHECK_EQ(flags & JSRegExp::kGlobal, 0);
 
-  // TODO(jgruber): This should be an easy port to CSA with massive payback.
+  // TODO (jgruber): This should be an easy port to CSA with massive payback. id:1576 gh:1584
 
   const bool sticky = (flags & JSRegExp::kSticky) != 0;
   uint32_t last_index = 0;
@@ -1794,7 +1794,7 @@ RUNTIME_FUNCTION(Runtime_RegExpReplace) {
     }
   }
 
-  // TODO(jgruber): Look into ReplacementStringBuilder instead.
+  // TODO (jgruber): Look into ReplacementStringBuilder instead. id:1307 gh:1315
   IncrementalStringBuilder builder(isolate);
   uint32_t next_source_position = 0;
 
@@ -1919,7 +1919,7 @@ RUNTIME_FUNCTION(Runtime_RegExpExecReThrow) {
 RUNTIME_FUNCTION(Runtime_RegExpInitializeAndCompile) {
   HandleScope scope(isolate);
   DCHECK_EQ(3, args.length());
-  // TODO(pwong): To follow the spec more closely and simplify calling code,
+  // TODO (pwong): To follow the spec more closely and simplify calling code, id:1549 gh:1557
   // this could handle the canonicalization of pattern and flags. See
   // https://tc39.github.io/ecma262/#sec-regexpinitialize
   CONVERT_ARG_HANDLE_CHECKED(JSRegExp, regexp, 0);

@@ -20,7 +20,7 @@ class TimezoneCache {
   // ES #sec-local-time-zone-adjustment
   // Local Time Zone Adjustment
   //
-  // TODO(littledan): Make more accurate with another parameter along the
+  // TODO (littledan): Make more accurate with another parameter along the id:232 gh:233
   // lines of this spec change:
   // https://github.com/tc39/ecma262/pull/778
   virtual double LocalTimeOffset() = 0;

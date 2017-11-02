@@ -101,7 +101,7 @@ function TestCall(isStrict, callTrap) {
   assertEquals(42, %_Call(f, null, 11, 31))
 
   var ff = Function.prototype.bind.call(f, o, 12)
-  assertTrue(ff.length <= 1)  // TODO(rossberg): Not spec'ed yet, be lax.
+  assertTrue(ff.length <= 1)  // TODO (rossberg): Not spec'ed yet, be lax. id:2262 gh:2270
   receiver = 333
   assertEquals(42, ff(30))
   assertSame(o, receiver)
@@ -481,7 +481,7 @@ TestHigherOrder(Object.freeze(new Proxy(function(x) { return x }, {})))
 
 
 
-// TODO(rossberg): Ultimately, I want to have the following test function
+// TODO (rossberg): Ultimately, I want to have the following test function id:2218 gh:2226
 // run through, but it currently fails on so many cases (some not even
 // involving proxies), that I leave that for later...
 /*

@@ -277,7 +277,7 @@ Handle<Object> StoreHandler::StoreTransition(Isolate* isolate,
   } else {
     DCHECK(transition->IsPropertyCell());
     if (receiver_map->IsJSGlobalObjectMap()) {
-      // TODO(ishell): this must be handled by StoreGlobalIC once it's finished.
+      // TODO (ishell): this must be handled by StoreGlobalIC once it's finished. id:974 gh:982
       return StoreGlobal(isolate, Handle<PropertyCell>::cast(transition));
     } else {
       DCHECK(receiver_map->IsJSGlobalProxyMap());

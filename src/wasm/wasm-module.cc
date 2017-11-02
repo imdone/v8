@@ -99,7 +99,7 @@ void UnpackAndRegisterProtectedInstructions(Isolate* isolate,
 
     unpacked.clear();
 
-    // TODO(eholk): if index is negative, fail.
+    // TODO (eholk): if index is negative, fail. id:1754 gh:1762
     DCHECK_LE(0, index);
     code->set_trap_handler_index(Smi::FromInt(index));
   }
@@ -160,7 +160,7 @@ void UpdateDispatchTables(Isolate* isolate, Handle<FixedArray> dispatch_tables,
 }
 
 bool IsWasmCodegenAllowed(Isolate* isolate, Handle<Context> context) {
-  // TODO(wasm): Once wasm has its own CSP policy, we should introduce a
+  // TODO (wasm): Once wasm has its own CSP policy, we should introduce a id:1400 gh:1408
   // separate callback that includes information about the module about to be
   // compiled. For the time being, pass an empty string as placeholder for the
   // sources.

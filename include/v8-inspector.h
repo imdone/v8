@@ -46,7 +46,7 @@ class V8_EXPORT StringView {
   bool is8Bit() const { return m_is8Bit; }
   size_t length() const { return m_length; }
 
-  // TODO(dgozman): add DCHECK(m_is8Bit) to accessors once platform can be used
+  // TODO (dgozman): add DCHECK(m_is8Bit) to accessors once platform can be used id:15 gh:16
   // here.
   const uint8_t* characters8() const { return m_characters8; }
   const uint16_t* characters16() const { return m_characters16; }
@@ -208,7 +208,7 @@ class V8_EXPORT V8InspectorClient {
   virtual void startRepeatingTimer(double, TimerCallback, void* data) {}
   virtual void cancelTimer(void* data) {}
 
-  // TODO(dgozman): this was added to support service worker shadow page. We
+  // TODO (dgozman): this was added to support service worker shadow page. We id:9 gh:10
   // should not connect at all.
   virtual bool canExecuteScripts(int contextGroupId) { return true; }
 

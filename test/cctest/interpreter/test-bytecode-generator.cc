@@ -1921,7 +1921,7 @@ TEST(CallLookupSlot) {
                      LoadGolden("CallLookupSlot.golden")));
 }
 
-// TODO(mythria): tests for variable/function declaration in lookup slots.
+// TODO (mythria): tests for variable/function declaration in lookup slots. id:1690 gh:1698
 
 TEST(LookupSlotInEval) {
   InitializedIgnitionHandleScope scope;
@@ -2065,8 +2065,8 @@ TEST(LetVariable) {
 }
 
 TEST(ConstVariableContextSlot) {
-  // TODO(mythria): Add tests for initialization of this via super calls.
-  // TODO(mythria): Add tests that walk the context chain.
+  // TODO (mythria): Add tests for initialization of this via super calls. id:1847 gh:1855
+  // TODO (mythria): Add tests that walk the context chain. id:1522 gh:1530
   InitializedIgnitionHandleScope scope;
   BytecodeExpectationsPrinter printer(CcTest::isolate());
   const char* snippets[] = {

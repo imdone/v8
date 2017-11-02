@@ -382,7 +382,7 @@ TEST(ParametersEqual) {
 
 
 void RunSmiConstant(int32_t v) {
-// TODO(dcarney): on x64 Smis are generated with the SmiConstantRegister
+// TODO (dcarney): on x64 Smis are generated with the SmiConstantRegister id:1716 gh:1724
 #if !V8_TARGET_ARCH_X64
   if (Smi::IsValid(v)) {
     RawMachineAssemblerTester<Object*> m;
@@ -396,7 +396,7 @@ void RunSmiConstant(int32_t v) {
 void RunNumberConstant(double v) {
   RawMachineAssemblerTester<Object*> m;
 #if V8_TARGET_ARCH_X64
-  // TODO(dcarney): on x64 Smis are generated with the SmiConstantRegister
+  // TODO (dcarney): on x64 Smis are generated with the SmiConstantRegister id:1506 gh:1515
   Handle<Object> number = m.isolate()->factory()->NewNumber(v);
   if (number->IsSmi()) return;
 #endif
@@ -578,7 +578,7 @@ TEST(RunBinopTester) {
 
 
 #if V8_TARGET_ARCH_64_BIT
-// TODO(ahaas): run int64 tests on all platforms when supported.
+// TODO (ahaas): run int64 tests on all platforms when supported. id:1812 gh:1820
 TEST(RunBufferedRawMachineAssemblerTesterTester) {
   {
     BufferedRawMachineAssemblerTester<int64_t> m;

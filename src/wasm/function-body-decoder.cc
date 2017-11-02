@@ -415,7 +415,7 @@ class WasmGraphBuildingInterface {
 
   TFNode* GetExceptionTag(Decoder* decoder,
                           const ExceptionIndexOperand<validate>& operand) {
-    // TODO(kschimpf): Need to get runtime exception tag values. This
+    // TODO (kschimpf): Need to get runtime exception tag values. This id:1696 gh:1704
     // code only handles non-imported/exported exceptions.
     return BUILD(Int32Constant, operand.index);
   }
@@ -448,7 +448,7 @@ class WasmGraphBuildingInterface {
       // implementation only builds a landing pad if some node in the
       // try block can (possibly) throw.
       //
-      // TODO(kschimpf): Always generate a landing pad for a try block.
+      // TODO (kschimpf): Always generate a landing pad for a try block. id:1352 gh:1360
       compare_i32 = BUILD(Int32Constant, 0);
     } else {
       // Get the exception and see if wanted exception.
@@ -467,7 +467,7 @@ class WasmGraphBuildingInterface {
     SsaEnv* if_catch_env = Steal(decoder->zone(), ssa_env_);
     if_catch_env->control = if_catch;
 
-    // TODO(kschimpf): Generalize to allow more catches. Will force
+    // TODO (kschimpf): Generalize to allow more catches. Will force id:1596 gh:1604
     // moving no_catch code to END opcode.
     SetEnv(if_no_catch_env);
     BUILD(Rethrow);
@@ -483,7 +483,7 @@ class WasmGraphBuildingInterface {
         value.node = DefaultValue(value.type);
       }
     } else {
-      // TODO(kschimpf): Can't use BUILD() here, GetExceptionValues() returns
+      // TODO (kschimpf): Can't use BUILD() here, GetExceptionValues() returns id:1387 gh:1395
       // TFNode** rather than TFNode*. Fix to add landing pads.
       TFNode** caught_values = builder_->GetExceptionValues(operand.exception);
       for (size_t i = 0, e = values.size(); i < e; ++i) {
@@ -551,7 +551,7 @@ class WasmGraphBuildingInterface {
     }
 #endif
     ssa_env_ = env;
-    // TODO(wasm): Create a WasmEnv class with control, effect, mem_size and
+    // TODO (wasm): Create a WasmEnv class with control, effect, mem_size and id:1569 gh:1577
     // mem_start. SsaEnv can inherit from it. This way WasmEnv can be passed
     // directly to WasmGraphBuilder instead of always copying four pointers.
     builder_->set_control_ptr(&env->control);

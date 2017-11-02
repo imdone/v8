@@ -743,7 +743,7 @@ TEST(RunInt64AddShift) {
   }
 }
 
-// TODO(titzer): add tests that run 64-bit integer operations.
+// TODO (titzer): add tests that run 64-bit integer operations. id:1518 gh:1526
 #endif  // V8_TARGET_ARCH_64_BIT
 
 
@@ -6294,7 +6294,7 @@ TEST(RunCallCFunction9) {
 #endif  // USE_SIMULATOR
 
 #if V8_TARGET_ARCH_64_BIT
-// TODO(titzer): run int64 tests on all platforms when supported.
+// TODO (titzer): run int64 tests on all platforms when supported. id:1824 gh:1832
 
 TEST(RunBitcastInt64ToFloat64) {
   int64_t input = 1;
@@ -6735,7 +6735,7 @@ TEST(RunComputedCodeObject) {
   r.Bind(&merge);
   Node* phi = r.Phi(MachineRepresentation::kWord32, fa, fb);
 
-  // TODO(titzer): all this descriptor hackery is just to call the above
+  // TODO (titzer): all this descriptor hackery is just to call the above id:1599 gh:1607
   // functions as code objects instead of direct addresses.
   CSignature0<int32_t> sig;
   CallDescriptor* c = Linkage::GetSimplifiedCDescriptor(r.zone(), &sig);

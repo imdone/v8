@@ -14,12 +14,12 @@ namespace wasm {
 void* TryAllocateBackingStore(Isolate* isolate, size_t size,
                               bool enable_guard_regions, void*& allocation_base,
                               size_t& allocation_length) {
-  // TODO(eholk): Right now enable_guard_regions has no effect on 32-bit
+  // TODO (eholk): Right now enable_guard_regions has no effect on 32-bit id:1399 gh:1407
   // systems. It may be safer to fail instead, given that other code might do
   // things that would be unsafe if they expected guard pages where there
   // weren't any.
   if (enable_guard_regions) {
-    // TODO(eholk): On Windows we want to make sure we don't commit the guard
+    // TODO (eholk): On Windows we want to make sure we don't commit the guard id:1667 gh:1675
     // pages yet.
 
     // We always allocate the largest possible offset into the heap, so the
@@ -80,7 +80,7 @@ Handle<JSArrayBuffer> NewArrayBuffer(Isolate* isolate, size_t size,
   // line, and we don't want to fail a CHECK then.
   if (size > FLAG_wasm_max_mem_pages * WasmModule::kPageSize ||
       size > kMaxInt) {
-    // TODO(titzer): lift restriction on maximum memory allocated here.
+    // TODO (titzer): lift restriction on maximum memory allocated here. id:1709 gh:1717
     return Handle<JSArrayBuffer>::null();
   }
 

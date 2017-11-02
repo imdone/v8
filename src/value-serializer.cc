@@ -342,7 +342,7 @@ Maybe<bool> ValueSerializer::WriteObject(Handle<Object> object) {
       // Despite being JSReceivers, these have their wrapped buffer serialized
       // first. That makes this logic a little quirky, because it needs to
       // happen before we assign object IDs.
-      // TODO(jbroman): It may be possible to avoid materializing a typed
+      // TODO (jbroman): It may be possible to avoid materializing a typed id:1379 gh:1387
       // array's buffer here.
       Handle<JSArrayBufferView> view = Handle<JSArrayBufferView>::cast(object);
       if (!id_map_.Find(view) && !treat_array_buffer_views_as_host_objects_) {
@@ -828,7 +828,7 @@ Maybe<bool> ValueSerializer::WriteJSArrayBufferView(JSArrayBufferView* view) {
 
 Maybe<bool> ValueSerializer::WriteWasmModule(Handle<WasmModuleObject> object) {
   if (delegate_ != nullptr) {
-    // TODO(titzer): introduce a Utils::ToLocal for WasmModuleObject.
+    // TODO (titzer): introduce a Utils::ToLocal for WasmModuleObject. id:1561 gh:1569
     Maybe<uint32_t> transfer_id = delegate_->GetWasmModuleTransferId(
         reinterpret_cast<v8::Isolate*>(isolate_),
         v8::Local<v8::WasmCompiledModule>::Cast(

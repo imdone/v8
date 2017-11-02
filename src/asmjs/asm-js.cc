@@ -342,7 +342,7 @@ MaybeHandle<Object> AsmJs::InstantiateAsmWasm(Isolate* isolate,
   Handle<WasmModuleObject> module(
       WasmModuleObject::cast(wasm_data->get(kWasmDataCompiledModule)));
   Handle<Script> script(Script::cast(shared->script()));
-  // TODO(mstarzinger): The position currently points to the module definition
+  // TODO (mstarzinger): The position currently points to the module definition id:154 gh:155
   // but should instead point to the instantiation site (more intuitive).
   int position = shared->start_position();
 
@@ -369,7 +369,7 @@ MaybeHandle<Object> AsmJs::InstantiateAsmWasm(Isolate* isolate,
     }
     memory->set_is_growable(false);
     size_t size = NumberToSize(memory->byte_length());
-    // TODO(mstarzinger): We currently only limit byte length of the buffer to
+    // TODO (mstarzinger): We currently only limit byte length of the buffer to id:130 gh:131
     // be a multiple of 8, we should enforce the stricter spec limits here.
     if (size % FixedTypedArrayBase::kMaxElementSize != 0) {
       ReportInstantiationFailure(script, position, "Unexpected heap size");

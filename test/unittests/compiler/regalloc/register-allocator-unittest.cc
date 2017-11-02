@@ -664,7 +664,7 @@ TEST_F(RegisterAllocatorTest, MultipleDeferredBlockSpills) {
   const int start_of_b3 = 8;
 
   Allocate();
-  // TODO(mtrofin): at the moment, the linear allocator spills var1 and var2,
+  // TODO (mtrofin): at the moment, the linear allocator spills var1 and var2, id:2553 gh:2564
   // so only var3 is spilled in deferred blocks.
   const int var3_reg = 2;
   const int var3_slot = 2;

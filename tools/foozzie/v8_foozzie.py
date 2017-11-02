@@ -315,7 +315,7 @@ def main():
     )).encode('utf-8', 'replace')
     return RETURN_FAIL
 
-  # TODO(machenbach): Figure out if we could also return a bug in case there's
+  # TODO (machenbach): Figure out if we could also return a bug in case there's id:2559 gh:2562
   # no difference, but one of the line suppressions has matched - and without
   # the match there would be a difference.
 

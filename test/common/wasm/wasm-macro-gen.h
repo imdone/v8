@@ -366,7 +366,7 @@ inline WasmOpcode LoadStoreOpcodeOf(MachineType type, bool store) {
 
 #define TABLE_ZERO 0
 
-// TODO(titzer): change usages of these macros to put func last.
+// TODO (titzer): change usages of these macros to put func last. id:1724 gh:1732
 #define WASM_CALL_INDIRECT0(index, func) \
   func, kExprCallIndirect, static_cast<byte>(index), TABLE_ZERO
 #define WASM_CALL_INDIRECT1(index, func, a) \

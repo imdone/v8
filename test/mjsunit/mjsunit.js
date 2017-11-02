@@ -193,7 +193,7 @@ var failWithMessage;
   var ArrayPrototypePush = Array.prototype.push;
 
   var BigIntPrototypeValueOf;
-  // TODO(neis): Remove try-catch once BigInts are enabled by default.
+  // TODO (neis): Remove try-catch once BigInts are enabled by default. id:2305 gh:2313
   try {
     BigIntPrototypeValueOf = BigInt.prototype.valueOf;
   } catch(e) {}
@@ -365,7 +365,7 @@ var failWithMessage;
   }
 
   assertSame = function assertSame(expected, found, name_opt) {
-    // TODO(mstarzinger): We should think about using Harmony's egal operator
+    // TODO (mstarzinger): We should think about using Harmony's egal operator id:1971 gh:1979
     // or the function equivalent Object.is() here.
     if (found === expected) {
       if (expected !== 0 || (1 / expected) === (1 / found)) return;

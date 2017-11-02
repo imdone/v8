@@ -45,7 +45,7 @@ class Module : public Struct {
   DECL_ACCESSORS(regular_imports, FixedArray)
 
   // The complete export table, mapping an export name to its cell.
-  // TODO(neis): We may want to remove the regular exports from the table.
+  // TODO (neis): We may want to remove the regular exports from the table. id:1441 gh:1449
   DECL_ACCESSORS(exports, ObjectHashTable)
 
   // Hash for this object (a random non-zero Smi).
@@ -132,7 +132,7 @@ class Module : public Struct {
 
   DECL_ACCESSORS(exception, Object)
 
-  // TODO(neis): Don't store those in the module object?
+  // TODO (neis): Don't store those in the module object? id:1185 gh:1193
   DECL_INT_ACCESSORS(dfs_index)
   DECL_INT_ACCESSORS(dfs_ancestor_index)
 

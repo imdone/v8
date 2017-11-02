@@ -654,7 +654,7 @@ void TurboAssembler::Fmov(VRegister vd, double imm) {
         Ldr(vd, imm);
       }
     } else {
-      // TODO(all): consider NEON support for load literal.
+      // TODO (all): consider NEON support for load literal. id:124 gh:125
       Movi(vd, bits);
     }
   }
@@ -678,12 +678,12 @@ void TurboAssembler::Fmov(VRegister vd, float imm) {
       } else {
         UseScratchRegisterScope temps(this);
         Register tmp = temps.AcquireW();
-        // TODO(all): Use Assembler::ldr(const VRegister& ft, float imm).
+        // TODO (all): Use Assembler::ldr(const VRegister& ft, float imm). id:111 gh:113
         Mov(tmp, bit_cast<uint32_t>(imm));
         Fmov(vd, tmp);
       }
     } else {
-      // TODO(all): consider NEON support for load literal.
+      // TODO (all): consider NEON support for load literal. id:65 gh:66
       Movi(vd, bits);
     }
   }
@@ -1056,7 +1056,7 @@ void TurboAssembler::BumpSystemStackPointer(const Operand& space) {
   if (!TmpList()->IsEmpty()) {
     Sub(csp, StackPointer(), space);
   } else {
-    // TODO(jbramley): Several callers rely on this not using scratch
+    // TODO (jbramley): Several callers rely on this not using scratch id:98 gh:99
     // registers, so we use the assembler directly here. However, this means
     // that large immediate values of 'space' cannot be handled cleanly. (Only
     // 24-bits immediates or values of 'space' that can be encoded in one

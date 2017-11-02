@@ -142,7 +142,7 @@ void OutputPointer(void* pointer, BacktraceOutputHandler* handler) {
 #if HAVE_EXECINFO_H
 void ProcessBacktrace(void* const* trace, size_t size,
                       BacktraceOutputHandler* handler) {
-  // NOTE: This code MUST be async-signal safe (it's used by in-process
+  // NOTE: This code MUST be async-signal safe (it's used by in-process id:210 gh:211
   // stack dumping signal handler). NO malloc or stdio is allowed here.
   handler->HandleOutput("\n");
   handler->HandleOutput("==== C stack trace ===============================\n");
@@ -179,14 +179,14 @@ void ProcessBacktrace(void* const* trace, size_t size,
 #endif  // HAVE_EXECINFO_H
 
 void PrintToStderr(const char* output) {
-  // NOTE: This code MUST be async-signal safe (it's used by in-process
+  // NOTE: This code MUST be async-signal safe (it's used by in-process id:215 gh:216
   // stack dumping signal handler). NO malloc or stdio is allowed here.
   ssize_t return_val = write(STDERR_FILENO, output, strlen(output));
   USE(return_val);
 }
 
 void StackDumpSignalHandler(int signal, siginfo_t* info, void* void_context) {
-  // NOTE: This code MUST be async-signal safe.
+  // NOTE: This code MUST be async-signal safe. id:237 gh:238
   // NO malloc or stdio is allowed here.
 
   // Record the fact that we are in the signal handler now, so that the rest
@@ -270,7 +270,7 @@ class PrintBacktraceOutputHandler : public BacktraceOutputHandler {
   PrintBacktraceOutputHandler() {}
 
   void HandleOutput(const char* output) override {
-    // NOTE: This code MUST be async-signal safe (it's used by in-process
+    // NOTE: This code MUST be async-signal safe (it's used by in-process id:201 gh:202
     // stack dumping signal handler). NO malloc or stdio is allowed here.
     PrintToStderr(output);
   }
@@ -362,7 +362,7 @@ void DisableSignalStackDump() {
 }
 
 StackTrace::StackTrace() {
-  // NOTE: This code MUST be async-signal safe (it's used by in-process
+  // NOTE: This code MUST be async-signal safe (it's used by in-process id:181 gh:182
   // stack dumping signal handler). NO malloc or stdio is allowed here.
 
 #if HAVE_EXECINFO_H
@@ -375,7 +375,7 @@ StackTrace::StackTrace() {
 }
 
 void StackTrace::Print() const {
-  // NOTE: This code MUST be async-signal safe (it's used by in-process
+  // NOTE: This code MUST be async-signal safe (it's used by in-process id:211 gh:212
   // stack dumping signal handler). NO malloc or stdio is allowed here.
 
 #if HAVE_EXECINFO_H
@@ -393,7 +393,7 @@ void StackTrace::OutputToStream(std::ostream* os) const {
 
 namespace internal {
 
-// NOTE: code from sandbox/linux/seccomp-bpf/demo.cc.
+// NOTE: code from sandbox/linux/seccomp-bpf/demo.cc. id:216 gh:217
 char* itoa_r(intptr_t i, char* buf, size_t sz, int base, size_t padding) {
   // Make sure we can write at least one NUL byte.
   size_t n = 1;

@@ -334,7 +334,7 @@ static_assert(IS_TRIVIALLY_COPYABLE(DoubleRegister) &&
 
 typedef DoubleRegister FloatRegister;
 
-// TODO(ppc) Define SIMD registers.
+// TODO (ppc) Define SIMD registers. id:1195 gh:1203
 typedef DoubleRegister Simd128Register;
 
 #define DEFINE_REGISTER(R) \

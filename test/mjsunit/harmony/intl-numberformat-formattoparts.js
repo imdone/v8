@@ -7,7 +7,7 @@
 // Adapted from Gecko's js/src/tests/Intl/NumberFormat/formatToParts.js,
 // which was dedicated to the public domain.
 
-// NOTE: Some of these tests exercise standard behavior (e.g. that format and
+// NOTE: Some of these tests exercise standard behavior (e.g. that format and id:2304 gh:2312
 //       formatToParts expose the same formatted string).  But much of this,
 //       like the exact-formatted-string expectations, is technically
 //       implementation-dependent.  This is necessary as a practical matter to

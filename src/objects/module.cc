@@ -444,7 +444,7 @@ bool Module::PrepareInstantiate(Handle<Module> module,
     }
     Handle<Module> requested_module = Utils::OpenHandle(*api_requested_module);
     if (requested_module->status() == kErrored) {
-      // TODO(neis): Move this into callback?
+      // TODO (neis): Move this into callback? id:1456 gh:1464
       isolate->Throw(requested_module->GetException());
       module->RecordError();
       DCHECK_EQ(module->GetException(), requested_module->GetException());
@@ -465,7 +465,7 @@ bool Module::PrepareInstantiate(Handle<Module> module,
   }
 
   // Set up local exports.
-  // TODO(neis): Create regular_exports array here instead of in factory method?
+  // TODO (neis): Create regular_exports array here instead of in factory method? id:1156 gh:1165
   for (int i = 0, n = module_info->RegularExportCount(); i < n; ++i) {
     int cell_index = module_info->RegularExportCellIndex(i);
     Handle<FixedArray> export_names(module_info->RegularExportExportNames(i),
@@ -734,7 +734,7 @@ void FetchStarExports(Handle<Module> module, Zone* zone,
   Handle<ObjectHashTable> exports(module->exports(), isolate);
   UnorderedStringMap more_exports(zone);
 
-  // TODO(neis): Only allocate more_exports if there are star exports.
+  // TODO (neis): Only allocate more_exports if there are star exports. id:1341 gh:1349
   // Maybe split special_exports into indirect_exports and star_exports.
 
   Handle<FixedArray> special_exports(module->info()->special_exports(),

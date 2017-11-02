@@ -189,7 +189,7 @@ void StringBuiltinsAssembler::GenerateStringEqual(Node* context, Node* left,
     // Try to unwrap indirect strings, restart the above attempt on success.
     MaybeDerefIndirectStrings(&var_left, lhs_instance_type, &var_right,
                               rhs_instance_type, &restart);
-    // TODO(bmeurer): Add support for two byte string equality checks.
+    // TODO (bmeurer): Add support for two byte string equality checks. id:357 gh:358
 
     TailCallRuntime(Runtime::kStringEqual, context, lhs, rhs);
   }
@@ -426,7 +426,7 @@ void StringBuiltinsAssembler::GenerateStringRelationalComparison(Node* context,
     // Try to unwrap indirect strings, restart the above attempt on success.
     MaybeDerefIndirectStrings(&var_left, lhs_instance_type, &var_right,
                               rhs_instance_type, &restart);
-    // TODO(bmeurer): Add support for two byte string relational comparisons.
+    // TODO (bmeurer): Add support for two byte string relational comparisons. id:341 gh:342
     switch (op) {
       case Operation::kLessThan:
         TailCallRuntime(Runtime::kStringLessThan, context, lhs, rhs);
@@ -550,7 +550,7 @@ TF_BUILTIN(StringCharCodeAt, CodeStubAssembler) {
   Node* code = StringCharCodeAt(receiver, position, INTPTR_PARAMETERS);
 
   // And return it as TaggedSigned value.
-  // TODO(turbofan): Allow builtins to return values untagged.
+  // TODO (turbofan): Allow builtins to return values untagged. id:386 gh:387
   Node* result = SmiFromWord32(code);
   Return(result);
 }
@@ -560,7 +560,7 @@ TF_BUILTIN(StringCharCodeAt, CodeStubAssembler) {
 
 // ES6 #sec-string.fromcharcode
 TF_BUILTIN(StringFromCharCode, CodeStubAssembler) {
-  // TODO(ishell): use constants from Descriptor once the JSFunction linkage
+  // TODO (ishell): use constants from Descriptor once the JSFunction linkage id:299 gh:300
   // arguments are reordered.
   Node* argc = Parameter(BuiltinDescriptor::kArgumentsCount);
   Node* context = Parameter(BuiltinDescriptor::kContext);
@@ -778,7 +778,7 @@ TF_BUILTIN(StringPrototypeCodePointAt, StringBuiltinsAssembler) {
 // ES6 String.prototype.concat(...args)
 // ES6 #sec-string.prototype.concat
 TF_BUILTIN(StringPrototypeConcat, CodeStubAssembler) {
-  // TODO(ishell): use constants from Descriptor once the JSFunction linkage
+  // TODO (ishell): use constants from Descriptor once the JSFunction linkage id:320 gh:321
   // arguments are reordered.
   CodeStubArguments arguments(
       this, ChangeInt32ToIntPtr(Parameter(BuiltinDescriptor::kArgumentsCount)));
@@ -998,7 +998,7 @@ TF_BUILTIN(StringPrototypeIndexOf, StringIncludesIndexOfAssembler) {
 }
 
 void StringIncludesIndexOfAssembler::Generate(SearchVariant variant) {
-  // TODO(ishell): use constants from Descriptor once the JSFunction linkage
+  // TODO (ishell): use constants from Descriptor once the JSFunction linkage id:358 gh:359
   // arguments are reordered.
   Node* argc = Parameter(BuiltinDescriptor::kArgumentsCount);
   Node* const context = Parameter(BuiltinDescriptor::kContext);
@@ -1186,7 +1186,7 @@ compiler::Node* StringBuiltinsAssembler::GetSubstitution(
   // {replace_string} itself. If it does, then we delegate to
   // String::GetSubstitution, passing in the index of the first '$' to avoid
   // repeated scanning work.
-  // TODO(jgruber): Possibly extend this in the future to handle more complex
+  // TODO (jgruber): Possibly extend this in the future to handle more complex id:342 gh:343
   // cases without runtime calls.
 
   Node* const dollar_index = IndexOfDollarChar(context, replace_string);
@@ -1383,15 +1383,15 @@ TF_BUILTIN(StringPrototypeReplace, StringBuiltinsAssembler) {
     // Searching by traversing a cons string tree and replace with cons of
     // slices works only when the replaced string is a single character, being
     // replaced by a simple string and only pays off for long strings.
-    // TODO(jgruber): Reevaluate if this is still beneficial.
-    // TODO(jgruber): TailCallRuntime when it correctly handles adapter frames.
+    // TODO (jgruber): Reevaluate if this is still beneficial. id:387 gh:388
+    // TODO (jgruber): TailCallRuntime when it correctly handles adapter frames. id:300 gh:301
     Return(CallRuntime(Runtime::kStringReplaceOneCharWithString, context,
                        subject_string, search_string, replace));
 
     BIND(&next);
   }
 
-  // TODO(jgruber): Extend StringIndexOf to handle two-byte strings and
+  // TODO (jgruber): Extend StringIndexOf to handle two-byte strings and id:321 gh:322
   // longer substrings - we can handle up to 8 chars (one-byte) / 4 chars
   // (2-byte).
 
@@ -1413,7 +1413,7 @@ TF_BUILTIN(StringPrototypeReplace, StringBuiltinsAssembler) {
     GotoIf(TaggedIsSmi(replace), &return_subject);
     GotoIf(IsCallableMap(LoadMap(replace)), &return_subject);
 
-    // TODO(jgruber): Could introduce ToStringSideeffectsStub which only
+    // TODO (jgruber): Could introduce ToStringSideeffectsStub which only id:359 gh:360
     // performs observable parts of ToString.
     ToString_Inline(context, replace);
     Goto(&return_subject);
@@ -1532,7 +1532,7 @@ class StringMatchSearchAssembler : public StringBuiltinsAssembler {
           MachineRepresentation::kTagged);
 
       // Create RegExp
-      // TODO(pwong): This could be factored out as a helper (RegExpCreate) that
+      // TODO (pwong): This could be factored out as a helper (RegExpCreate) that id:343 gh:344
       // also does the "is fast" checks.
       Node* const native_context = LoadNativeContext(context);
       Node* const regexp_function =
@@ -2467,7 +2467,7 @@ class StringHtmlAssembler : public StringBuiltinsAssembler {
         LoadNativeContext(context), Context::REGEXP_FUNCTION_INDEX);
     Node* const initial_map = LoadObjectField(
         regexp_function, JSFunction::kPrototypeOrInitialMapOffset);
-    // TODO(pwong): Refactor to not allocate RegExp
+    // TODO (pwong): Refactor to not allocate RegExp id:388 gh:389
     Node* const regexp =
         CallRuntime(Runtime::kRegExpInitializeAndCompile, context,
                     AllocateJSObjectFromMap(initial_map), StringConstant("\""),

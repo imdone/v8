@@ -327,7 +327,7 @@ class BaseTestRunner(object):
   def _set_shell_dir(self, options):
     self.shell_dir = options.shell_dir
     if not self.shell_dir:
-      # TODO(majeski): drop this option
+      # TODO (majeski): drop this option id:2586 gh:2594
       if options.shell:
         print "Warning: --shell is deprecated, use --shell-dir instead."
         self.shell_dir = os.path.dirname(options.shell)
@@ -406,6 +406,6 @@ class BaseTestRunner(object):
     return 'external_symbolizer_path=%s' % external_symbolizer_path
 
 
-  # TODO(majeski): remove options & args parameters
+  # TODO (majeski): remove options & args parameters id:2591 gh:2599
   def _do_execute(self, options, args):
     raise NotImplementedError()

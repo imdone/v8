@@ -107,7 +107,7 @@ function max(a, b)
 }
 
 /**
- * FIXME: Remove once ES6 is supported natively by JS compiler.
+ * FIXME: Remove once ES6 is supported natively by JS compiler. id:1138 gh:1146
  * @param {*} obj
  * @return {boolean}
  */
@@ -194,7 +194,7 @@ InjectedScript.prototype = {
      */
     isPrimitiveValue: function(object)
     {
-        // FIXME(33716): typeof document.all is always 'undefined'.
+        // FIXME (33716): typeof document.all is always 'undefined'. id:1209 gh:1217
         return InjectedScript.primitiveTypes[typeof object] && !this._isHTMLAllCollection(object);
     },
 

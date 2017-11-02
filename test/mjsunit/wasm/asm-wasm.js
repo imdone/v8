@@ -919,7 +919,7 @@ function TestFunctionTableSingleFunction() {
   }
 
   function caller() {
-    // TODO(jpp): the parser optimizes function_table[0&0] to function table[0].
+    // TODO (jpp): the parser optimizes function_table[0&0] to function table[0]. id:2278 gh:2281
     var v = 0;
     return function_table[v&0]() | 0;
   }
@@ -1483,7 +1483,7 @@ assertWasm(-34359738370.75, TestNegativeDouble);
 
 
 /*
-// TODO(bradnelson): Technically invalid, but useful to cover unicode, revises
+// TODO (bradnelson): Technically invalid, but useful to cover unicode, revises id:2361 gh:2369
 // and re-enable.
 (function TestUnicodeExportKey() {
   function Module() {

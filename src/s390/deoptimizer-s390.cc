@@ -102,7 +102,7 @@ void Deoptimizer::TableEntryGenerator::Generate() {
   // __ mvc(MemOperand(r3, FrameDescription::registers_offset()),
   //        MemOperand(sp), kNumberOfRegisters * kPointerSize);
   // Copy core registers into FrameDescription::registers_[kNumRegisters].
-  // TODO(john.yan): optimize the following code by using mvc instruction
+  // TODO (john.yan): optimize the following code by using mvc instruction id:1552 gh:1560
   DCHECK_EQ(Register::kNumRegisters, kNumberOfRegisters);
   for (int i = 0; i < kNumberOfRegisters; i++) {
     int offset = (i * kPointerSize) + FrameDescription::registers_offset();
@@ -118,7 +118,7 @@ void Deoptimizer::TableEntryGenerator::Generate() {
     int dst_offset = code * kDoubleSize + double_regs_offset;
     int src_offset =
         code * kDoubleSize + kNumberOfRegisters * kPointerSize + kFloatRegsSize;
-    // TODO(joransiu): MVC opportunity
+    // TODO (joransiu): MVC opportunity id:1605 gh:1613
     __ LoadDouble(d0, MemOperand(sp, src_offset));
     __ StoreDouble(d0, MemOperand(r3, dst_offset));
   }
@@ -130,7 +130,7 @@ void Deoptimizer::TableEntryGenerator::Generate() {
     int code = config->GetAllocatableFloatCode(i);
     int dst_offset = code * kFloatSize + float_regs_offset;
     int src_offset = code * kFloatSize + kNumberOfRegisters * kPointerSize;
-    // TODO(joransiu): MVC opportunity
+    // TODO (joransiu): MVC opportunity id:1264 gh:1273
     __ LoadFloat32(d0, MemOperand(sp, src_offset));
     __ StoreFloat32(d0, MemOperand(r3, dst_offset));
   }

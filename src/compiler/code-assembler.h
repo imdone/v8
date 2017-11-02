@@ -361,7 +361,7 @@ class TNode {
 // SloppyTNode<T> is a variant of TNode<T> and allows implicit casts from
 // Node*. It is intended for function arguments as long as some call sites
 // still use untyped Node* arguments.
-// TODO(tebbi): Delete this class once transition is finished.
+// TODO (tebbi): Delete this class once transition is finished. id:516 gh:517
 template <class T>
 class SloppyTNode : public TNode<T> {
  public:
@@ -1181,7 +1181,7 @@ class V8_EXPORT_PRIVATE CodeAssemblerState {
  public:
   // Create with CallStub linkage.
   // |result_size| specifies the number of results returned by the stub.
-  // TODO(rmcilroy): move result_size to the CallInterfaceDescriptor.
+  // TODO (rmcilroy): move result_size to the CallInterfaceDescriptor. id:444 gh:445
   CodeAssemblerState(Isolate* isolate, Zone* zone,
                      const CallInterfaceDescriptor& descriptor, Code::Kind kind,
                      const char* name, size_t result_size = 1,

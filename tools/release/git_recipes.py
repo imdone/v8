@@ -192,7 +192,7 @@ class GitRecipesMixin(object):
     assert git_hash
     return self.Git(MakeArgs(["log", "-1", "-p", git_hash]), **kwargs)
 
-  # TODO(machenbach): Unused? Remove.
+  # TODO (machenbach): Unused? Remove. id:2444 gh:2454
   def GitAdd(self, name, **kwargs):
     assert name
     self.Git(MakeArgs(["add", Quoted(name)]), **kwargs)
@@ -223,7 +223,7 @@ class GitRecipesMixin(object):
     args += ["--gerrit"]
     if private:
       args += ["--private"]
-    # TODO(machenbach): Check output in forced mode. Verify that all required
+    # TODO (machenbach): Check output in forced mode. Verify that all required id:2571 gh:2579
     # base files were uploaded, if not retry.
     self.Git(MakeArgs(args), pipe=False, **kwargs)
 

@@ -29,8 +29,8 @@ namespace compiler {
 // - iteration: amortized O(1) per step
 // - Zip: O(n)
 // - equality check: O(n)
-// TODO(tebbi): Cache map transitions to avoid re-allocation of the same map.
-// TODO(tebbi): Implement an O(1) equality check based on hash consing or
+// TODO (tebbi): Cache map transitions to avoid re-allocation of the same map. id:792 gh:800
+// TODO (tebbi): Implement an O(1) equality check based on hash consing or id:652 gh:653
 //              something similar.
 template <class Key, class Value, class Hasher = base::hash<Key>>
 class PersistentMap {

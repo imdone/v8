@@ -16,7 +16,7 @@ template <typename N>
 V8_INLINE N CheckRange(size_t val) {
   // The getters on Operator for input and output counts currently return int.
   // Thus check that the given value fits in the integer range.
-  // TODO(titzer): Remove this check once the getters return size_t.
+  // TODO (titzer): Remove this check once the getters return size_t. id:651 gh:652
   CHECK_LE(val, std::min(static_cast<size_t>(std::numeric_limits<N>::max()),
                          static_cast<size_t>(kMaxInt)));
   return static_cast<N>(val);

@@ -985,7 +985,7 @@ void PipelineWasmCompilationJob::ValidateImmovableEmbeddedObjects() const {
   DisallowHeapAllocation no_gc;
   Handle<Code> result = pipeline_.data_->code();
   if (result.is_null()) return;
-  // TODO(aseemgarg): remove this restriction when
+  // TODO (aseemgarg): remove this restriction when id:683 gh:684
   // wasm-to-js is also internally immovable to include WASM_TO_JS
   if (result->kind() != Code::WASM_FUNCTION) return;
   static const int kAllGCRefs = (1 << (RelocInfo::LAST_GCED_ENUM + 1)) - 1;
@@ -1224,7 +1224,7 @@ struct EscapeAnalysisPhase {
                                          temp_zone);
     AddReducer(data, &reducer, &escape_reducer);
     reducer.ReduceGraph();
-    // TODO(tebbi): Turn this into a debug mode check once we have confidence.
+    // TODO (tebbi): Turn this into a debug mode check once we have confidence. id:710 gh:711
     escape_reducer.VerifyReplacement();
   }
 };
@@ -1271,7 +1271,7 @@ struct ConcurrentOptimizationPrepPhase {
     data->jsgraph()->CEntryStubConstant(1);
     data->jsgraph()->CEntryStubConstant(2);
 
-    // TODO(turbofan): Remove this line once the Array constructor code
+    // TODO (turbofan): Remove this line once the Array constructor code id:601 gh:602
     // is a proper builtin and no longer a CodeStub.
     data->jsgraph()->ArrayConstructorStubConstant();
 
@@ -1330,7 +1330,7 @@ struct EffectControlLinearizationPhase {
 
   void Run(PipelineData* data, Zone* temp_zone) {
     // The scheduler requires the graphs to be trimmed, so trim now.
-    // TODO(jarin) Remove the trimming once the scheduler can handle untrimmed
+    // TODO (jarin) Remove the trimming once the scheduler can handle untrimmed id:793 gh:801
     // graphs.
     GraphTrimmer trimmer(temp_zone, data->graph());
     NodeVector roots(temp_zone);
@@ -1911,12 +1911,12 @@ bool PipelineImpl::OptimizeGraph(Linkage* linkage) {
 
   // Optimize memory access and allocation operations.
   Run<MemoryOptimizationPhase>();
-  // TODO(jarin, rossberg): Remove UNTYPED once machine typing works.
+  // TODO (jarin, rossberg): Remove UNTYPED once machine typing works. id:653 gh:654
   RunPrintAndVerify("Memory optimized", true);
 
   // Lower changes that have been inserted before.
   Run<LateOptimizationPhase>();
-  // TODO(jarin, rossberg): Remove UNTYPED once machine typing works.
+  // TODO (jarin, rossberg): Remove UNTYPED once machine typing works. id:684 gh:685
   RunPrintAndVerify("Late optimized", true);
 
   data->source_positions()->RemoveDecorator();
@@ -1995,7 +1995,7 @@ Handle<Code> Pipeline::GenerateCodeForTesting(
     Schedule* schedule, SourcePositionTable* source_positions) {
   // Construct a pipeline for scheduling and code generation.
   ZoneStats zone_stats(info->isolate()->allocator());
-  // TODO(wasm): Refactor code generation to check for non-existing source
+  // TODO (wasm): Refactor code generation to check for non-existing source id:711 gh:712
   // table, then remove this conditional allocation.
   if (!source_positions)
     source_positions = new (info->zone()) SourcePositionTable(graph);
@@ -2014,7 +2014,7 @@ Handle<Code> Pipeline::GenerateCodeForTesting(
     json_of << "{\"function\":\"" << info->GetDebugName().get()
             << "\", \"source\":\"\",\n\"phases\":[";
   }
-  // TODO(rossberg): Should this really be untyped?
+  // TODO (rossberg): Should this really be untyped? id:602 gh:603
   pipeline.RunPrintAndVerify("Machine", true);
 
   return pipeline.ScheduleAndGenerateCode(call_descriptor);
@@ -2158,7 +2158,7 @@ bool PipelineImpl::ScheduleAndSelectInstructions(Linkage* linkage,
     return false;
   }
 
-  // TODO(mtrofin): move this off to the register allocator.
+  // TODO (mtrofin): move this off to the register allocator. id:794 gh:802
   bool generate_frame_at_start =
       data_->sequence()->instruction_blocks().front()->must_construct_frame();
   // Optimimize jumps.
@@ -2286,7 +2286,7 @@ void PipelineImpl::AllocateRegisters(const RegisterConfiguration* config,
 
   Run<CommitAssignmentPhase>();
 
-  // TODO(chromium:725559): remove this check once
+  // TODO (chromium:725559): remove this check once id:654 gh:655
   // we understand the cause of the bug. We keep just the
   // check at the end of the allocation.
   if (verifier != nullptr) {

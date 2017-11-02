@@ -1748,7 +1748,7 @@ code is governed by a BSD-style license that can be found in the LICENSE file.
         if (!this.regexp.test(entry.name)) return false;
         this._time += entry.time;
         this._count += entry.count;
-        // TODO: sum up variance
+        // TODO: sum up variance id:2334 gh:2342
         this.entries.push(entry);
         entry.parent = this;
         return true;

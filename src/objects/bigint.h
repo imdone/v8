@@ -49,7 +49,7 @@ class V8_EXPORT_PRIVATE BigInt : public HeapObject {
 
   bool ToBoolean() { return !is_zero(); }
   uint32_t Hash() {
-    // TODO(jkummerow): Improve this. At least use length and sign.
+    // TODO (jkummerow): Improve this. At least use length and sign. id:1153 gh:1162
     return is_zero() ? 0 : ComputeIntegerHash(static_cast<uint32_t>(digit(0)));
   }
 
@@ -64,7 +64,7 @@ class V8_EXPORT_PRIVATE BigInt : public HeapObject {
   DECL_PRINTER(BigInt)
   void BigIntShortPrint(std::ostream& os);
 
-  // TODO(jkummerow): Do we need {synchronized_length} for GC purposes?
+  // TODO (jkummerow): Do we need {synchronized_length} for GC purposes? id:1338 gh:1347
   DECL_INT_ACCESSORS(length)
 
   inline static int SizeFor(int length) {

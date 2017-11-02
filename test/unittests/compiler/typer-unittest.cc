@@ -17,7 +17,7 @@ namespace v8 {
 namespace internal {
 namespace compiler {
 
-// TODO(titzer): generate a large set of deterministic inputs for these tests.
+// TODO (titzer): generate a large set of deterministic inputs for these tests. id:2506 gh:2515
 class TyperTest : public TypedGraphTest {
  public:
   TyperTest()

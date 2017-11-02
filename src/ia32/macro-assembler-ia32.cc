@@ -319,7 +319,7 @@ void TurboAssembler::RestoreRegisters(RegList registers) {
 void TurboAssembler::CallRecordWriteStub(
     Register object, Register address,
     RememberedSetAction remembered_set_action, SaveFPRegsMode fp_mode) {
-  // TODO(albertnetymk): For now we ignore remembered_set_action and fp_mode,
+  // TODO (albertnetymk): For now we ignore remembered_set_action and fp_mode, id:953 gh:961
   // i.e. always emit remember set and save FP registers in RecordWriteStub. If
   // large performance regression is observed, we should use these values to
   // avoid unnecessary work.
@@ -850,7 +850,7 @@ void MacroAssembler::CallRuntime(const Runtime::Function* f,
   // expectation.
   CHECK(f->nargs < 0 || f->nargs == num_arguments);
 
-  // TODO(1236192): Most runtime routines don't need the number of
+  // TODO (1236192): Most runtime routines don't need the number of id:1114 gh:1122
   // arguments passed in because it is constant. At some point we
   // should remove this need and make the runtime routine entry code
   // smarter.
@@ -863,7 +863,7 @@ void MacroAssembler::CallRuntime(const Runtime::Function* f,
 void TurboAssembler::CallRuntimeDelayed(Zone* zone, Runtime::FunctionId fid,
                                         SaveFPRegsMode save_doubles) {
   const Runtime::Function* f = Runtime::FunctionForId(fid);
-  // TODO(1236192): Most runtime routines don't need the number of
+  // TODO (1236192): Most runtime routines don't need the number of id:987 gh:995
   // arguments passed in because it is constant. At some point we
   // should remove this need and make the runtime routine entry code
   // smarter.
@@ -886,7 +886,7 @@ void MacroAssembler::TailCallRuntime(Runtime::FunctionId fid) {
   const Runtime::Function* function = Runtime::FunctionForId(fid);
   DCHECK_EQ(1, function->result_size);
   if (function->nargs >= 0) {
-    // TODO(1236192): Most runtime routines don't need the number of
+    // TODO (1236192): Most runtime routines don't need the number of id:1130 gh:1138
     // arguments passed in because it is constant. At some point we
     // should remove this need and make the runtime routine entry code
     // smarter.
@@ -959,7 +959,7 @@ void TurboAssembler::PrepareForTailCall(
   } else {
     mov(count_reg, Immediate(callee_args_count.immediate() + 2 +
                              number_of_temp_values_after_return_address));
-    // TODO(ishell): Unroll copying loop for small immediate values.
+    // TODO (ishell): Unroll copying loop for small immediate values. id:1103 gh:1111
   }
 
   // Now copy callee arguments to the caller frame going backwards to avoid

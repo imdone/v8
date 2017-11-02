@@ -386,7 +386,7 @@ class WasmModuleBuilder {
       binary.emit_section(kTableSectionCode, section => {
         section.emit_u8(1);  // one table entry
         section.emit_u8(kWasmAnyFunctionTypeForm);
-        // TODO(gdeepti): Cleanup to use optional max flag,
+        // TODO (gdeepti): Cleanup to use optional max flag, id:2502 gh:2510
         // fix up tests to set correct initial/maximum values
         section.emit_u32v(1);
         section.emit_u32v(wasm.function_table_length_min);

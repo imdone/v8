@@ -432,7 +432,7 @@ TF_BUILTIN(TypedArrayConstructByArrayBuffer, TypedArrayBuiltinsAssembler) {
   }
 
   BIND(&check_length);
-  // TODO(petermarshall): Throw on detached typedArray.
+  // TODO (petermarshall): Throw on detached typedArray. id:344 gh:345
   Branch(IsUndefined(length), &length_undefined, &length_defined);
 
   BIND(&length_undefined);

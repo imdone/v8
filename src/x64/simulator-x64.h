@@ -12,7 +12,7 @@ namespace internal {
 
 // Since there is no simulator for the x64 architecture the only thing we can
 // do is to call the entry directly.
-// TODO(X64): Don't pass p0, since it isn't used?
+// TODO (X64): Don't pass p0, since it isn't used? id:1714 gh:1719
 #define CALL_GENERATED_CODE(isolate, entry, p0, p1, p2, p3, p4) \
   (entry(p0, p1, p2, p3, p4))
 

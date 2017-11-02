@@ -323,7 +323,7 @@ RUNTIME_FUNCTION(Runtime_LoadKeyedFromSuper) {
   Handle<Name> name;
   ASSIGN_RETURN_FAILURE_ON_EXCEPTION(isolate, name,
                                      Object::ToName(isolate, key));
-  // TODO(verwaest): Unify using LookupIterator.
+  // TODO (verwaest): Unify using LookupIterator. id:1300 gh:1308
   if (name->AsArrayIndex(&index)) {
     RETURN_RESULT_OR_FAILURE(
         isolate, LoadElementFromSuper(isolate, receiver, home_object, index));
@@ -409,7 +409,7 @@ static MaybeHandle<Object> StoreKeyedToSuper(
   Handle<Name> name;
   ASSIGN_RETURN_ON_EXCEPTION(isolate, name, Object::ToName(isolate, key),
                              Object);
-  // TODO(verwaest): Unify using LookupIterator.
+  // TODO (verwaest): Unify using LookupIterator. id:1497 gh:1505
   if (name->AsArrayIndex(&index)) {
     return StoreElementToSuper(isolate, home_object, receiver, index, value,
                                language_mode);

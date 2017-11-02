@@ -153,7 +153,7 @@ function NAMEConstructByIterable(obj, iterable, iteratorFn) {
     var newIterable = {
       __proto__: null
     };
-    // TODO(littledan): Computed properties don't work yet in nosnap.
+    // TODO (littledan): Computed properties don't work yet in nosnap. id:1026 gh:1034
     // Rephrase when they do.
     newIterable[iteratorSymbol] = function() { return iterator; }
     for (var value of newIterable) {
@@ -165,7 +165,7 @@ function NAMEConstructByIterable(obj, iterable, iteratorFn) {
 
 // ES#sec-typedarray-typedarray TypedArray ( typedArray )
 function NAMEConstructByTypedArray(obj, typedArray) {
-  // TODO(littledan): Throw on detached typedArray
+  // TODO (littledan): Throw on detached typedArray id:1283 gh:1291
   var srcData = %TypedArrayGetBuffer(typedArray);
   var length = %_TypedArrayGetLength(typedArray);
   var byteLength = %_ArrayBufferViewGetByteLength(typedArray);
@@ -178,7 +178,7 @@ function NAMEConstructByTypedArray(obj, typedArray) {
                             ? GlobalArrayBuffer
                             : SpeciesConstructor(srcData, GlobalArrayBuffer);
   var prototype = bufferConstructor.prototype;
-  // TODO(littledan): Use the right prototype based on bufferConstructor's realm
+  // TODO (littledan): Use the right prototype based on bufferConstructor's realm id:1050 gh:1058
   if (IS_RECEIVER(prototype) && prototype !== GlobalArrayBufferPrototype) {
     %InternalSetPrototype(%TypedArrayGetBuffer(obj), prototype);
   }
@@ -437,7 +437,7 @@ DEFINE_METHOD_LEN(
   1  /* Set function length. */
 );
 
-// TODO(bmeurer): Migrate this to a proper builtin.
+// TODO (bmeurer): Migrate this to a proper builtin. id:1243 gh:1252
 function TypedArrayConstructor() {
   throw %make_type_error(kConstructAbstractClass, "TypedArray");
 }

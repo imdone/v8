@@ -207,7 +207,7 @@ RUNTIME_FUNCTION(Runtime_TypedArraySpeciesCreateByLength) {
   ScopedVector<Handle<Object>> argv(argc);
   argv[0] = length;
   Handle<JSTypedArray> result_array;
-  // TODO(tebbi): Pass correct method name.
+  // TODO (tebbi): Pass correct method name. id:1603 gh:1611
   ASSIGN_RETURN_FAILURE_ON_EXCEPTION(
       isolate, result_array,
       JSTypedArray::SpeciesCreate(isolate, exemplar, argc, argv.start(), ""));

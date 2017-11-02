@@ -30,7 +30,7 @@ namespace {
 
 // Describe fields of Context associated with AsyncFunctionAwait resume
 // closures.
-// TODO(jgruber): Refactor to reuse code for upcoming async-generators.
+// TODO (jgruber): Refactor to reuse code for upcoming async-generators. id:275 gh:276
 class AwaitContext {
  public:
   enum Fields { kGeneratorSlot = Context::MIN_CONTEXT_SLOTS, kLength };
@@ -50,7 +50,7 @@ void AsyncFunctionBuiltinsAssembler::AsyncFunctionAwaitResumeClosure(
 
   // Inline version of GeneratorPrototypeNext / GeneratorPrototypeReturn with
   // unnecessary runtime checks removed.
-  // TODO(jgruber): Refactor to reuse code from builtins-generator.cc.
+  // TODO (jgruber): Refactor to reuse code from builtins-generator.cc. id:288 gh:289
 
   // Ensure that the generator is neither closed nor running.
   CSA_SLOW_ASSERT(
@@ -108,11 +108,11 @@ void AsyncFunctionBuiltinsAssembler::AsyncFunctionAwait(
                                       generator);
   };
 
-  // TODO(jgruber): AsyncBuiltinsAssembler::Await currently does not reuse
+  // TODO (jgruber): AsyncBuiltinsAssembler::Await currently does not reuse id:309 gh:310
   // the awaited promise if it is already a promise. Reuse is non-spec compliant
   // but part of our old behavior gives us a couple of percent
   // performance boost.
-  // TODO(jgruber): Use a faster specialized version of
+  // TODO (jgruber): Use a faster specialized version of id:261 gh:262
   // InternalPerformPromiseThen.
 
   Await(context, generator, awaited, outer_promise, AwaitContext::kLength,

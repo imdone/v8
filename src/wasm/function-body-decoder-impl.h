@@ -1320,7 +1320,7 @@ class WasmFullDecoder : public WasmDecoder<validate> {
             break;
           }
           case kExprRethrow: {
-            // TODO(kschimpf): Implement.
+            // TODO (kschimpf): Implement. id:1351 gh:1359
             CHECK_PROTOTYPE_OPCODE(eh);
             OPCODE_ERROR(opcode, "not implemented yet");
             break;
@@ -1349,7 +1349,7 @@ class WasmFullDecoder : public WasmDecoder<validate> {
             break;
           }
           case kExprCatch: {
-            // TODO(kschimpf): Fix to use type signature of exception.
+            // TODO (kschimpf): Fix to use type signature of exception. id:1595 gh:1603
             CHECK_PROTOTYPE_OPCODE(eh);
             ExceptionIndexOperand<Decoder::kValidate> operand(this, this->pc_);
             len = 1 + operand.length;
@@ -1386,7 +1386,7 @@ class WasmFullDecoder : public WasmDecoder<validate> {
             break;
           }
           case kExprCatchAll: {
-            // TODO(kschimpf): Implement.
+            // TODO (kschimpf): Implement. id:1386 gh:1394
             CHECK_PROTOTYPE_OPCODE(eh);
             OPCODE_ERROR(opcode, "not implemented yet");
             break;
@@ -1723,7 +1723,7 @@ class WasmFullDecoder : public WasmDecoder<validate> {
             CallFunctionOperand<validate> operand(this, this->pc_);
             len = 1 + operand.length;
             if (!this->Validate(this->pc_, operand)) break;
-            // TODO(clemensh): Better memory management.
+            // TODO (clemensh): Better memory management. id:1568 gh:1576
             PopArgs(operand.sig);
             auto* returns = PushReturns(operand.sig);
             CALL_INTERFACE_IF_REACHABLE(CallDirect, operand, args_.data(),

@@ -508,7 +508,7 @@ void JitLogger::EndCodePosInfoEvent(AbstractCode* code,
 }
 
 
-// TODO(lpy): Keeping sampling thread inside V8 is a workaround currently,
+// TODO (lpy): Keeping sampling thread inside V8 is a workaround currently, id:1285 gh:1293
 // the reason is to reduce code duplication during migration to sampler library,
 // sampling thread, as well as the sampler, will be moved to D8 eventually.
 class SamplingThread : public base::Thread {
@@ -1414,7 +1414,7 @@ void Logger::MapEvent(const char* type, Map* from, Map* to, const char* reason,
                       HeapObject* name_or_sfi) {
   DisallowHeapAllocation no_gc;
   if (!log_->IsEnabled() || !FLAG_trace_maps) return;
-  // TODO(cbruni): Remove once --trace-maps is fully migrated.
+  // TODO (cbruni): Remove once --trace-maps is fully migrated. id:1052 gh:1060
   if (from) MapDetails(from);
   if (to) MapDetails(to);
   int line = -1;
@@ -1522,7 +1522,7 @@ static int EnumerateCompiledFunctions(Heap* heap,
           !Script::cast(maybe_script)->HasValidSource()) {
         continue;
       }
-      // TODO(jarin) This leaves out deoptimized code that might still be on the
+      // TODO (jarin) This leaves out deoptimized code that might still be on the id:1245 gh:1254
       // stack. Also note that we will not log optimized code objects that are
       // only on a type feedback vector. We should make this mroe precise.
       if (function->IsOptimized()) {

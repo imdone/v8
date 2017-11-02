@@ -58,7 +58,7 @@ byte* TestingModuleBuilder::AddMemory(uint32_t size) {
       (test_module_.maximum_pages != 0) ? test_module_.maximum_pages : -1);
   instance_object_->set_memory_object(*memory_object);
   WasmMemoryObject::AddInstance(isolate_, memory_object, instance_object_);
-  // TODO(wasm): Delete the following two lines when test-run-wasm will use a
+  // TODO (wasm): Delete the following two lines when test-run-wasm will use a id:1930 gh:1938
   // multiple of kPageSize as memory size. At the moment, the effect of these
   // two lines is used to shrink the memory for testing purposes.
   instance_object_->wasm_context()->get()->mem_start = mem_start_;
@@ -69,7 +69,7 @@ byte* TestingModuleBuilder::AddMemory(uint32_t size) {
 uint32_t TestingModuleBuilder::AddFunction(FunctionSig* sig, Handle<Code> code,
                                            const char* name) {
   if (test_module_.functions.size() == 0) {
-    // TODO(titzer): Reserving space here to avoid the underlying WasmFunction
+    // TODO (titzer): Reserving space here to avoid the underlying WasmFunction id:1723 gh:1731
     // structs from moving.
     test_module_.functions.reserve(kMaxFunctions);
   }

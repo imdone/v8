@@ -51,7 +51,7 @@ enum WasmExecutionMode {
   kExecuteInterpreter,
   kExecuteTurbofan,
   kExecuteLiftoff,
-  // TODO(bug:7028): Introduce another enum for simd lowering.
+  // TODO (bug:7028): Introduce another enum for simd lowering. id:1888 gh:1897
   kExecuteSimdLowered
 };
 
@@ -59,7 +59,7 @@ using compiler::CallDescriptor;
 using compiler::MachineTypeForC;
 using compiler::Node;
 
-// TODO(titzer): check traps more robustly in tests.
+// TODO (titzer): check traps more robustly in tests. id:1915 gh:1923
 // Currently, in tests, we just return 0xdeadbeef from the function in which
 // the trap occurs if the runtime context is not available to throw a JavaScript
 // exception.
@@ -467,11 +467,11 @@ class WasmRunner : public WasmRunnerBase {
       possible_nondeterminism_ |= thread->PossibleNondeterminism();
       return val.to<ReturnType>();
     } else if (thread->state() == WasmInterpreter::TRAPPED) {
-      // TODO(titzer): return the correct trap code
+      // TODO (titzer): return the correct trap code id:1632 gh:1640
       int64_t result = 0xdeadbeefdeadbeef;
       return static_cast<ReturnType>(result);
     } else {
-      // TODO(titzer): falling off end
+      // TODO (titzer): falling off end id:1931 gh:1939
       return ReturnType{0};
     }
   }

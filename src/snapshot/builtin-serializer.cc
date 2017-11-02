@@ -104,7 +104,7 @@ void BuiltinSerializer::SerializeObject(HeapObject* o, HowToCode how_to_code,
   // * FixedArrays: Handler tables.
   // * Strings: CSA_ASSERTs in debug builds, various other string constants.
   // * HeapNumbers: Embedded constants.
-  // TODO(6624): Jump targets should never trigger content serialization, it
+  // TODO (6624): Jump targets should never trigger content serialization, it id:1555 gh:1563
   // should always result in a reference instead. Reloc infos and handler
   // tables should not end up in the partial snapshot cache.
 

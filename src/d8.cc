@@ -72,7 +72,7 @@ const int kMaxSerializerMemoryUsage = 1 * MB;  // Arbitrary maximum for testing.
 
 #define USE_VM 1
 #define VM_THRESHOLD 65536
-// TODO(titzer): allocations should fail if >= 2gb because of
+// TODO (titzer): allocations should fail if >= 2gb because of id:958 gh:966
 // array buffers storing the lengths as a SMI internally.
 #define TWO_GB (2u * 1024u * 1024u * 1024u)
 
@@ -648,7 +648,7 @@ std::string ToSTLString(Isolate* isolate, Local<String> v8_str) {
 
 bool IsAbsolutePath(const std::string& path) {
 #if defined(_WIN32) || defined(_WIN64)
-  // TODO(adamk): This is an incorrect approximation, but should
+  // TODO (adamk): This is an incorrect approximation, but should id:910 gh:918
   // work for all our test-running cases.
   return path.find(':') != std::string::npos;
 #else
@@ -659,7 +659,7 @@ bool IsAbsolutePath(const std::string& path) {
 std::string GetWorkingDirectory() {
 #if defined(_WIN32) || defined(_WIN64)
   char system_buffer[MAX_PATH];
-  // TODO(adamk): Support Unicode paths.
+  // TODO (adamk): Support Unicode paths. id:851 gh:859
   DWORD len = GetCurrentDirectoryA(MAX_PATH, system_buffer);
   CHECK_GT(len, 0);
   return system_buffer;
@@ -975,12 +975,12 @@ PerIsolateData::RealmScope::~RealmScope() {
     Global<Context>& realm = data_->realms_[i];
     if (realm.IsEmpty()) continue;
     DisposeModuleEmbedderData(realm.Get(data_->isolate_));
-    // TODO(adamk): No need to reset manually, Globals reset when destructed.
+    // TODO (adamk): No need to reset manually, Globals reset when destructed. id:878 gh:886
     realm.Reset();
   }
   data_->realm_count_ = 0;
   delete[] data_->realms_;
-  // TODO(adamk): No need to reset manually, Globals reset when destructed.
+  // TODO (adamk): No need to reset manually, Globals reset when destructed. id:919 gh:927
   if (!data_->realm_shared_.IsEmpty())
     data_->realm_shared_.Reset();
 }
@@ -2740,7 +2740,7 @@ bool Shell::SetOptions(int argc, char* argv[]) {
       argv[i] = nullptr;
     } else if (strcmp(argv[i], "--invoke-weak-callbacks") == 0) {
       options.invoke_weak_callbacks = true;
-      // TODO(jochen) See issue 3351
+      // TODO (jochen) See issue 3351 id:959 gh:967
       options.send_idle_notification = true;
       argv[i] = nullptr;
     } else if (strcmp(argv[i], "--omit-quit") == 0) {

@@ -42,7 +42,7 @@ namespace v8 {
 namespace internal {
 namespace compiler {
 
-// TODO(titzer): pull WASM_64 up to a common header.
+// TODO (titzer): pull WASM_64 up to a common header. id:750 gh:751
 #if !V8_TARGET_ARCH_32_BIT || V8_TARGET_ARCH_X64
 #define WASM_64 1
 #else
@@ -200,7 +200,7 @@ Node* WasmGraphBuilder::IntPtrConstant(intptr_t value) {
 
 void WasmGraphBuilder::StackCheck(wasm::WasmCodePosition position,
                                   Node** effect, Node** control) {
-  // TODO(mtrofin): "!env_" happens when we generate a wrapper.
+  // TODO (mtrofin): "!env_" happens when we generate a wrapper. id:821 gh:829
   // We should factor wrappers separately from wasm codegen.
   if (FLAG_wasm_no_stack_checks || !env_ || !runtime_exception_support_) {
     return;
@@ -1637,13 +1637,13 @@ Node* WasmGraphBuilder::BuildCFuncInstruction(ExternalReference ref,
 }
 
 Node* WasmGraphBuilder::BuildF32SConvertI64(Node* input) {
-  // TODO(titzer/bradnelson): Check handlng of asm.js case.
+  // TODO (titzer/bradnelson): Check handlng of asm.js case. id:843 gh:851
   return BuildIntToFloatConversionInstruction(
       input, ExternalReference::wasm_int64_to_float32(jsgraph()->isolate()),
       MachineRepresentation::kWord64, MachineType::Float32());
 }
 Node* WasmGraphBuilder::BuildF32UConvertI64(Node* input) {
-  // TODO(titzer/bradnelson): Check handlng of asm.js case.
+  // TODO (titzer/bradnelson): Check handlng of asm.js case. id:871 gh:879
   return BuildIntToFloatConversionInstruction(
       input, ExternalReference::wasm_uint64_to_float32(jsgraph()->isolate()),
       MachineRepresentation::kWord64, MachineType::Float32());
@@ -1910,7 +1910,7 @@ Node* WasmGraphBuilder::Rethrow() {
 }
 
 Node* WasmGraphBuilder::ConvertExceptionTagToRuntimeId(uint32_t tag) {
-  // TODO(kschimpf): Handle exceptions from different modules, when they are
+  // TODO (kschimpf): Handle exceptions from different modules, when they are id:782 gh:790
   // linked at runtime.
   return Uint32Constant(tag);
 }
@@ -1923,7 +1923,7 @@ Node* WasmGraphBuilder::GetExceptionRuntimeId() {
 
 Node** WasmGraphBuilder::GetExceptionValues(
     const wasm::WasmException* except_decl) {
-  // TODO(kschimpf): We need to move this code to the function-body-decoder.cc
+  // TODO (kschimpf): We need to move this code to the function-body-decoder.cc id:751 gh:752
   // in order to build landing-pad (exception) edges in case the runtime
   // call causes an exception.
 
@@ -2438,7 +2438,7 @@ Node* WasmGraphBuilder::CallIndirect(uint32_t sig_index, Node** args,
 
 Node* WasmGraphBuilder::BuildI32Rol(Node* left, Node* right) {
   // Implement Rol by Ror since TurboFan does not have Rol opcode.
-  // TODO(weiliang): support Word32Rol opcode in TurboFan.
+  // TODO (weiliang): support Word32Rol opcode in TurboFan. id:822 gh:830
   Int32Matcher m(right);
   if (m.HasValue()) {
     return Binop(wasm::kExprI32Ror, left,
@@ -2451,7 +2451,7 @@ Node* WasmGraphBuilder::BuildI32Rol(Node* left, Node* right) {
 
 Node* WasmGraphBuilder::BuildI64Rol(Node* left, Node* right) {
   // Implement Rol by Ror since TurboFan does not have Rol opcode.
-  // TODO(weiliang): support Word64Rol opcode in TurboFan.
+  // TODO (weiliang): support Word64Rol opcode in TurboFan. id:844 gh:852
   Int64Matcher m(right);
   if (m.HasValue()) {
     return Binop(wasm::kExprI64Ror, left,
@@ -2905,7 +2905,7 @@ bool WasmGraphBuilder::BuildWasmToJSWrapper(
   // JS function.
   // js_imports_table is fixed array with global handle scope whose lifetime is
   // tied to the instance.
-  // TODO(aseemgarg): explore using per-import global handle instead of a table
+  // TODO (aseemgarg): explore using per-import global handle instead of a table id:872 gh:880
   Node* table_ptr = jsgraph()->IntPtrConstant(
       reinterpret_cast<intptr_t>(global_js_imports_table.location()));
   Node* table = graph()->NewNode(
@@ -3065,7 +3065,7 @@ void WasmGraphBuilder::BuildWasmInterpreterEntry(uint32_t func_index) {
 
   // The return value is also passed via this buffer:
   DCHECK_GE(wasm::kV8MaxWasmFunctionReturns, sig_->return_count());
-  // TODO(wasm): Handle multi-value returns.
+  // TODO (wasm): Handle multi-value returns. id:783 gh:791
   DCHECK_EQ(1, wasm::kV8MaxWasmFunctionReturns);
   int return_size_bytes =
       sig_->return_count() == 0 ? 0 : 1 << ElementSizeLog2Of(sig_->GetReturn());
@@ -3104,7 +3104,7 @@ void WasmGraphBuilder::BuildWasmInterpreterEntry(uint32_t func_index) {
   if (sig_->return_count() == 0) {
     Return(Int32Constant(0));
   } else {
-    // TODO(wasm): Implement multi-return.
+    // TODO (wasm): Implement multi-return. id:752 gh:753
     DCHECK_EQ(1, sig_->return_count());
     MachineType load_rep = wasm::WasmOpcodes::MachineTypeFor(sig_->GetReturn());
     Node* val =
@@ -3226,7 +3226,7 @@ void WasmGraphBuilder::GetGlobalBaseAndOffset(MachineType mem_type,
   DCHECK_NOT_NULL(wasm_context_);
   if (globals_start_ == nullptr) {
     // Load globals_start from the WasmContext at runtime.
-    // TODO(wasm): we currently generate only one load of the {globals_start}
+    // TODO (wasm): we currently generate only one load of the {globals_start} id:823 gh:831
     // start per graph, which means it can be placed anywhere by the scheduler.
     // This is legal because the globals_start should never change.
     // However, in some cases (e.g. if the WasmContext is already in a
@@ -3244,7 +3244,7 @@ void WasmGraphBuilder::GetGlobalBaseAndOffset(MachineType mem_type,
   *offset_node = jsgraph()->Int32Constant(offset);
 
   if (mem_type == MachineType::Simd128() && offset != 0) {
-    // TODO(titzer,bbudge): code generation for SIMD memory offsets is broken.
+    // TODO (titzer,bbudge): code generation for SIMD memory offsets is broken. id:845 gh:853
     *base_node =
         graph()->NewNode(kPointerSize == 4 ? jsgraph()->machine()->Int32Add()
                                            : jsgraph()->machine()->Int64Add(),
@@ -3296,7 +3296,7 @@ void WasmGraphBuilder::EnsureFunctionTableNodes() {
 }
 
 Node* WasmGraphBuilder::BuildModifyThreadInWasmFlag(bool new_value) {
-  // TODO(eholk): generate code to modify the thread-local storage directly,
+  // TODO (eholk): generate code to modify the thread-local storage directly, id:902 gh:910
   // rather than calling the runtime.
   if (!trap_handler::UseTrapHandler()) {
     return *control_;
@@ -3526,7 +3526,7 @@ Node* WasmGraphBuilder::LoadMem(wasm::ValueType type, MachineType memtype,
                               MemBuffer(offset), index, *effect_, *control_);
     }
   } else {
-    // TODO(eholk): Support unaligned loads with trap handlers.
+    // TODO (eholk): Support unaligned loads with trap handlers. id:784 gh:792
     DCHECK(!FLAG_wasm_trap_handler || !V8_TRAP_HANDLER_SUPPORTED);
     load = graph()->NewNode(jsgraph()->machine()->UnalignedLoad(memtype),
                             MemBuffer(offset), index, *effect_, *control_);
@@ -3540,7 +3540,7 @@ Node* WasmGraphBuilder::LoadMem(wasm::ValueType type, MachineType memtype,
 
   if (type == wasm::kWasmI64 &&
       ElementSizeLog2Of(memtype.representation()) < 3) {
-    // TODO(titzer): TF zeroes the upper bits of 64-bit loads for subword sizes.
+    // TODO (titzer): TF zeroes the upper bits of 64-bit loads for subword sizes. id:753 gh:754
     if (memtype.IsSigned()) {
       // sign extend
       load = graph()->NewNode(jsgraph()->machine()->ChangeInt32ToInt64(), load);
@@ -3592,7 +3592,7 @@ Node* WasmGraphBuilder::StoreMem(MachineType memtype, Node* index,
                            index, val, *effect_, *control_);
     }
   } else {
-    // TODO(eholk): Support unaligned stores with trap handlers.
+    // TODO (eholk): Support unaligned stores with trap handlers. id:824 gh:832
     DCHECK(!FLAG_wasm_trap_handler || !V8_TRAP_HANDLER_SUPPORTED);
     UnalignedStoreRepresentation rep(memtype.representation());
     store =
@@ -3611,7 +3611,7 @@ Node* WasmGraphBuilder::StoreMem(MachineType memtype, Node* index,
 }
 
 Node* WasmGraphBuilder::BuildAsmjsLoadMem(MachineType type, Node* index) {
-  // TODO(turbofan): fold bounds checks for constant asm.js loads.
+  // TODO (turbofan): fold bounds checks for constant asm.js loads. id:846 gh:854
   // asm.js semantics use CheckedLoad (i.e. OOB reads return 0ish).
   DCHECK_NOT_NULL(*mem_size_);
   DCHECK_NOT_NULL(*mem_start_);
@@ -3628,7 +3628,7 @@ Node* WasmGraphBuilder::BuildAsmjsLoadMem(MachineType type, Node* index) {
 
 Node* WasmGraphBuilder::BuildAsmjsStoreMem(MachineType type, Node* index,
                                            Node* val) {
-  // TODO(turbofan): fold bounds checks for constant asm.js stores.
+  // TODO (turbofan): fold bounds checks for constant asm.js stores. id:903 gh:911
   // asm.js semantics use CheckedStore (i.e. ignore OOB writes).
   DCHECK_NOT_NULL(*mem_size_);
   DCHECK_NOT_NULL(*mem_start_);
@@ -4114,7 +4114,7 @@ Node* WasmGraphBuilder::Simd8x16ShuffleOp(const uint8_t shuffle[16],
 Node* WasmGraphBuilder::AtomicOp(wasm::WasmOpcode opcode, Node* const* inputs,
                                  uint32_t alignment, uint32_t offset,
                                  wasm::WasmCodePosition position) {
-  // TODO(gdeepti): Add alignment validation, traps on misalignment
+  // TODO (gdeepti): Add alignment validation, traps on misalignment id:785 gh:793
   Node* node;
   switch (opcode) {
 #define BUILD_ATOMIC_BINOP(Name, Operation, Type)                      \
@@ -4221,7 +4221,7 @@ Handle<Code> CompileJSToWasmWrapper(Isolate* isolate, wasm::WasmModule* module,
   Node* control = nullptr;
   Node* effect = nullptr;
 
-  // TODO(titzer): compile JS to WASM wrappers without a {ModuleEnv}.
+  // TODO (titzer): compile JS to WASM wrappers without a {ModuleEnv}. id:754 gh:755
   ModuleEnv env = {
       module,
       std::vector<Address>(),         // function_tables
@@ -4792,7 +4792,7 @@ void WasmCompilationUnit::ExecuteTurbofanCompilation() {
         tf_.info_.get(), tf_.jsgraph_, descriptor, source_positions,
         &protected_instructions_, env_->module->origin()));
     ok_ = tf_.job_->ExecuteJob() == CompilationJob::SUCCEEDED;
-    // TODO(bradnelson): Improve histogram handling of size_t.
+    // TODO (bradnelson): Improve histogram handling of size_t. id:912 gh:921
     counters()->wasm_compile_function_peak_memory_bytes()->AddSample(
         static_cast<int>(tf_.jsgraph_->graph()->zone()->allocation_size()));
 
@@ -4898,7 +4898,7 @@ MaybeHandle<Code> WasmCompilationUnit::FinishLiftoffCompilation(
   code = isolate_->factory()->NewCode(desc, Code::WASM_FUNCTION, code);
 #ifdef ENABLE_DISASSEMBLER
   if (FLAG_print_code || FLAG_print_wasm_code) {
-    // TODO(wasm): Use proper log files, here and elsewhere.
+    // TODO (wasm): Use proper log files, here and elsewhere. id:847 gh:855
     OFStream os(stdout);
     os << "--- Wasm liftoff code ---\n";
     EmbeddedVector<char, 32> func_name;

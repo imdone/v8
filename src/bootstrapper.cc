@@ -571,7 +571,7 @@ V8_NOINLINE void InstallConstant(Isolate* isolate, Handle<JSObject> holder,
 
 V8_NOINLINE void InstallSpeciesGetter(Handle<JSFunction> constructor) {
   Factory* factory = constructor->GetIsolate()->factory();
-  // TODO(adamk): We should be able to share a SharedFunctionInfo
+  // TODO (adamk): We should be able to share a SharedFunctionInfo id:223 gh:224
   // between all these JSFunctins.
   SimpleInstallGetter(constructor, factory->symbol_species_string(),
                       factory->species_symbol(), Builtins::kReturnReceiver,
@@ -797,7 +797,7 @@ Handle<Map> CreateNonConstructorMap(Handle<Map> source_map,
   // inital map even when the prototype property is not required).
   if (!map->has_prototype_slot()) {
     // Re-set the unused property fields after changing the instance size.
-    // TODO(ulan): Do not change instance size after map creation.
+    // TODO (ulan): Do not change instance size after map creation. id:233 gh:234
     int unused_property_fields = map->UnusedPropertyFields();
     map->set_instance_size(map->instance_size() + kPointerSize);
     map->set_has_prototype_slot(true);
@@ -2988,7 +2988,7 @@ void Genesis::InitializeGlobal(Handle<JSGlobalObject> global_object,
     JSObject::AddProperty(prototype, factory->iterator_symbol(), values,
                           DONT_ENUM);
 
-    // TODO(caitp): alphasort accessors/methods
+    // TODO (caitp): alphasort accessors/methods id:255 gh:256
     SimpleInstallFunction(prototype, "copyWithin",
                           Builtins::kTypedArrayPrototypeCopyWithin, 2, false);
     SimpleInstallFunction(prototype, "every",
@@ -3334,7 +3334,7 @@ void Genesis::InitializeGlobal(Handle<JSGlobalObject> global_object,
     Handle<Map> proxy_function_map =
         Map::Copy(isolate->strict_function_without_prototype_map(), "Proxy");
     // Re-set the unused property fields after changing the instance size.
-    // TODO(ulan): Do not change instance size after map creation.
+    // TODO (ulan): Do not change instance size after map creation. id:303 gh:304
     int unused_property_fields = proxy_function_map->UnusedPropertyFields();
     proxy_function_map->set_instance_size(JSFunction::kSizeWithPrototype);
     proxy_function_map->set_has_prototype_slot(true);
@@ -5500,7 +5500,7 @@ Genesis::Genesis(Isolate* isolate,
   // Configure the hidden prototype chain of the global proxy.
   JSObject::ForceSetPrototype(global_proxy, global_object);
   global_proxy->map()->SetConstructor(*global_constructor);
-  // TODO(dcheng): This is a hack. Why does this need to be manually called
+  // TODO (dcheng): This is a hack. Why does this need to be manually called id:270 gh:271
   // here? Line 4812 should have taken care of it?
   global_proxy->map()->set_has_hidden_prototype(true);
 

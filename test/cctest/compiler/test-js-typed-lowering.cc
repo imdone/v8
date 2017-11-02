@@ -84,7 +84,7 @@ class JSTypedLoweringTester : public HandleAndZoneScope {
   Node* reduce(Node* node) {
     JSGraph jsgraph(main_isolate(), &graph, &common, &javascript, &simplified,
                     &machine);
-    // TODO(titzer): mock the GraphReducer here for better unit testing.
+    // TODO (titzer): mock the GraphReducer here for better unit testing. id:1532 gh:1540
     GraphReducer graph_reducer(main_zone(), &graph);
     JSTypedLowering reducer(&graph_reducer, &jsgraph, main_zone());
     Reduction reduction = reducer.Reduce(node);
@@ -213,7 +213,7 @@ static IrOpcode::Value NumberToI32(bool is_signed) {
 }
 
 
-// TODO(turbofan): Lowering of StringAdd is disabled for now.
+// TODO (turbofan): Lowering of StringAdd is disabled for now. id:1677 gh:1685
 #if 0
 TEST(StringBinops) {
   JSTypedLoweringTester R;

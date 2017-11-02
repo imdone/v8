@@ -251,18 +251,18 @@ enum DoubleRegisterCode {
 // Coprocessor register.
 class FPURegister : public RegisterBase<FPURegister, kDoubleAfterLast> {
  public:
-  // TODO(plind): Warning, inconsistent numbering here. kNumFPURegisters refers
+  // TODO (plind): Warning, inconsistent numbering here. kNumFPURegisters refers id:1291 gh:1299
   // to number of 32-bit FPU regs, but kNumAllocatableRegisters refers to
   // number of Double regs (64-bit regs, or FPU-reg-pairs).
 
   FPURegister low() const {
-    // TODO(plind): Create DCHECK for FR=0 mode. This usage suspect for FR=1.
+    // TODO (plind): Create DCHECK for FR=0 mode. This usage suspect for FR=1. id:1058 gh:1066
     // Find low reg of a Double-reg pair, which is the reg itself.
     DCHECK_EQ(code() % 2, 0);  // Specified Double reg must be even.
     return FPURegister::from_code(code());
   }
   FPURegister high() const {
-    // TODO(plind): Create DCHECK for FR=0 mode. This usage illegal in FR=1.
+    // TODO (plind): Create DCHECK for FR=0 mode. This usage illegal in FR=1. id:1320 gh:1328
     // Find high reg of a Doubel-reg pair, which is reg + 1.
     DCHECK_EQ(code() % 2, 0);  // Specified Double reg must be even.
     return FPURegister::from_code(code() + 1);
@@ -2267,7 +2267,7 @@ class Assembler : public AssemblerBase {
   // dummy heap object handle that we emitted during code assembly with the
   // actual heap object handle.
  protected:
-  // TODO(neis): Make private if its use can be moved out of TurboAssembler.
+  // TODO (neis): Make private if its use can be moved out of TurboAssembler. id:1319 gh:1327
   void RequestHeapObject(HeapObjectRequest request);
 
  private:

@@ -50,7 +50,7 @@ class DebugWrapper {
                       };
 
     // A copy of the scope types from runtime-debug.cc.
-    // NOTE: these constants should be backward-compatible, so
+    // NOTE: these constants should be backward-compatible, so id:1725 gh:1733
     // add new ones to the end of this list.
     this.ScopeType = { Global:  0,
                        Local:   1,
@@ -832,7 +832,7 @@ class DebugWrapper {
     // Skip break events in this file.
     if (params.callFrames[0].location.scriptId == this.thisScriptId) return;
 
-    // TODO(jgruber): Arguments as needed.
+    // TODO (jgruber): Arguments as needed. id:1890 gh:1898
     let execState = { frames : params.callFrames,
                       prepareStep : this.execStatePrepareStep.bind(this),
                       evaluateGlobal :
@@ -859,7 +859,7 @@ class DebugWrapper {
                       eventType : this.DebugEvent.AfterCompile
                     }
 
-    // TODO(jgruber): Arguments as needed. Still completely missing exec_state,
+    // TODO (jgruber): Arguments as needed. Still completely missing exec_state, id:1917 gh:1925
     // and eventData used to contain the script mirror instead of its id.
     this.invokeListener(this.DebugEvent.AfterCompile, undefined, eventData,
                         undefined);
@@ -872,7 +872,7 @@ class DebugWrapper {
                       eventType : this.DebugEvent.CompileError
                     }
 
-    // TODO(jgruber): Arguments as needed. Still completely missing exec_state,
+    // TODO (jgruber): Arguments as needed. Still completely missing exec_state, id:1634 gh:1642
     // and eventData used to contain the script mirror instead of its id.
     this.invokeListener(this.DebugEvent.CompileError, undefined, eventData,
                         undefined);

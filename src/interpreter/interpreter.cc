@@ -59,7 +59,7 @@ class InterpreterCompilationJob final : public CompilationJob {
   };
 
   bool executed_on_background_thread() {
-    // TODO(rmcilroy): Fix once we create InterpreterCompilationJob on
+    // TODO (rmcilroy): Fix once we create InterpreterCompilationJob on id:1238 gh:1246
     // background thread.
     return false;
   }
@@ -144,7 +144,7 @@ void MaybePrintAst(ParseInfo* parse_info, CompilationInfo* compilation_info) {
 
   // Requires internalizing the AST, so make sure we are on the main thread and
   // allow handle dereference and allocations.
-  // TODO(rmcilroy): Make ast-printer print ast raw strings instead of
+  // TODO (rmcilroy): Make ast-printer print ast raw strings instead of id:1224 gh:1232
   // internalized strings to avoid internalizing here.
   DCHECK(ThreadId::Current().Equals(isolate->thread_id()));
   AllowHandleDereference allow_deref;
@@ -200,7 +200,7 @@ InterpreterCompilationJob::Status InterpreterCompilationJob::ExecuteJobImpl() {
       !executed_on_background_thread() ? runtime_call_stats_ : nullptr,
       &RuntimeCallStats::CompileIgnition);
 
-  // TODO(lpy): add support for background compilation RCS trace.
+  // TODO (lpy): add support for background compilation RCS trace. id:1022 gh:1030
   TRACE_EVENT0(TRACE_DISABLED_BY_DEFAULT("v8.compile"), "V8.CompileIgnition");
 
   generator()->GenerateBytecode(stack_limit());

@@ -4,7 +4,7 @@
 
 // Flags: --noexpose-wasm --validate-asm --allow-natives-syntax
 
-// NOTE: This is in its own file because it calls %DisallowCodegenFromStrings,
+// NOTE: This is in its own file because it calls %DisallowCodegenFromStrings, id:2132 gh:2140
 // which messes with the isolate's state.
 (function testAsmWithWasmOff() {
   %DisallowCodegenFromStrings(true);

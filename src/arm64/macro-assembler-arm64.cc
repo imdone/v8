@@ -211,7 +211,7 @@ void TurboAssembler::Mov(const Register& rd, uint64_t imm) {
   DCHECK(is_uint32(imm) || is_int32(imm) || rd.Is64Bits());
   DCHECK(!rd.IsZero());
 
-  // TODO(all) extend to support more immediates.
+  // TODO (all) extend to support more immediates. id:140 gh:141
   //
   // Immediates on Aarch64 can be produced using an initial value, and zero to
   // three move keep operations.
@@ -495,7 +495,7 @@ void TurboAssembler::Movi(const VRegister& vd, uint64_t imm, Shift shift,
 }
 
 void TurboAssembler::Movi(const VRegister& vd, uint64_t hi, uint64_t lo) {
-  // TODO(all): Move 128-bit values in a more efficient way.
+  // TODO (all): Move 128-bit values in a more efficient way. id:125 gh:126
   DCHECK(vd.Is128Bits());
   UseScratchRegisterScope temps(this);
   Movi(vd.V2D(), lo);
@@ -813,7 +813,7 @@ void TurboAssembler::LoadStorePairMacro(const CPURegister& rt,
                                         const CPURegister& rt2,
                                         const MemOperand& addr,
                                         LoadStorePairOp op) {
-  // TODO(all): Should we support register offset for load-store-pair?
+  // TODO (all): Should we support register offset for load-store-pair? id:112 gh:114
   DCHECK(!addr.IsRegisterOffset());
 
   int64_t offset = addr.offset();
@@ -1475,7 +1475,7 @@ void TurboAssembler::AssertStackConsistency() {
 
 void TurboAssembler::AssertCspAligned() {
   if (emit_debug_code() && use_real_aborts()) {
-    // TODO(titzer): use a real assert for alignment check?
+    // TODO (titzer): use a real assert for alignment check? id:66 gh:67
     UseScratchRegisterScope scope(this);
     Register temp = scope.AcquireX();
     ldr(temp, MemOperand(csp));
@@ -1534,7 +1534,7 @@ void TurboAssembler::CopyDoubleWords(Register dst, Register src,
   Stp(temp0, temp1, MemOperand(dst, 2 * kPointerSize, PostIndex));
   B(&pairs);
 
-  // TODO(all): large copies may benefit from using temporary Q registers
+  // TODO (all): large copies may benefit from using temporary Q registers id:99 gh:100
   // to copy four double words per iteration.
 
   Bind(&done);
@@ -1584,7 +1584,7 @@ void TurboAssembler::CanonicalizeNaN(const VRegister& dst,
 
 void TurboAssembler::LoadRoot(CPURegister destination,
                               Heap::RootListIndex index) {
-  // TODO(jbramley): Most root values are constants, and can be synthesized
+  // TODO (jbramley): Most root values are constants, and can be synthesized id:141 gh:142
   // without a load. Refer to the ARM back end for details.
   Ldr(destination, MemOperand(root, index << kPointerSizeLog2));
 }
@@ -1760,7 +1760,7 @@ void MacroAssembler::TailCallStub(CodeStub* stub) {
 void TurboAssembler::CallRuntimeDelayed(Zone* zone, Runtime::FunctionId fid,
                                         SaveFPRegsMode save_doubles) {
   const Runtime::Function* f = Runtime::FunctionForId(fid);
-  // TODO(1236192): Most runtime routines don't need the number of
+  // TODO (1236192): Most runtime routines don't need the number of id:126 gh:127
   // arguments passed in because it is constant. At some point we
   // should remove this need and make the runtime routine entry code
   // smarter.
@@ -1799,7 +1799,7 @@ void MacroAssembler::TailCallRuntime(Runtime::FunctionId fid) {
   const Runtime::Function* function = Runtime::FunctionForId(fid);
   DCHECK_EQ(1, function->result_size);
   if (function->nargs >= 0) {
-    // TODO(1236192): Most runtime routines don't need the number of
+    // TODO (1236192): Most runtime routines don't need the number of id:113 gh:115
     // arguments passed in because it is constant. At some point we
     // should remove this need and make the runtime routine entry code
     // smarter.
@@ -2981,7 +2981,7 @@ void TurboAssembler::RestoreRegisters(RegList registers) {
 void TurboAssembler::CallRecordWriteStub(
     Register object, Register address,
     RememberedSetAction remembered_set_action, SaveFPRegsMode fp_mode) {
-  // TODO(albertnetymk): For now we ignore remembered_set_action and fp_mode,
+  // TODO (albertnetymk): For now we ignore remembered_set_action and fp_mode, id:67 gh:68
   // i.e. always emit remember set and save FP registers in RecordWriteStub. If
   // large performance regression is observed, we should use these values to
   // avoid unnecessary work.

@@ -402,7 +402,7 @@ void TurboAssembler::RestoreRegisters(RegList registers) {
 void TurboAssembler::CallRecordWriteStub(
     Register object, Register address,
     RememberedSetAction remembered_set_action, SaveFPRegsMode fp_mode) {
-  // TODO(albertnetymk): For now we ignore remembered_set_action and fp_mode,
+  // TODO (albertnetymk): For now we ignore remembered_set_action and fp_mode, id:1371 gh:1379
   // i.e. always emit remember set and save FP registers in RecordWriteStub. If
   // large performance regression is observed, we should use these values to
   // avoid unnecessary work.
@@ -1546,7 +1546,7 @@ void MacroAssembler::CallRuntime(const Runtime::Function* f, int num_arguments,
   // expectation.
   CHECK(f->nargs < 0 || f->nargs == num_arguments);
 
-  // TODO(1236192): Most runtime routines don't need the number of
+  // TODO (1236192): Most runtime routines don't need the number of id:1553 gh:1561
   // arguments passed in because it is constant. At some point we
   // should remove this need and make the runtime routine entry code
   // smarter.

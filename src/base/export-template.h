@@ -107,7 +107,7 @@
 
 // Internal helper macros for EXPORT_TEMPLATE_STYLE.
 //
-// XXX: C++ reserves all identifiers containing "__" for the implementation,
+// XXX: C++ reserves all identifiers containing "__" for the implementation, id:202 gh:203
 // but "__attribute__" and "__declspec" already contain "__" and the token-paste
 // operator can only add characters; not remove them.  To minimize the risk of
 // conflict with implementations, we include "foj3FJo5StF0OvIzl7oMxA" (a random

@@ -419,7 +419,7 @@ TEST_F(ValueSerializerTest, DecodeNumber) {
                EXPECT_TRUE(std::isnan(Number::Cast(*value)->Value()));
              });
 #endif
-  // TODO(jbroman): Equivalent test for big-endian machines.
+  // TODO (jbroman): Equivalent test for big-endian machines. id:2527 gh:2535
 }
 
 // String constants (in UTF-8) used for string encoding tests.
@@ -528,7 +528,7 @@ TEST_F(ValueSerializerTest, DecodeString) {
                EXPECT_EQ(kEmojiString, Utf8Value(value));
              });
 #endif
-  // TODO(jbroman): The same for big-endian systems.
+  // TODO (jbroman): The same for big-endian systems. id:2389 gh:2397
 }
 
 TEST_F(ValueSerializerTest, DecodeInvalidString) {
@@ -542,7 +542,7 @@ TEST_F(ValueSerializerTest, DecodeInvalidString) {
   // Two-byte string with an odd byte length.
   InvalidDecodeTest({0xff, 0x09, 0x63, 0x03, 'v', '\0', '8'});
 #endif
-  // TODO(jbroman): The same for big-endian systems.
+  // TODO (jbroman): The same for big-endian systems. id:2554 gh:2565
 }
 
 TEST_F(ValueSerializerTest, EncodeTwoByteStringUsesPadding) {
@@ -3035,7 +3035,7 @@ const unsigned char kSerializedIncrementerWasm[] = {
     0x2f, 0x2f};
 
 TEST_F(ValueSerializerTestWithWasm, DecodeWasmModule) {
-  if (true) return;  // TODO(mtrofin): fix this test
+  if (true) return;  // TODO (mtrofin): fix this test id:2330 gh:2338
   std::vector<uint8_t> raw(
       kSerializedIncrementerWasm,
       kSerializedIncrementerWasm + sizeof(kSerializedIncrementerWasm));
@@ -3056,7 +3056,7 @@ const unsigned char kSerializedIncrementerWasmWithInvalidCompiledData[] = {
     0x01, 0x06, 0x00, 0x20, 0x00, 0x41, 0x01, 0x6a, 0x00};
 
 TEST_F(ValueSerializerTestWithWasm, DecodeWasmModuleWithInvalidCompiledData) {
-  if (true) return;  // TODO(titzer): regenerate this test
+  if (true) return;  // TODO (titzer): regenerate this test id:2507 gh:2512
   std::vector<uint8_t> raw(
       kSerializedIncrementerWasmWithInvalidCompiledData,
       kSerializedIncrementerWasmWithInvalidCompiledData +

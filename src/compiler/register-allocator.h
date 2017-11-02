@@ -663,7 +663,7 @@ class V8_EXPORT_PRIVATE TopLevelLiveRange final : public LiveRange {
     BitVector* list_of_blocks_requiring_spill_operands_;
   };
 
-  // TODO(mtrofin): generalize spilling after definition, currently specialized
+  // TODO (mtrofin): generalize spilling after definition, currently specialized id:662 gh:663
   // just for spill in a single deferred block.
   bool spilled_in_deferred_blocks_;
   int spill_start_index_;
@@ -986,7 +986,7 @@ class RegisterAllocator : public ZoneObject {
   // Returns true iff. we must check float register aliasing.
   bool check_fp_aliasing() const { return check_fp_aliasing_; }
 
-  // TODO(mtrofin): explain why splitting in gap START is always OK.
+  // TODO (mtrofin): explain why splitting in gap START is always OK. id:693 gh:694
   LifetimePosition GetSplitPositionForInstruction(const LiveRange* range,
                                                   int instruction_index);
 

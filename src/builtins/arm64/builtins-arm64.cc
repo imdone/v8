@@ -1136,7 +1136,7 @@ static void Generate_InterpreterPushArgs(MacroAssembler* masm,
   __ Unreachable();
   __ Bind(&done);
 
-  // TODO(arm64): Claim one extra slot for padding and store padreg to the
+  // TODO (arm64): Claim one extra slot for padding and store padreg to the id:271 gh:272
   // padding slot.
   __ Claim(slots_to_claim);
 
@@ -2243,7 +2243,7 @@ void Builtins::Generate_CallFunction(MacroAssembler* masm,
       __ Bind(&convert_to_object);
       {
         // Convert receiver using ToObject.
-        // TODO(bmeurer): Inline the allocation here to avoid building the frame
+        // TODO (bmeurer): Inline the allocation here to avoid building the frame id:284 gh:285
         // in the fast case? (fall back to AllocateInNewSpace?)
         FrameScope scope(masm, StackFrame::INTERNAL);
         __ SmiTag(x0);

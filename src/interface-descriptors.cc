@@ -250,7 +250,7 @@ void StringCharAtDescriptor::InitializePlatformSpecific(
 void StringCharCodeAtDescriptor::InitializePlatformIndependent(
     CallInterfaceDescriptorData* data) {
   // kReceiver, kPosition
-  // TODO(turbofan): Allow builtins to return untagged values.
+  // TODO (turbofan): Allow builtins to return untagged values. id:1142 gh:1150
   MachineType machine_types[] = {MachineType::AnyTagged(),
                                  MachineType::IntPtr()};
   data->InitializePlatformIndependent(arraysize(machine_types), 0,

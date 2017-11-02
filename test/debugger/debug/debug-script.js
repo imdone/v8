@@ -55,7 +55,7 @@ var scripts = Debug.scripts();
 for (i = 0; i < scripts.length; i++) {
   if (scripts[i].type == Debug.ScriptType.Native) {
     if (scripts[i].name) {
-      // TODO(1641): Remove check for equally named native scripts once the
+      // TODO (1641): Remove check for equally named native scripts once the id:1916 gh:1924
       // underlying issue is fixed.
       if (!named_native_names[scripts[i].name]) {
         named_native_names[scripts[i].name] = true;

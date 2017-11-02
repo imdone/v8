@@ -1186,7 +1186,7 @@ class JavaScriptFrameIterator BASE_EMBEDDED {
   StackFrameIterator iterator_;
 };
 
-// NOTE: The stack trace frame iterator is an iterator that only traverse proper
+// NOTE: The stack trace frame iterator is an iterator that only traverse proper id:972 gh:980
 // JavaScript frames that have proper JavaScript functions and WebAssembly
 // frames.
 class StackTraceFrameIterator BASE_EMBEDDED {

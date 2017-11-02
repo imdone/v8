@@ -225,7 +225,7 @@ class JSBinopReduction final {
     // Finally, update the operator to the new one.
     NodeProperties::ChangeOp(node_, op);
 
-    // TODO(jarin): Replace the explicit typing hack with a call to some method
+    // TODO (jarin): Replace the explicit typing hack with a call to some method id:622 gh:623
     // that encapsulates changing the operator and re-typing.
     Type* node_type = NodeProperties::GetType(node_);
     NodeProperties::SetType(node_, Type::Intersect(node_type, type, zone()));
@@ -394,7 +394,7 @@ class JSBinopReduction final {
 };
 
 
-// TODO(turbofan): js-typed-lowering improvements possible
+// TODO (turbofan): js-typed-lowering improvements possible id:633 gh:634
 // - immediately put in type bounds for all new nodes
 // - relax effects from generic but not-side-effecting operations
 
@@ -632,7 +632,7 @@ Reduction JSTypedLowering::ReduceCreateConsString(Node* node) {
       // throw, making it impossible to return a successful completion in this
       // case. We simply connect the successful completion to the graph end.
       if_false = graph()->NewNode(common()->Throw(), efalse, if_false);
-      // TODO(bmeurer): This should be on the AdvancedReducer somehow.
+      // TODO (bmeurer): This should be on the AdvancedReducer somehow. id:664 gh:665
       NodeProperties::MergeControlToEnd(graph(), common(), if_false);
       Revisit(graph()->end());
     }
@@ -640,7 +640,7 @@ Reduction JSTypedLowering::ReduceCreateConsString(Node* node) {
   }
 
   // Figure out the map for the resulting ConsString.
-  // TODO(turbofan): We currently just use the cons_string_map here for
+  // TODO (turbofan): We currently just use the cons_string_map here for id:538 gh:539
   // the sake of simplicity; we could also try to be smarter here and
   // use the one_byte_cons_string_map instead when the resulting ConsString
   // contains only one byte characters.
@@ -985,7 +985,7 @@ Reduction JSTypedLowering::ReduceJSToStringInput(Node* input) {
     return Replace(jsgraph()->HeapConstant(
         factory()->NumberToString(factory()->NewNumber(input_type->Min()))));
   }
-  // TODO(turbofan): js-typed-lowering of ToString(x:number)
+  // TODO (turbofan): js-typed-lowering of ToString(x:number) id:582 gh:583
   return NoChange();
 }
 
@@ -2106,7 +2106,7 @@ Reduction JSTypedLowering::Reduce(Node* node) {
       return ReduceJSGeneratorRestoreContinuation(node);
     case IrOpcode::kJSGeneratorRestoreRegister:
       return ReduceJSGeneratorRestoreRegister(node);
-    // TODO(mstarzinger): Simplified operations hiding in JS-level reducer not
+    // TODO (mstarzinger): Simplified operations hiding in JS-level reducer not id:623 gh:624
     // fooling anyone. Consider moving this into a separate reducer.
     case IrOpcode::kSpeculativeNumberAdd:
       return ReduceSpeculativeNumberAdd(node);

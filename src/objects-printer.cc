@@ -133,7 +133,7 @@ void HeapObject::HeapObjectPrint(std::ostream& os) {  // NOLINT
     case JS_ASYNC_GENERATOR_OBJECT_TYPE:
     case JS_ARGUMENTS_TYPE:
     case JS_ERROR_TYPE:
-    case WASM_INSTANCE_TYPE:  // TODO(titzer): debug printing for wasm objects
+    case WASM_INSTANCE_TYPE:  // TODO (titzer): debug printing for wasm objects id:1065 gh:1073
     case WASM_MEMORY_TYPE:
     case WASM_MODULE_TYPE:
     case WASM_TABLE_TYPE:
@@ -908,7 +908,7 @@ void JSDate::JSDatePrint(std::ostream& os) {  // NOLINT
   if (!year()->IsSmi()) {
     os << "\n - time = NaN\n";
   } else {
-    // TODO(svenpanne) Add some basic formatting to our streams.
+    // TODO (svenpanne) Add some basic formatting to our streams. id:1327 gh:1335
     ScopedVector<char> buf(100);
     SNPrintF(buf, "\n - time = %s %04d/%02d/%02d %02d:%02d:%02d\n",
              weekdays[weekday()->IsSmi() ? Smi::ToInt(weekday()) + 1 : 0],
@@ -1622,7 +1622,7 @@ void PreParsedScopeData::PreParsedScopeDataPrint(std::ostream& os) {  // NOLINT
 
 #endif  // OBJECT_PRINT
 
-// TODO(cbruni): remove once the new maptracer is in place.
+// TODO (cbruni): remove once the new maptracer is in place. id:1427 gh:1435
 void Name::NameShortPrint() {
   if (this->IsString()) {
     PrintF("%s", String::cast(this)->ToCString().get());
@@ -1637,7 +1637,7 @@ void Name::NameShortPrint() {
   }
 }
 
-// TODO(cbruni): remove once the new maptracer is in place.
+// TODO (cbruni): remove once the new maptracer is in place. id:1042 gh:1050
 int Name::NameShortPrint(Vector<char> str) {
   if (this->IsString()) {
     return SNPrintF(str, "%s", String::cast(this)->ToCString().get());

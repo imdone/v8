@@ -44,7 +44,7 @@ class PropertyHandlerCompiler : public PropertyAccessCompiler {
 
   void DiscardVectorAndSlot();
 
-  // TODO(verwaest): Make non-static.
+  // TODO (verwaest): Make non-static. id:1204 gh:1212
   static void GenerateApiAccessorCall(MacroAssembler* masm,
                                       const CallOptimization& optimization,
                                       Handle<Map> receiver_map,

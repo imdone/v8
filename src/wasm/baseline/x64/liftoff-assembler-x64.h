@@ -51,7 +51,7 @@ void LiftoffAssembler::Load(Register dst, Address addr,
 void LiftoffAssembler::Store(Address addr, Register reg,
                              PinnedRegisterScope pinned_regs,
                              RelocInfo::Mode reloc_mode) {
-  // TODO(clemensh): Change this to kPointerSizeT or something.
+  // TODO (clemensh): Change this to kPointerSizeT or something. id:1350 gh:1358
   Register global_addr_reg = GetUnusedRegister(kWasmI32, pinned_regs);
   DCHECK_NE(reg, global_addr_reg);
   movp(global_addr_reg, static_cast<void*>(addr), reloc_mode);
@@ -78,22 +78,22 @@ void LiftoffAssembler::MoveStackValue(uint32_t dst_index, uint32_t src_index,
 }
 
 void LiftoffAssembler::MoveToReturnRegister(Register reg) {
-  // TODO(clemensh): Handle different types here.
+  // TODO (clemensh): Handle different types here. id:1594 gh:1602
   if (reg != rax) movl(rax, reg);
 }
 
 void LiftoffAssembler::Spill(uint32_t index, Register reg) {
-  // TODO(clemensh): Handle different types here.
+  // TODO (clemensh): Handle different types here. id:1385 gh:1393
   movl(liftoff::GetStackSlot(index), reg);
 }
 
 void LiftoffAssembler::Spill(uint32_t index, WasmValue value) {
-  // TODO(clemensh): Handle different types here.
+  // TODO (clemensh): Handle different types here. id:1567 gh:1575
   movl(liftoff::GetStackSlot(index), Immediate(value.to_i32()));
 }
 
 void LiftoffAssembler::Fill(Register reg, uint32_t index) {
-  // TODO(clemensh): Handle different types here.
+  // TODO (clemensh): Handle different types here. id:1695 gh:1703
   movl(reg, liftoff::GetStackSlot(index));
 }
 

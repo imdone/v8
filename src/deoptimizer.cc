@@ -28,7 +28,7 @@ static MemoryChunk* AllocateCodeChunk(MemoryAllocator* allocator) {
       Deoptimizer::GetMaxDeoptTableSize(), MemoryAllocator::GetCommitPageSize(),
       EXECUTABLE, nullptr);
   if (FLAG_write_protect_code_memory) {
-    // TODO(hpayer): Ensure code memory chunk allocation gives us rx by default.
+    // TODO (hpayer): Ensure code memory chunk allocation gives us rx by default. id:897 gh:905
     chunk->SetReadAndWritable();
     chunk->SetReadAndExecutable();
   }
@@ -1837,7 +1837,7 @@ void Deoptimizer::DoComputeBuiltinContinuation(
     output_frame->SetRegister(context_reg.code(), context_value);
   }
 
-  // TODO(6898): For eager deopts within builtin stub frames we currently skip
+  // TODO (6898): For eager deopts within builtin stub frames we currently skip id:886 gh:894
   // marking the underlying function as deoptimized. This is to avoid deopt
   // loops where we would just generate the same optimized code all over again.
   if (is_topmost && bailout_type_ != LAZY) {
@@ -2016,7 +2016,7 @@ void Deoptimizer::EnsureCodeForDeoptimizationEntry(Isolate* isolate,
 
   MemoryChunk* chunk = data->deopt_entry_code_[type];
 
-  // TODO(mstarzinger,6792): This code-space modification section should be
+  // TODO (mstarzinger,6792): This code-space modification section should be id:927 gh:935
   // moved into {Heap} eventually and a safe wrapper be provided.
   CodePageMemoryModificationScope modification_scope(chunk);
 
@@ -2049,7 +2049,7 @@ FrameDescription::FrameDescription(uint32_t frame_size, int parameter_count)
       constant_pool_(kZapUint32) {
   // Zap all the registers.
   for (int r = 0; r < Register::kNumRegisters; r++) {
-    // TODO(jbramley): It isn't safe to use kZapUint32 here. If the register
+    // TODO (jbramley): It isn't safe to use kZapUint32 here. If the register id:967 gh:975
     // isn't used before the next safepoint, the GC will try to scan it as a
     // tagged value. kZapUint32 looks like a valid tagged pointer, but it isn't.
     SetRegister(r, kZapUint32);
@@ -2463,7 +2463,7 @@ DeoptimizedFrameInfo::DeoptimizedFrameInfo(TranslatedState* state,
   int stack_height = frame_it->height();
   if (frame_it->kind() == TranslatedFrame::kInterpretedFunction) {
     // For interpreter frames, we should not count the accumulator.
-    // TODO(jarin): Clean up the indexing in translated frames.
+    // TODO (jarin): Clean up the indexing in translated frames. id:1086 gh:1094
     stack_height--;
   }
   expression_stack_.resize(static_cast<size_t>(stack_height));

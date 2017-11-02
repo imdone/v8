@@ -60,7 +60,7 @@ class BuiltinDeserializerAllocator final {
 
   // These methods are used to pre-allocate builtin objects prior to
   // deserialization.
-  // TODO(jgruber): Refactor reservation/allocation logic in deserializers to
+  // TODO (jgruber): Refactor reservation/allocation logic in deserializers to id:1582 gh:1590
   // make this less messy.
   Heap::Reservation CreateReservationsForEagerBuiltinsAndHandlers();
   void InitializeFromReservations(const Heap::Reservation& reservation);

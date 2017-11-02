@@ -127,7 +127,7 @@ RUNTIME_FUNCTION(Runtime_DeoptimizeFunction) {
   // If the function is not optimized, just return.
   if (!function->IsOptimized()) return isolate->heap()->undefined_value();
 
-  // TODO(turbofan): Deoptimization from AstGraphBuilder is not supported.
+  // TODO (turbofan): Deoptimization from AstGraphBuilder is not supported. id:1261 gh:1269
   if (function->code()->is_turbofanned() &&
       !function->shared()->HasBytecodeArray()) {
     return isolate->heap()->undefined_value();
@@ -153,7 +153,7 @@ RUNTIME_FUNCTION(Runtime_DeoptimizeNow) {
   // If the function is not optimized, just return.
   if (!function->IsOptimized()) return isolate->heap()->undefined_value();
 
-  // TODO(turbofan): Deoptimization from AstGraphBuilder is not supported.
+  // TODO (turbofan): Deoptimization from AstGraphBuilder is not supported. id:1577 gh:1585
   if (function->code()->is_turbofanned() &&
       !function->shared()->HasBytecodeArray()) {
     return isolate->heap()->undefined_value();
@@ -260,7 +260,7 @@ RUNTIME_FUNCTION(Runtime_OptimizeFunctionOnNextCall) {
                                                             : "non-concurrent");
   }
 
-  // TODO(mvstanton): pass pretenure flag to EnsureLiterals.
+  // TODO (mvstanton): pass pretenure flag to EnsureLiterals. id:1308 gh:1316
   JSFunction::EnsureLiterals(function);
 
   function->MarkForOptimization(concurrency_mode);
@@ -1063,7 +1063,7 @@ RUNTIME_FUNCTION(Runtime_WasmTraceMemory) {
                                                       ->allocation_base());
   int func_index = frame->function_index();
   int pos = frame->position();
-  // TODO(titzer): eliminate dependency on WasmModule definition here.
+  // TODO (titzer): eliminate dependency on WasmModule definition here. id:1550 gh:1558
   int func_start =
       frame->wasm_instance()->module()->functions[func_index].code.offset();
   tracing::TraceMemoryOperation(tracing::kWasmCompiled, is_store,

@@ -38,7 +38,7 @@ static NodeVector::iterator FindInsertionPoint(BasicBlock* block) {
 }
 
 
-// TODO(dcarney): need to mark code as non-serializable.
+// TODO (dcarney): need to mark code as non-serializable. id:441 gh:443
 static const Operator* PointerConstant(CommonOperatorBuilder* common,
                                        void* ptr) {
   return kPointerSize == 8
@@ -78,7 +78,7 @@ BasicBlockProfiler::Data* BasicBlockInstrumentor::Instrument(
        ++it, ++block_number) {
     BasicBlock* block = (*it);
     data->SetBlockId(block_number, block->id().ToSize());
-    // TODO(dcarney): wire effect and control deps for load and store.
+    // TODO (dcarney): wire effect and control deps for load and store. id:470 gh:471
     // Construct increment operation.
     Node* base = graph->NewNode(
         PointerConstant(&common, data->GetCounterAddress(block_number)));

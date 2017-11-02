@@ -204,7 +204,7 @@
     change_log.push( {position_patched: position_patch_report} );
 
     for (var i = 0; i < update_positions_list.length; i++) {
-      // TODO(LiveEdit): take into account whether it's source_changed or
+      // TODO (LiveEdit): take into account whether it's source_changed or id:965 gh:973
       // unchanged and whether positions changed at all.
       PatchPositions(update_positions_list[i], diff_array,
           position_patch_report);
@@ -240,7 +240,7 @@
   // to navigate the nesting structure of functions.
   //
   // All functions get compiled linked to script provided as parameter script.
-  // TODO(LiveEdit): consider not using actual scripts as script, because
+  // TODO (LiveEdit): consider not using actual scripts as script, because id:1084 gh:1092
   // we have to manually erase all links right after compile.
   function GatherCompileInfo(source, script) {
     // Get function info, elements are partially sorted (it is a tree of
@@ -796,7 +796,7 @@
 
       report_array.push( { name: old_info_node.info.function_name } );
     } else {
-      // TODO(LiveEdit): function is not compiled yet or is already collected.
+      // TODO (LiveEdit): function is not compiled yet or is already collected. id:896 gh:904
       report_array.push(
           { name: old_info_node.info.function_name, info_not_found: true } );
     }
@@ -804,7 +804,7 @@
 
   // Adds a suffix to script name to mark that it is old version.
   function CreateNameForOldScript(script) {
-    // TODO(635): try better than this; support several changes.
+    // TODO (635): try better than this; support several changes. id:885 gh:893
     return script.name + " (old)";
   }
 

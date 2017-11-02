@@ -285,7 +285,7 @@ class WasmOutOfLineTrap final : public OutOfLineCode {
         frame_elided_(frame_elided),
         instr_(instr) {}
 
-  // TODO(eholk): Refactor this method to take the code generator as a
+  // TODO (eholk): Refactor this method to take the code generator as a id:786 gh:794
   // parameter.
   void Generate() final {
     gen_->AddProtectedInstructionLanding(pc_, __ pc_offset());
@@ -1119,7 +1119,7 @@ CodeGenerator::CodeGenResult CodeGenerator::AssembleArchInstruction(
       ASSEMBLE_IEEE754_UNOP(log10);
       break;
     case kIeee754Float64Pow: {
-      // TODO(bmeurer): Improve integration of the stub.
+      // TODO (bmeurer): Improve integration of the stub. id:755 gh:756
       __ Movsd(xmm2, xmm0);
       __ CallStubDelayed(new (zone())
                              MathPowStub(nullptr, MathPowStub::DOUBLE));
@@ -1325,14 +1325,14 @@ CodeGenerator::CodeGenResult CodeGenerator::AssembleArchInstruction(
       __ movaps(i.OutputDoubleRegister(), i.OutputDoubleRegister());
       break;
     case kSSEFloat32Abs: {
-      // TODO(bmeurer): Use RIP relative 128-bit constants.
+      // TODO (bmeurer): Use RIP relative 128-bit constants. id:913 gh:922
       __ pcmpeqd(kScratchDoubleReg, kScratchDoubleReg);
       __ psrlq(kScratchDoubleReg, 33);
       __ andps(i.OutputDoubleRegister(), kScratchDoubleReg);
       break;
     }
     case kSSEFloat32Neg: {
-      // TODO(bmeurer): Use RIP relative 128-bit constants.
+      // TODO (bmeurer): Use RIP relative 128-bit constants. id:898 gh:906
       __ pcmpeqd(kScratchDoubleReg, kScratchDoubleReg);
       __ psllq(kScratchDoubleReg, 31);
       __ xorps(i.OutputDoubleRegister(), kScratchDoubleReg);
@@ -1535,14 +1535,14 @@ CodeGenerator::CodeGenResult CodeGenerator::AssembleArchInstruction(
       break;
     }
     case kSSEFloat64Abs: {
-      // TODO(bmeurer): Use RIP relative 128-bit constants.
+      // TODO (bmeurer): Use RIP relative 128-bit constants. id:905 gh:913
       __ pcmpeqd(kScratchDoubleReg, kScratchDoubleReg);
       __ psrlq(kScratchDoubleReg, 1);
       __ andpd(i.OutputDoubleRegister(), kScratchDoubleReg);
       break;
     }
     case kSSEFloat64Neg: {
-      // TODO(bmeurer): Use RIP relative 128-bit constants.
+      // TODO (bmeurer): Use RIP relative 128-bit constants. id:787 gh:795
       __ pcmpeqd(kScratchDoubleReg, kScratchDoubleReg);
       __ psllq(kScratchDoubleReg, 63);
       __ xorpd(i.OutputDoubleRegister(), kScratchDoubleReg);
@@ -1869,7 +1869,7 @@ CodeGenerator::CodeGenResult CodeGenerator::AssembleArchInstruction(
       __ Movapd(i.OutputDoubleRegister(), i.OutputDoubleRegister());
       break;
     case kAVXFloat32Abs: {
-      // TODO(bmeurer): Use RIP relative 128-bit constants.
+      // TODO (bmeurer): Use RIP relative 128-bit constants. id:873 gh:881
       CpuFeatureScope avx_scope(tasm(), AVX);
       __ vpcmpeqd(kScratchDoubleReg, kScratchDoubleReg, kScratchDoubleReg);
       __ vpsrlq(kScratchDoubleReg, kScratchDoubleReg, 33);
@@ -1883,7 +1883,7 @@ CodeGenerator::CodeGenResult CodeGenerator::AssembleArchInstruction(
       break;
     }
     case kAVXFloat32Neg: {
-      // TODO(bmeurer): Use RIP relative 128-bit constants.
+      // TODO (bmeurer): Use RIP relative 128-bit constants. id:914 gh:923
       CpuFeatureScope avx_scope(tasm(), AVX);
       __ vpcmpeqd(kScratchDoubleReg, kScratchDoubleReg, kScratchDoubleReg);
       __ vpsllq(kScratchDoubleReg, kScratchDoubleReg, 31);
@@ -1897,7 +1897,7 @@ CodeGenerator::CodeGenResult CodeGenerator::AssembleArchInstruction(
       break;
     }
     case kAVXFloat64Abs: {
-      // TODO(bmeurer): Use RIP relative 128-bit constants.
+      // TODO (bmeurer): Use RIP relative 128-bit constants. id:899 gh:907
       CpuFeatureScope avx_scope(tasm(), AVX);
       __ vpcmpeqd(kScratchDoubleReg, kScratchDoubleReg, kScratchDoubleReg);
       __ vpsrlq(kScratchDoubleReg, kScratchDoubleReg, 1);
@@ -1911,7 +1911,7 @@ CodeGenerator::CodeGenResult CodeGenerator::AssembleArchInstruction(
       break;
     }
     case kAVXFloat64Neg: {
-      // TODO(bmeurer): Use RIP relative 128-bit constants.
+      // TODO (bmeurer): Use RIP relative 128-bit constants. id:906 gh:914
       CpuFeatureScope avx_scope(tasm(), AVX);
       __ vpcmpeqd(kScratchDoubleReg, kScratchDoubleReg, kScratchDoubleReg);
       __ vpsllq(kScratchDoubleReg, kScratchDoubleReg, 63);
@@ -2187,7 +2187,7 @@ CodeGenerator::CodeGenResult CodeGenerator::AssembleArchInstruction(
         unwinding_info_writer_.MaybeIncreaseBaseOffsetAt(__ pc_offset(),
                                                          kPointerSize);
       } else if (instr->InputAt(0)->IsFPRegister()) {
-        // TODO(titzer): use another machine instruction?
+        // TODO (titzer): use another machine instruction? id:788 gh:796
         __ subq(rsp, Immediate(kDoubleSize));
         frame_access_state()->IncreaseSPDelta(kDoubleSize / kPointerSize);
         unwinding_info_writer_.MaybeIncreaseBaseOffsetAt(__ pc_offset(),
@@ -3228,7 +3228,7 @@ void CodeGenerator::AssembleMove(InstructionOperand* source,
           if (RelocInfo::IsWasmPtrReference(src.rmode())) {
             __ movq(dst, src.ToInt64(), src.rmode());
           } else {
-            // TODO(dcarney): don't need scratch in this case.
+            // TODO (dcarney): don't need scratch in this case. id:874 gh:882
             int32_t value = src.ToInt32();
             if (RelocInfo::IsWasmSizeReference(src.rmode())) {
               __ movl(dst, Immediate(value, src.rmode()));
@@ -3268,14 +3268,14 @@ void CodeGenerator::AssembleMove(InstructionOperand* source,
           break;
         }
         case Constant::kRpoNumber:
-          UNREACHABLE();  // TODO(dcarney): load of labels on x64.
+          UNREACHABLE();  // TODO (dcarney): load of labels on x64. id:915 gh:924
           break;
       }
       if (destination->IsStackSlot()) {
         __ movq(g.ToOperand(destination), kScratchRegister);
       }
     } else if (src.type() == Constant::kFloat32) {
-      // TODO(turbofan): Can we do better here?
+      // TODO (turbofan): Can we do better here? id:900 gh:908
       uint32_t src_const = bit_cast<uint32_t>(src.ToFloat32());
       if (destination->IsFPRegister()) {
         __ Move(g.ToDoubleRegister(destination), src_const);

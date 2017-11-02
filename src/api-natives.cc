@@ -412,7 +412,7 @@ MaybeHandle<JSObject> InstantiateObject(Isolate* isolate,
   }
   if (!is_prototype) {
     // Keep prototypes in slow-mode. Let them be lazily turned fast later on.
-    // TODO(dcarney): is this necessary?
+    // TODO (dcarney): is this necessary? id:33 gh:35
     JSObject::MigrateSlowToFast(result, 0, "ApiNatives::InstantiateObject");
     // Don't cache prototypes.
     if (serial_number) {
@@ -438,7 +438,7 @@ MaybeHandle<Object> GetInstancePrototype(Isolate* isolate,
           handle(FunctionTemplateInfo::cast(function_template), isolate)),
       JSFunction);
   Handle<Object> instance_prototype;
-  // TODO(cbruni): decide what to do here.
+  // TODO (cbruni): decide what to do here. id:71 gh:75
   ASSIGN_RETURN_ON_EXCEPTION(
       isolate, instance_prototype,
       JSObject::GetProperty(parent_instance,
@@ -666,7 +666,7 @@ Handle<JSFunction> ApiNatives::CreateApiFunction(
     immutable_proto = instance_template->immutable_proto();
   }
 
-  // TODO(svenpanne) Kill ApiInstanceType and refactor things by generalizing
+  // TODO (svenpanne) Kill ApiInstanceType and refactor things by generalizing id:89 gh:84
   // JSObject::GetHeaderSize.
   int instance_size = kPointerSize * embedder_field_count;
   InstanceType type;

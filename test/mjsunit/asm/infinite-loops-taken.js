@@ -7,7 +7,7 @@ function counter(x) {
   return (function() { if (x-- == 0) throw error;});
 }
 
-// TODO(asm): This module is not valid asm.js.
+// TODO (asm): This module is not valid asm.js. id:2102 gh:2110
 function Module() {
   "use asm";
 

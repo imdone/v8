@@ -107,7 +107,7 @@ RUNTIME_FUNCTION(Runtime_WasmThrowTypeError) {
 }
 
 RUNTIME_FUNCTION(Runtime_WasmThrowCreate) {
-  // TODO(kschimpf): Can this be replaced with equivalent TurboFan code/calls.
+  // TODO (kschimpf): Can this be replaced with equivalent TurboFan code/calls. id:1262 gh:1271
   HandleScope scope(isolate);
   DCHECK_NULL(isolate->context());
   isolate->set_context(GetWasmContextOnStackTop(isolate));
@@ -134,7 +134,7 @@ RUNTIME_FUNCTION(Runtime_WasmThrowCreate) {
 }
 
 RUNTIME_FUNCTION(Runtime_WasmThrow) {
-  // TODO(kschimpf): Can this be replaced with equivalent TurboFan code/calls.
+  // TODO (kschimpf): Can this be replaced with equivalent TurboFan code/calls. id:1578 gh:1586
   HandleScope scope(isolate);
   DCHECK_NULL(isolate->context());
   isolate->set_context(GetWasmContextOnStackTop(isolate));
@@ -146,7 +146,7 @@ RUNTIME_FUNCTION(Runtime_WasmThrow) {
 }
 
 RUNTIME_FUNCTION(Runtime_WasmGetExceptionRuntimeId) {
-  // TODO(kschimpf): Can this be replaced with equivalent TurboFan code/calls.
+  // TODO (kschimpf): Can this be replaced with equivalent TurboFan code/calls. id:1309 gh:1317
   HandleScope scope(isolate);
   DCHECK_NULL(isolate->context());
   isolate->set_context(GetWasmContextOnStackTop(isolate));
@@ -167,7 +167,7 @@ RUNTIME_FUNCTION(Runtime_WasmGetExceptionRuntimeId) {
 }
 
 RUNTIME_FUNCTION(Runtime_WasmExceptionGetElement) {
-  // TODO(kschimpf): Can this be replaced with equivalent TurboFan code/calls.
+  // TODO (kschimpf): Can this be replaced with equivalent TurboFan code/calls. id:1551 gh:1559
   HandleScope scope(isolate);
   DCHECK_NULL(isolate->context());
   isolate->set_context(GetWasmContextOnStackTop(isolate));
@@ -195,7 +195,7 @@ RUNTIME_FUNCTION(Runtime_WasmExceptionGetElement) {
 }
 
 RUNTIME_FUNCTION(Runtime_WasmExceptionSetElement) {
-  // TODO(kschimpf): Can this be replaced with equivalent TurboFan code/calls.
+  // TODO (kschimpf): Can this be replaced with equivalent TurboFan code/calls. id:1604 gh:1612
   HandleScope scope(isolate);
   DCHECK_EQ(2, args.length());
   DCHECK_NULL(isolate->context());

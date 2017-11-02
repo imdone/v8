@@ -51,7 +51,7 @@ MaybeHandle<BigInt> BigInt::BitwiseNot(Handle<BigInt> x) {
 
 MaybeHandle<BigInt> BigInt::Exponentiate(Handle<BigInt> base,
                                          Handle<BigInt> exponent) {
-  UNIMPLEMENTED();  // TODO(jkummerow): Implement.
+  UNIMPLEMENTED();  // TODO (jkummerow): Implement. id:1417 gh:1425
 }
 
 Handle<BigInt> BigInt::Multiply(Handle<BigInt> x, Handle<BigInt> y) {
@@ -77,7 +77,7 @@ MaybeHandle<BigInt> BigInt::Divide(Handle<BigInt> x, Handle<BigInt> y) {
   // 3. Return a BigInt representing quotient rounded towards 0 to the next
   //    integral value.
   if (AbsoluteCompare(x, y) < 0) {
-    // TODO(jkummerow): Consider caching a canonical zero-BigInt.
+    // TODO (jkummerow): Consider caching a canonical zero-BigInt. id:1152 gh:1160
     return x->GetIsolate()->factory()->NewBigIntFromInt(0);
   }
   Handle<BigInt> quotient;
@@ -297,7 +297,7 @@ MaybeHandle<BigInt> BigInt::Decrement(Handle<BigInt> x) {
   if (x->sign()) {
     result = AbsoluteAddOne(x, true);
   } else if (x->is_zero()) {
-    // TODO(jkummerow): Consider caching a canonical -1n BigInt.
+    // TODO (jkummerow): Consider caching a canonical -1n BigInt. id:1337 gh:1346
     result = x->GetIsolate()->factory()->NewBigIntFromInt(-1);
   } else {
     result = AbsoluteSubOne(x, length);
@@ -1316,10 +1316,10 @@ Handle<BigInt> BigInt::RightShiftByAbsolute(Handle<BigInt> x,
 
 Handle<BigInt> BigInt::RightShiftByMaximum(Isolate* isolate, bool sign) {
   if (sign) {
-    // TODO(jkummerow): Consider caching a canonical -1n BigInt.
+    // TODO (jkummerow): Consider caching a canonical -1n BigInt. id:1437 gh:1445
     return isolate->factory()->NewBigIntFromInt(-1);
   } else {
-    // TODO(jkummerow): Consider caching a canonical zero BigInt.
+    // TODO (jkummerow): Consider caching a canonical zero BigInt. id:1075 gh:1083
     return isolate->factory()->NewBigIntFromInt(0);
   }
 }
@@ -1510,7 +1510,7 @@ MaybeHandle<String> BigInt::ToStringGeneric(Handle<BigInt> x, int radix) {
 #endif
 
   // We assemble the result string in reverse order, and then reverse it.
-  // TODO(jkummerow): Consider building the string from the right, and
+  // TODO (jkummerow): Consider building the string from the right, and id:1418 gh:1426
   // left-shifting it if the length estimate was too large.
   int pos = 0;
 

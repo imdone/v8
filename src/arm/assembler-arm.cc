@@ -77,7 +77,7 @@ static unsigned CpuFeaturesFromCommandLine() {
 
   // If any of the old (deprecated) flags are specified, print a warning, but
   // otherwise try to respect them for now.
-  // TODO(jbramley): When all the old bots have been updated, remove this.
+  // TODO (jbramley): When all the old bots have been updated, remove this. id:115 gh:117
   if (FLAG_enable_armv7.has_value || FLAG_enable_vfp3.has_value ||
       FLAG_enable_32dregs.has_value || FLAG_enable_neon.has_value ||
       FLAG_enable_sudiv.has_value || FLAG_enable_armv8.has_value) {
@@ -160,7 +160,7 @@ static unsigned CpuFeaturesFromCommandLine() {
 //  "armv7+sudiv": ARMv7 + VFPv4-D32 + NEON + SUDIV
 //  "armv8":       ARMv8 (+ all of the above)
 static constexpr unsigned CpuFeaturesFromCompiler() {
-// TODO(jbramley): Once the build flags are simplified, these tests should
+// TODO (jbramley): Once the build flags are simplified, these tests should id:53 gh:54
 // also be simplified.
 
 // Check *architectural* implications.
@@ -2787,7 +2787,7 @@ void Assembler::vmov(const DwVfpRegister dst, Double imm,
     emit(al | 0x1D*B23 | d*B22 | 0x3*B20 | vd*B12 | 0x5*B9 | B8 | enc);
   } else if (CpuFeatures::IsSupported(ARMv7) && FLAG_enable_vldr_imm) {
     CpuFeatureScope scope(this, ARMv7);
-    // TODO(jfb) Temporarily turned off until we have constant blinding or
+    // TODO (jfb) Temporarily turned off until we have constant blinding or id:56 gh:57
     //           some equivalent mitigation: an attacker can otherwise control
     //           generated data which also happens to be executable, a Very Bad
     //           Thing indeed.

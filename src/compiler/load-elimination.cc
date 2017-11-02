@@ -746,7 +746,7 @@ Reduction LoadElimination::ReduceMapGuard(Node* node) {
   ZoneHandleSet<Map> object_maps;
   if (state->LookupMaps(object, &object_maps)) {
     if (maps.contains(object_maps)) return Replace(effect);
-    // TODO(turbofan): Compute the intersection.
+    // TODO (turbofan): Compute the intersection. id:584 gh:585
   }
   state = state->SetMaps(object, maps, zone());
   return UpdateState(node, state);
@@ -761,7 +761,7 @@ Reduction LoadElimination::ReduceCheckMaps(Node* node) {
   ZoneHandleSet<Map> object_maps;
   if (state->LookupMaps(object, &object_maps)) {
     if (maps.contains(object_maps)) return Replace(effect);
-    // TODO(turbofan): Compute the intersection.
+    // TODO (turbofan): Compute the intersection. id:625 gh:626
   }
   state = state->SetMaps(object, maps, zone());
   return UpdateState(node, state);
@@ -780,7 +780,7 @@ Reduction LoadElimination::ReduceCompareMaps(Node* node) {
       ReplaceWithValue(node, value, effect);
       return Replace(value);
     }
-    // TODO(turbofan): Compute the intersection.
+    // TODO (turbofan): Compute the intersection. id:636 gh:637
   }
   return UpdateState(node, state);
 }
@@ -918,7 +918,7 @@ Reduction LoadElimination::ReduceLoadField(Node* node) {
         // Make sure we don't resurrect dead {replacement} nodes.
         // Skip lowering if the type of the {replacement} node is not a subtype
         // of the original {node}'s type.
-        // TODO(tebbi): We should insert a {TypeGuard} for the intersection of
+        // TODO (tebbi): We should insert a {TypeGuard} for the intersection of id:667 gh:668
         // these two types here once we properly handle {Type::None} everywhere.
         if (!replacement->IsDead() && NodeProperties::GetType(replacement)
                                           ->Is(NodeProperties::GetType(node))) {
@@ -994,7 +994,7 @@ Reduction LoadElimination::ReduceLoadElement(Node* node) {
     case MachineRepresentation::kWord32:
     case MachineRepresentation::kWord64:
     case MachineRepresentation::kFloat32:
-      // TODO(turbofan): Add support for doing the truncations.
+      // TODO (turbofan): Add support for doing the truncations. id:541 gh:542
       break;
     case MachineRepresentation::kFloat64:
     case MachineRepresentation::kSimd128:
@@ -1006,7 +1006,7 @@ Reduction LoadElimination::ReduceLoadElement(Node* node) {
         // Make sure we don't resurrect dead {replacement} nodes.
         // Skip lowering if the type of the {replacement} node is not a subtype
         // of the original {node}'s type.
-        // TODO(tebbi): We should insert a {TypeGuard} for the intersection of
+        // TODO (tebbi): We should insert a {TypeGuard} for the intersection of id:585 gh:586
         // these two types here once we properly handle {Type::None} everywhere.
         if (!replacement->IsDead() && NodeProperties::GetType(replacement)
                                           ->Is(NodeProperties::GetType(node))) {
@@ -1048,7 +1048,7 @@ Reduction LoadElimination::ReduceStoreElement(Node* node) {
     case MachineRepresentation::kWord32:
     case MachineRepresentation::kWord64:
     case MachineRepresentation::kFloat32:
-      // TODO(turbofan): Add support for doing the truncations.
+      // TODO (turbofan): Add support for doing the truncations. id:626 gh:627
       break;
     case MachineRepresentation::kFloat64:
     case MachineRepresentation::kSimd128:
@@ -1072,7 +1072,7 @@ Reduction LoadElimination::ReduceStoreTypedElement(Node* node) {
 LoadElimination::AbstractState const* LoadElimination::UpdateStateForPhi(
     AbstractState const* state, Node* effect_phi, Node* phi) {
   int predecessor_count = phi->InputCount() - 1;
-  // TODO(jarin) Consider doing a union here. At the moment, we just keep this
+  // TODO (jarin) Consider doing a union here. At the moment, we just keep this id:637 gh:638
   // consistent with AbstractState::Merge.
 
   // Check if all the inputs have the same maps.
@@ -1345,7 +1345,7 @@ int LoadElimination::FieldIndexOf(FieldAccess const& access) {
     case MachineRepresentation::kTaggedSigned:
     case MachineRepresentation::kTaggedPointer:
     case MachineRepresentation::kTagged:
-      // TODO(bmeurer): Check that we never do overlapping load/stores of
+      // TODO (bmeurer): Check that we never do overlapping load/stores of id:668 gh:669
       // individual parts of Float64 values.
       break;
   }

@@ -924,7 +924,7 @@ class RepresentationSelector {
       return MachineRepresentation::kFloat64;
     } else if (type->Is(
                    Type::Union(Type::SignedSmall(), Type::NaN(), zone()))) {
-      // TODO(turbofan): For Phis that return either NaN or some Smi, it's
+      // TODO (turbofan): For Phis that return either NaN or some Smi, it's id:859 gh:867
       // beneficial to not go all the way to double, unless the uses are
       // double uses. For tagging that just means some potentially expensive
       // allocation code; we might want to do the same for -0 as well?
@@ -1055,7 +1055,7 @@ class RepresentationSelector {
     if (!type->IsInhabited()) {
       return MachineType::None();
     }
-    // TODO(turbofan): Special treatment for ExternalPointer here,
+    // TODO (turbofan): Special treatment for ExternalPointer here, id:770 gh:771
     // to avoid incompatible truncations. We really need a story
     // for the JSFunction::entry field.
     if (type->Is(Type::ExternalPointer())) {
@@ -1505,7 +1505,7 @@ class RepresentationSelector {
         // here, otherwise the input conversion will fail.
         return VisitLeaf(node, MachineRepresentation::kTagged);
       case IrOpcode::kParameter:
-        // TODO(titzer): use representation from linkage.
+        // TODO (titzer): use representation from linkage. id:739 gh:740
         return VisitUnop(node, UseInfo::None(), MachineRepresentation::kTagged);
       case IrOpcode::kInt32Constant:
         return VisitLeaf(node, MachineRepresentation::kWord32);
@@ -1559,7 +1559,7 @@ class RepresentationSelector {
       }
       case IrOpcode::kJSToNumber: {
         VisitInputs(node);
-        // TODO(bmeurer): Optimize somewhat based on input type?
+        // TODO (bmeurer): Optimize somewhat based on input type? id:810 gh:818
         if (truncation.IsUsedAsWord32()) {
           SetOutput(node, MachineRepresentation::kWord32);
           if (lower()) lowering->DoJSToNumberTruncatesToWord32(node, this);
@@ -2381,7 +2381,7 @@ class RepresentationSelector {
             NodeProperties::ChangeOp(node, simplified()->SeqStringCharCodeAt());
           }
         } else {
-          // TODO(turbofan): Allow builtins to return untagged values.
+          // TODO (turbofan): Allow builtins to return untagged values. id:832 gh:840
           VisitBinop(node, UseInfo::AnyTagged(), UseInfo::TruncatingWord32(),
                      MachineRepresentation::kTaggedSigned);
         }
@@ -2728,7 +2728,7 @@ class RepresentationSelector {
         return;
       }
       case IrOpcode::kObjectIsArrayBufferView: {
-        // TODO(turbofan): Introduce a Type::ArrayBufferView?
+        // TODO (turbofan): Introduce a Type::ArrayBufferView? id:860 gh:868
         VisitUnop(node, UseInfo::AnyTagged(), MachineRepresentation::kBit);
         return;
       }
@@ -2737,7 +2737,7 @@ class RepresentationSelector {
         return;
       }
       case IrOpcode::kObjectIsConstructor: {
-        // TODO(turbofan): Introduce a Type::Constructor?
+        // TODO (turbofan): Introduce a Type::Constructor? id:771 gh:775
         VisitUnop(node, UseInfo::AnyTagged(), MachineRepresentation::kBit);
         return;
       }
@@ -2820,7 +2820,7 @@ class RepresentationSelector {
         return;
       }
       case IrOpcode::kObjectIsSmi: {
-        // TODO(turbofan): Optimize based on input representation.
+        // TODO (turbofan): Optimize based on input representation. id:740 gh:741
         VisitUnop(node, UseInfo::AnyTagged(), MachineRepresentation::kBit);
         return;
       }
@@ -2911,7 +2911,7 @@ class RepresentationSelector {
           VisitUnop(node, UseInfo::AnyTagged(), MachineRepresentation::kTagged);
           if (lower()) DeferReplacement(node, node->InputAt(0));
         } else {
-          // TODO(turbofan): Add a (Tagged) truncation that identifies hole
+          // TODO (turbofan): Add a (Tagged) truncation that identifies hole id:811 gh:820
           // and undefined, i.e. for a[i] === obj cases.
           VisitUnop(node, UseInfo::AnyTagged(), MachineRepresentation::kTagged);
         }
@@ -3142,7 +3142,7 @@ class RepresentationSelector {
     int input_index;
   };
   ZoneStack<NodeState> typing_stack_;  // stack for graph typing.
-  // TODO(danno): RepresentationSelector shouldn't know anything about the
+  // TODO (danno): RepresentationSelector shouldn't know anything about the id:833 gh:841
   // source positions table, but must for now since there currently is no other
   // way to pass down source position information to nodes created during
   // lowering. Once this phase becomes a vanilla reducer, it should get source

@@ -762,7 +762,7 @@ class V8_EXPORT HeapProfiler {
    * |stack_depth| parameter controls the maximum number of stack frames to be
    * captured on each allocation.
    *
-   * NOTE: This is a proof-of-concept at this point. Right now we only sample
+   * NOTE: This is a proof-of-concept at this point. Right now we only sample id:10 gh:11
    * newspace allocations. Support for paged space allocation (e.g. pre-tenured
    * objects, large objects, code objects, etc.) and native allocations
    * doesn't exist yet, but is anticipated in the future.

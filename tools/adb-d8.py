@@ -24,7 +24,7 @@ import sys
 import struct
 import threading
 import subprocess
-import SocketServer # TODO(leszeks): python 3 compatibility
+import SocketServer # TODO (leszeks): python 3 compatibility id:2531 gh:2540
 
 def CreateFileHandlerClass(root_dirs, verbose):
   class FileHandler(SocketServer.BaseRequestHandler):
@@ -220,8 +220,8 @@ def Main():
     server_thread.start()
 
     # Port-forward the given device port to the file server.
-    # TODO(leszeks): Pick an unused device port.
-    # TODO(leszeks): Remove the port forwarding on exit.
+    # TODO (leszeks): Pick an unused device port. id:2393 gh:2401
+    # TODO (leszeks): Remove the port forwarding on exit. id:2558 gh:2567
     server_ip, server_port = server.server_address
     device_port = 4444
     AdbForwardDeviceToLocal(adb, device_port, server_port, verbose)

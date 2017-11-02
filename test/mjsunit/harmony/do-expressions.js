@@ -232,7 +232,7 @@ function TestHoisting() {
   {
     let x = 1
 
-    // TODO(caitp): ensure VariableStatements in |do-expressions| in parameter
+    // TODO (caitp): ensure VariableStatements in |do-expressions| in parameter id:2226 gh:2234
     // initializers, are evaluated in the same VariableEnvironment as they would
     // be for eval().
     // function f1(a = do { var x = 2 }, b = x) { return b }
@@ -251,7 +251,7 @@ function TestHoisting() {
     assertThrows(() => y, ReferenceError)
   }
 
-  // TODO(caitp): Always block-scope function declarations in |do| expressions
+  // TODO (caitp): Always block-scope function declarations in |do| expressions id:2040 gh:2048
   //(do {
   //  assertEquals(true, inner_func());
   //  function inner_func() { return true; }

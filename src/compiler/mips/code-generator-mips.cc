@@ -19,14 +19,14 @@ namespace compiler {
 
 #define __ tasm()->
 
-// TODO(plind): Possibly avoid using these lithium names.
+// TODO (plind): Possibly avoid using these lithium names. id:588 gh:589
 #define kScratchReg kLithiumScratchReg
 #define kCompareReg kLithiumScratchReg2
 #define kScratchReg2 kLithiumScratchReg2
 #define kScratchDoubleReg kLithiumScratchDouble
 
 
-// TODO(plind): consider renaming these macros.
+// TODO (plind): consider renaming these macros. id:715 gh:716
 #define TRACE_MSG(msg)                                                      \
   PrintF("code_gen: \'%s\' in function %s at line %d\n", msg, __FUNCTION__, \
          __LINE__)
@@ -88,11 +88,11 @@ class MipsOperandConverter final : public InstructionOperandConverter {
       case Constant::kInt64:
       case Constant::kExternalReference:
       case Constant::kHeapObject:
-        // TODO(plind): Maybe we should handle ExtRef & HeapObj here?
+        // TODO (plind): Maybe we should handle ExtRef & HeapObj here? id:640 gh:641
         //    maybe not done on arm due to const pool ??
         break;
       case Constant::kRpoNumber:
-        UNREACHABLE();  // TODO(titzer): RPO immediates on mips?
+        UNREACHABLE();  // TODO (titzer): RPO immediates on mips? id:671 gh:672
         break;
     }
     UNREACHABLE();
@@ -115,7 +115,7 @@ class MipsOperandConverter final : public InstructionOperandConverter {
         *first_index += 2;
         return MemOperand(InputRegister(index + 0), InputInt32(index + 1));
       case kMode_MRR:
-        // TODO(plind): r6 address mode, to be implemented ...
+        // TODO (plind): r6 address mode, to be implemented ... id:698 gh:699
         UNREACHABLE();
     }
     UNREACHABLE();
@@ -1285,7 +1285,7 @@ CodeGenerator::CodeGenResult CodeGenerator::AssembleArchInstruction(
       // Pseudo-instruction used for cmp/branch. No opcode emitted here.
       break;
     case kMipsMov:
-      // TODO(plind): Should we combine mov/li like this, or use separate instr?
+      // TODO (plind): Should we combine mov/li like this, or use separate instr? id:589 gh:590
       //    - Also see x64 ASSEMBLE_BINOP & RegisterOrOperandType
       if (HasRegisterInput(instr, 0)) {
         __ mov(i.OutputRegister(), i.InputRegister(0));
@@ -1302,7 +1302,7 @@ CodeGenerator::CodeGenResult CodeGenerator::AssembleArchInstruction(
       // Pseudo-instruction used for FP cmp/branch. No opcode emitted here.
       break;
     case kMipsAddS:
-      // TODO(plind): add special case: combine mult & add.
+      // TODO (plind): add special case: combine mult & add. id:716 gh:717
       __ add_s(i.OutputDoubleRegister(), i.InputDoubleRegister(0),
                i.InputDoubleRegister(1));
       break;
@@ -1311,7 +1311,7 @@ CodeGenerator::CodeGenResult CodeGenerator::AssembleArchInstruction(
                i.InputDoubleRegister(1));
       break;
     case kMipsMulS:
-      // TODO(plind): add special case: right op is -1.0, see arm port.
+      // TODO (plind): add special case: right op is -1.0, see arm port. id:641 gh:642
       __ mul_s(i.OutputDoubleRegister(), i.InputDoubleRegister(0),
                i.InputDoubleRegister(1));
       break;
@@ -1320,13 +1320,13 @@ CodeGenerator::CodeGenResult CodeGenerator::AssembleArchInstruction(
                i.InputDoubleRegister(1));
       break;
     case kMipsModS: {
-      // TODO(bmeurer): We should really get rid of this special instruction,
+      // TODO (bmeurer): We should really get rid of this special instruction, id:672 gh:673
       // and generate a CallAddress instruction instead.
       FrameScope scope(tasm(), StackFrame::MANUAL);
       __ PrepareCallCFunction(0, 2, kScratchReg);
       __ MovToFloatParameters(i.InputDoubleRegister(0),
                               i.InputDoubleRegister(1));
-      // TODO(balazs.kilvady): implement mod_two_floats_operation(isolate())
+      // TODO (balazs.kilvady): implement mod_two_floats_operation(isolate()) id:699 gh:700
       __ CallCFunction(ExternalReference::mod_two_doubles_operation(isolate()),
                        0, 2);
       // Move the result in the double result register.
@@ -1368,7 +1368,7 @@ CodeGenerator::CodeGenResult CodeGenerator::AssembleArchInstruction(
       __ Addu(i.OutputRegister(1), i.OutputRegister(1), kScratchReg2);
     } break;
     case kMipsAddD:
-      // TODO(plind): add special case: combine mult & add.
+      // TODO (plind): add special case: combine mult & add. id:590 gh:591
       __ add_d(i.OutputDoubleRegister(), i.InputDoubleRegister(0),
                i.InputDoubleRegister(1));
       break;
@@ -1397,7 +1397,7 @@ CodeGenerator::CodeGenResult CodeGenerator::AssembleArchInstruction(
                 kScratchDoubleReg);
       break;
     case kMipsMulD:
-      // TODO(plind): add special case: right op is -1.0, see arm port.
+      // TODO (plind): add special case: right op is -1.0, see arm port. id:717 gh:718
       __ mul_d(i.OutputDoubleRegister(), i.InputDoubleRegister(0),
                i.InputDoubleRegister(1));
       break;
@@ -1406,7 +1406,7 @@ CodeGenerator::CodeGenResult CodeGenerator::AssembleArchInstruction(
                i.InputDoubleRegister(1));
       break;
     case kMipsModD: {
-      // TODO(bmeurer): We should really get rid of this special instruction,
+      // TODO (bmeurer): We should really get rid of this special instruction, id:642 gh:643
       // and generate a CallAddress instruction instead.
       FrameScope scope(tasm(), StackFrame::MANUAL);
       __ PrepareCallCFunction(0, 2, kScratchReg);
@@ -1594,13 +1594,13 @@ CodeGenerator::CodeGenResult CodeGenerator::AssembleArchInstruction(
     }
     case kMipsTruncUwD: {
       FPURegister scratch = kScratchDoubleReg;
-      // TODO(plind): Fix wrong param order of Trunc_uw_d() macro-asm function.
+      // TODO (plind): Fix wrong param order of Trunc_uw_d() macro-asm function. id:673 gh:674
       __ Trunc_uw_d(i.InputDoubleRegister(0), i.OutputRegister(), scratch);
       break;
     }
     case kMipsTruncUwS: {
       FPURegister scratch = kScratchDoubleReg;
-      // TODO(plind): Fix wrong param order of Trunc_uw_s() macro-asm function.
+      // TODO (plind): Fix wrong param order of Trunc_uw_s() macro-asm function. id:700 gh:701
       __ Trunc_uw_s(i.InputDoubleRegister(0), i.OutputRegister(), scratch);
       // Avoid UINT32_MAX as an overflow indicator and use 0 instead,
       // because 0 allows easier out-of-bounds detection.
@@ -3540,7 +3540,7 @@ void CodeGenerator::AssembleMove(InstructionOperand* source,
           break;
         }
         case Constant::kRpoNumber:
-          UNREACHABLE();  // TODO(titzer): loading RPO numbers on mips.
+          UNREACHABLE();  // TODO (titzer): loading RPO numbers on mips. id:591 gh:592
           break;
       }
       if (destination->IsStackSlot()) __ sw(dst, g.ToMemOperand(destination));

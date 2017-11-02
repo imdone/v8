@@ -281,7 +281,7 @@ TEST(HeapObjects) {
   CHECK_EQ(Smi::kMaxValue, Handle<Smi>::cast(value)->value());
 
 #if !defined(V8_TARGET_ARCH_64_BIT)
-  // TODO(lrn): We need a NumberFromIntptr function in order to test this.
+  // TODO (lrn): We need a NumberFromIntptr function in order to test this. id:1826 gh:1834
   value = factory->NewNumberFromInt(Smi::kMinValue - 1);
   CHECK(value->IsHeapNumber());
   CHECK(value->IsNumber());
@@ -1462,7 +1462,7 @@ TEST(TestInternalWeakLists) {
 
   // Dispose the native contexts one by one.
   for (int i = 0; i < kNumTestContexts; i++) {
-    // TODO(dcarney): is there a better way to do this?
+    // TODO (dcarney): is there a better way to do this? id:1643 gh:1651
     i::Object** unsafe = reinterpret_cast<i::Object**>(*ctx[i]);
     *unsafe = CcTest::heap()->undefined_value();
     ctx[i].Clear();
@@ -1769,7 +1769,7 @@ TEST(TestSizeOfObjectsVsHeapIteratorPrecision) {
     }
   }
   // Delta must be within 5% of the larger result.
-  // TODO(gc): Tighten this up by distinguishing between byte
+  // TODO (gc): Tighten this up by distinguishing between byte id:1689 gh:1697
   // arrays that are real and those that merely mark free space
   // on the heap.
   if (size_of_objects_1 > size_of_objects_2) {
@@ -3221,7 +3221,7 @@ void ReleaseStackTraceDataTest(v8::Isolate* isolate, const char* source,
 
 UNINITIALIZED_TEST(ReleaseStackTraceData) {
   if (FLAG_always_opt) {
-    // TODO(ulan): Remove this once the memory leak via code_next_link is fixed.
+    // TODO (ulan): Remove this once the memory leak via code_next_link is fixed. id:1846 gh:1854
     // See: https://codereview.chromium.org/181833004/
     return;
   }
@@ -4917,7 +4917,7 @@ TEST(OldSpaceAllocationCounter) {
   const size_t kSize = 1024;
   AllocateInSpace(isolate, kSize, OLD_SPACE);
   size_t counter2 = heap->OldGenerationAllocationCounter();
-  // TODO(ulan): replace all CHECK_LE with CHECK_EQ after v8:4148 is fixed.
+  // TODO (ulan): replace all CHECK_LE with CHECK_EQ after v8:4148 is fixed. id:1521 gh:1529
   CHECK_LE(kSize, counter2 - counter1);
   CcTest::CollectGarbage(NEW_SPACE);
   size_t counter3 = heap->OldGenerationAllocationCounter();

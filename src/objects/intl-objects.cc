@@ -163,7 +163,7 @@ void SetResolvedDateSettings(Isolate* isolate, const icu::Locale& icu_locale,
   const icu::Calendar* calendar = date_format->getCalendar();
   // getType() returns legacy calendar type name instead of LDML/BCP47 calendar
   // key values. intl.js maps them to BCP47 values for key "ca".
-  // TODO(jshin): Consider doing it here, instead.
+  // TODO (jshin): Consider doing it here, instead. id:1419 gh:1427
   const char* calendar_name = calendar->getType();
   JSObject::SetProperty(resolved, factory->NewStringFromStaticChars("calendar"),
                         factory->NewStringFromAsciiChecked(calendar_name),
@@ -182,7 +182,7 @@ void SetResolvedDateSettings(Isolate* isolate, const icu::Locale& icu_locale,
     // timezone. We'd not have "Etc/GMT" here because we canonicalize it and
     // other GMT-variants to "UTC" in intl.js and "UTC" is turned to "Etc/UTC"
     // by ICU before getting here.
-    // TODO(jshin): Figure out the cause of crbug.com/719609 and re-enable
+    // TODO (jshin): Figure out the cause of crbug.com/719609 and re-enable id:1154 gh:1163
     //  DCHECK(canonical_time_zone != UNICODE_STRING_SIMPLE("Etc/GMT")) .
     if (canonical_time_zone == UNICODE_STRING_SIMPLE("Etc/UTC") ||
         canonical_time_zone == UNICODE_STRING_SIMPLE("Etc/GMT")) {

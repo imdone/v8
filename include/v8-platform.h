@@ -201,7 +201,7 @@ class Platform {
    */
   virtual std::unique_ptr<v8::TaskRunner> GetForegroundTaskRunner(
       Isolate* isolate) {
-    // TODO(ahaas): Make this function abstract after it got implemented on all
+    // TODO (ahaas): Make this function abstract after it got implemented on all id:2 gh:2
     // platforms.
     return {};
   }
@@ -212,7 +212,7 @@ class Platform {
    */
   virtual std::unique_ptr<v8::TaskRunner> GetBackgroundTaskRunner(
       Isolate* isolate) {
-    // TODO(ahaas): Make this function abstract after it got implemented on all
+    // TODO (ahaas): Make this function abstract after it got implemented on all id:28 gh:30
     // platforms.
     return {};
   }
@@ -252,14 +252,14 @@ class Platform {
    * The definition of "foreground" is opaque to V8.
    */
   virtual void CallIdleOnForegroundThread(Isolate* isolate, IdleTask* task) {
-    // TODO(ulan): Make this function abstract after V8 roll in Chromium.
+    // TODO (ulan): Make this function abstract after V8 roll in Chromium. id:23 gh:25
   }
 
   /**
    * Returns true if idle tasks are enabled for the given |isolate|.
    */
   virtual bool IdleTasksEnabled(Isolate* isolate) {
-    // TODO(ulan): Make this function abstract after V8 roll in Chromium.
+    // TODO (ulan): Make this function abstract after V8 roll in Chromium. id:16 gh:17
     return false;
   }
 

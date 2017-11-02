@@ -287,7 +287,7 @@ bool CEntryStub::NeedsImmovableCode() {
   // when the C++ code returns to the stub because LR holds the return address
   // in AAPCS64. If the stub is moved (perhaps during a GC), we could end up
   // returning to dead code.
-  // TODO(jbramley): Whilst this is the only analysis that makes sense, I can't
+  // TODO (jbramley): Whilst this is the only analysis that makes sense, I can't id:80 gh:81
   // find any comment to confirm this, and I don't hit any crashes whatever
   // this function returns. The anaylsis should be properly confirmed.
   return true;
@@ -337,7 +337,7 @@ void CEntryStub::Generate(MacroAssembler* masm) {
   // Calculate argv, argc and the target address, and store them in
   // callee-saved registers so we can retry the call without having to reload
   // these arguments.
-  // TODO(jbramley): If the first call attempt succeeds in the common case (as
+  // TODO (jbramley): If the first call attempt succeeds in the common case (as id:120 gh:121
   // it should), then we might be better off putting these parameters directly
   // into their argument registers, rather than using callee-saved registers and
   // preserving them on the stack.
@@ -1018,7 +1018,7 @@ void ProfileEntryHookStub::Generate(MacroAssembler* masm) {
 
   // Save all kCallerSaved registers (including lr), since this can be called
   // from anywhere.
-  // TODO(jbramley): What about FP registers?
+  // TODO (jbramley): What about FP registers? id:107 gh:108
   __ PushCPURegList(kCallerSaved);
   DCHECK(kCallerSaved.IncludesAliasOf(lr));
   const int kNumSavedRegs = kCallerSaved.Count();
@@ -1239,7 +1239,7 @@ static void CreateArrayDispatch(MacroAssembler* masm,
     for (int i = 0; i <= last_index; ++i) {
       Label next;
       ElementsKind candidate_kind = GetFastElementsKindFromSequenceIndex(i);
-      // TODO(jbramley): Is this the best way to handle this? Can we make the
+      // TODO (jbramley): Is this the best way to handle this? Can we make the id:61 gh:62
       // tail calls conditional, rather than hopping over each one?
       __ CompareAndBranch(kind, candidate_kind, ne, &next);
       T stub(masm->isolate(), candidate_kind);
@@ -1256,7 +1256,7 @@ static void CreateArrayDispatch(MacroAssembler* masm,
 }
 
 
-// TODO(jbramley): If this needs to be a special case, make it a proper template
+// TODO (jbramley): If this needs to be a special case, make it a proper template id:94 gh:95
 // specialization, and not a separate function.
 static void CreateArrayDispatchOneArgument(MacroAssembler* masm,
                                            AllocationSiteOverrideMode mode) {
@@ -1584,7 +1584,7 @@ static void CallApiFunctionAndReturn(MacroAssembler* masm,
   __ Bind(&end_profiler_check);
 
   // Save the callee-save registers we are going to use.
-  // TODO(all): Is this necessary? ARM doesn't do it.
+  // TODO (all): Is this necessary? ARM doesn't do it. id:81 gh:82
   STATIC_ASSERT(kCallApiFunctionSpillSpace == 4);
   __ Poke(x19, (spill_offset + 0) * kXRegSize);
   __ Poke(x20, (spill_offset + 1) * kXRegSize);

@@ -207,7 +207,7 @@ static void GenerateShortestDigits(Bignum* numerator, Bignum* denominator,
         buffer[(*length) - 1]++;
       } else {
         // Halfway case.
-        // TODO(floitsch): need a way to solve half-way cases.
+        // TODO (floitsch): need a way to solve half-way cases. id:302 gh:303
         //   For now let's round towards even (since this is what Gay seems to
         //   do).
 

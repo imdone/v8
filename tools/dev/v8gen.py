@@ -148,7 +148,7 @@ class GenerateGnArgs(object):
           self._options.builder, CONFIG, self._options.master)
       return 1
 
-    # TODO(machenbach): Check if the requested configurations has switched to
+    # TODO (machenbach): Check if the requested configurations has switched to id:2511 gh:2520
     # gn at all.
 
     # The directories are separated with slashes in a gn context (platform
@@ -174,7 +174,7 @@ class GenerateGnArgs(object):
         'command-line', gn_args_path, '\n'.join(self._gn_args))
 
     # Append goma args.
-    # TODO(machenbach): We currently can't remove existing goma args from the
+    # TODO (machenbach): We currently can't remove existing goma args from the id:2532 gh:2541
     # original config. E.g. to build like a bot that uses goma, but switch
     # goma off.
     modified |= self._append_gn_args(
@@ -285,7 +285,7 @@ class GenerateGnArgs(object):
     # Initialize MB as a library.
     self._mbw = mb.MetaBuildWrapper()
 
-    # TODO(machenbach): Factor out common methods independent of mb arguments.
+    # TODO (machenbach): Factor out common methods independent of mb arguments. id:2394 gh:2402
     self._mbw.ParseArgs(['lookup', '-f', CONFIG])
     self._mbw.ReadConfigFile()
 

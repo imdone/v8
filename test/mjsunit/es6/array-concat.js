@@ -209,7 +209,7 @@ assertThrows(function() {
     assertEquals(i + 1, obj[i]);
   }
 
-  // TODO(caitp): when concat is called on instances of classes which extend
+  // TODO (caitp): when concat is called on instances of classes which extend id:1984 gh:1992
   // Array, they should:
   //
   // - return an instance of the class, rather than an Array instance (if from

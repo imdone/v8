@@ -280,7 +280,7 @@ void Int64Lowering::LowerNode(Node* node) {
       if (GetParameterCountAfterLowering(signature()) !=
           static_cast<int>(signature()->parameter_count())) {
         int old_index = ParameterIndexOf(node->op());
-        // TODO(wasm): Make this part not wasm specific.
+        // TODO (wasm): Make this part not wasm specific. id:499 gh:500
         // Prevent special lowering of the WasmContext parameter.
         if (old_index == kWasmContextParameterIndex) {
           DefaultLowering(node);
@@ -484,7 +484,7 @@ void Int64Lowering::LowerNode(Node* node) {
       break;
     }
     case IrOpcode::kWord64Shl: {
-      // TODO(turbofan): if the shift count >= 32, then we can set the low word
+      // TODO (turbofan): if the shift count >= 32, then we can set the low word id:527 gh:528
       // of the output to 0 and just calculate the high word.
       DCHECK_EQ(2, node->InputCount());
       Node* shift = node->InputAt(1);
@@ -508,7 +508,7 @@ void Int64Lowering::LowerNode(Node* node) {
       break;
     }
     case IrOpcode::kWord64Shr: {
-      // TODO(turbofan): if the shift count >= 32, then we can set the low word
+      // TODO (turbofan): if the shift count >= 32, then we can set the low word id:550 gh:551
       // of the output to 0 and just calculate the high word.
       DCHECK_EQ(2, node->InputCount());
       Node* shift = node->InputAt(1);
@@ -532,7 +532,7 @@ void Int64Lowering::LowerNode(Node* node) {
       break;
     }
     case IrOpcode::kWord64Sar: {
-      // TODO(turbofan): if the shift count >= 32, then we can set the low word
+      // TODO (turbofan): if the shift count >= 32, then we can set the low word id:612 gh:613
       // of the output to 0 and just calculate the high word.
       DCHECK_EQ(2, node->InputCount());
       Node* shift = node->InputAt(1);
@@ -560,7 +560,7 @@ void Int64Lowering::LowerNode(Node* node) {
       Node* left = node->InputAt(0);
       Node* right = node->InputAt(1);
 
-      // TODO(wasm): Use explicit comparisons and && here?
+      // TODO (wasm): Use explicit comparisons and && here? id:568 gh:569
       Node* replacement = graph()->NewNode(
           machine()->Word32Equal(),
           graph()->NewNode(

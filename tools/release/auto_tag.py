@@ -13,7 +13,7 @@ class Preparation(Step):
   MESSAGE = "Preparation."
 
   def RunStep(self):
-    # TODO(machenbach): Remove after the git switch.
+    # TODO (machenbach): Remove after the git switch. id:2570 gh:2578
     if self.Config("PERSISTFILE_BASENAME") == "/tmp/v8-auto-tag-tempfile":
       print "This script is disabled until after the v8 git migration."
       return True
@@ -152,7 +152,7 @@ class MakeTag(Step):
   def RunStep(self):
     if not self._options.dry_run:
       self.GitReset(self["lkgr"])
-      # FIXME(machenbach): Make this work with the git repo.
+      # FIXME (machenbach): Make this work with the git repo. id:2346 gh:2355
       self.vc.Tag(self["candidate_version"],
                   "svn/bleeding_edge",
                   "This won't work!")

@@ -21,7 +21,7 @@ namespace compiler {
 
 // Forward declarations.
 class BasicBlock;
-struct CallBuffer;  // TODO(bmeurer): Remove this.
+struct CallBuffer;  // TODO (bmeurer): Remove this. id:548 gh:549
 class FlagsContinuation;
 class Linkage;
 class OperandGenerator;
@@ -151,7 +151,7 @@ class V8_EXPORT_PRIVATE InstructionSelector final {
     return Features(CpuFeatures::SupportedFeatures());
   }
 
-  // TODO(sigurds) This should take a CpuFeatures argument.
+  // TODO (sigurds) This should take a CpuFeatures argument. id:610 gh:611
   static MachineOperatorBuilder::Flags SupportedMachineOperatorFlags();
 
   static MachineOperatorBuilder::AlignmentRequirements AlignmentRequirements();

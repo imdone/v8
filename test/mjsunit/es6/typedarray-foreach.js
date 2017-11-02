@@ -87,7 +87,7 @@ function TestTypedArrayForEach(constructor) {
   // Neutering the buffer backing the typed array mid-way should
   // still make .forEach() finish, but exiting early due to the missing
   // elements, and the array should keep being empty after detaching it.
-  // TODO(dehrenberg): According to the ES6 spec, accessing or testing
+  // TODO (dehrenberg): According to the ES6 spec, accessing or testing id:2298 gh:2306
   // for members on a detached TypedArray should throw, so really this
   // should throw in the third iteration. However, this behavior matches
   // the Khronos spec.

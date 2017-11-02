@@ -453,7 +453,7 @@ MemMoveFunction CreateMemMoveFunction(Isolate* isolate) {
   DCHECK(!RelocInfo::RequiresRelocation(isolate, desc));
   Assembler::FlushICache(isolate, buffer, actual_size);
   base::OS::SetReadAndExecutable(buffer, actual_size);
-  // TODO(jkummerow): It would be nice to register this code creation event
+  // TODO (jkummerow): It would be nice to register this code creation event id:1129 gh:1137
   // with the PROFILE / GDBJIT system.
   return FUNCTION_CAST<MemMoveFunction>(buffer);
 }

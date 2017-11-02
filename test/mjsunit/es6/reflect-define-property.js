@@ -921,7 +921,7 @@ assertEquals(999, o[999]);
 
 
 // Regression test: Bizarre behavior on non-strict arguments object.
-// TODO(yangguo): Tests disabled, needs investigation!
+// TODO (yangguo): Tests disabled, needs investigation! id:2219 gh:2227
 /*
 (function test(arg0) {
   // Here arguments[0] is a fast alias on arg0.

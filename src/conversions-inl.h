@@ -57,7 +57,7 @@ inline unsigned int FastD2UI(double x) {
 
 
 inline float DoubleToFloat32(double x) {
-  // TODO(yangguo): This static_cast is implementation-defined behaviour in C++,
+  // TODO (yangguo): This static_cast is implementation-defined behaviour in C++, id:917 gh:925
   // so we may need to do the conversion manually instead to match the spec.
   volatile float f = static_cast<float>(x);
   return f;

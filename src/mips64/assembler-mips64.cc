@@ -768,7 +768,7 @@ int Assembler::target_at(int pos, bool is_internal) {
     DCHECK(IsOri(instr_ori));
     DCHECK(IsOri(instr_ori2));
 
-    // TODO(plind) create named constants for shift values.
+    // TODO (plind) create named constants for shift values. id:1318 gh:1326
     int64_t imm = static_cast<int64_t>(instr_lui & kImm16Mask) << 48;
     imm |= static_cast<int64_t>(instr_ori & kImm16Mask) << 32;
     imm |= static_cast<int64_t>(instr_ori2 & kImm16Mask) << 16;
@@ -3939,7 +3939,7 @@ int Assembler::RelocateInternalReference(RelocInfo::Mode rmode, byte* pc,
     Instr instr_ori2 = instr_at(pc + 3 * Assembler::kInstrSize);
     DCHECK(IsOri(instr_ori));
     DCHECK(IsOri(instr_ori2));
-    // TODO(plind): symbolic names for the shifts.
+    // TODO (plind): symbolic names for the shifts. id:1034 gh:1042
     int64_t imm = (instr_lui & static_cast<int64_t>(kImm16Mask)) << 48;
     imm |= (instr_ori & static_cast<int64_t>(kImm16Mask)) << 32;
     imm |= (instr_ori2 & static_cast<int64_t>(kImm16Mask)) << 16;

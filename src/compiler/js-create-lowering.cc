@@ -91,7 +91,7 @@ bool IsFastLiteral(Handle<JSObject> boilerplate, int max_depth,
     }
   }
 
-  // TODO(turbofan): Do we want to support out-of-object properties?
+  // TODO (turbofan): Do we want to support out-of-object properties? id:628 gh:629
   if (!(boilerplate->HasFastProperties() &&
         boilerplate->property_array()->length() == 0)) {
     return false;
@@ -237,7 +237,7 @@ Reduction JSCreateLowering::ReduceJSCreateArguments(Node* node) {
   if (outer_state->opcode() != IrOpcode::kFrameState) {
     switch (type) {
       case CreateArgumentsType::kMappedArguments: {
-        // TODO(mstarzinger): Duplicate parameters are not handled yet.
+        // TODO (mstarzinger): Duplicate parameters are not handled yet. id:505 gh:506
         if (shared->has_duplicate_parameters()) return NoChange();
         Node* const callee = NodeProperties::GetValueInput(node, 0);
         Node* const context = NodeProperties::GetContextInput(node);
@@ -340,7 +340,7 @@ Reduction JSCreateLowering::ReduceJSCreateArguments(Node* node) {
       Node* const callee = NodeProperties::GetValueInput(node, 0);
       Node* const context = NodeProperties::GetContextInput(node);
       Node* effect = NodeProperties::GetEffectInput(node);
-      // TODO(mstarzinger): Duplicate parameters are not handled yet.
+      // TODO (mstarzinger): Duplicate parameters are not handled yet. id:533 gh:534
       if (shared->has_duplicate_parameters()) return NoChange();
       // Choose the correct frame state and frame state info depending on
       // whether there conceptually is an arguments adaptor frame in the call
@@ -845,7 +845,7 @@ Reduction JSCreateLowering::ReduceJSCreateArray(Node* node) {
     }
   }
 
-  // TODO(bmeurer): Optimize the subclassing case.
+  // TODO (bmeurer): Optimize the subclassing case. id:577 gh:573
   if (target != new_target) return NoChange();
 
   return ReduceNewArrayToStubCall(node, site);

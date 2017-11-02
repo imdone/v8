@@ -6,7 +6,7 @@
 
 #include "src/compiler/node-properties.h"
 #include "src/factory.h"
-#include "src/objects-inl.h"  // TODO(everyone): Make typer.h IWYU compliant.
+#include "src/objects-inl.h"  // TODO (everyone): Make typer.h IWYU compliant. id:2524 gh:2529
 #include "test/unittests/compiler/node-test-utils.h"
 
 namespace v8 {

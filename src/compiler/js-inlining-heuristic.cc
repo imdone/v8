@@ -189,7 +189,7 @@ void JSInliningHeuristic::Finalize() {
   // We inline at most one candidate in every iteration of the fixpoint.
   // This is to ensure that we don't consume the full inlining budget
   // on things that aren't called very often.
-  // TODO(bmeurer): Use std::priority_queue instead of std::set here.
+  // TODO (bmeurer): Use std::priority_queue instead of std::set here. id:629 gh:630
   while (!candidates_.empty()) {
     auto i = candidates_.begin();
     Candidate candidate = *i;
@@ -566,7 +566,7 @@ void JSInliningHeuristic::CreateOrReuseDispatch(Node* node, Node* callee,
 
   // Create the appropriate control flow to dispatch to the cloned calls.
   for (int i = 0; i < num_calls; ++i) {
-    // TODO(2206): Make comparison be based on underlying SharedFunctionInfo
+    // TODO (2206): Make comparison be based on underlying SharedFunctionInfo id:506 gh:507
     // instead of the target JSFunction reference directly.
     Node* target = jsgraph()->HeapConstant(candidate.functions[i]);
     if (i != (num_calls - 1)) {

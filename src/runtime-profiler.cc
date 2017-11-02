@@ -172,7 +172,7 @@ bool RuntimeProfiler::MaybeOSR(JSFunction* function, JavaScriptFrame* frame) {
   SharedFunctionInfo* shared = function->shared();
   int ticks = function->feedback_vector()->profiler_ticks();
 
-  // TODO(rmcilroy): Also ensure we only OSR top-level code if it is smaller
+  // TODO (rmcilroy): Also ensure we only OSR top-level code if it is smaller id:1299 gh:1307
   // than kMaxToplevelSourceSize.
 
   if (!frame->is_optimized() &&
@@ -250,7 +250,7 @@ void RuntimeProfiler::MarkCandidatesForOptimization() {
 
     MaybeOptimize(function, frame);
 
-    // TODO(leszeks): Move this increment to before the maybe optimize checks,
+    // TODO (leszeks): Move this increment to before the maybe optimize checks, id:1496 gh:1504
     // and update the tests to assume the increment has already happened.
     int ticks = function->feedback_vector()->profiler_ticks();
     if (ticks < Smi::kMaxValue) {

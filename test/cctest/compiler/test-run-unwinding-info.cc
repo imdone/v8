@@ -31,7 +31,7 @@ TEST(RunUnwindingInfo) {
   CHECK(tester.function->code()->has_unwinding_info());
 }
 
-// TODO(ssanfilippo) Build low-level graph and check that state is correctly
+// TODO (ssanfilippo) Build low-level graph and check that state is correctly id:1642 gh:1650
 // restored in the following situation:
 //
 //                         +-----------------+
@@ -44,7 +44,7 @@ TEST(RunUnwindingInfo) {
 //
 // Same for <construct>/<destruct>/<destruct> (a <construct> status is restored)
 
-// TODO(ssanfilippo) Intentionally reach a BB with different initial states
+// TODO (ssanfilippo) Intentionally reach a BB with different initial states id:1688 gh:1696
 // and check that the UnwindingInforWriter fails in debug mode:
 //
 //      +----------------+

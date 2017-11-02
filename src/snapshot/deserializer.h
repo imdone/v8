@@ -149,7 +149,7 @@ class Deserializer : public SerializerDeserializer {
   AllocatorT allocator_;
   const bool deserializing_user_code_;
 
-  // TODO(6593): generalize rehashing, and remove this flag.
+  // TODO (6593): generalize rehashing, and remove this flag. id:1374 gh:1382
   bool can_rehash_;
 
 #ifdef DEBUG

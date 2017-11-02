@@ -138,7 +138,7 @@ class SafepointTable BASE_EMBEDDED {
     return pc_and_deoptimization_indexes_ + (index * kFixedEntrySize);
   }
 
-  // TODO(juliana): rename this to GetDeoptimizationIndexLocation
+  // TODO (juliana): rename this to GetDeoptimizationIndexLocation id:1554 gh:1562
   Address GetInfoLocation(unsigned index) const {
     return GetPcOffsetLocation(index) + kDeoptimizationIndexOffset;
   }

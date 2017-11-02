@@ -188,7 +188,7 @@ class StoreHandler {
     kStoreElement,
     kStoreField,
     kStoreConstField,
-    // TODO(ishell): remove once constant field tracking is done.
+    // TODO (ishell): remove once constant field tracking is done. id:1118 gh:1126
     kTransitionToConstant = kStoreConstField,
     kTransitionToField,
     kStoreGlobalProxy,

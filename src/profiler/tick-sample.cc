@@ -129,7 +129,7 @@ bool SimulatorHelper::FillRegisters(Isolate* isolate,
     // first setting it to zero and then setting it to the new value.
     // Bailout if sp/fp doesn't contain the new value.
     //
-    // FIXME: The above doesn't really solve the issue.
+    // FIXME: The above doesn't really solve the issue. id:1469 gh:1477
     // If a 64-bit target is executed on a 32-bit host even the final
     // write is non-atomic, so it might obtain a half of the result.
     // Moreover as long as the register set code uses memcpy (as of now),

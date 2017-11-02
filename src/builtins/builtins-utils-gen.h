@@ -38,7 +38,7 @@ class CodeAssemblerState;
     Node* Parameter(Descriptor::ParameterIndices index) {                \
       return CodeAssembler::Parameter(static_cast<int>(index));          \
     }                                                                    \
-    /* TODO(ishell): Remove this way of accessing parameters once the */ \
+    /* TODO (ishell): Remove this way of accessing parameters once the  id:417 gh:418*/ \
     /* JSFunction linkage arguments are reordered. */                    \
     Node* Parameter(BuiltinDescriptor::ParameterIndices index) {         \
       return CodeAssembler::Parameter(static_cast<int>(index));          \

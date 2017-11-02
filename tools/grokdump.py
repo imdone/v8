@@ -1070,7 +1070,7 @@ def FormatDisasmLine(start, heap, line):
         offset = int(words[4] + words[3] + words[2] + words[1], 16)
         target = (line_address + offset + 5) & 0xFFFFFFFF
         code = code.replace(words[6], "0x%08x" % target)
-  # TODO(jkummerow): port this hack to ARM and x64.
+  # TODO (jkummerow): port this hack to ARM and x64. id:2337 gh:2345
 
   return "%s%08x %08x: %s" % (marker, line_address, line[0], code)
 
@@ -1271,7 +1271,7 @@ class SeqString(String):
 
 
 class ExternalString(String):
-  # TODO(vegorov) fix ExternalString for X64 architecture
+  # TODO (vegorov) fix ExternalString for X64 architecture id:2514 gh:2523
   RESOURCE_OFFSET = 12
 
   WEBKIT_RESOUCE_STRING_IMPL_OFFSET = 4
@@ -2750,7 +2750,7 @@ class InspectionWebFormatter(object):
     for r in CONTEXT_FOR_ARCH[self.reader.arch]:
       f.write(HTML_REG_FORMAT %
               (r, self.format_address(self.reader.Register(r))))
-    # TODO(vitalyr): decode eflags.
+    # TODO (vitalyr): decode eflags. id:2535 gh:2539
     if self.reader.arch in [MD_CPU_ARCHITECTURE_ARM, MD_CPU_ARCHITECTURE_ARM64]:
       f.write("<b>cpsr</b>: %s" % bin(self.reader.exception_context.cpsr)[2:])
     else:
@@ -3021,7 +3021,7 @@ class InspectionWebFormatter(object):
           offset = int(words[4] + words[3] + words[2] + words[1], 16)
           target = (line_address + offset + 5) & 0xFFFFFFFF
           code = code.replace(words[6], "0x%08x" % target)
-    # TODO(jkummerow): port this hack to ARM and x64.
+    # TODO (jkummerow): port this hack to ARM and x64. id:2435 gh:2443
 
     opcodes = code[:op_offset]
     code = self.annotate_disasm_addresses(code[op_offset:])
@@ -3729,7 +3729,7 @@ def AnalyzeMinidump(options, minidump_name):
       register_value = reader.Register(r)
       print "    %s: %s" % (r.rjust(maxWidth),
                             heap.FormatIntPtr(register_value))
-    # TODO(vitalyr): decode eflags.
+    # TODO (vitalyr): decode eflags. id:2562 gh:2569
     if reader.arch in [MD_CPU_ARCHITECTURE_ARM, MD_CPU_ARCHITECTURE_ARM64]:
       print "    cpsr: %s" % bin(reader.exception_context.cpsr)[2:]
     else:

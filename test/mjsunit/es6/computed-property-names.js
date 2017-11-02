@@ -126,7 +126,7 @@ function ID(x) {
     [1e55]: 'B',
     [0.000001]: 'C',
     [-0]: 'D',
-    // TODO(arv): https://code.google.com/p/v8/issues/detail?id=3815
+    // TODO (arv): https://code.google.com/p/v8/issues/detail?id=3815 id:2170 gh:2178
     // [Infinity]: 'E',
     // [-Infinity]: 'F',
     [NaN]: 'G',
@@ -135,7 +135,7 @@ function ID(x) {
   assertEquals('B', object['1e+55']);
   assertEquals('C', object['0.000001']);
   assertEquals('D', object[0]);
-  // TODO(arv): https://code.google.com/p/v8/issues/detail?id=3815
+  // TODO (arv): https://code.google.com/p/v8/issues/detail?id=3815 id:1960 gh:1968
   // assertEquals('E', object[Infinity]);
   // assertEquals('F', object[-Infinity]);
   assertEquals('G', object[NaN]);

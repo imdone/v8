@@ -137,8 +137,8 @@ void TracingController::UpdateCategoryGroupEnabledFlag(size_t category_index) {
     enabled_flag |= ENABLED_FOR_RECORDING;
   }
 
-  // TODO(fmeawad): EventCallback and ETW modes are not yet supported in V8.
-  // TODO(primiano): this is a temporary workaround for catapult:#2341,
+  // TODO (fmeawad): EventCallback and ETW modes are not yet supported in V8. id:1244 gh:1253
+  // TODO (primiano): this is a temporary workaround for catapult:#2341, id:1312 gh:1321
   // to guarantee that metadata events are always added even if the category
   // filter is "-*". See crbug.com/618054 for more details and long-term fix.
   if (mode_ == RECORDING_MODE && !strcmp(category_group, "__metadata")) {

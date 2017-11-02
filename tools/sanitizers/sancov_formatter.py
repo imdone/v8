@@ -305,7 +305,7 @@ def merge_covered_line_results(data, results):
       while old_lines[i][0] < l:
         # Forward instrumented lines not present in this coverage data.
         i += 1
-        # TODO: Add more context to the assert message.
+        # TODO: Add more context to the assert message. id:2595 gh:2603
         assert i < len(old_lines), 'Covered line %d not in input file.' % l
       assert old_lines[i][0] == l, 'Covered line %d not in input file.' % l
 
@@ -407,7 +407,7 @@ def split(options):
 
 def main(args=None):
   parser = argparse.ArgumentParser()
-  # TODO(machenbach): Make this required and deprecate the default.
+  # TODO (machenbach): Make this required and deprecate the default. id:2350 gh:2358
   parser.add_argument('--build-dir',
                       default=os.path.join(BASE_DIR, 'out', 'Release'),
                       help='Path to the build output directory.')

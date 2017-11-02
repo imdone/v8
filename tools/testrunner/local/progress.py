@@ -372,7 +372,7 @@ class JsonTestProgressIndicator(ProgressIndicator):
       "expected": list(test.outcomes or ["PASS"]),
       "duration": test.duration,
 
-      # TODO(machenbach): This stores only the global random seed from the
+      # TODO (machenbach): This stores only the global random seed from the id:2449 gh:2457
       # context and not possible overrides when using random-seed stress.
       "random_seed": self.random_seed,
       "target_name": test.suite.shell(),

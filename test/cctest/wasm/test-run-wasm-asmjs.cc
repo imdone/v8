@@ -121,7 +121,7 @@ WASM_EXEC_TEST(LoadMemI32_oob_asm) {
 
   memory[0] = 999999;
   CHECK_EQ(999999, r.Call(0u));
-  // TODO(titzer): offset 29-31 should also be OOB.
+  // TODO (titzer): offset 29-31 should also be OOB. id:1912 gh:1920
   for (uint32_t offset = 32; offset < 40; offset++) {
     CHECK_EQ(0, r.Call(offset));
   }
@@ -141,7 +141,7 @@ WASM_EXEC_TEST(LoadMemF32_oob_asm) {
 
   memory[0] = 9999.5f;
   CHECK_EQ(9999.5f, r.Call(0u));
-  // TODO(titzer): offset 29-31 should also be OOB.
+  // TODO (titzer): offset 29-31 should also be OOB. id:1629 gh:1637
   for (uint32_t offset = 32; offset < 40; offset++) {
     CHECK(std::isnan(r.Call(offset)));
   }
@@ -163,7 +163,7 @@ WASM_EXEC_TEST(LoadMemF64_oob_asm) {
   CHECK_EQ(9799.5, r.Call(0u));
   memory[1] = 11799.25;
   CHECK_EQ(11799.25, r.Call(8u));
-  // TODO(titzer): offset 57-63 should also be OOB.
+  // TODO (titzer): offset 57-63 should also be OOB. id:1928 gh:1936
   for (uint32_t offset = 64; offset < 80; offset++) {
     CHECK(std::isnan(r.Call(offset)));
   }
@@ -185,7 +185,7 @@ WASM_EXEC_TEST(StoreMemI32_oob_asm) {
   memory[0] = 7777;
   CHECK_EQ(999999, r.Call(0u, 999999));
   CHECK_EQ(999999, memory[0]);
-  // TODO(titzer): offset 29-31 should also be OOB.
+  // TODO (titzer): offset 29-31 should also be OOB. id:1659 gh:1667
   for (uint32_t offset = 32; offset < 40; offset++) {
     CHECK_EQ(8888, r.Call(offset, 8888));
   }

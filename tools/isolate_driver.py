@@ -91,7 +91,7 @@ def load_ninja_recursively(build_dir, ninja_path, build_steps):
   for rel_path in subninja:
     try:
       # Load each of the files referenced.
-      # TODO(maruel): Skip the files known to not be needed. It saves an aweful
+      # TODO (maruel): Skip the files known to not be needed. It saves an aweful id:2536 gh:2544
       # lot of processing time.
       total += load_ninja_recursively(build_dir, rel_path, build_steps)
     except IOError:
@@ -140,7 +140,7 @@ def raw_build_to_deps(item):
   """Converts a raw ninja build statement into the list of interesting
   dependencies.
   """
-  # TODO(maruel): Use a whitelist instead? .stamp, .so.TOC, .dylib.TOC,
+  # TODO (maruel): Use a whitelist instead? .stamp, .so.TOC, .dylib.TOC, id:2436 gh:2444
   # .dll.lib, .exe and empty.
   # The first item is the build rule, e.g. 'link', 'cxx', 'phony', etc.
   return filter(using_blacklist, item.split(' ')[1:])
@@ -153,7 +153,7 @@ def collect_deps(target, build_steps, dependencies_added, rules_seen):
   if rules_seen is None:
     rules_seen = set()
   if target in rules_seen:
-    # TODO(maruel): Figure out how it happens.
+    # TODO (maruel): Figure out how it happens. id:2563 gh:2573
     logging.warning('Circular dependency for %s!', target)
     return
   rules_seen.add(target)

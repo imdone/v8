@@ -388,7 +388,7 @@ class InstanceBuilder {
                          Handle<WasmInstanceObject> instance);
 };
 
-// TODO(titzer): move to wasm-objects.cc
+// TODO (titzer): move to wasm-objects.cc id:1353 gh:1361
 static void InstanceFinalizer(const v8::WeakCallbackInfo<void>& data) {
   DisallowHeapAllocation no_gc;
   JSObject** p = reinterpret_cast<JSObject**>(data.GetParameter());
@@ -489,7 +489,7 @@ MaybeHandle<WasmModuleObject> SyncCompileTranslatedAsmJs(
 MaybeHandle<WasmModuleObject> SyncCompile(Isolate* isolate,
                                           ErrorThrower* thrower,
                                           const ModuleWireBytes& bytes) {
-  // TODO(titzer): only make a copy of the bytes if SharedArrayBuffer
+  // TODO (titzer): only make a copy of the bytes if SharedArrayBuffer id:1597 gh:1605
   std::unique_ptr<byte[]> copy(new byte[bytes.length()]);
   memcpy(copy.get(), bytes.start(), bytes.length());
   ModuleWireBytes bytes_copy(copy.get(), copy.get() + bytes.length());
@@ -682,7 +682,7 @@ compiler::ModuleEnv CreateModuleEnvFromCompiledModule(
     FixedArray* ft = compiled_module->ptr_to_function_tables();
     FixedArray* st = compiled_module->ptr_to_signature_tables();
 
-    // TODO(clemensh): defer these handles for concurrent compilation.
+    // TODO (clemensh): defer these handles for concurrent compilation. id:1388 gh:1396
     function_tables.push_back(WasmCompiledModule::GetTableValue(ft, i));
     signature_tables.push_back(WasmCompiledModule::GetTableValue(st, i));
   }
@@ -717,7 +717,7 @@ void LazyCompilationOrchestrator::CompileFunction(
   FunctionBody body{func->sig, func->code.offset(),
                     module_start + func->code.offset(),
                     module_start + func->code.end_offset()};
-  // TODO(wasm): Refactor this to only get the name if it is really needed for
+  // TODO (wasm): Refactor this to only get the name if it is really needed for id:1570 gh:1578
   // tracing / debugging.
   std::string func_name;
   {
@@ -737,14 +737,14 @@ void LazyCompilationOrchestrator::CompileFunction(
   // If there is a pending error, something really went wrong. The module was
   // verified before starting execution with lazy compilation.
   // This might be OOM, but then we cannot continue execution anyway.
-  // TODO(clemensh): According to the spec, we can actually skip validation at
+  // TODO (clemensh): According to the spec, we can actually skip validation at id:1698 gh:1706
   // module creation time, and return a function that always traps here.
   CHECK(!thrower.error());
   Handle<Code> code = maybe_code.ToHandleChecked();
 
   Handle<FixedArray> deopt_data = isolate->factory()->NewFixedArray(2, TENURED);
   Handle<WeakCell> weak_instance = isolate->factory()->NewWeakCell(instance);
-  // TODO(wasm): Introduce constants for the indexes in wasm deopt data.
+  // TODO (wasm): Introduce constants for the indexes in wasm deopt data. id:1354 gh:1362
   deopt_data->set(0, *weak_instance);
   deopt_data->set(1, Smi::FromInt(func_index));
   code->set_deoptimization_data(*deopt_data);
@@ -815,7 +815,7 @@ Handle<Code> LazyCompilationOrchestrator::CompileLazy(
       Code* callee =
           Code::GetCodeFromTargetAddress(it.rinfo()->target_address());
       if (callee->builtin_index() != Builtins::kWasmCompileLazy) continue;
-      // TODO(clemensh): Introduce safe_cast<T, bool> which (D)CHECKS
+      // TODO (clemensh): Introduce safe_cast<T, bool> which (D)CHECKS id:1743 gh:1751
       // (depending on the bool) against limits of T and then static_casts.
       size_t offset_l = it.rinfo()->pc() - caller->instruction_start();
       DCHECK_GE(kMaxInt, offset_l);
@@ -831,7 +831,7 @@ Handle<Code> LazyCompilationOrchestrator::CompileLazy(
     }
   }
 
-  // TODO(clemensh): compile all functions in non_compiled_functions in
+  // TODO (clemensh): compile all functions in non_compiled_functions in id:1389 gh:1397
   // background, wait for func_to_return_idx.
   CompileFunction(isolate, instance, func_to_return_idx);
 
@@ -1319,7 +1319,7 @@ Handle<Code> MakeWasmToWasmWrapper(
     Isolate* isolate, Handle<WasmExportedFunction> imported_function,
     FunctionSig* expected_sig, FunctionSig** sig,
     WasmInstanceMap* imported_instances, Handle<WasmInstanceObject> instance) {
-  // TODO(wasm): cache WASM-to-WASM wrappers by signature and clone+patch.
+  // TODO (wasm): cache WASM-to-WASM wrappers by signature and clone+patch. id:1571 gh:1579
   Handle<WasmInstanceObject> imported_instance(imported_function->instance(),
                                                isolate);
   imported_instances->Set(imported_instance, imported_instance);
@@ -1499,7 +1499,7 @@ MaybeHandle<WasmModuleObject> ModuleCompiler::CompileToModuleObjectInternal(
     // Validate wasm modules for lazy compilation. Don't validate asm.js
     // modules, they are valid by construction (otherwise a CHECK will fail
     // during lazy compilation).
-    // TODO(clemensh): According to the spec, we can actually skip validation
+    // TODO (clemensh): According to the spec, we can actually skip validation id:1699 gh:1707
     // at module creation time, and return a function that always traps at
     // (lazy) compilation time.
     ValidateSequentially(wire_bytes, env.get(), thrower);
@@ -1519,7 +1519,7 @@ MaybeHandle<WasmModuleObject> ModuleCompiler::CompileToModuleObjectInternal(
     asm_js_offset_table->copy_in(0, asm_js_offset_table_bytes.start(),
                                  asm_js_offset_table_bytes.length());
   }
-  // TODO(wasm): only save the sections necessary to deserialize a
+  // TODO (wasm): only save the sections necessary to deserialize a id:1355 gh:1363
   // {WasmModule}. E.g. function bodies could be omitted.
   Handle<String> module_bytes =
       factory
@@ -1534,7 +1534,7 @@ MaybeHandle<WasmModuleObject> ModuleCompiler::CompileToModuleObjectInternal(
       WasmModuleWrapper::From(isolate_, module.release());
 
   // Create the shared module data.
-  // TODO(clemensh): For the same module (same bytes / same hash), we should
+  // TODO (clemensh): For the same module (same bytes / same hash), we should id:1744 gh:1752
   // only have one WasmSharedModuleData. Otherwise, we might only set
   // breakpoints on a (potentially empty) subset of the instances.
 
@@ -1831,7 +1831,7 @@ MaybeHandle<WasmInstanceObject> InstanceBuilder::Build() {
   }
 
   // Set the WasmContext address in wrappers.
-  // TODO(wasm): the wasm context should only appear as a constant in wrappers;
+  // TODO (wasm): the wasm context should only appear as a constant in wrappers; id:1390 gh:1398
   //             this code specialization is applied to the whole instance.
   WasmContext* wasm_context = instance->wasm_context()->get();
   Address wasm_context_address = reinterpret_cast<Address>(wasm_context);
@@ -2093,7 +2093,7 @@ void InstanceBuilder::WriteGlobalValue(WasmGlobal& global,
       *GetRawGlobalPtr<int32_t>(global) = static_cast<int32_t>(num);
       break;
     case kWasmI64:
-      // TODO(titzer): initialization of imported i64 globals.
+      // TODO (titzer): initialization of imported i64 globals. id:1572 gh:1580
       UNREACHABLE();
       break;
     case kWasmF32:
@@ -2344,7 +2344,7 @@ int InstanceBuilder::ProcessImports(Handle<FixedArray> code_table,
           // workaround to support legacy asm.js code with broken binding. Note
           // that using {NaN} (or Smi::kZero) here is what using the observable
           // conversion via {ToPrimitive} would produce as well.
-          // TODO(mstarzinger): Still observable if Function.prototype.valueOf
+          // TODO (mstarzinger): Still observable if Function.prototype.valueOf id:1700 gh:1708
           // or friends are patched, we might need to check for that as well.
           if (value->IsJSFunction()) value = isolate_->factory()->nan_value();
           if (value->IsPrimitive() && !value->IsSymbol()) {
@@ -2739,7 +2739,7 @@ void InstanceBuilder::LoadTableSegments(Handle<FixedArray> code_table,
       }
     }
 
-    // TODO(titzer): this does redundant work if there are multiple tables,
+    // TODO (titzer): this does redundant work if there are multiple tables, id:1356 gh:1364
     // since initializations are not sorted by table index.
     for (auto& table_init : module_->table_inits) {
       uint32_t base = EvalUint32InitExpr(table_init.offset);
@@ -2761,7 +2761,7 @@ void InstanceBuilder::LoadTableSegments(Handle<FixedArray> code_table,
         if (!all_dispatch_tables.is_null()) {
           if (js_wrappers_[func_index].is_null()) {
             // No JSFunction entry yet exists for this function. Create one.
-            // TODO(titzer): We compile JS->wasm wrappers for functions are
+            // TODO (titzer): We compile JS->wasm wrappers for functions are id:1745 gh:1753
             // not exported but are in an exported table. This should be done
             // at module compile time and cached instead.
 
@@ -2799,7 +2799,7 @@ void InstanceBuilder::LoadTableSegments(Handle<FixedArray> code_table,
     }
 #endif
 
-    // TODO(titzer): we add the new dispatch table at the end to avoid
+    // TODO (titzer): we add the new dispatch table at the end to avoid id:1391 gh:1399
     // redundant work and also because the new instance is not yet fully
     // initialized.
     if (!table_instance.table_object.is_null()) {
@@ -2961,7 +2961,7 @@ void AsyncCompileJob::StartForegroundTask() {
   DCHECK_EQ(1, num_pending_foreground_tasks_);
 
   v8::Platform* platform = V8::GetCurrentPlatform();
-  // TODO(ahaas): This is a CHECK to debug issue 764313.
+  // TODO (ahaas): This is a CHECK to debug issue 764313. id:1573 gh:1581
   CHECK(platform);
   platform->CallOnForegroundThread(reinterpret_cast<v8::Isolate*>(isolate_),
                                    new CompileTask(this, true));
@@ -3126,7 +3126,7 @@ class AsyncCompileJob::PrepareAndStartCompile : public CompileStep {
                         ->NumberOfAvailableBackgroundThreads())));
 
     if (start_compilation_) {
-      // TODO(ahaas): Try to remove the {start_compilation_} check when
+      // TODO (ahaas): Try to remove the {start_compilation_} check when id:1701 gh:1709
       // streaming decoding is done in the background. If
       // InitializeCompilationUnits always returns 0 for streaming compilation,
       // then DoAsync would do the same as NextStep already.
@@ -3252,7 +3252,7 @@ class AsyncCompileJob::FinishCompile : public CompileStep {
     // shared module data. Asm.js is not compiled asynchronously.
     Handle<Script> script = CreateWasmScript(job_->isolate_, job_->wire_bytes_);
     Handle<ByteArray> asm_js_offset_table;
-    // TODO(wasm): Improve efficiency of storing module wire bytes.
+    // TODO (wasm): Improve efficiency of storing module wire bytes. id:1357 gh:1365
     //   1. Only store relevant sections, not function bodies
     //   2. Don't make a second copy of the bytes here; reuse the copy made
     //      for asynchronous compilation and store it as an external one
@@ -3271,7 +3271,7 @@ class AsyncCompileJob::FinishCompile : public CompileStep {
         WasmModuleWrapper::From(job_->isolate_, job_->module_.release());
 
     // Create the shared module data.
-    // TODO(clemensh): For the same module (same bytes / same hash), we should
+    // TODO (clemensh): For the same module (same bytes / same hash), we should id:1746 gh:1754
     // only have one WasmSharedModuleData. Otherwise, we might only set
     // breakpoints on a (potentially empty) subset of the instances.
 
@@ -3294,7 +3294,7 @@ class AsyncCompileJob::FinishCompile : public CompileStep {
     DeferredHandleScope deferred(job_->isolate_);
     job_->compiled_module_ = handle(*job_->compiled_module_, job_->isolate_);
     job_->deferred_handles_.push_back(deferred.Detach());
-    // TODO(wasm): compiling wrappers should be made async as well.
+    // TODO (wasm): compiling wrappers should be made async as well. id:1392 gh:1400
     job_->DoSync<CompileWrappers>();
   }
 };
@@ -3303,7 +3303,7 @@ class AsyncCompileJob::FinishCompile : public CompileStep {
 // Step 6 (sync): Compile JS->wasm wrappers.
 //==========================================================================
 class AsyncCompileJob::CompileWrappers : public CompileStep {
-  // TODO(wasm): Compile all wrappers here, including the start function wrapper
+  // TODO (wasm): Compile all wrappers here, including the start function wrapper id:1574 gh:1582
   // and the wrappers for the function table elements.
   void RunInForeground() override {
     TRACE_COMPILE("(6) Compile wrappers...\n");

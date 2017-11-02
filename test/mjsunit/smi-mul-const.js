@@ -77,7 +77,7 @@ var two_30 = 1 << 30;
 // 2^31 is a smi boundary on arm64 and x64.
 var two_31 = 2 * two_30;
 
-// TODO(rmcilroy): replace after r16361 with:  if (%IsValidSmi(two_31)) {
+// TODO (rmcilroy): replace after r16361 with:  if (%IsValidSmi(two_31)) { id:2274 gh:2283
 if (true) {
   assertEquals(two_31, mul_by_neg_1(-two_31));
   assertUnoptimized(mul_by_neg_1);

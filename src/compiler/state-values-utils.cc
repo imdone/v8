@@ -185,7 +185,7 @@ Node* StateValuesCache::BuildTree(size_t* values_idx, Node** values,
       if (count - *values_idx < kMaxInputCount - node_count) {
         // If we have fewer values remaining than inputs remaining, dump the
         // remaining values into this node.
-        // TODO(leszeks): We could optimise this further by only counting
+        // TODO (leszeks): We could optimise this further by only counting id:741 gh:742
         // remaining live nodes.
 
         size_t previous_input_count = node_count;

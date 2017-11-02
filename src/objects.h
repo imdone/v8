@@ -291,12 +291,12 @@ const int kStubMinorKeyBits = kSmiValueSize - kStubMajorKeyBits - 1;
 // mentioned.  Finally, the string is either a STRING_TYPE (if it is a normal
 // string) or a INTERNALIZED_STRING_TYPE (if it is a internalized string).
 //
-// NOTE: The following things are some that depend on the string types having
+// NOTE: The following things are some that depend on the string types having id:1073 gh:1081
 // instance_types that are less than those of all other types:
 // HeapObject::Size, HeapObject::IterateBody, the typeof operator, and
 // Object::IsString.
 //
-// NOTE: Everything following JS_VALUE_TYPE is considered a
+// NOTE: Everything following JS_VALUE_TYPE is considered a id:1416 gh:1424
 // JSObject for GC purposes. The first four entries here have typeof
 // 'object', whereas JS_FUNCTION_TYPE has typeof 'function'.
 #define INSTANCE_TYPE_LIST(V)                                   \
@@ -2392,7 +2392,7 @@ class JSObject: public JSReceiver {
       GetPropertyAttributesWithFailedAccessCheck(LookupIterator* it);
 
   // Defines an AccessorPair property on the given object.
-  // TODO(mstarzinger): Rename to SetAccessor().
+  // TODO (mstarzinger): Rename to SetAccessor(). id:1151 gh:1159
   static MaybeHandle<Object> DefineAccessor(Handle<JSObject> object,
                                             Handle<Name> name,
                                             Handle<Object> getter,
@@ -4993,7 +4993,7 @@ class JSCollection : public JSObject {
 
 
 // The JSSet describes EcmaScript Harmony sets
-// TODO(marja): When moving JSSet out of objects.h, move JSSetIterator (from
+// TODO (marja): When moving JSSet out of objects.h, move JSSetIterator (from id:1336 gh:1345
 // objects/hash-table.h) into the same file.
 class JSSet : public JSCollection {
  public:
@@ -5012,7 +5012,7 @@ class JSSet : public JSCollection {
 
 
 // The JSMap describes EcmaScript Harmony maps
-// TODO(marja): When moving JSMap out of objects.h, move JSMapIterator (from
+// TODO (marja): When moving JSMap out of objects.h, move JSMapIterator (from id:1436 gh:1444
 // objects/hash-table.h) into the same file.
 class JSMap : public JSCollection {
  public:

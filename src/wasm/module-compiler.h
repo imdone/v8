@@ -66,7 +66,7 @@ Handle<Code> CompileLazy(Isolate* isolate);
 // patching the calling wasm code.
 // Once we support concurrent lazy compilation, this class will contain the
 // logic to actually orchestrate parallel execution of wasm compilation jobs.
-// TODO(clemensh): Implement concurrent lazy compilation.
+// TODO (clemensh): Implement concurrent lazy compilation. id:1702 gh:1711
 class LazyCompilationOrchestrator {
   void CompileFunction(Isolate*, Handle<WasmInstanceObject>, int func_index);
 
@@ -82,7 +82,7 @@ class LazyCompilationOrchestrator {
 // allocates on the V8 heap (e.g. creating the module object) must be a
 // foreground task. All other tasks (e.g. decoding and validating, the majority
 // of the work of compilation) can be background tasks.
-// TODO(wasm): factor out common parts of this with the synchronous pipeline.
+// TODO (wasm): factor out common parts of this with the synchronous pipeline. id:1358 gh:1366
 class AsyncCompileJob {
  public:
   explicit AsyncCompileJob(Isolate* isolate, std::unique_ptr<byte[]> bytes_copy,

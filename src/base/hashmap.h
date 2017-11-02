@@ -114,7 +114,7 @@ class TemplateHashMapImpl {
   Entry* map_;
   uint32_t capacity_;
   uint32_t occupancy_;
-  // TODO(leszeks): This takes up space even if it has no state, maybe replace
+  // TODO (leszeks): This takes up space even if it has no state, maybe replace id:224 gh:225
   // with something that does the empty base optimisation e.g. std::tuple
   MatchFun match_;
 

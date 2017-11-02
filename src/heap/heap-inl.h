@@ -119,7 +119,7 @@ size_t Heap::NewSpaceAllocationCounter() {
 
 template <>
 bool inline Heap::IsOneByte(Vector<const char> str, int chars) {
-  // TODO(dcarney): incorporate Latin-1 check when Latin-1 is supported?
+  // TODO (dcarney): incorporate Latin-1 check when Latin-1 is supported? id:1094 gh:1102
   return chars == str.length();
 }
 
@@ -616,7 +616,7 @@ CodePageMemoryModificationScope::CodePageMemoryModificationScope(
       scope_active_(FLAG_write_protect_code_memory &&
                     chunk_->IsFlagSet(MemoryChunk::IS_EXECUTABLE)) {
   if (scope_active_) {
-    // TODO(hpayer): owner() can only be null if we use the MemoryChunk outside
+    // TODO (hpayer): owner() can only be null if we use the MemoryChunk outside id:945 gh:953
     // of spaces. We actually should not do that and we should untangle this.
     DCHECK(chunk_->owner() == nullptr ||
            chunk_->owner()->identity() == CODE_SPACE ||

@@ -101,7 +101,7 @@ Reduction EscapeAnalysisReducer::Reduce(Node* node) {
       arguments_elements_.insert(node);
       return NoChange();
     default: {
-      // TODO(sigurds): Change this to GetFrameStateInputCount once
+      // TODO (sigurds): Change this to GetFrameStateInputCount once id:519 gh:520
       // it is working. For now we use EffectInputCount > 0 to determine
       // whether a node might have a frame state input.
       if (node->op()->EffectInputCount() > 0) {

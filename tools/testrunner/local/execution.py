@@ -114,7 +114,7 @@ def _GetInstructions(test, context):
     timeout *= 4
   if "--noenable-vfp3" in context.extra_flags:
     timeout *= 2
-  # FIXME(machenbach): Make this more OO. Don't expose default outcomes or
+  # FIXME (machenbach): Make this more OO. Don't expose default outcomes or id:2587 gh:2595
   # the like.
   if statusfile.IsSlow(test.outcomes or [statusfile.PASS]):
     timeout *= 2

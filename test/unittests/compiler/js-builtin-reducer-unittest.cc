@@ -31,7 +31,7 @@ class JSBuiltinReducerTest : public TypedGraphTest {
     SimplifiedOperatorBuilder simplified(zone());
     JSGraph jsgraph(isolate(), graph(), common(), javascript(), &simplified,
                     &machine);
-    // TODO(titzer): mock the GraphReducer here for better unit testing.
+    // TODO (titzer): mock the GraphReducer here for better unit testing. id:2504 gh:2513
     GraphReducer graph_reducer(zone(), graph());
 
     JSBuiltinReducer reducer(&graph_reducer, &jsgraph, nullptr,

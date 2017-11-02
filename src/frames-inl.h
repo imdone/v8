@@ -234,7 +234,7 @@ inline JavaScriptFrameIterator::JavaScriptFrameIterator(
 }
 
 inline JavaScriptFrame* JavaScriptFrameIterator::frame() const {
-  // TODO(1233797): The frame hierarchy needs to change. It's
+  // TODO (1233797): The frame hierarchy needs to change. It's id:971 gh:979
   // problematic that we can't use the safe-cast operator to cast to
   // the JavaScript frame type, because we may encounter arguments
   // adaptor frames.

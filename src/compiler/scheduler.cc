@@ -747,7 +747,7 @@ class SpecialRPONumberer : public ZoneObject {
     return block->loop_number() >= 0;
   }
 
-  // TODO(mstarzinger): We only need this special sentinel because some tests
+  // TODO (mstarzinger): We only need this special sentinel because some tests id:768 gh:769
   // use the schedule's end block in actual control flow (e.g. with end having
   // successors). Once this has been cleaned up we can use the end block here.
   BasicBlock* BeyondEndSentinel() {
@@ -1221,7 +1221,7 @@ void Scheduler::PrepareUses() {
   // node's uses are scheduled before the node itself.
   PrepareUsesVisitor prepare_uses(this);
 
-  // TODO(turbofan): simplify the careful pre/post ordering here.
+  // TODO (turbofan): simplify the careful pre/post ordering here. id:737 gh:738
   BoolVector visited(graph_->NodeCount(), false, zone_);
   ZoneStack<Node::InputEdges::iterator> stack(zone_);
   Node* node = graph_->end();
@@ -1457,7 +1457,7 @@ class ScheduleLateNodeVisitor {
   BasicBlock* SplitNode(BasicBlock* block, Node* node) {
     // For now, we limit splitting to pure nodes.
     if (!node->op()->HasProperty(Operator::kPure)) return block;
-    // TODO(titzer): fix the special case of splitting of projections.
+    // TODO (titzer): fix the special case of splitting of projections. id:808 gh:816
     if (node->opcode() == IrOpcode::kProjection) return block;
 
     // The {block} is common dominator of all uses of {node}, so we cannot
@@ -1580,7 +1580,7 @@ class ScheduleLateNodeVisitor {
   }
 
   BasicBlock* GetBlockForUse(Edge edge) {
-    // TODO(titzer): ignore uses from dead nodes (not visited in PrepareUses()).
+    // TODO (titzer): ignore uses from dead nodes (not visited in PrepareUses()). id:830 gh:838
     // Dead uses only occur if the graph is not trimmed before scheduling.
     Node* use = edge.from();
     if (IrOpcode::IsPhiOpcode(use->opcode())) {
@@ -1589,7 +1589,7 @@ class ScheduleLateNodeVisitor {
       if (scheduler_->GetPlacement(use) == Scheduler::kCoupled) {
         TRACE("  inspecting uses of coupled #%d:%s\n", use->id(),
               use->op()->mnemonic());
-        // TODO(titzer): reenable once above TODO is addressed.
+        // TODO (titzer): reenable once above TODO is addressed. id:858 gh:866
         //        DCHECK_EQ(edge.to(), NodeProperties::GetControlInput(use));
         return GetCommonDominatorOfUses(use);
       }
@@ -1741,7 +1741,7 @@ void Scheduler::FuseFloatingControl(BasicBlock* block, Node* node) {
 
   // Iterate on phase 2: Compute special RPO and dominator tree.
   special_rpo_->UpdateSpecialRPO(block, schedule_->block(node));
-  // TODO(mstarzinger): Currently "iterate on" means "re-run". Fix that.
+  // TODO (mstarzinger): Currently "iterate on" means "re-run". Fix that. id:769 gh:770
   for (BasicBlock* b = block->rpo_next(); b != nullptr; b = b->rpo_next()) {
     b->set_dominator_depth(-1);
     b->set_dominator(nullptr);
@@ -1749,7 +1749,7 @@ void Scheduler::FuseFloatingControl(BasicBlock* block, Node* node) {
   PropagateImmediateDominators(block->rpo_next());
 
   // Iterate on phase 4: Schedule nodes early.
-  // TODO(mstarzinger): The following loop gathering the propagation roots is a
+  // TODO (mstarzinger): The following loop gathering the propagation roots is a id:738 gh:739
   // temporary solution and should be merged into the rest of the scheduler as
   // soon as the approach settled for all floating loops.
   NodeVector propagation_roots(control_flow_builder_->control_);
@@ -1771,7 +1771,7 @@ void Scheduler::FuseFloatingControl(BasicBlock* block, Node* node) {
   schedule_early_visitor.Run(&propagation_roots);
 
   // Move previously planned nodes.
-  // TODO(mstarzinger): Improve that by supporting bulk moves.
+  // TODO (mstarzinger): Improve that by supporting bulk moves. id:809 gh:817
   scheduled_nodes_.resize(schedule_->BasicBlockCount());
   MovePlannedNodes(block, schedule_->block(node));
 

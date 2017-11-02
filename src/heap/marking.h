@@ -199,7 +199,7 @@ inline void Bitmap::ClearBitsInCell<AccessMode::ATOMIC>(uint32_t cell_index,
 
 class Marking : public AllStatic {
  public:
-  // TODO(hpayer): The current mark bit operations use as default NON_ATOMIC
+  // TODO (hpayer): The current mark bit operations use as default NON_ATOMIC id:984 gh:993
   // mode for access. We should remove the default value or switch it with
   // ATOMIC as soon we add concurrency.
 

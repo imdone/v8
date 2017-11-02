@@ -659,7 +659,7 @@ class AllocateHeapNumberDescriptor : public CallInterfaceDescriptor {
 
 class BuiltinDescriptor : public CallInterfaceDescriptor {
  public:
-  // TODO(ishell): Where is kFunction??
+  // TODO (ishell): Where is kFunction?? id:1213 gh:1222
   DEFINE_PARAMETERS(kNewTarget, kArgumentsCount)
   DECLARE_DESCRIPTOR_WITH_CUSTOM_FUNCTION_TYPE(BuiltinDescriptor,
                                                CallInterfaceDescriptor)
@@ -780,7 +780,7 @@ class MathPowIntegerDescriptor : public CallInterfaceDescriptor {
   static const Register exponent();
 };
 
-// TODO(turbofan): We should probably rename this to GrowFastElementsDescriptor.
+// TODO (turbofan): We should probably rename this to GrowFastElementsDescriptor. id:1011 gh:1020
 class GrowArrayElementsDescriptor : public CallInterfaceDescriptor {
  public:
   DEFINE_PARAMETERS(kObject, kKey)

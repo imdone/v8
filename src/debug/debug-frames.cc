@@ -39,7 +39,7 @@ FrameInspector::FrameInspector(StandardFrame* frame, int inlined_frame_index,
   // Calculate the deoptimized frame.
   if (is_optimized_) {
     DCHECK_NOT_NULL(js_frame);
-    // TODO(turbofan): Deoptimization from AstGraphBuilder is not supported.
+    // TODO (turbofan): Deoptimization from AstGraphBuilder is not supported. id:960 gh:968
     if (js_frame->LookupCode()->is_turbofanned() &&
         !js_frame->function()->shared()->HasBytecodeArray()) {
       is_optimized_ = false;
@@ -70,12 +70,12 @@ int FrameInspector::GetParametersCount() {
 
 Handle<Object> FrameInspector::GetParameter(int index) {
   if (is_optimized_) return deoptimized_frame_->GetParameter(index);
-  // TODO(clemensh): Handle wasm_interpreted_frame_.
+  // TODO (clemensh): Handle wasm_interpreted_frame_. id:1079 gh:1087
   return handle(frame_->GetParameter(index), isolate_);
 }
 
 Handle<Object> FrameInspector::GetExpression(int index) {
-  // TODO(turbofan): Deoptimization from AstGraphBuilder is not supported.
+  // TODO (turbofan): Deoptimization from AstGraphBuilder is not supported. id:853 gh:861
   if (frame_->is_java_script() &&
       javascript_frame()->LookupCode()->is_turbofanned() &&
       !javascript_frame()->function()->shared()->HasBytecodeArray()) {
@@ -115,7 +115,7 @@ void FrameInspector::MaterializeStackLocals(Handle<JSObject> target,
   // First fill all parameters.
   for (int i = 0; i < scope_info->ParameterCount(); ++i) {
     // Do not materialize the parameter if it is shadowed by a context local.
-    // TODO(yangguo): check whether this is necessary, now that we materialize
+    // TODO (yangguo): check whether this is necessary, now that we materialize id:880 gh:888
     //                context locals as well.
     Handle<String> name(scope_info->ParameterName(i));
     if (ScopeInfo::VariableIsSynthetic(*name)) continue;
@@ -135,7 +135,7 @@ void FrameInspector::MaterializeStackLocals(Handle<JSObject> target,
     Handle<String> name(scope_info->StackLocalName(i));
     if (ScopeInfo::VariableIsSynthetic(*name)) continue;
     Handle<Object> value = GetExpression(scope_info->StackLocalIndex(i));
-    // TODO(yangguo): We convert optimized out values to {undefined} when they
+    // TODO (yangguo): We convert optimized out values to {undefined} when they id:921 gh:929
     // are passed to the debugger. Eventually we should handle them somehow.
     if (value->IsTheHole(isolate_)) {
       value = isolate_->factory()->undefined_value();

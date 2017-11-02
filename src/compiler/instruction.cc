@@ -704,7 +704,7 @@ std::ostream& operator<<(std::ostream& os,
   printable_instr.register_configuration_ = config;
   for (int j = block->first_instruction_index();
        j <= block->last_instruction_index(); j++) {
-    // TODO(svenpanne) Add some basic formatting to our streams.
+    // TODO (svenpanne) Add some basic formatting to our streams. id:566 gh:567
     SNPrintF(buf, "%5d", j);
     printable_instr.instr_ = code->InstructionAt(j);
     os << "   " << buf.start() << ": " << printable_instr << std::endl;
@@ -774,7 +774,7 @@ void InstructionSequence::ValidateDeferredBlockEntryPaths() const {
 }
 
 void InstructionSequence::ValidateSSA() const {
-  // TODO(mtrofin): We could use a local zone here instead.
+  // TODO (mtrofin): We could use a local zone here instead. id:498 gh:499
   BitVector definitions(VirtualRegisterCount(), zone());
   for (const Instruction* instruction : *this) {
     for (size_t i = 0; i < instruction->OutputCount(); ++i) {

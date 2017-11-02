@@ -79,7 +79,7 @@ int64_t FromCheckedNumeric(const internal::CheckedNumeric<int64_t> value) {
   // We could return max/min but we don't really expose what the maximum delta
   // is. Instead, return max/(-max), which is something that clients can reason
   // about.
-  // TODO(rvargas) crbug.com/332611: don't use internal values.
+  // TODO (rvargas) crbug.com/332611: don't use internal values. id:236 gh:237
   int64_t limit = std::numeric_limits<int64_t>::max();
   if (value.validity() == internal::RANGE_UNDERFLOW)
     limit = -limit;

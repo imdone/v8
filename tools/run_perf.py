@@ -429,7 +429,7 @@ class GraphConfig(Node):
     # A regular expression for results. If the parent graph provides a
     # regexp and the current suite has none, a string place holder for the
     # suite name is expected.
-    # TODO(machenbach): Currently that makes only sense for the leaf level.
+    # TODO (machenbach): Currently that makes only sense for the leaf level. id:2349 gh:2357
     # Multiple place holders for multiple levels are not supported.
     if parent.results_regexp:
       regexp_default = parent.results_regexp % re.escape(suite["name"])
@@ -494,7 +494,7 @@ class RunnableConfig(GraphConfig):
     return self.flags + (extra_flags or []) + [self.main] + suffix
 
   def GetCommand(self, shell_dir, extra_flags=None):
-    # TODO(machenbach): This requires +.exe if run on windows.
+    # TODO (machenbach): This requires +.exe if run on windows. id:2585 gh:2593
     extra_flags = extra_flags or []
     cmd = [os.path.join(shell_dir, self.binary)]
     if self.binary.endswith(".py"):
@@ -586,7 +586,7 @@ def BuildGraphConfigs(suite, arch, parent):
   configuration.
   """
 
-  # TODO(machenbach): Implement notion of cpu type?
+  # TODO (machenbach): Implement notion of cpu type? id:2547 gh:2556
   if arch not in suite.get("archs", SUPPORTED_ARCHS):
     return None
 
@@ -1124,7 +1124,7 @@ def Main(args):
         def Runner():
           """Output generator that reruns several times."""
           for i in xrange(0, max(1, runnable.run_count)):
-            # TODO(machenbach): Allow timeout per arch like with run_count per
+            # TODO (machenbach): Allow timeout per arch like with run_count per id:2447 gh:2456
             # arch.
             yield platform.Run(runnable, i)
 

@@ -885,7 +885,7 @@ void Builtins::Generate_InterpreterEntryTrampoline(MacroAssembler* masm) {
     __ mov(eax, Immediate(masm->isolate()->factory()->undefined_value()));
     __ jmp(&loop_check);
     __ bind(&loop_header);
-    // TODO(rmcilroy): Consider doing more than one push per loop iteration.
+    // TODO (rmcilroy): Consider doing more than one push per loop iteration. id:325 gh:326
     __ push(eax);
     // Continue loop if not done.
     __ bind(&loop_check);
@@ -1089,7 +1089,7 @@ void Generate_InterpreterPushZeroAndArgsAndReturnAddress(
 // the Generate_StackOverflowCheck.
 
 #ifdef _MSC_VER
-  // TODO(mythria): Move it to macro assembler.
+  // TODO (mythria): Move it to macro assembler. id:363 gh:364
   // In windows, we cannot increment the stack size by more than one page
   // (mimimum page size is 4KB) without accessing at least one byte on the
   // page. Check this:
@@ -2121,7 +2121,7 @@ void Builtins::Generate_CallFunction(MacroAssembler* masm,
       __ bind(&convert_to_object);
       {
         // Convert receiver using ToObject.
-        // TODO(bmeurer): Inline the allocation here to avoid building the frame
+        // TODO (bmeurer): Inline the allocation here to avoid building the frame id:347 gh:348
         // in the fast case? (fall back to AllocateInNewSpace?)
         FrameScope scope(masm, StackFrame::INTERNAL);
         __ SmiTag(eax);

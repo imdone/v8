@@ -380,7 +380,7 @@ TF_BUILTIN(RecordWrite, RecordWriteCodeStubAssembler) {
 
     BIND(&test_old_to_new_flags);
     {
-      // TODO(albertnetymk): Try to cache the page flag for value and object,
+      // TODO (albertnetymk): Try to cache the page flag for value and object, id:313 gh:314
       // instead of calling IsPageFlagSet each time.
       Node* value_in_new_space =
           IsPageFlagSet(value, MemoryChunk::kIsInNewSpaceMask);
@@ -510,7 +510,7 @@ TF_BUILTIN(DeleteProperty, DeletePropertyBaseAssembler) {
   BIND(&if_index);
   {
     Comment("integer index");
-    Goto(&slow);  // TODO(jkummerow): Implement more smarts here.
+    Goto(&slow);  // TODO (jkummerow): Implement more smarts here. id:265 gh:266
   }
 
   BIND(&if_unique_name);

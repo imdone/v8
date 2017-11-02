@@ -341,7 +341,7 @@ Response InjectedScript::getProperties(
     Response response = createExceptionDetails(
         tryCatch, groupName, generatePreview, exceptionDetails);
     if (!response.isSuccess()) return response;
-    // FIXME: make properties optional
+    // FIXME: make properties optional id:979 gh:987
     *properties = Array<PropertyDescriptor>::create();
     return Response::OK();
   }

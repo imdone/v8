@@ -46,7 +46,7 @@ bool IsKernelGeneratedSignal(siginfo_t* info) {
 class SigUnmaskStack {
  public:
   explicit SigUnmaskStack(sigset_t sigs) {
-    // TODO(eholk): consider using linux-syscall-support for calling this
+    // TODO (eholk): consider using linux-syscall-support for calling this id:1559 gh:1567
     // syscall.
     pthread_sigmask(SIG_UNBLOCK, &sigs, &old_mask_);
   }
@@ -117,7 +117,7 @@ bool TryHandleSignal(int signum, siginfo_t* info, ucontext_t* context) {
 // This function contains the platform independent portions of fault
 // classification.
 bool TryFindLandingPad(uintptr_t fault_addr, uintptr_t* landing_pad) {
-  // TODO(eholk): broad code range check
+  // TODO (eholk): broad code range check id:1612 gh:1621
 
   // Taking locks in a signal handler is risky because a fault in the signal
   // handler could lead to a deadlock when attempting to acquire the lock

@@ -1355,13 +1355,13 @@ void V8HeapExplorer::ExtractFixedArrayReferences(int entry, FixedArray* array) {
                          table->OffsetOfElementAt(key_index));
         SetInternalReference(table, entry, value_index, table->get(value_index),
                              table->OffsetOfElementAt(value_index));
-        // TODO(alph): Add a strong link (shortcut?) from key to value per
+        // TODO (alph): Add a strong link (shortcut?) from key to value per id:1196 gh:1204
         //             WeakMap the key was added to. See crbug.com/778739
       }
       break;
     }
 
-    // TODO(alph): Add special processing for other types of FixedArrays.
+    // TODO (alph): Add special processing for other types of FixedArrays. id:1468 gh:1476
 
     default:
       for (int i = 0, l = array->length(); i < l; ++i) {
@@ -2300,7 +2300,7 @@ class NullContextScope {
 bool HeapSnapshotGenerator::GenerateSnapshot() {
   v8_heap_explorer_.TagGlobalObjects();
 
-  // TODO(1562) Profiler assumes that any object that is in the heap after
+  // TODO (1562) Profiler assumes that any object that is in the heap after id:1168 gh:1176
   // full GC is reachable from the root when computing dominators.
   // This is not true for weakly reachable objects.
   // As a temporary solution we call GC twice.

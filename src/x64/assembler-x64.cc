@@ -2662,7 +2662,7 @@ void Assembler::fnclex() {
 
 
 void Assembler::sahf() {
-  // TODO(X64): Test for presence. Not all 64-bit intel CPU's have sahf
+  // TODO (X64): Test for presence. Not all 64-bit intel CPU's have sahf id:1671 gh:1679
   // in 64-bit mode. Test CpuID.
   DCHECK(IsEnabled(SAHF));
   EnsureSpace ensure_space(this);

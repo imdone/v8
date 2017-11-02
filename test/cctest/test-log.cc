@@ -796,7 +796,7 @@ TEST(LogFunctionEvents) {
 
     logger.StopLogging();
 
-    // TODO(cbruni): Extend with parsing/first-execution log statements.
+    // TODO (cbruni): Extend with parsing/first-execution log statements. id:1907 gh:1915
     CHECK_NULL(
         logger.FindLine("function,compile-lazy,", ",lazyNotExecutedFunction"));
     CHECK(logger.FindLine("function,compile-lazy,", ",lazyFunction"));

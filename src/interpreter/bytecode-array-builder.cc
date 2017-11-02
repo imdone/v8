@@ -75,7 +75,7 @@ Register BytecodeArrayBuilder::Receiver() const {
 }
 
 Register BytecodeArrayBuilder::Local(int index) const {
-  // TODO(marja): Make a DCHECK once crbug.com/706234 is fixed.
+  // TODO (marja): Make a DCHECK once crbug.com/706234 is fixed. id:1000 gh:1008
   CHECK_LT(index, locals_count());
   return Register(index);
 }
@@ -1080,7 +1080,7 @@ BytecodeArrayBuilder& BytecodeArrayBuilder::JumpIfNil(BytecodeLabel* label,
                                                       Token::Value op,
                                                       NilValue nil) {
   if (op == Token::EQ) {
-    // TODO(rmcilroy): Implement JumpIfUndetectable.
+    // TODO (rmcilroy): Implement JumpIfUndetectable. id:1228 gh:1236
     return CompareUndetectable().JumpIfTrue(ToBooleanMode::kAlreadyBoolean,
                                             label);
   } else {
@@ -1098,7 +1098,7 @@ BytecodeArrayBuilder& BytecodeArrayBuilder::JumpIfNotNil(BytecodeLabel* label,
                                                          Token::Value op,
                                                          NilValue nil) {
   if (op == Token::EQ) {
-    // TODO(rmcilroy): Implement JumpIfUndetectable.
+    // TODO (rmcilroy): Implement JumpIfUndetectable. id:1214 gh:1223
     return CompareUndetectable().JumpIfFalse(ToBooleanMode::kAlreadyBoolean,
                                              label);
   } else {

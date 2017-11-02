@@ -92,7 +92,7 @@ BUILTIN(TypedArrayPrototypeCopyWithin) {
 
   // TypedArray buffer may have been transferred/detached during parameter
   // processing above. Return early in this case, to prevent potential UAF error
-  // TODO(caitp): throw here, as though the full algorithm were performed (the
+  // TODO (caitp): throw here, as though the full algorithm were performed (the id:389 gh:390
   // throw would have come from ecma262/#sec-integerindexedelementget)
   // (see )
   if (V8_UNLIKELY(array->WasNeutered())) return *array;
@@ -187,7 +187,7 @@ BUILTIN(TypedArrayPrototypeIncludes) {
     index = CapRelativeIndex(num, 0, len);
   }
 
-  // TODO(cwhan.tunz): throw. See the above comment in CopyWithin.
+  // TODO (cwhan.tunz): throw. See the above comment in CopyWithin. id:416 gh:417
   if (V8_UNLIKELY(array->WasNeutered())) return isolate->heap()->false_value();
 
   Handle<Object> search_element = args.atOrUndefined(isolate, 1);
@@ -218,7 +218,7 @@ BUILTIN(TypedArrayPrototypeIndexOf) {
     index = CapRelativeIndex(num, 0, len);
   }
 
-  // TODO(cwhan.tunz): throw. See the above comment in CopyWithin.
+  // TODO (cwhan.tunz): throw. See the above comment in CopyWithin. id:323 gh:324
   if (V8_UNLIKELY(array->WasNeutered())) return Smi::FromInt(-1);
 
   Handle<Object> search_element = args.atOrUndefined(isolate, 1);
@@ -253,7 +253,7 @@ BUILTIN(TypedArrayPrototypeLastIndexOf) {
 
   if (index < 0) return Smi::FromInt(-1);
 
-  // TODO(cwhan.tunz): throw. See the above comment in CopyWithin.
+  // TODO (cwhan.tunz): throw. See the above comment in CopyWithin. id:361 gh:362
   if (V8_UNLIKELY(array->WasNeutered())) return Smi::FromInt(-1);
 
   Handle<Object> search_element = args.atOrUndefined(isolate, 1);
@@ -470,7 +470,7 @@ BUILTIN(TypedArrayPrototypeSet) {
   uint32_t uint_offset;
   CHECK(offset->ToUint32(&uint_offset));
 
-  // TODO(cwhan.tunz): Implement CopyElements for overlapping cases, and use
+  // TODO (cwhan.tunz): Implement CopyElements for overlapping cases, and use id:345 gh:346
   // TypedArrayCopyElements for all case instead of this result code based
   // branches
   Handle<Smi> result_code;
@@ -568,7 +568,7 @@ BUILTIN(TypedArrayPrototypeSlice) {
       isolate, result_array,
       TypedArraySpeciesCreateByLength(isolate, array, method, count));
 
-  // TODO(cwhan.tunz): should throw.
+  // TODO (cwhan.tunz): should throw. id:390 gh:391
   if (V8_UNLIKELY(array->WasNeutered())) return *result_array;
 
   if (count == 0) return *result_array;

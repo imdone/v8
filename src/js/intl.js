@@ -158,7 +158,7 @@ function GetDefaultICULocaleJS(service) {
   }
   // Check that this is a valid default for this service,
   // otherwise fall back to "und"
-  // TODO(littledan,jshin): AvailableLocalesOf sometimes excludes locales
+  // TODO (littledan,jshin): AvailableLocalesOf sometimes excludes locales id:1241 gh:1249
   // which don't require tailoring, but work fine with root data. Look into
   // exposing this fact in ICU or the way Chrome bundles data.
   return (IS_UNDEFINED(service) ||
@@ -357,7 +357,7 @@ function lookupSupportedLocalesOf(requestedLocales, availableLocales) {
  * Locales appear in the same order in the returned list as in the input list.
  */
 function bestFitSupportedLocalesOf(requestedLocales, availableLocales) {
-  // TODO(cira): implement better best fit algorithm.
+  // TODO (cira): implement better best fit algorithm. id:1227 gh:1235
   return lookupSupportedLocalesOf(requestedLocales, availableLocales);
 }
 
@@ -403,7 +403,7 @@ function getGetOption(options, caller) {
 
 /**
  * Ecma 402 9.2.5
- * TODO(jshin): relevantExtensionKeys and localeData need to be taken into
+ * TODO (jshin): relevantExtensionKeys and localeData need to be taken into id:1025 gh:1033
  * account per spec.
  * Compares a BCP 47 language priority list requestedLocales against the locales
  * in availableLocales and determines the best available language to meet the
@@ -480,7 +480,7 @@ function lookupMatcher(service, requestedLocales) {
  * implementation dependend algorithm.
  */
 function bestFitMatcher(service, requestedLocales) {
-  // TODO(cira): implement better best fit algorithm.
+  // TODO (cira): implement better best fit algorithm. id:1282 gh:1290
   return lookupMatcher(service, requestedLocales);
 }
 
@@ -768,7 +768,7 @@ function canonicalizeLanguageTag(localeID) {
 
   // ECMA 402 6.2.3
   var tag = %CanonicalizeLanguageTag(localeString);
-  // TODO(jshin): This should not happen because the structural validity
+  // TODO (jshin): This should not happen because the structural validity id:1049 gh:1057
   // is already checked. If that's the case, remove this.
   if (tag === 'invalid-tag') {
     throw %make_range_error(kInvalidLanguageTag, localeString);
@@ -955,7 +955,7 @@ function CreateCollator(locales, options) {
 
   var locale = resolveLocale('collator', locales, options);
 
-  // TODO(jshin): ICU now can take kb, kc, etc. Switch over to using ICU
+  // TODO (jshin): ICU now can take kb, kc, etc. Switch over to using ICU id:1242 gh:1251
   // directly. See Collator::InitializeCollator and
   // Collator::CreateICUCollator in src/objects/intl-objects.cc
   // ICU can't take kb, kc... parameters through localeID, so we need to pass
@@ -1856,7 +1856,7 @@ function canonicalizeTimeZoneID(tzID) {
     return 'UTC';
   }
 
-  // TODO(jshin): Add support for Etc/GMT[+-]([1-9]|1[0-2])
+  // TODO (jshin): Add support for Etc/GMT[+-]([1-9]|1[0-2]) id:1310 gh:1318
 
   // We expect only _, '-' and / beside ASCII letters.
   // All inputs should conform to Area/Location(/Location)* from now on.

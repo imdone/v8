@@ -39,7 +39,7 @@ class V8_EXPORT_PRIVATE AccountingAllocator {
   void MemoryPressureNotification(MemoryPressureLevel level);
   // Configures the zone segment pool size limits so the pool does not
   // grow bigger than max_pool_size.
-  // TODO(heimbuef): Do not accept segments to pool that are larger than
+  // TODO (heimbuef): Do not accept segments to pool that are larger than id:1759 gh:1767
   // their size class requires. Sometimes the zones generate weird segments.
   void ConfigureSegmentPool(const size_t max_pool_size);
 

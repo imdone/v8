@@ -18,12 +18,12 @@ class IA32OperandGenerator final : public OperandGenerator {
       : OperandGenerator(selector) {}
 
   InstructionOperand UseByteRegister(Node* node) {
-    // TODO(titzer): encode byte register use constraints.
+    // TODO (titzer): encode byte register use constraints. id:607 gh:608
     return UseFixed(node, edx);
   }
 
   InstructionOperand DefineAsByteRegister(Node* node) {
-    // TODO(titzer): encode byte register def constraints.
+    // TODO (titzer): encode byte register def constraints. id:563 gh:564
     return DefineAsRegister(node);
   }
 
@@ -68,7 +68,7 @@ class IA32OperandGenerator final : public OperandGenerator {
       case IrOpcode::kRelocatableInt64Constant:
         return true;
       case IrOpcode::kHeapConstant: {
-// TODO(bmeurer): We must not dereference handles concurrently. If we
+// TODO (bmeurer): We must not dereference handles concurrently. If we id:495 gh:496
 // really have to this here, then we need to find a way to put this
 // information on the HeapConstant node already.
 #if 0
@@ -268,7 +268,7 @@ void InstructionSelector::VisitLoad(Node* node) {
 }
 
 void InstructionSelector::VisitProtectedLoad(Node* node) {
-  // TODO(eholk)
+  // TODO (eholk) id:523 gh:524
   UNIMPLEMENTED();
 }
 
@@ -369,7 +369,7 @@ void InstructionSelector::VisitStore(Node* node) {
 }
 
 void InstructionSelector::VisitProtectedStore(Node* node) {
-  // TODO(eholk)
+  // TODO (eholk) id:546 gh:547
   UNIMPLEMENTED();
 }
 
@@ -543,7 +543,7 @@ void VisitBinop(InstructionSelector* selector, Node* node,
   InstructionOperand outputs[2];
   size_t output_count = 0;
 
-  // TODO(turbofan): match complex addressing modes.
+  // TODO (turbofan): match complex addressing modes. id:608 gh:609
   if (left == right) {
     // If both inputs refer to the same operand, enforce allocating a register
     // for both of them to ensure that we don't end up generating code like
@@ -1268,7 +1268,7 @@ MachineType MachineTypeForNarrow(Node* node, Node* hint_node) {
 // possible.
 InstructionCode TryNarrowOpcodeSize(InstructionCode opcode, Node* left,
                                     Node* right, FlagsContinuation* cont) {
-  // TODO(epertoso): we can probably get some size information out of phi nodes.
+  // TODO (epertoso): we can probably get some size information out of phi nodes. id:564 gh:565
   // If the load representations don't match, both operands will be
   // zero/sign-extended to 32bit.
   MachineType left_type = MachineTypeForNarrow(left, right);

@@ -48,7 +48,7 @@ LookupIterator LookupIterator::PropertyOrElement(Isolate* isolate,
                                                  Handle<Object> key,
                                                  bool* success,
                                                  Configuration configuration) {
-  // TODO(mslekova): come up with better way to avoid duplication
+  // TODO (mslekova): come up with better way to avoid duplication id:1313 gh:1320
   uint32_t index = 0;
   if (key->ToArrayIndex(&index)) {
     *success = true;
@@ -213,7 +213,7 @@ Handle<JSReceiver> LookupIterator::GetRootForNonJSReceiver(
   // the wrapper. Hence we can skip generating the wrapper for all other cases.
   if (index != kMaxUInt32 && receiver->IsString() &&
       index < static_cast<uint32_t>(String::cast(*receiver)->length())) {
-    // TODO(verwaest): Speed this up. Perhaps use a cached wrapper on the native
+    // TODO (verwaest): Speed this up. Perhaps use a cached wrapper on the native id:1029 gh:1037
     // context, ensuring that we don't leak it into JS?
     Handle<JSFunction> constructor = isolate->string_function();
     Handle<JSObject> result = isolate->factory()->NewJSObject(constructor);
@@ -629,7 +629,7 @@ void LookupIterator::TransitionToAccessorPair(Handle<Object> pair,
   PropertyDetails details(kAccessor, attributes, PropertyCellType::kMutable);
 
   if (IsElement()) {
-    // TODO(verwaest): Move code into the element accessor.
+    // TODO (verwaest): Move code into the element accessor. id:1286 gh:1294
     isolate_->CountUsage(v8::Isolate::kIndexAccessor);
     Handle<SeededNumberDictionary> dictionary =
         JSObject::NormalizeElements(receiver);

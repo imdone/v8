@@ -9,7 +9,7 @@ dump_build_config.py path/to/file.json [key1=value1 ...]
 
 Raw gyp values are supported - they will be tranformed into valid json.
 """
-# TODO(machenbach): Remove this when gyp is deprecated.
+# TODO (machenbach): Remove this when gyp is deprecated. id:2354 gh:2362
 
 import json
 import os

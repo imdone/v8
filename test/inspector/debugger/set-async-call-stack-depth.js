@@ -2,7 +2,7 @@
 // Use of this source code is governed by a BSD-style license that can be
 // found in the LICENSE file.
 
-// TODO(kozyatinskiy): fix or remove it later with new stack traces it's almost
+// TODO (kozyatinskiy): fix or remove it later with new stack traces it's almost id:1728 gh:1736
 // imposible to hit limit.
 let {session, contextGroup, Protocol} = InspectorTest.start('Checks that we report not more then maxDepth call chains.');
 

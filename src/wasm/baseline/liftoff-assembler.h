@@ -105,18 +105,18 @@ class LiftoffAssembler : public TurboAssembler {
   struct CacheState {
     MOVE_ONLY_WITH_DEFAULT_CONSTRUCTORS(CacheState);
 
-    // TODO(clemensh): Improve memory management here; avoid std::vector.
+    // TODO (clemensh): Improve memory management here; avoid std::vector. id:1382 gh:1390
     std::vector<VarState> stack_state;
     RegList used_registers = 0;
-    // TODO(clemensh): Replace this by CountLeadingZeros(kGpCacheRegs) once that
+    // TODO (clemensh): Replace this by CountLeadingZeros(kGpCacheRegs) once that id:1564 gh:1572
     // method is constexpr.
     static constexpr int kMaxRegisterCode = 7;
     uint32_t register_use_count[kMaxRegisterCode + 1] = {0};
-    // TODO(clemensh): Remove stack_base; use ControlBase::stack_depth.
+    // TODO (clemensh): Remove stack_base; use ControlBase::stack_depth. id:1617 gh:1625
     uint32_t stack_base = 0;
     Register last_spilled_reg = Register::from_code<0>();
 
-    // TODO(clemensh): Don't copy the full parent state (this makes us N^2).
+    // TODO (clemensh): Don't copy the full parent state (this makes us N^2). id:1348 gh:1356
     void InitMerge(const CacheState& source, uint32_t num_locals,
                    uint32_t arity);
 

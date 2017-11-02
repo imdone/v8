@@ -70,7 +70,7 @@ class SimulatorStack : public v8::internal::AllStatic {
 // This macro must be called from a C++ method. It relies on being able to take
 // the address of "this" to get a value on the current execution stack and then
 // calculates the stack limit based on that value.
-// NOTE: The check for overflow is not safe as there is no guarantee that the
+// NOTE: The check for overflow is not safe as there is no guarantee that the id:1039 gh:1047
 // running thread has its stack in all memory up to address 0x00000000.
 #define GENERATED_CODE_STACK_LIMIT(limit) \
   (reinterpret_cast<uintptr_t>(this) >= limit ? \

@@ -197,7 +197,7 @@ RUNTIME_FUNCTION(Runtime_DeclareGlobals) {
   return DeclareGlobals(isolate, declarations, flags, feedback_vector);
 }
 
-// TODO(ishell): merge this with Runtime::kDeclareGlobals once interpreter
+// TODO (ishell): merge this with Runtime::kDeclareGlobals once interpreter id:1602 gh:1610
 // is able to pass feedback vector.
 RUNTIME_FUNCTION(Runtime_DeclareGlobalsForInterpreter) {
   HandleScope scope(isolate);

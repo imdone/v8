@@ -40,7 +40,7 @@ class PartialSerializer : public Serializer<> {
   v8::SerializeEmbedderFieldsCallback serialize_embedder_fields_;
   GlobalDictionary* rehashable_global_dictionary_;
   // Indicates whether we only serialized hash tables that we can rehash.
-  // TODO(yangguo): generalize rehashing, and remove this flag.
+  // TODO (yangguo): generalize rehashing, and remove this flag. id:1268 gh:1276
   bool can_be_rehashed_;
   DISALLOW_COPY_AND_ASSIGN(PartialSerializer);
 };

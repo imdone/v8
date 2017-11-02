@@ -148,7 +148,7 @@ class CcTest {
     allocator_ = allocator;
   }
 
-  // TODO(dcarney): Remove.
+  // TODO (dcarney): Remove. id:1674 gh:1682
   // This must be called first in a test.
   static void InitializeVM();
 

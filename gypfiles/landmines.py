@@ -44,7 +44,7 @@ def get_build_dir(build_tool, is_iphone=False):
   ret = None
   if build_tool == 'xcode':
     ret = os.path.join(SRC_DIR, 'xcodebuild')
-  elif build_tool in ['make', 'ninja', 'ninja-ios']:  # TODO: Remove ninja-ios.
+  elif build_tool in ['make', 'ninja', 'ninja-ios']:  # TODO: Remove ninja-ios. id:22 gh:23
     if 'CHROMIUM_OUT_DIR' in os.environ:
       output_dir = os.environ.get('CHROMIUM_OUT_DIR').strip()
       if not output_dir:

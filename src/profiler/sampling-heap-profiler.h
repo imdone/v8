@@ -104,7 +104,7 @@ class SamplingHeapProfiler {
     }
     AllocationNode* FindOrAddChildNode(const char* name, int script_id,
                                        int start_position);
-    // TODO(alph): make use of unordered_map's here. Pay attention to
+    // TODO (alph): make use of unordered_map's here. Pay attention to id:1453 gh:1461
     // iterator invalidation during TranslateAllocationNode.
     std::map<size_t, unsigned int> allocations_;
     std::map<FunctionId, AllocationNode*> children_;
@@ -173,7 +173,7 @@ class SamplingAllocationObserver : public AllocationObserver {
     USE(heap_);
     DCHECK(heap_->gc_state() == Heap::NOT_IN_GC);
     if (soon_object) {
-      // TODO(ofrobots): it would be better to sample the next object rather
+      // TODO (ofrobots): it would be better to sample the next object rather id:1197 gh:1205
       // than skipping this sample epoch if soon_object happens to be null.
       profiler_->SampleObject(soon_object, size);
     }

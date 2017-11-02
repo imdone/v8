@@ -939,7 +939,7 @@ void Builtins::Generate_InterpreterEntryTrampoline(MacroAssembler* masm) {
     __ LoadRoot(a5, Heap::kUndefinedValueRootIndex);
     __ Branch(&loop_check);
     __ bind(&loop_header);
-    // TODO(rmcilroy): Consider doing more than one push per loop iteration.
+    // TODO (rmcilroy): Consider doing more than one push per loop iteration. id:448 gh:449
     __ push(a5);
     // Continue loop if not done.
     __ bind(&loop_check);
@@ -2033,7 +2033,7 @@ void Builtins::Generate_CallFunction(MacroAssembler* masm,
       __ bind(&convert_to_object);
       {
         // Convert receiver using ToObject.
-        // TODO(bmeurer): Inline the allocation here to avoid building the frame
+        // TODO (bmeurer): Inline the allocation here to avoid building the frame id:364 gh:365
         // in the fast case? (fall back to AllocateInNewSpace?)
         FrameScope scope(masm, StackFrame::INTERNAL);
         __ SmiTag(a0);

@@ -100,7 +100,7 @@ runTestShouldBeTrue("var VarA = class A { constructor() {} }; var VarB = class B
 runTestShouldBeTrue("var VarA = class A { constructor() {} }; var VarB = class B extends VarA { constructor() { super(); this.base = VarA; this.derived = B; this.derivedVar = VarB; } }; (new VarB).derived === VarB");
 runTestShouldBeTrue("var VarA = class A { constructor() {} }; var VarB = class B extends VarA { constructor() { super(); this.base = VarA; this.derived = B; this.derivedVar = VarB; } }; (new VarB).derivedVar === VarB");
 
-// FIXME: Class statement binding should be like `let`, not `var`.
+// FIXME: Class statement binding should be like `let`, not `var`. id:2332 gh:2340
 debug(''); debug('Class statement binding in other circumstances');
 runTestShouldThrow("var result = A; result");
 runTestShouldThrow("var result = A; class A {}; result");

@@ -313,12 +313,12 @@ class RegExpCharacterClass final : public RegExpTree {
   bool IsTextElement() override { return true; }
   int min_match() override { return 1; }
   // The character class may match two code units for unicode regexps.
-  // TODO(yangguo): we should split this class for usage in TextElement, and
+  // TODO (yangguo): we should split this class for usage in TextElement, and id:1297 gh:1305
   //                make max_match() dependent on the character class content.
   int max_match() override { return 2; }
   void AppendToText(RegExpText* text, Zone* zone) override;
   CharacterSet character_set() { return set_; }
-  // TODO(lrn): Remove need for complex version if is_standard that
+  // TODO (lrn): Remove need for complex version if is_standard that id:1494 gh:1502
   // recognizes a mangled standard set and just do { return set_.is_special(); }
   bool is_standard(Zone* zone);
   // Returns a value representing the standard character set if is_standard()

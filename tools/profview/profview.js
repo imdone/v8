@@ -645,7 +645,7 @@ class CallTreeView {
                      this.currentState.start,
                      this.currentState.end,
                      stackProcessor);
-    // TODO(jarin) Handle the case when tick count is negative.
+    // TODO (jarin) Handle the case when tick count is negative. id:2538 gh:2546
 
     this.tree = stackProcessor.tree;
 

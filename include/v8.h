@@ -541,7 +541,7 @@ template <class T> class PersistentBase {
 
   /**
    *  Install a finalization callback on this object.
-   *  NOTE: There is no guarantee as to *when* or even *if* the callback is
+   *  NOTE: There is no guarantee as to *when* or even *if* the callback is id:24 gh:26
    *  invoked. The invocation is performed solely on a best effort basis.
    *  As always, GC-based finalization should *not* be relied upon for any
    *  critical form of resource management!
@@ -563,7 +563,7 @@ template <class T> class PersistentBase {
   template<typename P>
   V8_INLINE P* ClearWeak();
 
-  // TODO(dcarney): remove this.
+  // TODO (dcarney): remove this. id:17 gh:18
   V8_INLINE void ClearWeak() { ClearWeak<void>(); }
 
   /**
@@ -648,7 +648,7 @@ class NonCopyablePersistentTraits {
                              NonCopyablePersistent* dest) {
     Uncompilable<Object>();
   }
-  // TODO(dcarney): come up with a good compile error here.
+  // TODO (dcarney): come up with a good compile error here. id:11 gh:12
   template<class O> V8_INLINE static void Uncompilable() {
     TYPE_CHECK(O, Primitive);
   }
@@ -736,7 +736,7 @@ template <class T, class M> class Persistent : public PersistentBase<T> {
     if (M::kResetInDestructor) this->Reset();
   }
 
-  // TODO(dcarney): this is pretty useless, fix or remove
+  // TODO (dcarney): this is pretty useless, fix or remove id:4 gh:7
   template <class S>
   V8_INLINE static Persistent<T>& Cast(const Persistent<S>& that) {  // NOLINT
 #ifdef V8_ENABLE_CHECKS
@@ -747,7 +747,7 @@ template <class T, class M> class Persistent : public PersistentBase<T> {
     return reinterpret_cast<Persistent<T>&>(const_cast<Persistent<S>&>(that));
   }
 
-  // TODO(dcarney): this is pretty useless, fix or remove
+  // TODO (dcarney): this is pretty useless, fix or remove id:30 gh:31
   template <class S>
   V8_INLINE Persistent<S>& As() const {  // NOLINT
     return Persistent<S>::Cast(*this);
@@ -1209,7 +1209,7 @@ class V8_EXPORT Module {
    * ModuleEvaluation
    *
    * Returns the completion value.
-   * TODO(neis): Be more precise or say nothing.
+   * TODO (neis): Be more precise or say nothing. id:25 gh:27
    */
   V8_WARN_UNUSED_RESULT MaybeLocal<Value> Evaluate(Local<Context> context);
 
@@ -1287,7 +1287,7 @@ class V8_EXPORT ScriptCompiler {
     CachedData(const uint8_t* data, int length,
                BufferPolicy buffer_policy = BufferNotOwned);
     ~CachedData();
-    // TODO(marja): Async compilation; add constructors which take a callback
+    // TODO (marja): Async compilation; add constructors which take a callback id:18 gh:19
     // which will be called when V8 no longer needs the data.
     const uint8_t* data;
     int length;
@@ -1660,7 +1660,7 @@ class V8_EXPORT Message {
   bool IsSharedCrossOrigin() const;
   bool IsOpaque() const;
 
-  // TODO(1245381): Print to a string instead of on a FILE.
+  // TODO (1245381): Print to a string instead of on a FILE. id:12 gh:13
   static void PrintCurrentStackTrace(Isolate* isolate, FILE* out);
 
   static const int kNoLineNumberInfo = 0;
@@ -2722,7 +2722,7 @@ class V8_EXPORT String : public Name {
 
   V8_INLINE static String* Cast(v8::Value* obj);
 
-  // TODO(dcarney): remove with deprecation of New functions.
+  // TODO (dcarney): remove with deprecation of New functions. id:5 gh:8
   enum NewStringType {
     kNormalString = static_cast<int>(v8::NewStringType::kNormal),
     kInternalizedString = static_cast<int>(v8::NewStringType::kInternalized)
@@ -3073,7 +3073,7 @@ typedef void (*AccessorNameSetterCallback)(
  * accessors have an explicit access control parameter which specifies
  * the kind of cross-context access that should be allowed.
  *
- * TODO(dcarney): Remove PROHIBITS_OVERWRITING as it is now unused.
+ * TODO (dcarney): Remove PROHIBITS_OVERWRITING as it is now unused. id:31 gh:33
  */
 enum AccessControl {
   DEFAULT               = 0,
@@ -3498,7 +3498,7 @@ class V8_EXPORT Object : public Value {
    * Clone this object with a fast but shallow copy.  Values will point
    * to the same values as the original object.
    */
-  // TODO(dcarney): take an isolate and optionally bail out?
+  // TODO (dcarney): take an isolate and optionally bail out? id:86 gh:88
   Local<Object> Clone();
 
   /**
@@ -4169,7 +4169,7 @@ class V8_EXPORT Proxy : public Object {
   static void CheckCast(Value* obj);
 };
 
-// TODO(mtrofin): rename WasmCompiledModule to WasmModuleObject, for
+// TODO (mtrofin): rename WasmCompiledModule to WasmModuleObject, for id:19 gh:20
 // consistency with internal APIs.
 class V8_EXPORT WasmCompiledModule : public Object {
  public:
@@ -4222,7 +4222,7 @@ class V8_EXPORT WasmCompiledModule : public Object {
   V8_INLINE static WasmCompiledModule* Cast(Value* obj);
 
  private:
-  // TODO(ahaas): please remove the friend once streamed compilation is
+  // TODO (ahaas): please remove the friend once streamed compilation is id:40 gh:41
   // implemented
   friend class WasmModuleObjectBuilder;
 
@@ -4241,7 +4241,7 @@ class V8_EXPORT WasmCompiledModule : public Object {
   static void CheckCast(Value* obj);
 };
 
-// TODO(mtrofin): when streaming compilation is done, we can rename this
+// TODO (mtrofin): when streaming compilation is done, we can rename this id:6 gh:9
 // to simply WasmModuleObjectBuilder
 class V8_EXPORT WasmModuleObjectBuilderStreaming final {
  public:
@@ -4291,7 +4291,7 @@ class V8_EXPORT WasmModuleObjectBuilder final {
 
  private:
   Isolate* isolate_ = nullptr;
-  // TODO(ahaas): We probably need none of this below here once streamed
+  // TODO (ahaas): We probably need none of this below here once streamed id:69 gh:70
   // compilation is implemented.
   typedef std::pair<std::unique_ptr<const uint8_t[]>, size_t> Buffer;
 
@@ -4355,7 +4355,7 @@ class V8_EXPORT ArrayBuffer : public Object {
      * Reserved |length| bytes, but do not commit the memory. Must call
      * |SetProtection| to make memory accessible.
      */
-    // TODO(eholk): make this pure virtual once blink implements this.
+    // TODO (eholk): make this pure virtual once blink implements this. id:87 gh:89
     virtual void* Reserve(size_t length);
 
     /**
@@ -4371,7 +4371,7 @@ class V8_EXPORT ArrayBuffer : public Object {
      * That memory is guaranteed to be previously allocated by |Allocate| or
      * |Reserve|, depending on |mode|.
      */
-    // TODO(eholk): make this pure virtual once blink implements this.
+    // TODO (eholk): make this pure virtual once blink implements this. id:47 gh:48
     virtual void Free(void* data, size_t length, AllocationMode mode);
 
     enum class Protection { kNoAccess, kReadWrite };
@@ -4383,7 +4383,7 @@ class V8_EXPORT ArrayBuffer : public Object {
      * memory, changing the protection to kReadWrite must also ensure the memory
      * is committed.
      */
-    // TODO(eholk): make this pure virtual once blink implements this.
+    // TODO (eholk): make this pure virtual once blink implements this. id:41 gh:42
     virtual void SetProtection(void* data, size_t length,
                                Protection protection);
 
@@ -5116,14 +5116,14 @@ class V8_EXPORT Template : public Data {
   void SetNativeDataProperty(
       Local<String> name, AccessorGetterCallback getter,
       AccessorSetterCallback setter = 0,
-      // TODO(dcarney): gcc can't handle Local below
+      // TODO (dcarney): gcc can't handle Local below id:32 gh:34
       Local<Value> data = Local<Value>(), PropertyAttribute attribute = None,
       Local<AccessorSignature> signature = Local<AccessorSignature>(),
       AccessControl settings = DEFAULT);
   void SetNativeDataProperty(
       Local<Name> name, AccessorNameGetterCallback getter,
       AccessorNameSetterCallback setter = 0,
-      // TODO(dcarney): gcc can't handle Local below
+      // TODO (dcarney): gcc can't handle Local below id:70 gh:71
       Local<Value> data = Local<Value>(), PropertyAttribute attribute = None,
       Local<AccessorSignature> signature = Local<AccessorSignature>(),
       AccessControl settings = DEFAULT);
@@ -5199,7 +5199,7 @@ typedef void (*NamedPropertyEnumeratorCallback)(
     const PropertyCallbackInfo<Array>& info);
 
 
-// TODO(dcarney): Deprecate and remove previous typedefs, and replace
+// TODO (dcarney): Deprecate and remove previous typedefs, and replace id:88 gh:90
 // GenericNamedPropertyFooCallback with just NamedPropertyFooCallback.
 
 /**
@@ -5875,7 +5875,7 @@ class V8_EXPORT ObjectTemplate : public Template {
    * \param data A piece of data that will be passed to the callbacks
    *   whenever they are invoked.
    */
-  // TODO(dcarney): deprecate
+  // TODO (dcarney): deprecate id:48 gh:49
   void SetNamedPropertyHandler(NamedPropertyGetterCallback getter,
                                NamedPropertySetterCallback setter = 0,
                                NamedPropertyQueryCallback query = 0,
@@ -5912,7 +5912,7 @@ class V8_EXPORT ObjectTemplate : public Template {
    * \param data A piece of data that will be passed to the callbacks
    *   whenever they are invoked.
    */
-  // TODO(dcarney): deprecate
+  // TODO (dcarney): deprecate id:42 gh:43
   void SetIndexedPropertyHandler(
       IndexedPropertyGetterCallback getter,
       IndexedPropertySetterCallback setter = 0,

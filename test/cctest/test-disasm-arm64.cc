@@ -891,7 +891,7 @@ TEST_(load_store) {
   COMPARE(str(x20, MemOperand(x21, 255, PostIndex)), "str x20, [x21], #255");
   COMPARE(str(x22, MemOperand(x23, -256, PostIndex)), "str x22, [x23], #-256");
 
-  // TODO(all): Fix this for jssp.
+  // TODO (all): Fix this for jssp. id:1833 gh:1842
   COMPARE(ldr(w24, MemOperand(jssp)), "ldr w24, [jssp]");
   COMPARE(ldr(x25, MemOperand(jssp, 8)), "ldr x25, [jssp, #8]");
   COMPARE(str(w26, MemOperand(jssp, 4, PreIndex)), "str w26, [jssp, #4]!");
@@ -983,7 +983,7 @@ TEST_(load_store_regoffset) {
   COMPARE(strh(w21, MemOperand(x22, x23, SXTX, 1)),
           "strh w21, [x22, x23, sxtx #1]");
 
-  // TODO(all): Fix this for jssp.
+  // TODO (all): Fix this for jssp. id:1650 gh:1658
   COMPARE(ldr(x0, MemOperand(jssp, wzr, SXTW)), "ldr x0, [jssp, wzr, sxtw]");
   COMPARE(str(x1, MemOperand(jssp, xzr)), "str x1, [jssp, xzr]");
 
@@ -1011,7 +1011,7 @@ TEST_(load_store_byte) {
   COMPARE(strb(w24, MemOperand(x25, 255, PostIndex)), "strb w24, [x25], #255");
   COMPARE(strb(w26, MemOperand(cp, -256, PostIndex)),
           "strb w26, [cp], #-256");
-  // TODO(all): Fix this for jssp.
+  // TODO (all): Fix this for jssp. id:1854 gh:1862
   COMPARE(ldrb(w28, MemOperand(jssp, 3, PostIndex)), "ldrb w28, [jssp], #3");
   COMPARE(strb(fp, MemOperand(jssp, -42, PreIndex)), "strb w29, [jssp, #-42]!");
   COMPARE(ldrsb(w0, MemOperand(x1)), "ldrsb w0, [x1]");
@@ -1043,7 +1043,7 @@ TEST_(load_store_half) {
   COMPARE(strh(w24, MemOperand(x25, 255, PostIndex)), "strh w24, [x25], #255");
   COMPARE(strh(w26, MemOperand(cp, -256, PostIndex)),
           "strh w26, [cp], #-256");
-  // TODO(all): Fix this for jssp.
+  // TODO (all): Fix this for jssp. id:1904 gh:1913
   COMPARE(ldrh(w28, MemOperand(jssp, 3, PostIndex)), "ldrh w28, [jssp], #3");
   COMPARE(strh(fp, MemOperand(jssp, -42, PreIndex)), "strh w29, [jssp, #-42]!");
   COMPARE(ldrh(w30, MemOperand(x0, 255)), "ldurh w30, [x0, #255]");

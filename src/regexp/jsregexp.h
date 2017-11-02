@@ -482,7 +482,7 @@ class RegExpNode: public ZoneObject {
 
   // Collects information on the possible code units (mod 128) that can match if
   // we look forward.  This is used for a Boyer-Moore-like string searching
-  // implementation.  TODO(erikcorry):  This should share more code with
+  // implementation.  TODO (erikcorry):  This should share more code with id:1472 gh:1480
   // EatsAtLeast, GetQuickCheckDetails.  The budget argument is used to limit
   // the number of nodes we are willing to look at in order to create this data.
   static const int kRecursionBudget = 200;
@@ -626,7 +626,7 @@ class ActionNode: public SeqRegExpNode {
   virtual void FillInBMInfo(Isolate* isolate, int offset, int budget,
                             BoyerMooreLookahead* bm, bool not_at_start);
   ActionType action_type() { return action_type_; }
-  // TODO(erikcorry): We should allow some action nodes in greedy loops.
+  // TODO (erikcorry): We should allow some action nodes in greedy loops. id:1296 gh:1304
   virtual int GreedyLoopTextLength() { return kNodeIsTooComplexForGreedyLoops; }
 
  private:

@@ -50,7 +50,7 @@ class MoveOptimizerTest : public InstructionSequenceTest {
     return false;
   }
 
-  // TODO(dcarney): add a verifier.
+  // TODO (dcarney): add a verifier. id:2388 gh:2396
   void Optimize() {
     WireBlocks();
     if (FLAG_trace_turbo) {

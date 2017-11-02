@@ -140,7 +140,7 @@ class GlobalHandles {
   // them as pending.
   void IdentifyWeakHandles(WeakSlotCallback f);
 
-  // NOTE: Five ...NewSpace... functions below are used during
+  // NOTE: Five ...NewSpace... functions below are used during id:942 gh:950
   // scavenge collections and iterate over sets of handles that are
   // guaranteed to contain all handles holding new space objects (but
   // may also include old space objects).

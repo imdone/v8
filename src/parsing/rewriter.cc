@@ -183,7 +183,7 @@ void Processor::VisitIfStatement(IfStatement* node) {
 void Processor::VisitIterationStatement(IterationStatement* node) {
   // The statement may have to produce a value, so always assign undefined
   // before.
-  // TODO(verwaest): Omit it if we know that there's no break/continue leaving
+  // TODO (verwaest): Omit it if we know that there's no break/continue leaving id:1450 gh:1458
   // it early.
   DCHECK(breakable_ || !is_set_);
   BreakableScope scope(this);
@@ -275,7 +275,7 @@ void Processor::VisitTryFinallyStatement(TryFinallyStatement* node) {
 void Processor::VisitSwitchStatement(SwitchStatement* node) {
   // The statement may have to produce a value, so always assign undefined
   // before.
-  // TODO(verwaest): Omit it if we know that there's no break/continue leaving
+  // TODO (verwaest): Omit it if we know that there's no break/continue leaving id:1194 gh:1202
   // it early.
   DCHECK(breakable_ || !is_set_);
   BreakableScope scope(this);

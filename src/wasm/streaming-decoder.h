@@ -70,7 +70,7 @@ class V8_EXPORT_PRIVATE StreamingDecoder {
   void NotifyError() { ok_ = false; }
 
  private:
-  // TODO(ahaas): Put the whole private state of the StreamingDecoder into the
+  // TODO (ahaas): Put the whole private state of the StreamingDecoder into the id:1662 gh:1670
   // cc file (PIMPL design pattern).
 
   // The SectionBuffer is the data object for the content of a single section.

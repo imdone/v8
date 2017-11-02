@@ -98,7 +98,7 @@ namespace internal {
 //   CHECK_EQUAL_64(0x1234, core.xreg(0) & 0xffff);
 
 
-#if 0  // TODO(all): enable.
+#if 0  // TODO (all): enable. id:1693 gh:1701
 static v8::Persistent<v8::Context> env;
 
 static void InitializeVM() {
@@ -9064,7 +9064,7 @@ TEST(fmadd_fmsub_double) {
 
   // It's hard to check the result of fused operations because the only way to
   // calculate the result is using fma, which is what the simulator uses anyway.
-  // TODO(jbramley): Add tests to check behaviour against a hardware trace.
+  // TODO (jbramley): Add tests to check behaviour against a hardware trace. id:1850 gh:1858
 
   // Basic operation.
   FmaddFmsubHelper(1.0, 2.0, 3.0, 5.0, 1.0, -5.0, -1.0);
@@ -9131,7 +9131,7 @@ TEST(fmadd_fmsub_float) {
   INIT_V8();
   // It's hard to check the result of fused operations because the only way to
   // calculate the result is using fma, which is what the simulator uses anyway.
-  // TODO(jbramley): Add tests to check behaviour against a hardware trace.
+  // TODO (jbramley): Add tests to check behaviour against a hardware trace. id:1525 gh:1533
 
   // Basic operation.
   FmaddFmsubHelper(1.0f, 2.0f, 3.0f, 5.0f, 1.0f, -5.0f, -1.0f);
@@ -15295,7 +15295,7 @@ TEST(call_no_relocation) {
 
   // The return_address_from_call_start function doesn't currently encounter any
   // non-relocatable sequences, so we check it here to make sure it works.
-  // TODO(jbramley): Once Crankshaft is complete, decide if we need to support
+  // TODO (jbramley): Once Crankshaft is complete, decide if we need to support id:1831 gh:1840
   // non-relocatable calls at all.
   CHECK(return_address ==
         Assembler::return_address_from_call_start(call_start));
@@ -15369,7 +15369,7 @@ static void AbsHelperW(int32_t value) {
   Label done;
 
   __ Mov(w0, 0);
-  // TODO(jbramley): The cast is needed to avoid a sign-extension bug in VIXL.
+  // TODO (jbramley): The cast is needed to avoid a sign-extension bug in VIXL. id:1648 gh:1656
   // Once it is fixed, we should remove the cast.
   __ Mov(w1, static_cast<uint32_t>(value));
 

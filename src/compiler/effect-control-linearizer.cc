@@ -418,7 +418,7 @@ void EffectControlLinearizer::Run() {
     // The frame state at block entry is determined by the frame states leaving
     // all predecessors. In case there is no frame state dominating this block,
     // we can rely on a checkpoint being present before the next deoptimization.
-    // TODO(mstarzinger): Eventually we will need to go hunt for a frame state
+    // TODO (mstarzinger): Eventually we will need to go hunt for a frame state id:446 gh:447
     // once deoptimizing nodes roam freely through the schedule.
     Node* frame_state = nullptr;
     if (block != schedule()->start()) {
@@ -2553,7 +2553,7 @@ Node* EffectControlLinearizer::LowerStringFromCharCode(Node* node) {
   __ Goto(&done, entry);
 
   // Let %StringFromCharCode handle this case.
-  // TODO(turbofan): At some point we may consider adding a stub for this
+  // TODO (turbofan): At some point we may consider adding a stub for this id:603 gh:604
   // deferred case, so that we don't need to call to C++ here.
   __ Bind(&runtime_call);
   {
@@ -3081,7 +3081,7 @@ Node* EffectControlLinearizer::LowerMaybeGrowFastElements(Node* node,
                                ChangeInt32ToSmi(index), __ NoContextConstant());
 
   // Ensure that we were able to grow the {elements}.
-  // TODO(turbofan): We use kSmi as reason here similar to Crankshaft,
+  // TODO (turbofan): We use kSmi as reason here similar to Crankshaft, id:559 gh:560
   // but maybe we should just introduce a reason that makes sense.
   __ DeoptimizeIf(DeoptimizeReason::kSmi, ObjectIsSmi(new_elements),
                   frame_state);
@@ -3491,7 +3491,7 @@ void EffectControlLinearizer::LowerTransitionAndStoreNumberElement(Node* node) {
     // loop peeling can break this assumption.
     __ GotoIf(__ Word32Equal(kind, __ Int32Constant(HOLEY_DOUBLE_ELEMENTS)),
               &do_store);
-    // TODO(turbofan): It would be good to have an "Unreachable()" node type.
+    // TODO (turbofan): It would be good to have an "Unreachable()" node type. id:491 gh:492
     __ DebugBreak();
     __ Goto(&do_store);
   }

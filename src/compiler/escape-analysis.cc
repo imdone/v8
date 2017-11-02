@@ -9,7 +9,7 @@
 #include "src/compiler/node-matchers.h"
 #include "src/compiler/operator-properties.h"
 #include "src/compiler/simplified-operator.h"
-#include "src/zone/zone-list-inl.h"  // TODO(mstarzinger): Fix zone-handle-set.h instead!
+#include "src/zone/zone-list-inl.h"  // TODO (mstarzinger): Fix zone-handle-set.h instead! id:447 gh:448
 
 #ifdef DEBUG
 #define TRACE(...)                                    \
@@ -457,7 +457,7 @@ VariableTracker::State VariableTracker::MergeInputs(Node* effect_phi) {
             Node* phi = graph_->graph()->NewNode(
                 graph_->common()->Phi(MachineRepresentation::kTagged, arity),
                 arity + 1, &buffer_.front());
-            // TODO(tebbi): Computing precise types here is tricky, because of
+            // TODO (tebbi): Computing precise types here is tricky, because of id:604 gh:605
             // the necessary revisitations. If we really need this, we should
             // probably do it afterwards.
             NodeProperties::SetType(phi, Type::Any());
@@ -589,7 +589,7 @@ void ReduceNode(const Operator* op, EscapeAnalysisTracker::Scope* current,
           vobject->FieldAt(OffsetOfFieldAccess(op)).To(&var)) {
         current->SetReplacement(current->Get(var));
       } else {
-        // TODO(tebbi): At the moment, we mark objects as escaping if there
+        // TODO (tebbi): At the moment, we mark objects as escaping if there id:560 gh:561
         // is a load from an invalid location to avoid dead nodes. This is a
         // workaround that should be removed once we can handle dead nodes
         // everywhere.
@@ -635,7 +635,7 @@ void ReduceNode(const Operator* op, EscapeAnalysisTracker::Scope* current,
         replacement = jsgraph->FalseConstant();
       }
       if (replacement) {
-        // TODO(tebbi) This is a workaround for uninhabited types. If we
+        // TODO (tebbi) This is a workaround for uninhabited types. If we id:492 gh:493
         // replaced a value of uninhabited type with a constant, we would
         // widen the type of the node. This could produce inconsistent
         // types (which might confuse representation selection). We get

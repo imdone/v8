@@ -146,7 +146,7 @@ void UpdateHandlerDataCodePointer(int index, void* base) {
 int RegisterHandlerData(void* base, size_t size,
                         size_t num_protected_instructions,
                         ProtectedInstructionData* protected_instructions) {
-  // TODO(eholk): in debug builds, make sure this data isn't already registered.
+  // TODO (eholk): in debug builds, make sure this data isn't already registered. id:1271 gh:1279
 
   CodeProtectionInfo* data = CreateHandlerData(
       base, size, num_protected_instructions, protected_instructions);
@@ -240,7 +240,7 @@ void ReleaseHandlerData(int index) {
       ValidateCodeObjects();
     }
   }
-  // TODO(eholk): on debug builds, ensure there are no more copies in
+  // TODO (eholk): on debug builds, ensure there are no more copies in id:1587 gh:1595
   // the list.
   DCHECK_NOT_NULL(data);  // make sure we're releasing legitimate handler data.
   free(data);

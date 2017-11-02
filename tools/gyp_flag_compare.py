@@ -148,7 +148,7 @@ def GetFlags(lines, build_dir):
       'output': output_name,
       'depname': dep_name,
       'defines': sorted(defines),
-      'include_dirs': sorted(include_dirs),  # TODO(scottmg): This is wrong.
+      'include_dirs': sorted(include_dirs),  # TODO (scottmg): This is wrong. id:2338 gh:2346
       'dash_f': sorted(dash_f),
       'warnings': sorted(warnings),
       'other': sorted(others),
@@ -272,7 +272,7 @@ def main():
     print diff
 
   print 'Total differences:', g_total_differences
-  # TODO(scottmg): Return failure on difference once we're closer to identical.
+  # TODO (scottmg): Return failure on difference once we're closer to identical. id:2574 gh:2583
   return 0
 
 

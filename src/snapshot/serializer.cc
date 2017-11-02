@@ -528,7 +528,7 @@ void Serializer<
 }
 
 // Clear and later restore the next link in the weak cell or allocation site.
-// TODO(all): replace this with proper iteration of weak slots in serializer.
+// TODO (all): replace this with proper iteration of weak slots in serializer. id:1584 gh:1592
 class UnlinkWeakNextScope {
  public:
   explicit UnlinkWeakNextScope(HeapObject* object) : object_(nullptr) {

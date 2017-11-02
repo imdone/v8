@@ -269,7 +269,7 @@ var test_throw_catch_param_l = (function () {
           kExprElse,
             kExprI32Const, 0,
           kExprEnd,
-          // TODO(kschimpf): Why is this return necessary?
+          // TODO (kschimpf): Why is this return necessary? id:2198 gh:2207
           kExprReturn,
         kExprEnd,
       ]).addLocals({i64_count: 1}).exportFunc();
@@ -375,7 +375,7 @@ assertWasmThrows(0, [16404, 0, 0, 0],
 assertWasmThrows(0, [16739, 4816, 0, 0],
                  function() { test_throw_param_d.exports.throw_param(10000000.5); });
 
-/* TODO(kschimpf) Convert these tests to work for the proposed exceptions.
+/* TODO (kschimpf) Convert these tests to work for the proposed exceptions. id:2489 gh:2497
 
 // The following methods do not attempt to catch the exception they raise.
 var test_throw = (function () {

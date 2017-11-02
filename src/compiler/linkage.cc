@@ -43,7 +43,7 @@ std::ostream& operator<<(std::ostream& os, const CallDescriptor::Kind& k) {
 
 
 std::ostream& operator<<(std::ostream& os, const CallDescriptor& d) {
-  // TODO(svenpanne) Output properties etc. and be less cryptic.
+  // TODO (svenpanne) Output properties etc. and be less cryptic. id:665 gh:666
   return os << d.kind() << ":" << d.debug_name() << ":r" << d.ReturnCount()
             << "s" << d.StackParameterCount() << "i" << d.InputCount() << "f"
             << d.FrameStateCount() << "t" << d.SupportsTailCalls();
@@ -132,7 +132,7 @@ CallDescriptor* Linkage::ComputeIncoming(Zone* zone, CompilationInfo* info) {
                                1 + shared->internal_formal_parameter_count(),
                                CallDescriptor::kNoFlags);
   }
-  return nullptr;  // TODO(titzer): ?
+  return nullptr;  // TODO (titzer): ? id:539 gh:540
 }
 
 
@@ -160,7 +160,7 @@ bool Linkage::NeedsFrameStateInput(Runtime::FunctionId function) {
     case Runtime::kStringLessThanOrEqual:
     case Runtime::kStringGreaterThan:
     case Runtime::kStringGreaterThanOrEqual:
-    case Runtime::kToFastProperties:  // TODO(conradw): Is it safe?
+    case Runtime::kToFastProperties:  // TODO (conradw): Is it safe? id:583 gh:584
     case Runtime::kTraceEnter:
     case Runtime::kTraceExit:
       return false;
@@ -332,9 +332,9 @@ CallDescriptor* Linkage::GetJSCallDescriptor(Zone* zone, bool is_osr,
       "js-call");
 }
 
-// TODO(all): Add support for return representations/locations to
+// TODO (all): Add support for return representations/locations to id:624 gh:625
 // CallInterfaceDescriptor.
-// TODO(turbofan): cache call descriptors for code stub calls.
+// TODO (turbofan): cache call descriptors for code stub calls. id:635 gh:636
 CallDescriptor* Linkage::GetStubCallDescriptor(
     Isolate* isolate, Zone* zone, const CallInterfaceDescriptor& descriptor,
     int stack_parameter_count, CallDescriptor::Flags flags,

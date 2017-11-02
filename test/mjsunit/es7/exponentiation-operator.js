@@ -269,7 +269,7 @@ function TestBadAssignmentLHS() {
   assertThrows("if (false) { /17/ **= 10; }", ReferenceError);
   assertThrows("if (false) { ({ valueOf() { return 17; } } **= 10); }",
                ReferenceError);
-  // TODO(caitp): a Call expression as LHS should be an early ReferenceError!
+  // TODO (caitp): a Call expression as LHS should be an early ReferenceError! id:1966 gh:1974
   // assertThrows("if (false) { Array() **= 10; }", ReferenceError);
   assertThrows(() => Array() **= 10, ReferenceError);
 }

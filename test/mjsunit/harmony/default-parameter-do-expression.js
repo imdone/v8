@@ -15,7 +15,7 @@ function hoist_duplicate_do_var() {
   var duplicate = 100;
   var f = (y = do { var duplicate = 3 }) => duplicate;
   assertEquals(3, f());
-  // TODO(verwaest): The {duplicate} declarations were invalidly merged.
+  // TODO (verwaest): The {duplicate} declarations were invalidly merged. id:2270 gh:2278
   assertEquals(3, duplicate);
 }
 hoist_duplicate_do_var();

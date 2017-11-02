@@ -166,7 +166,7 @@ struct Allocator {
 #if V8_TARGET_ARCH_ARM
         // Allocate floats using a double register, but modify the code to
         // reflect how ARM FP registers alias.
-        // TODO(bbudge) Modify wasm linkage to allow use of all float regs.
+        // TODO (bbudge) Modify wasm linkage to allow use of all float regs. id:904 gh:912
         if (type == wasm::kWasmF32) {
           int float_reg_code = reg.code() * 2;
           DCHECK_GT(RegisterConfiguration::kMaxFPRegisters, float_reg_code);

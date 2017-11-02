@@ -137,7 +137,7 @@ var O = {
   // Strict/Unmapped arguments should always be used for functions with rest
   // parameters
   assertThrows(function(...rest) { return arguments.callee; }, TypeError);
-  // TODO(caitp): figure out why this doesn't throw sometimes, even though the
+  // TODO (caitp): figure out why this doesn't throw sometimes, even though the id:2220 gh:2228
   //              getter always does =)
   // assertThrows(function(...rest) { arguments.callee = 1; }, TypeError);
 })();

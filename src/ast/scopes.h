@@ -108,7 +108,7 @@ class V8_EXPORT_PRIVATE Scope : public NON_EXPORTED_BASE(ZoneObject) {
   void set_needs_migration() { needs_migration_ = true; }
 #endif
 
-  // TODO(verwaest): Is this needed on Scope?
+  // TODO (verwaest): Is this needed on Scope? id:213 gh:214
   int num_parameters() const;
 
   DeclarationScope* AsDeclarationScope();
@@ -239,7 +239,7 @@ class V8_EXPORT_PRIVATE Scope : public NON_EXPORTED_BASE(ZoneObject) {
   // In particular, the only way to get hold of the temporary is by keeping the
   // Variable* around.  The name should not clash with a legitimate variable
   // names.
-  // TODO(verwaest): Move to DeclarationScope?
+  // TODO (verwaest): Move to DeclarationScope? id:235 gh:236
   Variable* NewTemporary(const AstRawString* name);
 
   // ---------------------------------------------------------------------------
@@ -750,7 +750,7 @@ class V8_EXPORT_PRIVATE DeclarationScope : public Scope {
     return receiver_;
   }
 
-  // TODO(wingo): Add a GLOBAL_SCOPE scope type which will lexically allocate
+  // TODO (wingo): Add a GLOBAL_SCOPE scope type which will lexically allocate id:199 gh:200
   // "this" (and no other variable) on the native context.  Script scopes then
   // will not have a "this" declaration.
   bool has_this_declaration() const {
@@ -802,7 +802,7 @@ class V8_EXPORT_PRIVATE DeclarationScope : public Scope {
 
   bool has_simple_parameters() const { return has_simple_parameters_; }
 
-  // TODO(caitp): manage this state in a better way. PreParser must be able to
+  // TODO (caitp): manage this state in a better way. PreParser must be able to id:179 gh:180
   // communicate that the scope is non-simple, without allocating any parameters
   // as the Parser does. This is necessary to ensure that TC39's proposed early
   // error can be reported consistently regardless of whether lazily parsed or

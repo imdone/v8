@@ -361,7 +361,7 @@ function js_div(a, b) { return (a / b) | 0; }
 
       var i1 = new WebAssembly.Instance(m1);
 
-      // TODO(titzer): v8 currently requires import table size to match
+      // TODO (titzer): v8 currently requires import table size to match id:2521 gh:2530
       // export table size.
       var ffi = {y: {impfoo: i1.exports.expfoo}};
       if (expsize == impsize) {

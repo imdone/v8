@@ -348,7 +348,7 @@ class SharedFunctionInfo : public HeapObject {
 
   // Returns `false` if formal parameters include rest parameters, optional
   // parameters, or destructuring parameters.
-  // TODO(caitp): make this a flag set during parsing
+  // TODO (caitp): make this a flag set during parsing id:1342 gh:1350
   inline bool has_simple_parameters();
 
   // Initialize a SharedFunctionInfo from a parsed function literal.

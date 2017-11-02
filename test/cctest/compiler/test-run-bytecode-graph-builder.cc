@@ -703,7 +703,7 @@ void TestBytecodeGraphBuilderGlobals(size_t shard) {
 SHARD_TEST_BY_2(BytecodeGraphBuilderGlobals)
 
 TEST(BytecodeGraphBuilderToObject) {
-  // TODO(mythria): tests for ToObject. Needs ForIn.
+  // TODO (mythria): tests for ToObject. Needs ForIn. id:1540 gh:1548
 }
 
 TEST(BytecodeGraphBuilderToName) {
@@ -1001,7 +1001,7 @@ TEST(BytecodeGraphBuilderDeleteLookupSlot) {
   Isolate* isolate = scope.main_isolate();
   Factory* factory = isolate->factory();
 
-  // TODO(mythria): Add more tests when we have support for LdaLookupSlot.
+  // TODO (mythria): Add more tests when we have support for LdaLookupSlot. id:1685 gh:1693
   const char* function_prologue = "var f;"
                                   "var x = 1;"
                                   "y = 10;"
@@ -1590,7 +1590,7 @@ TEST(BytecodeGraphBuilderThrow) {
   HandleAndZoneScope scope;
   Isolate* isolate = scope.main_isolate();
 
-  // TODO(mythria): Add more tests when real try-catch and deoptimization
+  // TODO (mythria): Add more tests when real try-catch and deoptimization id:1842 gh:1850
   // information are supported.
   ExpectedSnippet<0, const char*> snippets[] = {
       {"throw undefined;", {"Uncaught undefined"}},

@@ -140,7 +140,7 @@ const int kNumDoubleCalleeSaved = 8;
 
 // Number of registers for which space is reserved in safepoints. Must be a
 // multiple of 8.
-// TODO(regis): Only 8 registers may actually be sufficient. Revisit.
+// TODO (regis): Only 8 registers may actually be sufficient. Revisit. id:38 gh:39
 const int kNumSafepointRegisters = 16;
 
 // Define the list of registers actually saved at safepoints.
@@ -1041,7 +1041,7 @@ class Assembler : public AssemblerBase {
   void vmov(const DwVfpRegister dst,
             const DwVfpRegister src,
             const Condition cond = al);
-  // TODO(bbudge) Replace uses of these with the more general core register to
+  // TODO (bbudge) Replace uses of these with the more general core register to id:76 gh:73
   // scalar register vmov's.
   void vmov(const DwVfpRegister dst,
             const VmovIndex index,

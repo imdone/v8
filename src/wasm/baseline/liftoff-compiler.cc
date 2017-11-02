@@ -33,7 +33,7 @@ class LiftoffCompiler {
  public:
   MOVE_ONLY_NO_DEFAULT_CONSTRUCTOR(LiftoffCompiler);
 
-  // TODO(clemensh): Make this a template parameter.
+  // TODO (clemensh): Make this a template parameter. id:1592 gh:1600
   static constexpr wasm::Decoder::ValidateFlag validate =
       wasm::Decoder::kValidate;
 
@@ -43,7 +43,7 @@ class LiftoffCompiler {
     MOVE_ONLY_WITH_DEFAULT_CONSTRUCTORS(Control);
 
     LiftoffAssembler::CacheState label_state;
-    // TODO(clemensh): Labels cannot be moved on arm64, but everywhere else.
+    // TODO (clemensh): Labels cannot be moved on arm64, but everywhere else. id:1383 gh:1391
     // Find a better solution.
     std::unique_ptr<Label> label = base::make_unique<Label>();
   };
@@ -171,7 +171,7 @@ class LiftoffCompiler {
       // Before entering a loop, spill all locals to the stack, in order to free
       // the cache registers, and to avoid unnecessarily reloading stack values
       // into registers at branches.
-      // TODO(clemensh): Come up with a better strategy here, involving
+      // TODO (clemensh): Come up with a better strategy here, involving id:1565 gh:1573
       // pre-analysis of the function.
       __ SpillLocals();
 
@@ -271,7 +271,7 @@ class LiftoffCompiler {
     }
     if (!values.is_empty()) {
       if (values.size() > 1) unsupported(decoder, "multi-return");
-      // TODO(clemensh): Handle other types.
+      // TODO (clemensh): Handle other types. id:1618 gh:1626
       DCHECK_EQ(kWasmI32, values[0].type);
       Register reg = __ PopToRegister(kWasmI32);
       __ MoveToReturnRegister(reg);
@@ -474,7 +474,7 @@ class LiftoffCompiler {
   compiler::ModuleEnv* env_;
   bool ok_ = true;
 
-  // TODO(clemensh): Remove this limitation by allocating more stack space if
+  // TODO (clemensh): Remove this limitation by allocating more stack space if id:1349 gh:1357
   // needed.
   static constexpr int kMaxValueStackHeight = 8;
 };

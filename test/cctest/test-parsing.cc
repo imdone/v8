@@ -1241,7 +1241,7 @@ TEST(DiscardFunctionBody) {
   const char* discard_sources[] = {
       "(function f() { function g() { var a; } })();",
       "(function f() { function g() { { function h() { } } } })();",
-      /* TODO(conradw): In future it may be possible to apply this optimisation
+      /* TODO (conradw): In future it may be possible to apply this optimisation id:1837 gh:1846
        * to these productions.
       "(function f() { 0, function g() { var a; } })();",
       "(function f() { 0, { g() { var a; } } })();",
@@ -1275,7 +1275,7 @@ TEST(DiscardFunctionBody) {
                 ->AsFunctionDeclaration()
                 ->fun();
     } else {
-      // TODO(conradw): This path won't be hit until the other test cases can be
+      // TODO (conradw): This path won't be hit until the other test cases can be id:1654 gh:1662
       // uncommented.
       UNREACHABLE();
       CHECK_NOT_NULL(inner->body());
@@ -1516,7 +1516,7 @@ TEST(ParserSync) {
       "if (false) ;", "if (false) {}", "if (false) 12", "do {} while (false)",
       "for (;;) ;", "for (;;) {}", "for (;;) 12", "continue", "continue label",
       "continue\nlabel", "break", "break label", "break\nlabel",
-      // TODO(marja): activate once parsing 'return' is merged into ParserBase.
+      // TODO (marja): activate once parsing 'return' is merged into ParserBase. id:1881 gh:1889
       // "return",
       // "return  12",
       // "return\n12",
@@ -2988,7 +2988,7 @@ TEST(SerializationOfMaybeAssignmentFlag) {
   CHECK_NOT_NULL(var);
   // Maybe assigned should survive deserialization
   CHECK_EQ(var->maybe_assigned(), i::kMaybeAssigned);
-  // TODO(sigurds) Figure out if is_used should survive context serialization.
+  // TODO (sigurds) Figure out if is_used should survive context serialization. id:1908 gh:1916
 }
 
 
@@ -3090,7 +3090,7 @@ TEST(InnerAssignment) {
 
   // We set allow_error_in_inner_function to true in cases where our handling of
   // assigned variables in lazy inner functions is currently overly pessimistic.
-  // FIXME(marja): remove it when no longer needed.
+  // FIXME (marja): remove it when no longer needed. id:1625 gh:1633
   struct {
     const char* source;
     bool assigned;
@@ -3981,7 +3981,7 @@ TEST(ErrorsArrowFunctions) {
     "(bar, arguments) => { 'use strict'; 0 }",
     "(bar, yield) => { 'use strict'; 0 }",
     "(bar, interface) => { 'use strict'; 0 }",
-    // TODO(aperez): Detecting duplicates does not work in PreParser.
+    // TODO (aperez): Detecting duplicates does not work in PreParser. id:1924 gh:1933
     // "(bar, bar) => {}",
 
     // The parameter list is parsed as an expression, but only
@@ -6330,7 +6330,7 @@ TEST(ModuleParsingInternals) {
               .find(declarations->AtForTest(12)->proxy()->raw_name())
               ->second;
   CheckEntry(entry, "foob", "foob", nullptr, -1);
-  // TODO(neis): The next lines are terrible. Find a better way.
+  // TODO (neis): The next lines are terrible. Find a better way. id:1655 gh:1663
   auto name_x = declarations->AtForTest(0)->proxy()->raw_name();
   CHECK_EQ(2u, descriptor->regular_exports().count(name_x));
   auto it = descriptor->regular_exports().equal_range(name_x).first;
@@ -7870,7 +7870,7 @@ TEST(LanguageModeDirectivesNonSimpleParameterListErrors) {
       {nullptr, nullptr}};
 
   const char* data[] = {
-      // TODO(@caitp): support formal parameter initializers
+      // TODO (@caitp): support formal parameter initializers id:1882 gh:1891
       "{}",
       "[]",
       "[{}]",
@@ -8021,7 +8021,7 @@ TEST(EscapedKeywords) {
     "var { f\\u0061lse } = {};",
     "f\\u0061lse = 1;",
 
-    // TODO(caitp): consistent error messages for labeled statements and
+    // TODO (caitp): consistent error messages for labeled statements and id:1909 gh:1917
     // expressions
     "switch (this.a) { c\\u0061se 6: break; }",
     "try { } c\\u0061tch (e) {}",
@@ -8040,7 +8040,7 @@ TEST(EscapedKeywords) {
     "class C { st\\u0061tic get bar() {} }",
     "class C { st\\u0061tic set bar() {} }",
 
-    // TODO(adamk): These should not be errors in sloppy mode.
+    // TODO (adamk): These should not be errors in sloppy mode. id:1626 gh:1634
     "(y\\u0069eld);",
     "var y\\u0069eld = 1;",
     "var { y\\u0069eld } = {};",
@@ -8336,7 +8336,7 @@ TEST(ExponentiationOperatorErrors) {
     "[ x **= 2 ] = [ 2 ]",
     "{ x } **= { x: 2 }",
     "{ x: x **= 2 ] = { x: 2 }",
-    // TODO(caitp): a Call expression as LHS should be an early ReferenceError!
+    // TODO (caitp): a Call expression as LHS should be an early ReferenceError! id:1925 gh:1934
     // "Array() **= 10",
     nullptr
   };
@@ -8532,7 +8532,7 @@ TEST(AsyncAwaitErrors) {
 
     "var O = { async method(dupe, dupe) {} }",
 
-    // TODO(caitp): preparser needs to report duplicate parameter errors, too.
+    // TODO (caitp): preparser needs to report duplicate parameter errors, too. id:1656 gh:1664
     // "var f = async(dupe, dupe) => {}",
 
     nullptr
@@ -9347,7 +9347,7 @@ TEST(ForAwaitOf) {
 
   RunParserSyncTest(context_data, var_data, kSuccess, nullptr, 0, always_flags,
                     arraysize(always_flags));
-  // TODO(marja): PreParser doesn't report early errors.
+  // TODO (marja): PreParser doesn't report early errors. id:1883 gh:1892
   //              (https://bugs.chromium.org/p/v8/issues/detail?id=2728)
   // RunParserSyncTest(context_data2, var_data, kError, nullptr, 0,
   // always_flags,
@@ -9535,7 +9535,7 @@ TEST(ForAwaitOfFunctionDeclaration) {
     "for await (x of []) function d() {}; return d;",
     "for await (x of []) function* g() {};",
     "for await (x of []) function* g() {}; return g;",
-    // TODO(caitp): handle async function declarations in ParseScopedStatement.
+    // TODO (caitp): handle async function declarations in ParseScopedStatement. id:1910 gh:1918
     // "for await (x of []) async function a() {};",
     // "for await (x of []) async function a() {}; return a;",
     nullptr

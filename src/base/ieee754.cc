@@ -1540,7 +1540,7 @@ double exp(double x) {
   /* argument reduction */
   if (hx > 0x3fd62e42) {   /* if  |x| > 0.5 ln2 */
     if (hx < 0x3FF0A2B2) { /* and |x| < 1.5 ln2 */
-      /* TODO(rtoy): We special case exp(1) here to return the correct
+      /* TODO (rtoy): We special case exp(1) here to return the correct id:217 gh:218
        * value of E, as the computation below would get the last bit
        * wrong. We should probably fix the algorithm instead.
        */
@@ -2342,7 +2342,7 @@ double expm1(double x) {
     }
     if (k <= -2 || k > 56) { /* suffice to return exp(x)-1 */
       y = one - (e - x);
-      // TODO(mvstanton): is this replacement for the hex float
+      // TODO (mvstanton): is this replacement for the hex float id:239 gh:240
       // sufficient?
       // if (k == 1024) y = y*2.0*0x1p1023;
       if (k == 1024)

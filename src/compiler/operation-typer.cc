@@ -346,7 +346,7 @@ Type* OperationTyper::NumberCbrt(Type* type) {
 Type* OperationTyper::NumberCeil(Type* type) {
   DCHECK(type->Is(Type::Number()));
   if (type->Is(cache_.kIntegerOrMinusZeroOrNaN)) return type;
-  // TODO(bmeurer): We could infer a more precise type here.
+  // TODO (bmeurer): We could infer a more precise type here. id:680 gh:681
   return cache_.kIntegerOrMinusZeroOrNaN;
 }
 
@@ -411,7 +411,7 @@ Type* OperationTyper::NumberLog10(Type* type) {
 Type* OperationTyper::NumberRound(Type* type) {
   DCHECK(type->Is(Type::Number()));
   if (type->Is(cache_.kIntegerOrMinusZeroOrNaN)) return type;
-  // TODO(bmeurer): We could infer a more precise type here.
+  // TODO (bmeurer): We could infer a more precise type here. id:707 gh:708
   return cache_.kIntegerOrMinusZeroOrNaN;
 }
 
@@ -465,7 +465,7 @@ Type* OperationTyper::NumberTanh(Type* type) {
 Type* OperationTyper::NumberTrunc(Type* type) {
   DCHECK(type->Is(Type::Number()));
   if (type->Is(cache_.kIntegerOrMinusZeroOrNaN)) return type;
-  // TODO(bmeurer): We could infer a more precise type here.
+  // TODO (bmeurer): We could infer a more precise type here. id:598 gh:599
   return cache_.kIntegerOrMinusZeroOrNaN;
 }
 
@@ -512,7 +512,7 @@ Type* OperationTyper::NumberToUint8Clamped(Type* type) {
 
 Type* OperationTyper::NumberSilenceNaN(Type* type) {
   DCHECK(type->Is(Type::Number()));
-  // TODO(jarin): This is a terrible hack; we definitely need a dedicated type
+  // TODO (jarin): This is a terrible hack; we definitely need a dedicated type id:790 gh:798
   // for the hole (tagged and/or double). Otherwise if the input is the hole
   // NaN constant, we'd just eliminate this node in JSTypedLowering.
   if (type->Maybe(Type::NaN())) return Type::Number();
@@ -833,7 +833,7 @@ Type* OperationTyper::NumberBitwiseXor(Type* lhs, Type* rhs) {
   }
   if ((lmax < 0 && rmin >= 0) || (lmin >= 0 && rmax < 0)) {
     // Xor-ing a negative and a non-negative value results in a negative value.
-    // TODO(jarin) Use a range here.
+    // TODO (jarin) Use a range here. id:650 gh:651
     return Type::Negative32();
   }
   return Type::Signed32();
@@ -937,7 +937,7 @@ Type* OperationTyper::NumberAtan2(Type* lhs, Type* rhs) {
 Type* OperationTyper::NumberImul(Type* lhs, Type* rhs) {
   DCHECK(lhs->Is(Type::Number()));
   DCHECK(rhs->Is(Type::Number()));
-  // TODO(turbofan): We should be able to do better here.
+  // TODO (turbofan): We should be able to do better here. id:681 gh:682
   return Type::Signed32();
 }
 
@@ -951,7 +951,7 @@ Type* OperationTyper::NumberMax(Type* lhs, Type* rhs) {
     return Type::NaN();
   }
   Type* type = Type::None();
-  // TODO(turbofan): Improve minus zero handling here.
+  // TODO (turbofan): Improve minus zero handling here. id:708 gh:709
   if (lhs->Maybe(Type::NaN()) || rhs->Maybe(Type::NaN())) {
     type = Type::Union(type, Type::NaN(), zone());
   }
@@ -977,7 +977,7 @@ Type* OperationTyper::NumberMin(Type* lhs, Type* rhs) {
     return Type::NaN();
   }
   Type* type = Type::None();
-  // TODO(turbofan): Improve minus zero handling here.
+  // TODO (turbofan): Improve minus zero handling here. id:599 gh:600
   if (lhs->Maybe(Type::NaN()) || rhs->Maybe(Type::NaN())) {
     type = Type::Union(type, Type::NaN(), zone());
   }
@@ -996,7 +996,7 @@ Type* OperationTyper::NumberMin(Type* lhs, Type* rhs) {
 Type* OperationTyper::NumberPow(Type* lhs, Type* rhs) {
   DCHECK(lhs->Is(Type::Number()));
   DCHECK(rhs->Is(Type::Number()));
-  // TODO(turbofan): We should be able to do better here.
+  // TODO (turbofan): We should be able to do better here. id:791 gh:799
   return Type::Number();
 }
 

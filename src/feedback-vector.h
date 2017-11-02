@@ -733,7 +733,7 @@ class StoreICNexus : public FeedbackNexus {
   InlineCacheState StateFromFeedback() const override;
 };
 
-// TODO(ishell): Currently we use StoreOwnIC only for storing properties that
+// TODO (ishell): Currently we use StoreOwnIC only for storing properties that id:890 gh:898
 // already exist in the boilerplate therefore we can use StoreIC.
 typedef StoreICNexus StoreOwnICNexus;
 

@@ -848,7 +848,7 @@ class V8_EXPORT_PRIVATE Instruction final {
     DCHECK(output_count == 0 || outputs != nullptr);
     DCHECK(input_count == 0 || inputs != nullptr);
     DCHECK(temp_count == 0 || temps != nullptr);
-    // TODO(jarin/mstarzinger): Handle this gracefully. See crbug.com/582702.
+    // TODO (jarin/mstarzinger): Handle this gracefully. See crbug.com/582702. id:526 gh:527
     CHECK(InputCountField::is_valid(input_count));
 
     size_t total_extra_ops = output_count + input_count + temp_count;
@@ -1060,7 +1060,7 @@ class V8_EXPORT_PRIVATE Constant final {
   }
 
   float ToFloat32() const {
-    // TODO(ahaas): We should remove this function. If value_ has the bit
+    // TODO (ahaas): We should remove this function. If value_ has the bit id:549 gh:550
     // representation of a signalling NaN, then returning it as float can cause
     // the signalling bit to flip, and value_ is returned as a quiet NaN.
     DCHECK_EQ(kFloat32, type());
@@ -1344,7 +1344,7 @@ class V8_EXPORT_PRIVATE PhiInstruction final
   int virtual_register() const { return virtual_register_; }
   const IntVector& operands() const { return operands_; }
 
-  // TODO(dcarney): this has no real business being here, since it's internal to
+  // TODO (dcarney): this has no real business being here, since it's internal to id:611 gh:612
   // the register allocator, but putting it here was convenient.
   const InstructionOperand& output() const { return output_; }
   InstructionOperand& output() { return output_; }
@@ -1543,7 +1543,7 @@ class V8_EXPORT_PRIVATE InstructionSequence final
   void EndBlock(RpoNumber rpo);
 
   int AddConstant(int virtual_register, Constant constant) {
-    // TODO(titzer): allow RPO numbers as constants?
+    // TODO (titzer): allow RPO numbers as constants? id:567 gh:568
     DCHECK_NE(Constant::kRpoNumber, constant.type());
     DCHECK(virtual_register >= 0 && virtual_register < next_virtual_register_);
     DCHECK(constants_.find(virtual_register) == constants_.end());
